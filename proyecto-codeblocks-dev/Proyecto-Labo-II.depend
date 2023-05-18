@@ -214,3 +214,81 @@
 1682632040 source:c:\users\nalvez\desktop\proyecto-labo-ii\src\usuario.cpp
 	"Usuario.h"
 
+1683241622 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\funciones.cpp
+	<iostream>
+	<locale.h>
+	"funciones.h"
+
+1683241622 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\funciones.h
+
+1683241622 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\main.cpp
+	<iostream>
+	"rlutil.h"
+	"funciones.h"
+	"Fecha.h"
+	"Persona.h"
+	"Usuario.h"
+	"Encabezado.h"
+	"PieDePagina.h"
+	"Pantalla.h"
+
+1683241622 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\rlutil.h
+	<iostream>
+	<string>
+	<cstdio>
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	<termios.h>
+	<unistd.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<sys/time.h>
+
+1683241622 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\fecha.h
+	<iostream>
+	<string>
+	<windows.h>
+
+1683241622 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\persona.h
+	"Fecha.h"
+
+1683241622 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\usuario.h
+	"Persona.h"
+
+1683241622 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\encabezado.h
+	<iostream>
+	<string>
+
+1683241622 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\piedepagina.h
+
+1683241622 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\pantalla.h
+	<iostream>
+	<string>
+	<string.h>
+	"../rlutil.h"
+
+1683241622 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\encabezado.cpp
+	"Encabezado.h"
+	"../rlutil.h"
+
+1683241622 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\fecha.cpp
+	"Fecha.h"
+
+1683241622 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\pantalla.cpp
+	"Pantalla.h"
+	<algorithm>
+
+1683241622 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\persona.cpp
+	"Persona.h"
+
+1683241622 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\piedepagina.cpp
+	<iostream>
+	<string>
+	"PieDePagina.h"
+	"../rlutil.h"
+
+1683241622 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\usuario.cpp
+	"Usuario.h"
+
