@@ -37,10 +37,9 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="Carrito.cpp" />
-		<Unit filename="Carrito.h" />
 		<Unit filename="funciones.cpp" />
 		<Unit filename="funciones.h" />
+		<Unit filename="include/Carrito.h" />
 		<Unit filename="include/Encabezado.h" />
 		<Unit filename="include/Fecha.h" />
 		<Unit filename="include/Pantalla.h" />
@@ -51,6 +50,7 @@
 		<Unit filename="rlutil.h">
 			<Option virtualFolder="include/" />
 		</Unit>
+		<Unit filename="src/Carrito.cpp" />
 		<Unit filename="src/Encabezado.cpp" />
 		<Unit filename="src/Fecha.cpp" />
 		<Unit filename="src/Pantalla.cpp" />
