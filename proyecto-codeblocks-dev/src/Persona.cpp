@@ -57,6 +57,14 @@ int Persona::getTipoDocumento() {
     return _tipoDocumento;
 }
 
+std::string Persona::getTipoDocumentoDescripcion() {
+    std::string tipoDocumento[3] = {"DNI", "CUIL", "CUIT"};
+
+    int tipoDocumentoInt = getTipoDocumento();
+
+    return tipoDocumento[tipoDocumentoInt - 1];
+}
+
 const char* Persona::getNroDocumento() {
     return _nroDocumento;
 }

@@ -16,7 +16,6 @@ void PieDePagina::imprimirPieDePagina() {
     int anchoDeAsteriscos = (getAncho() - anchoDelTitulo - 2) / 2;
     rlutil::locate(1, rlutil::trows());
     std::cout << std::string(anchoDeAsteriscos, '*') << " " << getTitulo() << " " << std::string(anchoDeAsteriscos, '*');
-    rlutil::locate(1,1);
 }
 
 // Setters

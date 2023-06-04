@@ -9,37 +9,30 @@
 #include "Encabezado.h"
 #include "PieDePagina.h"
 #include "Pantalla.h"
+#include "UsuarioArchivo.h"
+#include "UsuarioManager.h"
 
 
 using namespace std;
 
 int main()
 {
-    const int ANCHO = 120;
-    // Persona reg;
-    // Persona reg(1, "33781477", "Nahuel", "Alvez", "nahue.alvez@gmail.com", true, Fecha().fechaActual());
-
-    // reg.Mostrar();
-
     setSpanish();
 
-    Encabezado encabezado("SISTEMA DE GESTIÓN DE STOCK Y VENTAS", ANCHO);
-    PieDePagina pieDePagina("Proyecto de Laboratorio II - 1er cuatrimestre 2023 - UTNFRGP", ANCHO);
+    // Usuario usuario;
+    // UsuarioArchivo usuarioArchivo;
+    UsuarioManager usuarioManager;
 
+    // usuario = usuarioArchivo.leer(0);
 
-    encabezado.imprimirEncabezado();
-    pieDePagina.imprimirPieDePagina();
+    //usuarioManager.listarActivos();
+    //usuarioManager.listarPorAlias();
 
+    // Usuario usuario(1, "33781477", "Nahuel", "Alvez", "nahue.alvez@gmail.com", true, Fecha().fechaActual(), "nalvez", "asdf1234", 0);
 
-    // PantallaBase inicio("Título de pantalla", "Esto es un mensaje en la cabecera", "Este es el cuerpo del mensaje con varias líneas.\n\t\t\t   Esto nos permite poder visualizar más texto de información.\n\t\t\t   Además, ¡queda bien!.", "Elegí una opción y presioná <Enter>", "1. CONTINUAR  |  666. SALIR", "OPCIÓN SELECCIONADA: ");
+    // usuarioArchivo.crear(usuario);
 
-    Pantalla pantalla;
-
-    pantalla.desplegarLogin();
-    rlutil::anykey();
-    rlutil::cls();
-    pantalla.desplegarCrearPrimerAdmin();
-
+    usuarioManager.listarUsuarios();
 
     rlutil::anykey();
 
@@ -154,33 +147,6 @@ int main()
     //               3. ELIMINAR USUARIO
     //               4. LISTAR USUARIOS ACTIVOS
     //               5. RECUPERAR REGISTROS
-    //
-    //             -----------------------------------------------
-    //                     Elija una opción y presione Enter
-    //             -----------------------------------------------
-    //               0. PANTALLA ANTERIOR             666. SALIR
-    //
-    //               OPCIÓN SELECCIONADA:
-
-
-
-    // **** Proyecto de Laboratorio II - 1er cuatrimestre 2023 - UTNFRGP ****
-
- //---------------------------------------------------------------------------- //
-
-    // **************** SISTEMA DE GESTIÓN DE STOCK Y VENTAS ****************
-
-
-
-    //                              MENÚ PRINCIPAL
-    //             -----------------------------------------------
-    //
-    //               1. GESTIÓN DE STOCK
-    //               2. GESTIÓN DE VENTAS
-    //               3. GESTIÓN DE CLIENTES
-    //               5. REPORTERÍA
-    //               6. GESTIÓN DE USUARIOS
-    //               7. CONFIGURACIONES
     //
     //             -----------------------------------------------
     //                     Elija una opción y presione Enter

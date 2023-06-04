@@ -1,17 +1,9 @@
 #include "Pantalla.h"
+#include "Encabezado.h"
+#include "PieDePagina.h"
 #include <algorithm>
 
-// Constructores
-Pantalla::Pantalla(std::string titulo, std::string mensajeInterno, std::string cuerpo, std::string mensajeExterno, std::string textoOpciones, std::string mensajeUltimo) {
-    setTitulo(titulo);
-    setMensajeInterno(mensajeInterno);
-    setCuerpo(cuerpo);
-    setMensajeExterno(mensajeExterno);
-    setTextoOpciones(textoOpciones);
-    setMensajeUltimo(mensajeUltimo);
-}
-
-// Interfaces
+// Utilitarios
 std::string Pantalla::imprimirLineas(int cantidad) {
     std::string lineas;
 
@@ -49,7 +41,21 @@ void Pantalla::centrarTexto(std::string texto, int posy) {
 	std::cout << texto;
 }
 
-void Pantalla::desplegarPantallaBase() {
+// Constructores
+Pantalla::Pantalla(std::string titulo, std::string mensajeInterno, std::string cuerpo, std::string mensajeExterno, std::string textoOpciones, std::string mensajeUltimo) {
+    setTitulo(titulo);
+    setMensajeInterno(mensajeInterno);
+    setCuerpo(cuerpo);
+    setMensajeExterno(mensajeExterno);
+    setTextoOpciones(textoOpciones);
+    setMensajeUltimo(mensajeUltimo);
+}
+
+// Interfaces
+void Pantalla::desplegarPrimerIngreso() {
+    Encabezado pantallaPrincipal("SISTEMA DE GESTIÓN DE STOCK Y VENTAS", 120);
+    PieDePagina pieDePaginaPrincipal("Proyecto de Laboratorio II - 1er cuatrimestre 2023 - UTNFRGP", 120);
+
     // Título
     centrarTexto(imprimirLineas(100), posicionYInicial);
     std::string titulo = getTitulo(); // string auxiliar para transformar el título a mayúsculas
@@ -73,6 +79,8 @@ void Pantalla::desplegarPantallaBase() {
 }
 
 void Pantalla::desplegarLogin() {
+    Encabezado pantallaPrincipal("SISTEMA DE GESTIÓN DE STOCK Y VENTAS", 120);
+    PieDePagina pieDePaginaPrincipal("Proyecto de Laboratorio II - 1er cuatrimestre 2023 - UTNFRGP", 120);
     char usuario[30];
     char contrasenia[30];
 
@@ -179,6 +187,45 @@ void Pantalla::desplegarCrearPrimerAdmin() {
     rlutil::locate(70, 24);
     std::cin >> opcion;
     rlutil::setColor(rlutil::WHITE);
+}
+
+void Pantalla::desplegarMenuUsuarios() {
+    setTitulo("GESTIÓN DE USUARIOS");
+    setMensajeInterno("");
+    setCuerpo("1. CREAR USUARIO \n\t\t\t   2. MODIFICAR USUARIO \n\t\t\t   3. BAJA DE USUARIO \n\t\t\t   4. LISTAR USUARIOS ACTIVOS \n\t\t\t   5. RECUPERAR REGISTROS \n\t\t\t");
+
+    /* Título */
+    centrarTexto(imprimirLineas(100), posicionYInicial);
+    std::string titulo = getTitulo(); // string auxiliar para transformar el título a mayúsculas
+    std::transform(titulo.begin(), titulo.end(), titulo.begin(), ::toupper);
+    centrarTexto(" " + titulo + " ", posicionYInicial);
+
+    /* Mensaje */
+    rlutil::setColor(rlutil::YELLOW);
+    centrarTexto(getMensajeInterno(), posicionYInicial + 2);
+    rlutil::setColor(rlutil::WHITE);
+
+    /* Cuerpo */
+    centrarTexto(imprimirAsteriscos(76), posicionYInicial + 4);
+    rlutil::locate(28, posicionYInicial + 6);
+    std::cout << getCuerpo();
+    centrarTexto(imprimirAsteriscos(76), posicionYInicial + 12);
+
+    centrarTexto(imprimirLineas(100), posicionYNavegacion + 2);
+
+    rlutil::setColor(rlutil::YELLOW);
+    setMensajeExterno("0. PANTALLA ANTERIOR     666. SALIR");
+    centrarTexto(getMensajeExterno(), posicionYNavegacion + 4);
+    rlutil::setColor(rlutil::WHITE);
+
+    /* Navegación */
+    centrarTexto(imprimirLineas(100), posicionYNavegacion + 6);
+    rlutil::setColor(rlutil::YELLOW);
+    setMensajeUltimo("OPCIÓN SELECCIONADA: ");
+    centrarTexto(getMensajeUltimo(), posicionYNavegacion + 7);
+    rlutil::setColor(rlutil::WHITE);
+
+    centrarTexto(imprimirDobleLineas(100), posicionYNavegacion + 8);
 }
 
 // Setters

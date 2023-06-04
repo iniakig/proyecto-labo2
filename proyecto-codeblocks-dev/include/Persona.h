@@ -7,9 +7,10 @@ class Persona {
 private:
     int _tipoDocumento; // Puede ser: ( 1. DNI | 2. CUIL | 3. CUIT )
     char _nroDocumento[12];
-    char _nombre[30];
-    char _apellido[30];
-    char _email[320];
+    char _nombre[15];
+    char _apellido[15];
+    // agregar char _razonSocial[15];
+    char _email[35];
     bool _estado;
     Fecha _fechaRegistro;
 
@@ -31,6 +32,7 @@ public:
 
     // Getters
     int getTipoDocumento();
+    std::string getTipoDocumentoDescripcion();
     const char* getNroDocumento();
     const char* getNombre();
     const char* getApellido();

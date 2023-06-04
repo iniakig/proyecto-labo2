@@ -1,7 +1,7 @@
 #include "Usuario.h"
 
 // Constructores
-Usuario::Usuario(int tipoDocumento, const char* nroDocumento, const char* nombre, const char* apellido, const char* email, bool estado, Fecha fechaRegistro, const char* usuario, const char* contrasenia, int tipoPerfil) {
+Usuario::Usuario(int tipoDocumento, const char* nroDocumento, const char* nombre, const char* apellido, const char* email, bool estado, Fecha fechaRegistro, const char* alias, const char* contrasenia, int rol) {
     setTipoDocumento(tipoDocumento);
     setNroDocumento(nroDocumento);
     setNombre(nombre);
@@ -9,9 +9,9 @@ Usuario::Usuario(int tipoDocumento, const char* nroDocumento, const char* nombre
     setEmail(email);
     setEstado(estado);
     setFechaRegistro(fechaRegistro);
-    setUsuario(usuario);
+    setAlias(alias);
     setContrasenia(contrasenia);
-    setTipoPerfil(tipoPerfil);
+    setRol(rol);
 }
 
 // Interfaces
@@ -19,28 +19,35 @@ Usuario::Usuario(int tipoDocumento, const char* nroDocumento, const char* nombre
 void Mostrar();
 
 // Setters
-void Usuario::setUsuario(const char* usuario) {
-    strcpy(_usuario, usuario);
+void Usuario::setAlias(const char* alias) {
+    strcpy(_alias, alias);
 }
 
 void Usuario::setContrasenia(const char* contrasenia) {
     strcpy(_contrasenia, contrasenia);
 }
 
-void Usuario::setTipoPerfil(int tipoPerfil) {
-    _tipoPerfil = tipoPerfil;
+void Usuario::setRol(int rol) {
+    _rol = rol;
 }
 
 // Getters
 
-const char* Usuario::getUsuario() {
-    return _usuario;
+const char* Usuario::getAlias() {
+    return _alias;
 }
 
 const char* Usuario::getContrasenia() {
     return _contrasenia;
 }
 
-int Usuario::getTipoPerfil() {
-    return _tipoPerfil;
+int Usuario::getRol() {
+    return _rol;
+}
+
+std::string Usuario::getRolDescripcion() {
+    std::string rolDecripcion[3] = {"Administrador", "Supervisor", "Vendedor"};
+    int rol = getRol();
+
+    return rolDecripcion[rol];
 }

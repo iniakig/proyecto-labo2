@@ -3,27 +3,28 @@
 
 #include "Persona.h"
 
-class Usuario: private Persona {
+class Usuario: public Persona {
 private:
-    char _usuario[30];
-    char _contrasenia[30];
-    int _tipoPerfil; // Puede ser: ( 1. SUPERADMINISTRADOR | 2. ADMINISTRADOR | 3. SUPERVISOR | 4. USUARIO )
+    char _alias[15];
+    char _contrasenia[15];
+    int _rol; // Puede ser: (0. ADMINISTRADOR | 1. SUPERVISOR | 2. USUARIO )
 
 public:
     // Constructores
-    Usuario(int tipoDocumento = 0, const char* nroDocumento = "null", const char* nombre = "null", const char* apellido = "null", const char* email = "null", bool estado = "false", Fecha fechaRegistro = Fecha(), const char* usuario = "null", const char* contrasenia = "null", int tipoPerfil = 0);
+    Usuario(int tipoDocumento = 0, const char* nroDocumento = "null", const char* nombre = "null", const char* apellido = "null", const char* email = "null", bool estado = false, Fecha fechaRegistro = Fecha(), const char* alias = "null", const char* contrasenia = "null", int rol = -1);
 
     // Interfaces
 
     // Setters
-    void setUsuario(const char* usuario);
+    void setAlias(const char* alias);
     void setContrasenia(const char* contrasenia);
-    void setTipoPerfil(int tipoPerfil);
+    void setRol(int rol);
 
     // Getters
-    const char* getUsuario();
+    const char* getAlias();
     const char* getContrasenia();
-    int getTipoPerfil();
+    int getRol();
+    std::string getRolDescripcion();
 
 };
 

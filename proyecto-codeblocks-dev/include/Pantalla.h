@@ -21,21 +21,24 @@ private:
     const int posicionYInicial = 5; // Setea posición Y del inicio del bloque de título
     const int posicionYNavegacion = 18; // Setea posiscion Y del inicio del bloque de navegación
 
+    // Utilitarios
+    std::string imprimirLineas(int cantidad);
+    std::string imprimirDobleLineas(int cantidad);
+    std::string imprimirAsteriscos(int cantidad);
+    void centrarTexto(std::string texto, int posy);
+
 public:
     // Constructores
     Pantalla(std::string titulo = "Título de pantalla", std::string mensajeInterno = "Esto es un mensaje en la cabecera", std::string cuerpo = "Este es el cuerpo del mensaje con varias líneas.\n\t\t\t   Esto nos permite poder visualizar más texto de información.\n\t\t\t   Además, ¡queda bien!.", std::string mensajeExterno = "Elegí una opción y presioná <Enter>", std::string textoOpciones = "1. CONTINUAR  |  666. SALIR", std::string mensajeUltimo = "OPCIÓN SELECCIONADA: ");
 
     // Interfaces
     void pantalla();
-    void desplegarPantallaBase();
+    void desplegarPrimerIngreso();
     void desplegarLogin();
     void desplegarCrearPrimerAdmin();
-    // void pantalla(std::string tipoDePantalla);
-
-    std::string imprimirLineas(int cantidad);
-    std::string imprimirDobleLineas(int cantidad);
-    std::string imprimirAsteriscos(int cantidad);
-    void centrarTexto(std::string texto, int posy);
+    // void desplegarMenuPrincipal();
+    // void desplegarMenuUsuario();
+    void desplegarMenuUsuarios();
 
     // Setters
     void setTitulo(std::string titulo);

@@ -15,7 +15,6 @@
 				<Compiler>
 					<Add option="-g" />
 					<Add directory="include" />
-					<Add directory="../proyecto-codeblocks-dev" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -26,7 +25,6 @@
 				<Compiler>
 					<Add option="-O2" />
 					<Add directory="include" />
-					<Add directory="../proyecto-codeblocks-dev" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -39,24 +37,32 @@
 		</Compiler>
 		<Unit filename="funciones.cpp" />
 		<Unit filename="funciones.h" />
-		<Unit filename="include/Carrito.h" />
 		<Unit filename="include/Encabezado.h" />
 		<Unit filename="include/Fecha.h" />
 		<Unit filename="include/Pantalla.h" />
+		<Unit filename="include/PerfilEmpresa.h" />
+		<Unit filename="include/Permiso.h" />
 		<Unit filename="include/Persona.h" />
 		<Unit filename="include/PieDePagina.h" />
 		<Unit filename="include/Usuario.h" />
+		<Unit filename="include/UsuarioArchivo.h" />
+		<Unit filename="include/UsuarioManager.h" />
+		<Unit filename="include/UsuarioMenu.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="rlutil.h">
 			<Option virtualFolder="include/" />
 		</Unit>
-		<Unit filename="src/Carrito.cpp" />
 		<Unit filename="src/Encabezado.cpp" />
 		<Unit filename="src/Fecha.cpp" />
 		<Unit filename="src/Pantalla.cpp" />
+		<Unit filename="src/PerfilEmpresa.cpp" />
+		<Unit filename="src/Permiso.cpp" />
 		<Unit filename="src/Persona.cpp" />
 		<Unit filename="src/PieDePagina.cpp" />
 		<Unit filename="src/Usuario.cpp" />
+		<Unit filename="src/UsuarioArchivo.cpp" />
+		<Unit filename="src/UsuarioManager.cpp" />
+		<Unit filename="src/UsuarioMenu.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

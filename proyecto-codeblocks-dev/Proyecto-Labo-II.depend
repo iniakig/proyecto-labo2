@@ -48,14 +48,16 @@
 
 1682648913 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\02. ejercicios\semana01\proyecto-labo-ii\include\piedepagina.h
 
-1682648326 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\proyecto-labo-ii\funciones.cpp
+1685444256 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\proyecto-labo-ii\funciones.cpp
 	<iostream>
 	<locale.h>
+	<regex>
+	<windows.h>
 	"funciones.h"
 
-1682648303 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\proyecto-labo-ii\funciones.h
+1685409543 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\proyecto-labo-ii\funciones.h
 
-1682880678 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\proyecto-labo-ii\main.cpp
+1685416700 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\proyecto-labo-ii\main.cpp
 	<iostream>
 	"rlutil.h"
 	"funciones.h"
@@ -65,16 +67,18 @@
 	"Encabezado.h"
 	"PieDePagina.h"
 	"Pantalla.h"
+	"UsuarioArchivo.h"
+	"UsuarioManager.h"
 
 1682632217 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\proyecto-labo-ii\include\fecha.h
 	<iostream>
 	<string>
 	<windows.h>
 
-1682632124 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\proyecto-labo-ii\include\persona.h
+1685314017 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\proyecto-labo-ii\include\persona.h
 	"Fecha.h"
 
-1682632143 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\proyecto-labo-ii\include\usuario.h
+1685313508 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\proyecto-labo-ii\include\usuario.h
 	"Persona.h"
 
 1682647358 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\proyecto-labo-ii\include\encabezado.h
@@ -88,10 +92,10 @@
 1682631367 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\proyecto-labo-ii\src\fecha.cpp
 	"Fecha.h"
 
-1682632466 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\proyecto-labo-ii\src\persona.cpp
+1685184306 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\proyecto-labo-ii\src\persona.cpp
 	"Persona.h"
 
-1682632039 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\proyecto-labo-ii\src\usuario.cpp
+1685275172 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\proyecto-labo-ii\src\usuario.cpp
 	"Usuario.h"
 
 1682692220 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\proyecto-labo-ii\src\piedepagina.cpp
@@ -126,169 +130,51 @@
 	<string.h>
 	"../rlutil.h"
 
-1682880193 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\proyecto-labo-ii\include\pantalla.h
+1685022564 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\proyecto-labo-ii\include\pantalla.h
 	<iostream>
 	<string>
 	<string.h>
 	"../rlutil.h"
 
-1682880652 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\proyecto-labo-ii\src\pantalla.cpp
+1685023548 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\proyecto-labo-ii\src\pantalla.cpp
 	"Pantalla.h"
+	"Encabezado.h"
+	"PieDePagina.h"
 	<algorithm>
 
-1682648328 source:c:\users\nalvez\desktop\proyecto-labo-ii\funciones.cpp
-	<iostream>
-	<locale.h>
-	"funciones.h"
+1684983882 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\proyecto-labo-ii\src\perfilempresa.cpp
+	"PerfilEmpresa.h"
 
-1682648304 c:\users\nalvez\desktop\proyecto-labo-ii\funciones.h
+1684984517 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\proyecto-labo-ii\include\perfilempresa.h
 
-1683150272 source:c:\users\nalvez\desktop\proyecto-labo-ii\main.cpp
-	<iostream>
-	"rlutil.h"
-	"funciones.h"
-	"Fecha.h"
-	"Persona.h"
-	"Usuario.h"
-	"Encabezado.h"
-	"PieDePagina.h"
-	"Pantalla.h"
+1685117875 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\proyecto-labo-ii\src\permiso.cpp
+	"Permiso.h"
 
-1682650522 c:\users\nalvez\desktop\proyecto-labo-ii\rlutil.h
+1685116789 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\proyecto-labo-ii\include\permiso.h
+
+1685420162 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\proyecto-labo-ii\src\usuarioarchivo.cpp
+	"UsuarioArchivo.h"
+
+1685419603 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\proyecto-labo-ii\include\usuarioarchivo.h
 	<iostream>
 	<string>
-	<cstdio>
-	<stdio.h>
-	<string.h>
-	<windows.h>
-	<conio.h>
-	<termios.h>
-	<unistd.h>
-	<sys/ioctl.h>
-	<sys/types.h>
-	<sys/time.h>
+	<Usuario.h>
 
-1682632218 c:\users\nalvez\desktop\proyecto-labo-ii\include\fecha.h
+1685444164 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\proyecto-labo-ii\src\usuariomanager.cpp
+	"UsuarioManager.h"
+	"../funciones.h"
 	<iostream>
-	<string>
-	<windows.h>
+	<iomanip>
+	<../rlutil.h>
 
-1682632126 c:\users\nalvez\desktop\proyecto-labo-ii\include\persona.h
-	"Fecha.h"
+1685418655 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\proyecto-labo-ii\include\usuariomanager.h
+	"UsuarioArchivo.h"
 
-1682632144 c:\users\nalvez\desktop\proyecto-labo-ii\include\usuario.h
-	"Persona.h"
-
-1682647360 c:\users\nalvez\desktop\proyecto-labo-ii\include\encabezado.h
-	<iostream>
-	<string>
-
-1682650918 c:\users\nalvez\desktop\proyecto-labo-ii\include\piedepagina.h
-
-1682880194 c:\users\nalvez\desktop\proyecto-labo-ii\include\pantalla.h
-	<iostream>
-	<string>
-	<string.h>
+1685417789 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\proyecto-labo-ii\src\usuariomenu.cpp
+	"UsuarioMenu.h"
+	"UsuarioManager.h"
 	"../rlutil.h"
 
-1682652052 source:c:\users\nalvez\desktop\proyecto-labo-ii\src\encabezado.cpp
-	"Encabezado.h"
-	"../rlutil.h"
-
-1682631368 source:c:\users\nalvez\desktop\proyecto-labo-ii\src\fecha.cpp
-	"Fecha.h"
-
-1682880654 source:c:\users\nalvez\desktop\proyecto-labo-ii\src\pantalla.cpp
-	"Pantalla.h"
-	<algorithm>
-
-1682632468 source:c:\users\nalvez\desktop\proyecto-labo-ii\src\persona.cpp
-	"Persona.h"
-
-1683150392 source:c:\users\nalvez\desktop\proyecto-labo-ii\src\piedepagina.cpp
-	<iostream>
-	<string>
-	"PieDePagina.h"
-	"../rlutil.h"
-
-1682632040 source:c:\users\nalvez\desktop\proyecto-labo-ii\src\usuario.cpp
-	"Usuario.h"
-
-1683241622 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\funciones.cpp
-	<iostream>
-	<locale.h>
-	"funciones.h"
-
-1683241622 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\funciones.h
-
-1683241622 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\main.cpp
-	<iostream>
-	"rlutil.h"
-	"funciones.h"
-	"Fecha.h"
-	"Persona.h"
-	"Usuario.h"
-	"Encabezado.h"
-	"PieDePagina.h"
-	"Pantalla.h"
-
-1683241622 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\rlutil.h
-	<iostream>
-	<string>
-	<cstdio>
-	<stdio.h>
-	<string.h>
-	<windows.h>
-	<conio.h>
-	<termios.h>
-	<unistd.h>
-	<sys/ioctl.h>
-	<sys/types.h>
-	<sys/time.h>
-
-1683241622 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\fecha.h
-	<iostream>
-	<string>
-	<windows.h>
-
-1683241622 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\persona.h
-	"Fecha.h"
-
-1683241622 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\usuario.h
-	"Persona.h"
-
-1683241622 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\encabezado.h
-	<iostream>
-	<string>
-
-1683241622 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\piedepagina.h
-
-1683241622 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\pantalla.h
-	<iostream>
-	<string>
-	<string.h>
-	"../rlutil.h"
-
-1683241622 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\encabezado.cpp
-	"Encabezado.h"
-	"../rlutil.h"
-
-1683241622 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\fecha.cpp
-	"Fecha.h"
-
-1683241622 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\pantalla.cpp
-	"Pantalla.h"
-	<algorithm>
-
-1683241622 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\persona.cpp
-	"Persona.h"
-
-1683241622 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\piedepagina.cpp
-	<iostream>
-	<string>
-	"PieDePagina.h"
-	"../rlutil.h"
-
-1683241622 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\usuario.cpp
-	"Usuario.h"
+1685416392 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\proyecto-labo-ii\include\usuariomenu.h
+	"UsuarioManager.h"
 
