@@ -1,6 +1,7 @@
 #ifndef MARCA_H_INCLUDED
 #define MARCA_H_INCLUDED
 
+#include <cstring>
 
 class Marca{
 private:

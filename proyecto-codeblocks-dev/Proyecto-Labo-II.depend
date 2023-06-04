@@ -178,3 +178,139 @@
 1685416392 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\proyecto-labo-ii\include\usuariomenu.h
 	"UsuarioManager.h"
 
+1685896227 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\funciones.cpp
+	<iostream>
+	<locale.h>
+	<regex>
+	<windows.h>
+	"funciones.h"
+
+1685896227 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\funciones.h
+
+1685901079 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\main.cpp
+	<iostream>
+	"rlutil.h"
+	"funciones.h"
+	"Fecha.h"
+	"Persona.h"
+	"Usuario.h"
+	"Encabezado.h"
+	"PieDePagina.h"
+	"Pantalla.h"
+	"UsuarioArchivo.h"
+	"UsuarioManager.h"
+	"Producto.h"
+
+1685896227 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\rlutil.h
+	<iostream>
+	<string>
+	<cstdio>
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	<termios.h>
+	<unistd.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<sys/time.h>
+
+1685896227 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\fecha.h
+	<iostream>
+	<string>
+	<windows.h>
+
+1685896227 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\persona.h
+	"Fecha.h"
+
+1685896227 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\usuario.h
+	"Persona.h"
+
+1685896227 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\encabezado.h
+	<iostream>
+	<string>
+
+1685896227 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\piedepagina.h
+
+1685896227 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\pantalla.h
+	<iostream>
+	<string>
+	<string.h>
+	"../rlutil.h"
+
+1685896223 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\usuarioarchivo.h
+	<iostream>
+	<string>
+	<Usuario.h>
+
+1685896223 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\usuariomanager.h
+	"UsuarioArchivo.h"
+
+1685896227 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\encabezado.cpp
+	"Encabezado.h"
+	"../rlutil.h"
+
+1685896227 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\fecha.cpp
+	"Fecha.h"
+
+1685896227 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\pantalla.cpp
+	"Pantalla.h"
+	"Encabezado.h"
+	"PieDePagina.h"
+	<algorithm>
+
+1685896224 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\perfilempresa.cpp
+	"PerfilEmpresa.h"
+
+1685896223 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\perfilempresa.h
+
+1685896224 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\permiso.cpp
+	"Permiso.h"
+
+1685896223 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\permiso.h
+
+1685896227 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\persona.cpp
+	"Persona.h"
+
+1685896227 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\piedepagina.cpp
+	<iostream>
+	<string>
+	"PieDePagina.h"
+	"../rlutil.h"
+
+1685896227 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\usuario.cpp
+	"Usuario.h"
+
+1685896224 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\usuarioarchivo.cpp
+	"UsuarioArchivo.h"
+
+1685900455 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\usuariomanager.cpp
+	"UsuarioManager.h"
+	"../funciones.h"
+	<iostream>
+	<iomanip>
+	<../rlutil.h>
+
+1685896224 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\usuariomenu.cpp
+	"UsuarioMenu.h"
+	"UsuarioManager.h"
+	"../rlutil.h"
+
+1685896223 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\usuariomenu.h
+	"UsuarioManager.h"
+
+1685900013 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\producto.cpp
+	<iostream>
+	"Producto.h"
+
+1685899935 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\producto.h
+	"Marca.h"
+	<string>
+	<cstring>
+
+1685900376 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\marca.h
+	<cstring>
+
+1685900155 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\marca.cpp
+	"Marca.h"
+

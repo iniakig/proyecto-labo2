@@ -1,14 +1,14 @@
-#include "Marca.h
+#include "Marca.h"
 
 //Constructor
-Marca::Marca(int ID = 0, const char* nombre = "null"){
+Marca::Marca(int ID, const char* nombre){
 setID(ID);
 setNombre(nombre);
 }
 
 //Setters
 void Marca::setID(int ID){
-_iD=ID;
+_ID=ID;
 }
 
 void Marca::setNombre(const char *nombre){

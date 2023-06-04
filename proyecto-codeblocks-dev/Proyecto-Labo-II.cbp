@@ -39,11 +39,13 @@
 		<Unit filename="funciones.h" />
 		<Unit filename="include/Encabezado.h" />
 		<Unit filename="include/Fecha.h" />
+		<Unit filename="include/Marca.h" />
 		<Unit filename="include/Pantalla.h" />
 		<Unit filename="include/PerfilEmpresa.h" />
 		<Unit filename="include/Permiso.h" />
 		<Unit filename="include/Persona.h" />
 		<Unit filename="include/PieDePagina.h" />
+		<Unit filename="include/Producto.h" />
 		<Unit filename="include/Usuario.h" />
 		<Unit filename="include/UsuarioArchivo.h" />
 		<Unit filename="include/UsuarioManager.h" />
@@ -54,11 +56,13 @@
 		</Unit>
 		<Unit filename="src/Encabezado.cpp" />
 		<Unit filename="src/Fecha.cpp" />
+		<Unit filename="src/Marca.cpp" />
 		<Unit filename="src/Pantalla.cpp" />
 		<Unit filename="src/PerfilEmpresa.cpp" />
 		<Unit filename="src/Permiso.cpp" />
 		<Unit filename="src/Persona.cpp" />
 		<Unit filename="src/PieDePagina.cpp" />
+		<Unit filename="src/Producto.cpp" />
 		<Unit filename="src/Usuario.cpp" />
 		<Unit filename="src/UsuarioArchivo.cpp" />
 		<Unit filename="src/UsuarioManager.cpp" />

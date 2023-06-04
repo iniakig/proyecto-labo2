@@ -11,6 +11,7 @@
 #include "Pantalla.h"
 #include "UsuarioArchivo.h"
 #include "UsuarioManager.h"
+#include "Producto.h"
 
 
 using namespace std;
@@ -19,9 +20,33 @@ int main()
 {
     setSpanish();
 
+
+    int ID, stock;
+    Marca marca;
+    std::string modelo, descrip;
+    float precio;
+    bool activo = true;
+
+    cin>>ID;
+    cin.ignore();
+    getline(cin, modelo);
+    getline(cin, descrip);
+    cin>>precio;
+    cin>>stock;
+    Producto produ(ID,marca,modelo,descrip,precio,stock,activo);
+    cout<<"--------------------------------------------------------"<<endl;
+    cout<<"ID: "<<produ.getID()<<endl;
+    cout<<"Marca: "<<produ.getMarca().getNombre()<<endl;
+    cout<<"Modelo: "<<produ.getModelo()<<endl;
+    cout<<"Descripcion: "<<produ.getDescripcion()<<endl;
+    cout<<"Precio $: "<<produ.getPrecio()<<endl;
+    cout<<"Stock: "<< produ.getStock()<<endl;
+    cout<<"Esctado: "<<produ.getActivo()<<endl;
+
+    //Producto(int ID, Marca marca, std::string modelo, std::string descripcion, float precioVenta, int stock, bool activo);
     // Usuario usuario;
     // UsuarioArchivo usuarioArchivo;
-    UsuarioManager usuarioManager;
+    //UsuarioManager usuarioManager;
 
     // usuario = usuarioArchivo.leer(0);
 
@@ -32,7 +57,7 @@ int main()
 
     // usuarioArchivo.crear(usuario);
 
-    usuarioManager.listarUsuarios();
+    //usuarioManager.listarUsuarios();
 
     rlutil::anykey();
 

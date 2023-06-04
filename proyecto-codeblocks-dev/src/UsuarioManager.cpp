@@ -265,7 +265,7 @@ void UsuarioManager::modificar() {
         std::cout << "1. TIPO DE DOCUMENTO" << std::endl;
         std::cout << "2. NRO DE DOCUMENTO" << std::endl;
         std::cout << "3. NOMBRE" << std::endl;
-        std::cout << "4. APELLIDO << std::endl;
+        std::cout << "4. APELLIDO" << std::endl;
         std::cout << "5. ROL" << std::endl;
         std::cout << "6. CONTRASEÑA" << std::endl;
         std::cout << "---------------------------------------------------" << std::endl;
