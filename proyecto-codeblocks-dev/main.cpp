@@ -12,6 +12,8 @@
 #include "UsuarioArchivo.h"
 #include "UsuarioManager.h"
 #include "Producto.h"
+#include "Marca.h"
+#include "MarcaArchivo.h"
 
 
 using namespace std;
@@ -21,7 +23,7 @@ int main()
     setSpanish();
 
 
-    int ID, stock;
+    /*int ID, stock;
     Marca marca;
     std::string modelo, descrip;
     float precio;
@@ -41,7 +43,7 @@ int main()
     cout<<"Descripcion: "<<produ.getDescripcion()<<endl;
     cout<<"Precio $: "<<produ.getPrecio()<<endl;
     cout<<"Stock: "<< produ.getStock()<<endl;
-    cout<<"Esctado: "<<produ.getActivo()<<endl;
+    cout<<"Esctado: "<<produ.getActivo()<<endl;*/
 
     //Producto(int ID, Marca marca, std::string modelo, std::string descripcion, float precioVenta, int stock, bool activo);
     // Usuario usuario;

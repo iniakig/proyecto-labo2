@@ -52,6 +52,7 @@ int UsuarioArchivo::buscar(std::string alias) {
         if (strcmp(usuario.getAlias(), alias.c_str()) == 0) {
             posicion = i;
         }
+
     }
 
     return posicion;

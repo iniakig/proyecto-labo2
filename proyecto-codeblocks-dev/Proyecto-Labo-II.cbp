@@ -40,6 +40,7 @@
 		<Unit filename="include/Encabezado.h" />
 		<Unit filename="include/Fecha.h" />
 		<Unit filename="include/Marca.h" />
+		<Unit filename="include/MarcaArchivo.h" />
 		<Unit filename="include/Pantalla.h" />
 		<Unit filename="include/PerfilEmpresa.h" />
 		<Unit filename="include/Permiso.h" />
@@ -57,6 +58,7 @@
 		<Unit filename="src/Encabezado.cpp" />
 		<Unit filename="src/Fecha.cpp" />
 		<Unit filename="src/Marca.cpp" />
+		<Unit filename="src/MarcaArchivo.cpp" />
 		<Unit filename="src/Pantalla.cpp" />
 		<Unit filename="src/PerfilEmpresa.cpp" />
 		<Unit filename="src/Permiso.cpp" />
