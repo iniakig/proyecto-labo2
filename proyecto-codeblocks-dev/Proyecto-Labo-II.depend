@@ -322,3 +322,149 @@
 	<string>
 	<cstdio>
 
+1685963863 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\funciones.cpp
+	<iostream>
+	<locale.h>
+	<regex>
+	<windows.h>
+	"funciones.h"
+
+1685963863 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\funciones.h
+
+1685963863 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\main.cpp
+	<iostream>
+	"rlutil.h"
+	"funciones.h"
+	"Fecha.h"
+	"Persona.h"
+	"Usuario.h"
+	"Encabezado.h"
+	"PieDePagina.h"
+	"Pantalla.h"
+	"UsuarioArchivo.h"
+	"UsuarioManager.h"
+	"Producto.h"
+	"Marca.h"
+	"MarcaArchivo.h"
+
+1685963863 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\rlutil.h
+	<iostream>
+	<string>
+	<cstdio>
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	<termios.h>
+	<unistd.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<sys/time.h>
+
+1685963863 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\include\fecha.h
+	<iostream>
+	<string>
+	<windows.h>
+
+1685985732 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\include\persona.h
+	"Fecha.h"
+
+1685963863 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\include\usuario.h
+	"Persona.h"
+
+1685963863 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\include\encabezado.h
+	<iostream>
+	<string>
+
+1685963863 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\include\piedepagina.h
+
+1685963863 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\include\pantalla.h
+	<iostream>
+	<string>
+	<string.h>
+	"../rlutil.h"
+
+1685963863 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\include\usuarioarchivo.h
+	<iostream>
+	<string>
+	<Usuario.h>
+
+1685963863 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\include\usuariomanager.h
+	"UsuarioArchivo.h"
+
+1685963863 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\include\producto.h
+	"Marca.h"
+	<string>
+	<cstring>
+
+1685963863 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\include\marca.h
+	<cstring>
+
+1685963863 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\include\marcaarchivo.h
+	"Marca.h"
+	<string>
+	<cstdio>
+
+1685963863 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\src\encabezado.cpp
+	"Encabezado.h"
+	"../rlutil.h"
+
+1685963863 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\src\fecha.cpp
+	"Fecha.h"
+
+1685963863 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\src\marca.cpp
+	"Marca.h"
+
+1685963863 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\src\marcaarchivo.cpp
+	"MarcaArchivo.h"
+
+1685963863 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\src\pantalla.cpp
+	"Pantalla.h"
+	"Encabezado.h"
+	"PieDePagina.h"
+	<algorithm>
+
+1685963863 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\src\perfilempresa.cpp
+	"PerfilEmpresa.h"
+
+1685963863 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\include\perfilempresa.h
+
+1685963863 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\src\permiso.cpp
+	"Permiso.h"
+
+1685963863 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\include\permiso.h
+
+1685985780 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\src\persona.cpp
+	"Persona.h"
+
+1685963863 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\src\piedepagina.cpp
+	<iostream>
+	<string>
+	"PieDePagina.h"
+	"../rlutil.h"
+
+1685963863 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\src\producto.cpp
+	<iostream>
+	"Producto.h"
+
+1685963863 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\src\usuario.cpp
+	"Usuario.h"
+
+1685963863 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\src\usuarioarchivo.cpp
+	"UsuarioArchivo.h"
+
+1685963863 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\src\usuariomanager.cpp
+	"UsuarioManager.h"
+	"../funciones.h"
+	<iostream>
+	<iomanip>
+	<../rlutil.h>
+
+1685963863 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\src\usuariomenu.cpp
+	"UsuarioMenu.h"
+	"UsuarioManager.h"
+	"../rlutil.h"
+
+1685963863 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\include\usuariomenu.h
+	"UsuarioManager.h"
+

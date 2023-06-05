@@ -1,11 +1,12 @@
 #include "Persona.h"
 
 // Constructores
-Persona::Persona(int tipoDocumento, const char* nroDocumento, const char* nombre, const char* apellido, const char* email, bool estado, Fecha fechaRegistro) {
+Persona::Persona(int tipoDocumento, const char* nroDocumento, const char* nombre, const char* apellido, const char* razonSocial, const char* email, bool estado, Fecha fechaRegistro) {
     setTipoDocumento(tipoDocumento);
     setNroDocumento(nroDocumento);
     setNombre(nombre);
     setApellido(apellido);
+    setRazonSocial(razonSocial);
     setEmail(email);
     setEstado(estado);
     setFechaRegistro(fechaRegistro);
@@ -38,6 +39,10 @@ void Persona::setNombre(const char* nombre) {
 
 void Persona::setApellido(const char* apellido) {
     strcpy(_apellido, apellido);
+}
+
+void Persona::setRazonSocial(const char* razonSocial) {
+    strcpy(_razonSocial, razonSocial);
 }
 
 void Persona::setEmail(const char* email) {
@@ -75,6 +80,10 @@ const char* Persona::getNombre() {
 
 const char* Persona::getApellido() {
     return _apellido;
+}
+
+const char* Persona::getRazonSocial() {
+    return _razonSocial;
 }
 
 const char* Persona::getEmail() {

@@ -9,14 +9,14 @@ private:
     char _nroDocumento[12];
     char _nombre[15];
     char _apellido[15];
-    // agregar char _razonSocial[15];
+    char _razonSocial[25];
     char _email[35];
     bool _estado;
     Fecha _fechaRegistro;
 
 public:
     // Constructores
-    Persona(int tipoDocumento = 0, const char* nroDocumento = "null", const char* nombre = "null", const char* apellido = "null", const char* email = "null", bool estado = "false", Fecha fechaRegistro = Fecha());
+    Persona(int tipoDocumento = 0, const char* nroDocumento = "null", const char* nombre = "null", const char* apellido = "null", const char* razonSocial = "null", const char* email = "null", bool estado = "false", Fecha fechaRegistro = Fecha());
 
     // Interfaces
     void Mostrar();
@@ -26,6 +26,7 @@ public:
     void setNroDocumento(const char* nroDocumento);
     void setNombre(const char* nombre);
     void setApellido(const char* apellido);
+    void setRazonSocial(const char* razonSocial);
     void setEmail(const char* email);
     void setEstado(bool estado);
     void setFechaRegistro(Fecha fechaRegistro);
@@ -36,6 +37,7 @@ public:
     const char* getNroDocumento();
     const char* getNombre();
     const char* getApellido();
+    const char* getRazonSocial();
     const char* getEmail();
     bool getEstado();
     Fecha getFechaRegistro();
