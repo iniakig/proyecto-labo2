@@ -28,7 +28,7 @@ int main()
     //manager.listarTodos();
     //manager.modificar();
     //manager.listarXID();
-    manager.listarXNombre();
+    //manager.listarXNombre();
     /// POSIBLE SOLUCION PARA CARGAR MARCA DESDE PRODUCTO ///
     /*int id;
     do
