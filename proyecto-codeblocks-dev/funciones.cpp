@@ -118,7 +118,7 @@ std::string ingresoDeContraseniaConValidacion()
 std::string ingresoDeEmailConValidacion()
 {
     std::string email;
-    const std::regex expresionRegular("[a-zA-Z0-9._]+@[a-zA-Z0-9.-]\\.[a-zA-Z]{2,}");
+    const std::regex expresionRegular("[a-zA-Z0-9._]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}"); //
 
     getline(std::cin, email);
     while (!std::regex_match(email, expresionRegular))
@@ -134,8 +134,9 @@ std::string ingresoDeEmailConValidacion()
 std::string ingresoDeMarcaConValidacion()
 {
     std::string texto;
-    const std::regex expresionRegular("[A-Za-z]{1,29}");
+    const std::regex expresionRegular("[A-Za-z0-9 ]{1,29}");
 
+    //std::cin.ignore();
     getline(std::cin, texto);
     while (!std::regex_match(texto, expresionRegular))
     {
@@ -146,4 +147,23 @@ std::string ingresoDeMarcaConValidacion()
 
     texto = stringAMayus(texto);
     return texto;
+}
+
+int ingresoOpcSimpleConValidacion()
+{
+    std::string opcAux;
+    int opcion;
+    const std::regex expresionRegular("[1-2]");
+
+    //std::cin.ignore();
+    getline(std::cin, opcAux);
+    while (!std::regex_match(opcAux, expresionRegular))
+    {
+        std::cout << std::endl;
+        std::cout << "El valor ingresado no es válido. El valor permitido es un número entero entre 1 y 2. Ingrese nuevamente: ";
+        getline(std::cin, opcAux);
+    }
+
+    opcion = enteroConvertidoAInt(opcAux);
+    return opcion;
 }

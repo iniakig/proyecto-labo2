@@ -72,7 +72,7 @@ bool MarcaArchivo::guardar(Marca reg)
 
 bool MarcaArchivo::guardar(Marca reg, int posicionAReemplazar)
 {
-    FILE *p = fopen(_ruta.c_str(), "ab");
+    FILE *p = fopen(_ruta.c_str(), "rb+");
 
     if (p == NULL)
     {

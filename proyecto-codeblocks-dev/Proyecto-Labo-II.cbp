@@ -48,6 +48,8 @@
 		<Unit filename="include/Persona.h" />
 		<Unit filename="include/PieDePagina.h" />
 		<Unit filename="include/Producto.h" />
+		<Unit filename="include/ProductoArchivo.h" />
+		<Unit filename="include/ProductoManager.h" />
 		<Unit filename="include/Usuario.h" />
 		<Unit filename="include/UsuarioArchivo.h" />
 		<Unit filename="include/UsuarioManager.h" />

@@ -4,13 +4,23 @@
 
 class MarcaManager
 {
-    public:
+public:
     void cargar();
+    Marca cargarDesdeProducto(std::string nombreMarca);
 
-    private:
-        MarcaArchivo _archivo;
-        MarcaArchivo _archivoBkp = MarcaArchivo("marca.bkp");
-        int generarID();
+    void modificar();
+
+    void listar(Marca marca);
+    void listarXID();
+    void listarXNombre();
+    void listarTodos();
+
+private:
+    MarcaArchivo _archivo;
+    MarcaArchivo _archivoBkp = MarcaArchivo("marca.bkp");
+    int generarID();
+    void modificarXID();
+    void modificaarXNombre();
 };
 
 #endif // MARCAMANAGER_H

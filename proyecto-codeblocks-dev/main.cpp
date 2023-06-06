@@ -13,6 +13,7 @@
 #include "UsuarioManager.h"
 #include "Producto.h"
 #include "MarcaManager.h"
+#include "MarcaArchivo.h"
 
 
 using namespace std;
@@ -22,7 +23,28 @@ int main()
     setSpanish();
 
     MarcaManager manager;
-    manager.cargar();
+    MarcaArchivo archivo;
+
+    //manager.listarTodos();
+    //manager.modificar();
+    //manager.listarXID();
+    manager.listarXNombre();
+    /// POSIBLE SOLUCION PARA CARGAR MARCA DESDE PRODUCTO ///
+    /*int id;
+    do
+    {
+        std::string nombre = ingresoDeMarcaConValidacion();
+        Marca reg;
+        reg = manager.cargarDesdeProducto(nombre);
+        id = reg.getID();
+        cout<<id;
+    }
+    while(id==0);*/
+    //---------------------------------------------------------------//
+
+    //archivo.vaciar();
+    //manager.cargar();
+
     /*int ID, stock;
     Marca marca;
     std::string modelo, descrip;
@@ -87,7 +109,7 @@ int main()
 
     // **** Proyecto de Laboratorio II - 1er cuatrimestre 2023 - UTNFRGP ****            ----> Pié de página
 
- //---------------------------------------------------------------------------- //
+//---------------------------------------------------------------------------- //
 
     // **************** SISTEMA DE GESTIÓN DE STOCK Y VENTAS ****************
 
@@ -112,7 +134,7 @@ int main()
 
     // **** Proyecto de Laboratorio II - 1er cuatrimestre 2023 - UTNFRGP ****
 
- //---------------------------------------------------------------------------- //
+//---------------------------------------------------------------------------- //
 
     // **************** SISTEMA DE GESTIÓN DE STOCK Y VENTAS ****************
 
@@ -136,7 +158,7 @@ int main()
 
     // **** Proyecto de Laboratorio II - 1er cuatrimestre 2023 - UTNFRGP ****
 
- //---------------------------------------------------------------------------- //
+//---------------------------------------------------------------------------- //
 
     // **************** SISTEMA DE GESTIÓN DE STOCK Y VENTAS ****************
 
@@ -160,7 +182,7 @@ int main()
 
     // **** Proyecto de Laboratorio II - 1er cuatrimestre 2023 - UTNFRGP ****
 
- //---------------------------------------------------------------------------- //
+//---------------------------------------------------------------------------- //
 
     // **************** SISTEMA DE GESTIÓN DE STOCK Y VENTAS ****************
 

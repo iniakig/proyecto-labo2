@@ -12,5 +12,7 @@ std::string ingresoDeContraseniaConValidacion();
 std::string ingresoDeTextoConValidacion();
 std::string ingresoDeEmailConValidacion();
 std::string ingresoDeMarcaConValidacion();
+int ingresoOpcSimpleConValidacion();
+
 
 #endif // FUNCIONES_H_INCLUDED
