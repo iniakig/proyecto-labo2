@@ -12,8 +12,7 @@
 #include "UsuarioArchivo.h"
 #include "UsuarioManager.h"
 #include "Producto.h"
-#include "Marca.h"
-#include "MarcaArchivo.h"
+#include "MarcaManager.h"
 
 
 using namespace std;
@@ -22,7 +21,8 @@ int main()
 {
     setSpanish();
 
-
+    MarcaManager manager;
+    manager.cargar();
     /*int ID, stock;
     Marca marca;
     std::string modelo, descrip;
