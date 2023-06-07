@@ -42,6 +42,7 @@
 		<Unit filename="include/Marca.h" />
 		<Unit filename="include/MarcaArchivo.h" />
 		<Unit filename="include/MarcaManager.h" />
+		<Unit filename="include/MarcaMenu.h" />
 		<Unit filename="include/Pantalla.h" />
 		<Unit filename="include/PerfilEmpresa.h" />
 		<Unit filename="include/Permiso.h" />
@@ -63,6 +64,7 @@
 		<Unit filename="src/Marca.cpp" />
 		<Unit filename="src/MarcaArchivo.cpp" />
 		<Unit filename="src/MarcaManager.cpp" />
+		<Unit filename="src/MarcaMenu.cpp" />
 		<Unit filename="src/Pantalla.cpp" />
 		<Unit filename="src/PerfilEmpresa.cpp" />
 		<Unit filename="src/Permiso.cpp" />
