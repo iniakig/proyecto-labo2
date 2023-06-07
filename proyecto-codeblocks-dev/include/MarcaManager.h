@@ -15,9 +15,12 @@ public:
     void listarXNombre();
     void listarTodos();
 
+    void hacerCopiaSeguridad();
+    void restaurarCopiaSeguridad();
+
 private:
     MarcaArchivo _archivo;
-    MarcaArchivo _archivoBkp = MarcaArchivo("marca.bkp");
+    MarcaArchivo _archivoBkp = MarcaArchivo("marcas.bkp");
     int generarID();
     void modificarXID();
     void modificaarXNombre();

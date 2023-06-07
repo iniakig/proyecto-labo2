@@ -36,18 +36,22 @@ void MarcaManager::listarXID()
     }
 }
 
-void MarcaManager::listarXNombre(){
+void MarcaManager::listarXNombre()
+{
 
     cout<<"INGRESE EL NOMBRE: ";
     std::string nombre = ingresoDeMarcaConValidacion();
 
     int pos = _archivo.buscar(nombre);
-    if(pos >= 0){
+    if(pos >= 0)
+    {
         Marca reg;
         reg = _archivo.leer(pos);
         listar(reg);
-    }else{
-                cout<<"NO EXISTE NINGUNA MARCA CON ESE NOMBRE"<<endl;
+    }
+    else
+    {
+        cout<<"NO EXISTE NINGUNA MARCA CON ESE NOMBRE"<<endl;
     }
 
 }
@@ -241,4 +245,59 @@ void MarcaManager::modificaarXNombre()
         }
     }
 
+}
+
+void MarcaManager::hacerCopiaSeguridad()
+{
+
+    int cantidadRegs = _archivo.getCantidadDeRegistros();
+
+    Marca *vec = new Marca[cantidadRegs];
+
+    if (vec == nullptr)
+    {
+        cout << "ERROR AL REALIZAR LA COPIA DE SEGURIDAD" << endl;
+        return;
+    }
+
+    _archivo.leer(vec, cantidadRegs);
+    _archivoBkp.vaciar();
+
+    if(_archivoBkp.guardar(vec, cantidadRegs))
+    {
+        cout << "COPIA DE SEGURIDAD REALIZADA CON EXITO" << endl;
+    }
+    else
+    {
+        cout << "ERROR AL REALIZAR LA COPIA DE SEGURIDAD" << endl;
+    }
+
+    delete []vec;
+}
+
+void MarcaManager::restaurarCopiaSeguridad()
+{
+    int cantidadRegs = _archivoBkp.getCantidadDeRegistros();
+
+    Marca *vec = new Marca[cantidadRegs];
+    if (vec == nullptr)
+    {
+        cout << "ERROR AL RESTAURAR LA COPIA DE SEGURIDAD" << endl;
+        return;
+    }
+
+    _archivoBkp.leer(vec, cantidadRegs);
+    _archivo.vaciar();
+
+    if(_archivo.guardar(vec, cantidadRegs))
+    {
+
+        cout << "COPIA DE SEGURIDAD RESTAURADA CON EXITO" << endl;
+    }
+    else
+    {
+        cout << "ERROR AL REALIZAR LA COPIA DE SEGURIDAD" << endl;
+    }
+
+    delete []vec;
 }

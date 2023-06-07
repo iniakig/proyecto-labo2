@@ -14,6 +14,7 @@
 #include "Producto.h"
 #include "MarcaManager.h"
 #include "MarcaArchivo.h"
+#include "MarcaMenu.h"
 
 
 using namespace std;
@@ -22,9 +23,11 @@ int main()
 {
     setSpanish();
 
-    MarcaManager manager;
-    MarcaArchivo archivo;
+MarcaMenu menu;
+menu.mostrar();
 
+    //manager.hacerCopiaSeguridad();
+    //manager.restaurarCopiaSeguridad();
     //manager.listarTodos();
     //manager.modificar();
     //manager.listarXID();
