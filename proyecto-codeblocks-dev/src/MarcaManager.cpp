@@ -14,6 +14,7 @@ void MarcaManager::listar(Marca marca)
 {
     cout<<"ID: "<<marca.getID()<<endl;
     cout<<"NOMBRE: "<<marca.getNombre()<<endl;
+    cout<<"ESTADO: :"<<marca.getActivo()<<endl;
 }
 
 void MarcaManager::listarXID()
@@ -75,7 +76,8 @@ void MarcaManager::cargar()
     {
         int ID = generarID();
         int opc;
-        Marca reg(ID, nombre.c_str());
+        bool activo = true;
+        Marca reg(ID,nombre.c_str(), activo);
         cout<<"CARGO LA SIGUIENTE MARCA: "<<endl;
         listar(reg);
         cout<<"GUARDAR? 1--SI // 2--NO: ";
@@ -106,11 +108,13 @@ void MarcaManager::cargar()
 
 Marca MarcaManager::cargarDesdeProducto(std::string nombreMarca)
 {
+    // POSIBLE OPTIMIZACION: QUE SI CUMPLE LA CONDICION DIRECTAMENTE DEVUELVA LA MARCA ENCONTRADA Y SINO PIDA CARGARLA (INVERTIR EL ORDEN DE EJECUCION)
     if(_archivo.buscar(nombreMarca)<0)
     {
         int ID = generarID();
         int opc;
-        Marca reg(ID, nombreMarca.c_str());
+        bool activo = true;
+        Marca reg(ID,nombreMarca.c_str(), activo);
         cout<<"CARGO LA SIGUIENTE MARCA: "<<endl;
         cout<<"ID: "<<reg.getID()<<endl;
         cout<<"NOMBRE: "<<reg.getNombre()<<endl;
