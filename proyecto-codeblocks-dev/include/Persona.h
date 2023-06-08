@@ -9,7 +9,7 @@ private:
     char _nroDocumento[12];
     char _nombre[15];
     char _apellido[15];
-    char _razonSocial[25];
+    char _razonSocial[30];
     char _email[35];
     bool _estado;
     Fecha _fechaRegistro;

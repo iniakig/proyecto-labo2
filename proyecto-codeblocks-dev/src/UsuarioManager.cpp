@@ -22,9 +22,9 @@ void UsuarioManager::cargar() {
     std::cout << "Nro de DNI: ";
     nroDocumento = ingresoDeDocumentoConValidacion();
     std::cout << "Nombre: ";
-    nombre = ingresoDeTextoConValidacion();
+    nombre = ingresoDeNombreApellidoConValidacion();
     std::cout << "Apellido: ";
-    apellido = ingresoDeTextoConValidacion();
+    apellido = ingresoDeNombreApellidoConValidacion();
     std::cout << "Email: ";
     email = ingresoDeEmailConValidacion();
 
@@ -41,7 +41,12 @@ void UsuarioManager::cargar() {
 
     Usuario usuario(tipoDocumento, nroDocumento.c_str(), nombre.c_str(), apellido.c_str(), email.c_str(), estado, fechaRegistro, alias.c_str(), contrasenia.c_str(), rol);
 
-    _archivo.crear(usuario);
+    if (_archivo.crear(usuario)) {
+        std::cout << "El usuario se cargó correctamente.";
+    }
+    else {
+        std::cout << "No se pudo crear el usuario.";
+    }
 }
 
 void UsuarioManager::listar(Usuario usuario, int tipoListado) {
@@ -280,19 +285,15 @@ void UsuarioManager::modificar() {
             break;
         case 1:
             std::cout << std::endl;
-            listarPorAlias();
             break;
         case 2:
             std::cout << std::endl;
-            listarPorDNI();
             break;
         case 3:
             std::cout << std::endl;
-            listarActivos();
             break;
         case 4:
             std::cout << std::endl;
-            listarInactivos();
             break;
         case 5:
 

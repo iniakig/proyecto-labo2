@@ -9,10 +9,22 @@ std::string stringAMayus(std::string cadena);
 std::string ingresoDeDocumentoConValidacion();
 std::string ingresoDeAliasConValidacion();
 std::string ingresoDeContraseniaConValidacion();
-std::string ingresoDeTextoConValidacion();
+std::string ingresoDeNombreApellidoConValidacion();
 std::string ingresoDeEmailConValidacion();
 std::string ingresoDeMarcaConValidacion();
+int ingresoDeTipoDeClienteConValidacion();
+int ingresoTipoDeDocumentoConValidacion();
 int ingresoOpcSimpleConValidacion();
+std::string ingresoDeRazonSocialConValidacion();
+std::string ingresoDeLocalidadConValidacion();
+std::string ingresoDeDomicilioConValidacion();
+int ingresoDeProvinciaConValidacion();
+std::string ingresoDeDecisionConValidacion();
+void listarProvincias();
+
+// Mensajes
+void okMensajeModificacion();
+void errorMensajeModificacion();
 
 
 #endif // FUNCIONES_H_INCLUDED
