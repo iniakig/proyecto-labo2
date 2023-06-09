@@ -11,7 +11,7 @@ class Producto
 public:
     //CONSTRUCTORES
     Producto();
-    Producto(int ID, int idMarca, std::string modelo, std::string descripcion, float precioVenta, int stock, bool activo);
+    Producto(int ID, int categoria, int idMarca, std::string modelo, std::string descripcion, float precioVenta, int stock, bool activo);
 
     //SETTERS
     void setID(int ID);

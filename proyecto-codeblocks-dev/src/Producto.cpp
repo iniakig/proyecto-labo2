@@ -15,9 +15,10 @@ Producto::Producto()
     _activo = false;
 }
 
-Producto::Producto(int ID, int idMarca, std::string modelo, std::string descripcion, float precioVenta, int stock, bool activo)
+Producto::Producto(int ID,int categoria, int idMarca, std::string modelo, std::string descripcion, float precioVenta, int stock, bool activo)
 {
     _ID = ID;
+    _categoria=categoria;
     _idMarca = idMarca;
     strcpy(_modelo, modelo.c_str());
     strcpy(_descripcion, descripcion.c_str());
