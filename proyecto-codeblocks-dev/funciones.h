@@ -25,6 +25,8 @@ void listarProvincias();
 // Mensajes
 void okMensajeModificacion();
 void errorMensajeModificacion();
+void okMensajeCreacion();
+void errorMensajeCreacion();
 
 
 #endif // FUNCIONES_H_INCLUDED

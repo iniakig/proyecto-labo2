@@ -33,6 +33,8 @@ int ClienteArchivo::buscar(std::string nroDocumento) {
     int posicion = -1;
     Cliente cliente;
 
+    FILE* p;
+
     p = fopen(_nombre.c_str(), "rb");
 
     if (p == nullptr) {

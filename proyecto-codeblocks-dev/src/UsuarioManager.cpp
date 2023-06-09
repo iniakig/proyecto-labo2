@@ -56,7 +56,6 @@ void UsuarioManager::listar(Usuario usuario, int tipoListado) {
     // 0. Listado detallado
     // 1. Listado resumido (para tabla)
 
-    // rlutil::cls();
     switch (tipoListado) {
     case 0:
         std::cout << "Tipo de documento: " << usuario.getTipoDocumentoDescripcion() << std::endl;

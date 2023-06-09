@@ -9,7 +9,7 @@ private:
     UsuarioArchivo _archivo;
     bool _permisos[3]; // Posición 0. Adm | 1. Sup | 2. Ven
 
-    void listar(Usuario usuario, int tipoListad0o);
+    void listar(Usuario usuario, int tipoListado);
     void listarPorAlias();
     void listarPorDNI();
     void listarActivos();

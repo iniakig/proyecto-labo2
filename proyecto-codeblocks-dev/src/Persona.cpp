@@ -97,3 +97,12 @@ bool Persona::getEstado() {
 Fecha Persona::getFechaRegistro() {
     return _fechaRegistro;
 }
+
+std::string Persona::getEstadoDescripcion() {
+    if (getEstado()) {
+        return "Activo";
+    }
+    else {
+        return "Inactivo";
+    }
+}

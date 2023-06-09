@@ -10,10 +10,10 @@ class ClienteManager
         bool permisos[3];
 
     public:
-        void cargar();
-        void listar(Cliente cliente);
-        void modificar();
-        void darDeBaja();
+        void cargar(); // Hecho - Testear
+        void listar(Cliente cliente, int tipoListado); // Hecho - Testear
+        void modificar(); // En construccion
+        void darDeBaja(); // Hecho - Testear
         void setPermisos(bool adm = false, bool sup = false, bool ven = false);
 };
 

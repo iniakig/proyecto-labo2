@@ -40,6 +40,7 @@ public:
     const char* getRazonSocial();
     const char* getEmail();
     bool getEstado();
+    std::string getEstadoDescripcion();
     Fecha getFechaRegistro();
 };
 
