@@ -24,6 +24,8 @@ int main()
     setSpanish();
 
 MarcaMenu menu;
+MarcaManager manager;
+
 menu.mostrar();
 
     //manager.hacerCopiaSeguridad();

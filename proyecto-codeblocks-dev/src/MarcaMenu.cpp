@@ -36,10 +36,10 @@ void MarcaMenu::mostrar()
             _marcaManager.modificar();
             break;
         case 3:
-            //tbc
+            _marcaManager.eliminar();
             break;
         case 4:
-            //tbc
+            _marcaManager.reactivar();
             break;
         case 5:
             _marcaManager.listarTodos();

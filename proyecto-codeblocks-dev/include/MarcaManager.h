@@ -1,14 +1,18 @@
 #ifndef MARCAMANAGER_H
 #define MARCAMANAGER_H
 #include "MarcaArchivo.h"
+#include "ProductoArchivo.h"
 
 class MarcaManager
 {
 public:
     void cargar();
-    Marca cargarDesdeProducto(std::string nombreMarca);
+    int cargarDesdeProducto(std::string nombreMarca);
 
     void modificar();
+
+    void eliminar();
+    void reactivar();
 
     void listar(Marca marca);
     void listarXID();
@@ -23,7 +27,7 @@ private:
     MarcaArchivo _archivoBkp = MarcaArchivo("marcas.bkp");
     int generarID();
     void modificarXID();
-    void modificaarXNombre();
+    void modificarXNombre();
 };
 
 #endif // MARCAMANAGER_H

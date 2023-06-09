@@ -11,12 +11,12 @@ class Producto
 public:
     //CONSTRUCTORES
     Producto();
-    Producto(int ID, Marca marca, std::string modelo, std::string descripcion, float precioVenta, int stock, bool activo);
+    Producto(int ID, int idMarca, std::string modelo, std::string descripcion, float precioVenta, int stock, bool activo);
 
     //SETTERS
     void setID(int ID);
     void setCategoria (int categoria);
-    void setMarca (Marca marca);
+    void setMarca (int idMarca);
     void setModelo(std::string modelo);
     void setDescripcion(std::string descripcion);
     void setPrecio (float precioVenta);
@@ -26,7 +26,7 @@ public:
     //GETTERS
     int getID();
     int getCategoria ();
-    Marca getMarca ();
+    int getIdMarca ();
     std::string getModelo();
     std::string getDescripcion();
     float getPrecio ();
@@ -36,7 +36,7 @@ public:
 private:
     int _ID;
     int _categoria;
-    Marca _marca;
+    int _idMarca;
     char _modelo[15];
     char _descripcion[50];
     float _precioVenta;

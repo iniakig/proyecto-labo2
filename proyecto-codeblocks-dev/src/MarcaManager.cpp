@@ -106,43 +106,45 @@ void MarcaManager::cargar()
 
 }
 
-Marca MarcaManager::cargarDesdeProducto(std::string nombreMarca)
+int MarcaManager::cargarDesdeProducto(std::string nombreMarca)
 {
     // POSIBLE OPTIMIZACION: QUE SI CUMPLE LA CONDICION DIRECTAMENTE DEVUELVA LA MARCA ENCONTRADA Y SINO PIDA CARGARLA (INVERTIR EL ORDEN DE EJECUCION)
-    if(_archivo.buscar(nombreMarca)<0)
+    if(_archivo.buscar(nombreMarca)>=0)
     {
-        int ID = generarID();
-        int opc;
-        bool activo = true;
-        Marca reg(ID,nombreMarca.c_str(), activo);
-        cout<<"CARGO LA SIGUIENTE MARCA: "<<endl;
-        cout<<"ID: "<<reg.getID()<<endl;
-        cout<<"NOMBRE: "<<reg.getNombre()<<endl;
-        cout<<"GUARDAR? 1--SI // 2--NO: ";
-        opc = ingresoOpcSimpleConValidacion();
-        if(opc == 1)
+        Marca reg;
+        reg = _archivo.leer(_archivo.buscar(nombreMarca));
+        return reg.getID();
+    }
+
+    int ID = generarID();
+    int opc;
+    bool activo = true;
+    Marca reg(ID,nombreMarca.c_str(), activo);
+    cout<<"CARGO LA SIGUIENTE MARCA: "<<endl;
+    cout<<"ID: "<<reg.getID()<<endl;
+    cout<<"NOMBRE: "<<reg.getNombre()<<endl;
+    cout<<"GUARDAR? 1--SI // 2--NO: ";
+    opc = ingresoOpcSimpleConValidacion();
+    if(opc == 1)
+    {
+        if(_archivo.guardar(reg))
         {
-            if(_archivo.guardar(reg))
-            {
-                cout<<"MARCA AGREGADA CORRECTAMENTE"<<endl;
-                return reg;
-            }
-            else
-            {
-                cout<<"ERROR AL AGREGAR LA MARCA, INTENTELO NUEVAMENTE"<<endl;
-                reg = Marca();
-                return reg;
-            }
+            cout<<"MARCA AGREGADA CORRECTAMENTE"<<endl;
+            return ID;
         }
-        else if(opc == 2)
+        else
         {
+            cout<<"ERROR AL AGREGAR LA MARCA, INTENTELO NUEVAMENTE"<<endl;
             reg = Marca();
-            return reg;
+            return ID;
         }
     }
-    Marca reg;
-    reg = _archivo.leer(_archivo.buscar(nombreMarca));
-    return reg;
+    else if(opc == 2)
+    {
+        reg = Marca();
+        return ID;
+    }
+
 }
 
 void MarcaManager::modificar()
@@ -158,7 +160,7 @@ void MarcaManager::modificar()
     }
     else if(opc == 2)
     {
-        modificaarXNombre();
+        modificarXNombre();
     }
 }
 
@@ -205,7 +207,7 @@ void MarcaManager::modificarXID()
     }
 }
 
-void MarcaManager::modificaarXNombre()
+void MarcaManager::modificarXNombre()
 {
     {
         int pos;
@@ -304,4 +306,117 @@ void MarcaManager::restaurarCopiaSeguridad()
     }
 
     delete []vec;
+}
+
+void MarcaManager::eliminar()
+{
+
+    Marca reg;
+    int id, posicion;
+    cout<<"ID MARCA A ELIMINAR: ";
+    cin>>id;
+    cout<<endl;
+
+    posicion = _archivo.buscar(id);
+    if(posicion >= 0)
+    {
+        ProductoArchivo arProductos;
+        reg = _archivo.leer(posicion);
+
+        if(!reg.getActivo())
+        {
+            cout<<"EL ID SELECCIONADO YA SE ENCUENTRA DADO DE BAJA"<<endl;
+        }
+
+        int marcaAsignada = 0;
+        int cantProductos = arProductos.getCantidadDeRegistros();
+        for(int i = 0; i<cantProductos; i++)
+        {
+            Producto prodAux;
+            prodAux = arProductos.leer(i);
+            if(reg.getID() == prodAux.getIdMarca() && prodAux.getActivo())
+            {
+                if(!marcaAsignada)
+                {
+                    cout<<"NO ES POSIBLE ELIMINAR LA MARCA SELECCIONADA. LA MISMA ESTA ASIGNADA A LOS SIGUIENTES PRODUCTOS:"<<endl;
+                    //MOSTRAR PRODUCTO CON EL LISTAR DE MANAGER PROD
+                    cout<<"ACA SE MUESTRA EL PRODUCTO CANDO ESTE LISTAR DE MANAGER";
+                    marcaAsignada = 1;
+                }
+                else
+                {
+                    //MOSTRAR PRODUCTO CON EL LISTAR DE MANAGER PROD
+                    cout<<"ACA SE MUESTRA EL PRODUCTO CANDO ESTE LISTAR DE MANAGER";
+                }
+            }
+        }
+        if(!marcaAsignada && reg.getActivo())
+        {
+            cout<<"ELIMINARA LA SIGUIENTE MARCA: "<<endl;
+            listar(reg);
+            cout<<"CONFIRMAR? 1--SI // 2--NO: ";
+            int opc;
+            opc = ingresoOpcSimpleConValidacion();
+            if(opc == 1)
+            {
+                reg.setActivo(false);
+                if(_archivo.guardar(reg, posicion))
+                {
+                    cout<<"MARCA ELIMINADA CORRECTAMENTE"<<endl;
+                }
+                else
+                {
+                    cout<<"ERROR AL ELIMINAR LA MARCA, INTENTELO NUEVAMENTE"<<endl;
+                }
+            }
+        }
+    }
+    else
+    {
+        cout<<"NO EXISTE MARCA REGISTRADA BAJO ESE ID"<<endl;
+    }
+}
+
+void MarcaManager::reactivar()
+{
+    Marca reg;
+    int id, posicion;
+    cout<<"ID MARCA A REACTIVAR: ";
+    cin>>id;
+    cout<<endl;
+
+    posicion = _archivo.buscar(id);
+
+    if(posicion >= 0)
+    {
+        reg = _archivo.leer(posicion);
+        if(!reg.getActivo())
+        {
+            cout<<"REACTIVARA LA SIGUIENTE MARCA: "<<endl;
+            listar(reg);
+            cout<<"CONFIRMAR? 1--SI // 2--NO: ";
+            int opc;
+            opc = ingresoOpcSimpleConValidacion();
+            if(opc == 1)
+            {
+                reg.setActivo(true);
+                if(_archivo.guardar(reg, posicion))
+                {
+                    cout<<"MARCA ACTIVADA CORRECTAMENTE"<<endl;
+                }
+                else
+                {
+                    cout<<"ERROR AL ACTIVAR LA MARCA, INTENTELO NUEVAMENTE"<<endl;
+                }
+            }
+        }
+        else
+        {
+            cout<<"LA MARCA INGRESADA NO SE ENCUENTRA ELIMINADA"<<endl;
+        }
+    }
+    else
+    {
+        cout<<"NO EXISTE MARCA REGISTRADA BAJO ESE ID"<<endl;
+    }
 }

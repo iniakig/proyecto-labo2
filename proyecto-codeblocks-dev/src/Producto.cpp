@@ -7,7 +7,7 @@ Producto::Producto()
 {
     _ID = 0;
     _categoria = -1;
-    _marca = Marca();
+    _idMarca = 0;
     strcpy(_modelo, "NULL");
     strcpy(_descripcion, "NULL");
     _precioVenta = 0;
@@ -15,10 +15,10 @@ Producto::Producto()
     _activo = false;
 }
 
-Producto::Producto(int ID, Marca marca, std::string modelo, std::string descripcion, float precioVenta, int stock, bool activo)
+Producto::Producto(int ID, int idMarca, std::string modelo, std::string descripcion, float precioVenta, int stock, bool activo)
 {
     _ID = ID;
-    _marca = marca;
+    _idMarca = idMarca;
     strcpy(_modelo, modelo.c_str());
     strcpy(_descripcion, descripcion.c_str());
     _precioVenta = precioVenta;
@@ -38,9 +38,9 @@ void Producto::setCategoria(int categoria)
     _categoria = categoria;
 }
 
-void Producto::setMarca(Marca marca)
+void Producto::setMarca(int idMarca)
 {
-    _marca = marca;
+    _idMarca = idMarca;
 }
 
 void Producto::setModelo(std::string modelo)
@@ -80,9 +80,9 @@ int Producto::getCategoria()
 }
 
 
-Marca Producto::getMarca()
+int Producto::getIdMarca()
 {
-    return _marca;
+    return _idMarca;
 }
 
 
