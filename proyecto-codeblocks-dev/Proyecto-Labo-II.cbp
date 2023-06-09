@@ -71,6 +71,7 @@
 		<Unit filename="src/Persona.cpp" />
 		<Unit filename="src/PieDePagina.cpp" />
 		<Unit filename="src/Producto.cpp" />
+		<Unit filename="src/ProductoArchivo.cpp" />
 		<Unit filename="src/Usuario.cpp" />
 		<Unit filename="src/UsuarioArchivo.cpp" />
 		<Unit filename="src/UsuarioManager.cpp" />
