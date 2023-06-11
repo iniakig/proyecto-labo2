@@ -6,6 +6,7 @@
 #include <string>
 
 #include "funciones.h"
+#include "rlutil.h"
 
 void setSpanish()
 {
@@ -303,6 +304,13 @@ std::string cortarCuit(std::string stringParaCortar) {
     dni = stringParaCortar.substr(2, stringParaCortar.length() - 3);
 
     return dni;
+}
+
+void centrarTexto(std::string texto, int posy) {
+	int posx;
+	posx = rlutil::tcols() / 2 - texto.size() / 2;
+	rlutil::locate(posx, posy);
+	std::cout << texto;
 }
 
 // Mensajes

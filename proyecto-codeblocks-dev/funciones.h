@@ -30,6 +30,7 @@ void okMensajeCreacion();
 void errorMensajeCreacion();
 void registroNoEncontradoMensaje();
 void existeRegistroMensaje();
-
+void mensajeSalidaDelPrograma();
+void centrarTexto(std::string texto, int posy);
 
 #endif // FUNCIONES_H_INCLUDED

@@ -16,6 +16,7 @@
 #include "MarcaArchivo.h"
 #include "MarcaMenu.h"
 #include "ClienteMenu.h"
+#include "Programa.h"
 
 
 using namespace std;
@@ -24,9 +25,16 @@ int main()
 {
     setSpanish();
 
-    ClienteMenu clienteMenu;
+    Programa programa;
+    programa.login();
 
-    clienteMenu.mostrar();
+    if (programa.getEstado()) {
+        programa.ejecutar();
+    }
+
+    //ClienteMenu clienteMenu;
+
+    //clienteMenu.mostrar();
 
     //MarcaMenu menu;
     //MarcaManager manager;
@@ -92,8 +100,6 @@ int main()
     // usuarioArchivo.crear(usuario);
 
     //usuarioManager.listarUsuarios();
-
-    rlutil::anykey();
 
 
 
