@@ -63,7 +63,7 @@ int Persona::getTipoDocumento() {
 }
 
 std::string Persona::getTipoDocumentoDescripcion() {
-    std::string tipoDocumento[3] = {"DNI", "CUIL", "CUIT"};
+    std::string tipoDocumento[3] = {"DNI", "CUIT"};
 
     int tipoDocumentoInt = getTipoDocumento();
 

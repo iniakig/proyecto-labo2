@@ -1,5 +1,4 @@
 #include "UsuarioMenu.h"
-#include "UsuarioManager.h"
 #include "../rlutil.h"
 
 void UsuarioMenu::mostrar() {

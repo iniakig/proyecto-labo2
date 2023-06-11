@@ -37,6 +37,10 @@
 		</Compiler>
 		<Unit filename="funciones.cpp" />
 		<Unit filename="funciones.h" />
+		<Unit filename="include/Cliente.h" />
+		<Unit filename="include/ClienteArchivo.h" />
+		<Unit filename="include/ClienteManager.h" />
+		<Unit filename="include/ClienteMenu.h" />
 		<Unit filename="include/Encabezado.h" />
 		<Unit filename="include/Fecha.h" />
 		<Unit filename="include/Marca.h" />
@@ -51,6 +55,7 @@
 		<Unit filename="include/Producto.h" />
 		<Unit filename="include/ProductoArchivo.h" />
 		<Unit filename="include/ProductoManager.h" />
+		<Unit filename="include/Programa.h" />
 		<Unit filename="include/Usuario.h" />
 		<Unit filename="include/UsuarioArchivo.h" />
 		<Unit filename="include/UsuarioManager.h" />
@@ -59,6 +64,10 @@
 		<Unit filename="rlutil.h">
 			<Option virtualFolder="include/" />
 		</Unit>
+		<Unit filename="src/Cliente.cpp" />
+		<Unit filename="src/ClienteArchivo.cpp" />
+		<Unit filename="src/ClienteManager.cpp" />
+		<Unit filename="src/ClienteMenu.cpp" />
 		<Unit filename="src/Encabezado.cpp" />
 		<Unit filename="src/Fecha.cpp" />
 		<Unit filename="src/Marca.cpp" />
@@ -73,6 +82,7 @@
 		<Unit filename="src/Producto.cpp" />
 		<Unit filename="src/ProductoArchivo.cpp" />
 		<Unit filename="src/ProductoManager.cpp" />
+		<Unit filename="src/Programa.cpp" />
 		<Unit filename="src/Usuario.cpp" />
 		<Unit filename="src/UsuarioArchivo.cpp" />
 		<Unit filename="src/UsuarioManager.cpp" />

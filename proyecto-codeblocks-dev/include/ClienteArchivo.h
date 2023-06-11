@@ -16,19 +16,19 @@ class ClienteArchivo
         ClienteArchivo();
 
         // Interfaces
-        Cliente leer(int posicion);
+        Cliente leer(int posicion); // Hecho - Testear
         int buscar(std::string nroDocumento); // Método de búsqueda libre
         int buscar(int tipoDocumento, std::string nroDocumento);
-        bool crear(Cliente cliente);
-        bool modificar(Cliente cliente, int posicion);
-        void vaciar();
+        bool crear(Cliente cliente); // Hecho - Testear
+        bool modificar(Cliente cliente, int posicion); // Hecho - Testear
+        void vaciar(); // Hecho - Testear
 
 
         // Setters
-        void setNombre(std::string nombre);
+        void setNombre(std::string nombre); // Hecho
 
         // Getters
-        int getCantidadDeClientes();
+        int getCantidadDeClientes(); // Hecho
 
 };
 

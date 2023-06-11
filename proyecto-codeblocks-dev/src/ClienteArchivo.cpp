@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <string.h>
+#include <string>
+#include <../funciones.h>
 
 ClienteArchivo::ClienteArchivo(std::string nombre) {
     setNombre(nombre);
@@ -17,6 +19,8 @@ Cliente ClienteArchivo::leer(int posicion) {
 
     FILE* p;
 
+    p = fopen(_nombre.c_str(), "rb");
+
     if (p == nullptr) {
         exit(1);
     }
@@ -30,6 +34,8 @@ Cliente ClienteArchivo::leer(int posicion) {
 
 int ClienteArchivo::buscar(std::string nroDocumento) {
     // Método de búsqueda libre
+    // REHACER
+    std::string nroNuevo;
     int posicion = -1;
     Cliente cliente;
 
@@ -38,18 +44,33 @@ int ClienteArchivo::buscar(std::string nroDocumento) {
     p = fopen(_nombre.c_str(), "rb");
 
     if (p == nullptr) {
-        std::cout << "No se pudo abrir el archivo";
         return posicion;
     }
 
     int cantidadDeClientes = getCantidadDeClientes();
 
     for (int i = 0; i < cantidadDeClientes; i++) {
-        leer(i);
+        cliente = leer(i);
+        // Acá se crea una nueva variable string tomando el nroDocumento del objeto leído.
+        // Si es mayor a 8 significa que no es un DNI, sino un CUIT, entonces extrae el DNI del CUIT.
+        std::string nro(cliente.getNroDocumento());
+        if (nro.length() > 8) {
+            nroNuevo = cortarCuit(nro);
+        }
+        else {
+            nroNuevo = nro;
+        }
+        if (strcmp(nroNuevo.c_str(), nroDocumento.c_str()) == 0) {
+            posicion = i;
+            return i;
+        }
+        /*
+        // Código viejo que servía para búsquedas libres, pero no tenía en cuenta los dos números del comienzo y el del final del CUIT
         if (strstr(cliente.getNroDocumento(), nroDocumento.c_str()) != NULL) {
             posicion = i;
             return i;
         }
+        */
     }
 
     return posicion;
@@ -91,7 +112,7 @@ bool ClienteArchivo::crear(Cliente cliente) {
         return false;
     }
 
-    bool escribio = fread(&cliente, sizeof(Cliente), 1, p);
+    bool escribio = fwrite(&cliente, sizeof(Cliente), 1, p);
 
     fclose(p);
 

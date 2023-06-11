@@ -8,13 +8,19 @@ class ClienteManager
     private:
         ClienteArchivo _archivo;
         bool permisos[3];
+        void listar(Cliente cliente, int tipoListado); // Hecho - Testear
+        void listarPorNombreDeCliente(); // Pendiente
+        void listarPorAlias(); // Pendiente
+        void listarPorNroDeDocumento(); // Pendiente
+        void listarPorBusquedaLibre(); // Pendiente
 
     public:
         void cargar(); // Hecho - Testear
-        void listar(Cliente cliente, int tipoListado); // Hecho - Testear
-        void modificar(); // En construccion
+        void listarClientes(); // En curso
+        void modificar(); // Hecho - Testear
         void darDeBaja(); // Hecho - Testear
-        void setPermisos(bool adm = false, bool sup = false, bool ven = false);
+        void reactivar(); // Hecho - Testear
+        void setPermisos(bool adm = false, bool sup = false, bool ven = false); // Hecho - Testear
 };
 
 #endif // CLIENTEMANAGER_H

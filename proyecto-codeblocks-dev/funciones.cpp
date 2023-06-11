@@ -3,6 +3,7 @@
 #include <locale.h>
 #include <regex>
 #include <windows.h>
+#include <string>
 
 #include "funciones.h"
 
@@ -49,7 +50,7 @@ int ingresoTipoDeDocumentoConValidacion() {
 
 std::string ingresoDeDocumentoConValidacion() {
     std::string nroDocumento;
-    const std::regex expresionRegular("[1000000-99999999999]+"); // Desde un millón hasta 99999999999 porque es el límite de números entre un DNI mínimo y un CUIT máximo.
+    const std::regex expresionRegular("[0-9]{1,11}"); // Desde un millón hasta 99999999999 porque es el límite de números entre un DNI mínimo y un CUIT máximo.
 
     getline(std::cin, nroDocumento);
     while (!std::regex_match(nroDocumento, expresionRegular)) {
@@ -63,7 +64,8 @@ std::string ingresoDeDocumentoConValidacion() {
 
 std::string ingresoDeNombreApellidoConValidacion() {
     std::string texto;
-    const std::regex expresionRegular("[A-Za-z]{4,14}");
+    std::string textoConvertido;
+    const std::regex expresionRegular("[A-Za-z\\s]{4,24}");
 
     getline(std::cin, texto);
     while (!std::regex_match(texto, expresionRegular)) {
@@ -72,11 +74,13 @@ std::string ingresoDeNombreApellidoConValidacion() {
         getline(std::cin, texto);
     }
 
-    return texto;
+    textoConvertido = stringAMayus(texto);
+    return textoConvertido;
 }
 
 std::string ingresoDeAliasConValidacion() {
     std::string alias;
+    std::string textoConvertido;
     const std::regex expresionRegular("[A-Za-z]{4, 14}");
 
     getline(std::cin, alias);
@@ -86,7 +90,8 @@ std::string ingresoDeAliasConValidacion() {
         getline(std::cin, alias);
     }
 
-    return alias;
+    textoConvertido = stringAMayus(alias);
+    return textoConvertido;
 }
 
 std::string ingresoDeContraseniaConValidacion() {
@@ -119,7 +124,7 @@ std::string ingresoDeEmailConValidacion() {
 
 std::string ingresoDeRazonSocialConValidacion() {
     std::string razonSocial;
-    const std::regex expresionRegular("[a-zA-Z0-9._-,\\s]+{1,29}");
+    const std::regex expresionRegular("[a-zA-Z0-9._,\\s-]{1,29}");
 
     getline(std::cin, razonSocial);
     while (!std::regex_match(razonSocial, expresionRegular)) {
@@ -197,7 +202,7 @@ int ingresoDeProvinciaConValidacion() {
     getline(std::cin, provinciaAux);
     while (!std::regex_match(provinciaAux, expresionRegular)) {
         std::cout << std::endl;
-        std::cout << "El valor ingresado no es válido. El valor permitido es un número entero entre 1 y 2. Ingrese nuevamente: ";
+        std::cout << "El valor ingresado no es válido. El valor permitido es un número entero entre 1 y 24. Ingrese nuevamente: ";
         getline(std::cin, provinciaAux);
     }
 
@@ -219,7 +224,7 @@ std::string ingresoDeDecisionConValidacion() {
 
     textoConvertido = stringAMayus(texto);
 
-    return texto;
+    return textoConvertido;
 }
 
 std::string ingresoDeMarcaConValidacion()
@@ -287,9 +292,20 @@ void listarProvincias() {
     };
 
     for (int i = 0; i < cantidadProvincias; i++) {
-        std::cout << i + 1 << ": " << provincias[i];
+        std::cout << "\t" << i + 1 << ": " << provincias[i];
+        std::cout << std::endl;
     }
 }
+
+std::string cortarCuit(std::string stringParaCortar) {
+    std::string dni;
+
+    dni = stringParaCortar.substr(2, stringParaCortar.length() - 3);
+
+    return dni;
+}
+
+// Mensajes
 
 void okMensajeCreacion() {
     std::cout << "El registro se creó correctamente." << std::endl;
@@ -305,4 +321,32 @@ void okMensajeModificacion() {
 
 void errorMensajeModificacion() {
     std::cout << "El registro no se pudo modificar." << std::endl;
+}
+
+void okMensajeBaja() {
+    std::cout << "El registro se dio de baja correctamente." << std::endl;
+}
+
+void errorMensajeBaja() {
+    std::cout << "El registro no se pudo dar de baja." << std::endl;
+}
+
+void okMensajeReactivacion() {
+    std::cout << "El registro se reactivó correctamente." << std::endl;
+}
+
+void errorMensajeReactivacion() {
+    std::cout << "El registro no se pudo reactivar." << std::endl;
+}
+
+void registroNoEncontradoMensaje() {
+    std::cout << "No se encontró el registro buscado para realizar la acción solicitada" << std::endl;
+}
+
+void existeRegistroMensaje() {
+    std::cout << "Ya existe un registro creado con ese nro de identificación." << std::endl;
+}
+
+void mensajeSalidaDelPrograma() {
+    std::cout << "Muchas gracias por usar la aplicación." << std::endl;
 }

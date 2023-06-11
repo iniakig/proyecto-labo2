@@ -21,12 +21,15 @@ std::string ingresoDeDomicilioConValidacion();
 int ingresoDeProvinciaConValidacion();
 std::string ingresoDeDecisionConValidacion();
 void listarProvincias();
+std::string cortarCuit(std::string stringParaCortar);
 
 // Mensajes
 void okMensajeModificacion();
 void errorMensajeModificacion();
 void okMensajeCreacion();
 void errorMensajeCreacion();
+void registroNoEncontradoMensaje();
+void existeRegistroMensaje();
 
 
 #endif // FUNCIONES_H_INCLUDED

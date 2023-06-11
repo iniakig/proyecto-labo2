@@ -7,7 +7,7 @@ class Persona {
 private:
     int _tipoDocumento; // Puede ser: ( 1. DNI | 2. CUIL | 3. CUIT )
     char _nroDocumento[12];
-    char _nombre[15];
+    char _nombre[20];
     char _apellido[15];
     char _razonSocial[30];
     char _email[35];
