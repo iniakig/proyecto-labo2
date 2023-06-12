@@ -5,6 +5,9 @@
 #include "UsuarioActivo.h"
 
 #include "ClienteMenu.h"
+#include "MarcaMenu.h"
+#include "ProductoMenu.h"
+
 
 #include <limits>
 #include <conio.h>
@@ -103,6 +106,8 @@ void Programa::login() {
 
 void Programa::ejecutar() {
     ClienteMenu clienteMenu;
+    ProductoMenu productoMenu;
+    MarcaMenu marcaMenu;
     UsuarioActivo usuarioActivo;
 
     int opcion = -1;
@@ -134,8 +139,10 @@ void Programa::ejecutar() {
             case 1:
                 break;
             case 2:
+                productoMenu.mostrar();
                 break;
             case 3:
+                marcaMenu.mostrar();
                 break;
             case 4:
                 clienteMenu.mostrar();

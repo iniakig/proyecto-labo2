@@ -19,6 +19,7 @@ public:
     void Listar(Producto producto);
 	void HacerCopiaDeSeguridad();
 	void RestaurarCopiaDeSeguridad();
+	void setPermisos(bool adm, bool sup, bool ven);
 
 private:
     bool _permisos[3]; // Posición 0. Adm | 1. Sup | 2. Ven

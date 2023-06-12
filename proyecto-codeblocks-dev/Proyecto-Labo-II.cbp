@@ -55,6 +55,7 @@
 		<Unit filename="include/Producto.h" />
 		<Unit filename="include/ProductoArchivo.h" />
 		<Unit filename="include/ProductoManager.h" />
+		<Unit filename="include/ProductoMenu.h" />
 		<Unit filename="include/Programa.h" />
 		<Unit filename="include/Usuario.h" />
 		<Unit filename="include/UsuarioActivo.h" />
@@ -83,6 +84,7 @@
 		<Unit filename="src/Producto.cpp" />
 		<Unit filename="src/ProductoArchivo.cpp" />
 		<Unit filename="src/ProductoManager.cpp" />
+		<Unit filename="src/ProductoMenu.cpp" />
 		<Unit filename="src/Programa.cpp" />
 		<Unit filename="src/Usuario.cpp" />
 		<Unit filename="src/UsuarioActivo.cpp" />
