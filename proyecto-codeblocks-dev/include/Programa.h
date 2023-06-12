@@ -1,12 +1,25 @@
 #ifndef PROGRAMA_H
 #define PROGRAMA_H
 
+#include "UsuarioActivo.h"
+#include "ProductoMenu.h"
+#include "MarcaMenu.h"
+#include "ClienteMenu.h"
+#include "ConfiguracionMenu.h"
+
 
 class Programa
 {
     private:
         bool _estadoLogin;
         bool _estadoPrograma;
+
+        UsuarioActivo _usuarioActivo;
+        ProductoMenu _productoMenu;
+        MarcaMenu _marcaMenu;
+        ClienteMenu _clienteMenu;
+        ConfiguracionMenu _configuracionMenu;
+
     public:
         // Constructores
         Programa(bool estado = false);

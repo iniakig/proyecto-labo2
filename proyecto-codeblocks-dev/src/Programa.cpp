@@ -2,13 +2,6 @@
 #include "../rlutil.h"
 #include "../funciones.h"
 
-#include "UsuarioActivo.h"
-
-#include "ClienteMenu.h"
-#include "MarcaMenu.h"
-#include "ProductoMenu.h"
-
-
 #include <limits>
 #include <conio.h>
 
@@ -27,7 +20,6 @@ void Programa::login() {
     int limiteIntentos = 3;
     int contadorIntentos = 0;
     bool acceso = false;
-    UsuarioActivo usuarioActivo;
 
     // Usuario y Contraseña hardcodeado
     std::string us = "admin";
@@ -46,10 +38,16 @@ void Programa::login() {
     while (acceso == false && contadorIntentos != limiteIntentos) {
         if (contadorIntentos > 0) {
             rlutil::cls();
+
+
             std::string mensajeIngresoIncorrecto = "Ingreso incorrecto. Intento #" + std::to_string(contadorIntentos + 1) + ".";
+
+
             centrarTexto("SISTEMA DE GESTIÓN DE STOCK Y VENTAS", 5 + 3);
             centrarTexto("----------------------------------------------------------", 6 + 3);
+            rlutil::setColor(rlutil::LIGHTRED);
             centrarTexto(mensajeIngresoIncorrecto, 8 + 3);
+            rlutil::setColor(rlutil::WHITE);
             rlutil::locate(34, 10 + 3);
             std::cout << "  Usuario: " << std::endl;
             rlutil::locate(34, 12 + 3);
@@ -70,8 +68,8 @@ void Programa::login() {
         caracter = getch();
 
         rlutil::locate(48, 12 + 3);
-        while (caracter != '\r') { // "13" es el código ASCII de la tecla Enter.
-            if (caracter == '\b') { // "127" es Delete.
+        while (caracter != '\r') { // "\r" refiere a Enter.
+            if (caracter == '\b') { // "\b" refiere a Delete.
                 if (!contrasenia.empty()) {
                     contrasenia.pop_back(); // Borra último caracter ingresado
                     std::cout << "\b \b"; // Borra asterisco impreso en consola
@@ -93,11 +91,13 @@ void Programa::login() {
     }
 
     if (acceso == true) {
-        usuarioActivo.setAlias(contrasenia);
-        usuarioActivo.crearArchivo(usuarioActivo);
+        _usuarioActivo.setAlias(contrasenia);
+        _usuarioActivo.crearArchivo(_usuarioActivo);
     }
     else {
+        rlutil::setColor(rlutil::LIGHTRED);
         centrarTexto("Agotó los 3 intentos. El sistema se cerrará", 8 + 3);
+        rlutil::setColor(rlutil::WHITE);
         setEstadoPrograma(acceso);
     }
 
@@ -105,16 +105,13 @@ void Programa::login() {
 }
 
 void Programa::ejecutar() {
-    ClienteMenu clienteMenu;
-    ProductoMenu productoMenu;
-    MarcaMenu marcaMenu;
-    UsuarioActivo usuarioActivo;
-
     int opcion = -1;
 
     do {
         rlutil::cls();
-        std::cout << "USUARIO ACTIVO: " << usuarioActivo.leerArchivo() << std::endl;
+        rlutil::setColor(rlutil::LIGHTGREEN);
+        std::cout << "USUARIO ACTIVO: " << _usuarioActivo.leerArchivo() << std::endl;
+        rlutil::setColor(rlutil::WHITE);
         std::cout << "--------------------------------------------" << std::endl;
         std::cout << "MENÚ PRINCIPAL" << std::endl;
         std::cout << "--------------------------------------------" << std::endl;
@@ -125,8 +122,7 @@ void Programa::ejecutar() {
         std::cout << "5. INFORMES" << std::endl;
         std::cout << "6. CONFIGURACIÓN" << std::endl;
         std::cout << "--------------------------------------------" << std::endl;
-        std::cout << "0. CERRAR SESIÓN" << std::endl;
-        std::cout << "666. SALIR DEL PROGRAMA" << std::endl;
+        std::cout << "0. CERRAR SESIÓN  |  666. SALIR DEL PROGRAMA" << std::endl;
         std::cout << "--------------------------------------------" << std::endl;
         std::cout << "OPCIÓN SELECCIONADA: ";
         std::cin >> opcion;
@@ -139,23 +135,26 @@ void Programa::ejecutar() {
             case 1:
                 break;
             case 2:
-                productoMenu.mostrar();
+                _productoMenu.mostrar();
                 break;
             case 3:
-                marcaMenu.mostrar();
+                _marcaMenu.mostrar();
                 break;
             case 4:
-                clienteMenu.mostrar();
+                _clienteMenu.mostrar();
                 break;
             case 5:
                 break;
             case 6:
+                _configuracionMenu.mostrar();
                 break;
             case 666:
                 setEstadoPrograma(false);
                 setEstadoLogin(false);
-                std::cout << std::endl;
+
+                rlutil::cls();
                 mensajeSalidaDelPrograma();
+
                 rlutil::anykey();
                 break;
             default:

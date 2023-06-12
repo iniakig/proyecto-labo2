@@ -316,45 +316,67 @@ void centrarTexto(std::string texto, int posy) {
 // Mensajes
 
 void okMensajeCreacion() {
+    rlutil::setColor(rlutil::LIGHTGREEN);
     std::cout << "El registro se creó correctamente." << std::endl;
+    rlutil::setColor(rlutil::WHITE);
 }
 
 void errorMensajeCreacion() {
+    rlutil::setColor(rlutil::LIGHTRED);
     std::cout << "El registro no se pudo crear." << std::endl;
+    rlutil::setColor(rlutil::WHITE);
 }
 
 void okMensajeModificacion() {
+    rlutil::setColor(rlutil::LIGHTGREEN);
     std::cout << "El registro se modificó correctamente." << std::endl;
+    rlutil::setColor(rlutil::WHITE);
 }
 
 void errorMensajeModificacion() {
+    rlutil::setColor(rlutil::LIGHTRED);
     std::cout << "El registro no se pudo modificar." << std::endl;
+    rlutil::setColor(rlutil::WHITE);
 }
 
 void okMensajeBaja() {
+    rlutil::setColor(rlutil::LIGHTGREEN);
     std::cout << "El registro se dio de baja correctamente." << std::endl;
+    rlutil::setColor(rlutil::WHITE);
 }
 
 void errorMensajeBaja() {
+    rlutil::setColor(rlutil::LIGHTRED);
     std::cout << "El registro no se pudo dar de baja." << std::endl;
+    rlutil::setColor(rlutil::WHITE);
 }
 
 void okMensajeReactivacion() {
+    rlutil::setColor(rlutil::LIGHTGREEN);
     std::cout << "El registro se reactivó correctamente." << std::endl;
+    rlutil::setColor(rlutil::WHITE);
 }
 
 void errorMensajeReactivacion() {
+    rlutil::setColor(rlutil::LIGHTRED);
     std::cout << "El registro no se pudo reactivar." << std::endl;
+    rlutil::setColor(rlutil::WHITE);
 }
 
 void registroNoEncontradoMensaje() {
+    rlutil::setColor(rlutil::LIGHTRED);
     std::cout << "No se encontró el registro buscado para realizar la acción solicitada" << std::endl;
+    rlutil::setColor(rlutil::WHITE);
 }
 
 void existeRegistroMensaje() {
+    rlutil::setColor(rlutil::LIGHTRED);
     std::cout << "Ya existe un registro creado con ese nro de identificación." << std::endl;
+    rlutil::setColor(rlutil::WHITE);
 }
 
 void mensajeSalidaDelPrograma() {
-    std::cout << "Muchas gracias por usar la aplicación." << std::endl;
+    rlutil::setColor(rlutil::LIGHTRED);
+    centrarTexto("Muchas gracias por usar la aplicación.", 15);
+    rlutil::setColor(rlutil::WHITE);
 }
