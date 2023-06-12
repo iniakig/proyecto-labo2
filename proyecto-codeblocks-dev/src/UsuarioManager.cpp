@@ -42,10 +42,12 @@ void UsuarioManager::cargar() {
     Usuario usuario(tipoDocumento, nroDocumento.c_str(), nombre.c_str(), apellido.c_str(), email.c_str(), estado, fechaRegistro, alias.c_str(), contrasenia.c_str(), rol);
 
     if (_archivo.crear(usuario)) {
-        std::cout << "El usuario se cargó correctamente.";
+        std::cout << std::endl;
+        okMensajeCreacion();
     }
     else {
-        std::cout << "No se pudo crear el usuario.";
+        std::cout << std::endl;
+        errorMensajeCreacion();
     }
 }
 

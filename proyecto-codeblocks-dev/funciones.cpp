@@ -8,9 +8,17 @@
 #include "funciones.h"
 #include "rlutil.h"
 
+/*
 void setSpanish()
 {
     setlocale(LC_ALL, "Spanish");
+}
+*/
+
+void setSpanish()
+{
+    SetConsoleOutputCP(1252);
+    SetConsoleCP(1252);
 }
 
 int enteroConvertidoAInt(std::string stringParaConvertir)
@@ -63,10 +71,24 @@ std::string ingresoDeDocumentoConValidacion() {
     return nroDocumento;
 }
 
+std::string ingresoDeDNIConValidacion() {
+    std::string nroDocumento;
+    const std::regex expresionRegular("[0-9]{1,8}");
+
+    getline(std::cin, nroDocumento);
+    while (!std::regex_match(nroDocumento, expresionRegular)) {
+        std::cout << std::endl;
+        std::cout << "El valor ingresado no es válido. Ingrese nuevamente: ";
+        getline(std::cin, nroDocumento);
+    }
+
+    return nroDocumento;
+}
+
 std::string ingresoDeNombreApellidoConValidacion() {
     std::string texto;
     std::string textoConvertido;
-    const std::regex expresionRegular("[A-Za-z\\s]{4,24}");
+    const std::regex expresionRegular("[A-Za-zñÑ\\s]{4,24}");
 
     getline(std::cin, texto);
     while (!std::regex_match(texto, expresionRegular)) {
@@ -82,12 +104,16 @@ std::string ingresoDeNombreApellidoConValidacion() {
 std::string ingresoDeAliasConValidacion() {
     std::string alias;
     std::string textoConvertido;
-    const std::regex expresionRegular("[A-Za-z]{4, 14}");
+    const std::regex expresionRegular("[A-Za-z]{4,14}");
 
     getline(std::cin, alias);
     while (!std::regex_match(alias, expresionRegular)) {
         std::cout << std::endl;
-        std::cout << "El texto ingresado no es válido. Ingrese nuevamente: ";
+        std::cout << "El texto ingresado no es válido.";
+        std::cout << "Reglas de ingreso de alias: " << std::endl;
+        std::cout << "- Puede contener entre 4 y 14 caracteres" << std::endl;
+        std::cout << "- Permite solo letras (Es indistinto si mayúsculas o minúsculas)" << std::endl;
+        std::cout << "Ingrese nuevamente: ";
         getline(std::cin, alias);
     }
 
@@ -97,7 +123,7 @@ std::string ingresoDeAliasConValidacion() {
 
 std::string ingresoDeContraseniaConValidacion() {
     std::string contrasenia;
-    const std::regex expresionRegular("[A-Za-z0-9!.%$_-]{8, 14}");
+    const std::regex expresionRegular("[A-Za-z0-9!.%$_ -]{8,14}");
 
     getline(std::cin, contrasenia);
     while (!std::regex_match(contrasenia, expresionRegular)) {
@@ -134,7 +160,7 @@ std::string ingresoDeRazonSocialConValidacion() {
         std::cout << "Reglas de ingreso de razón social: " << std::endl;
         std::cout << "- Puede contener hasta 29 caracteres" << std::endl;
         std::cout << "- Permite letras, números y caracteres de \".\", \",\", \"-\" y \"_\"." << std::endl;
-
+        std::cout << "Ingrese nuevamente: ";
         getline(std::cin, razonSocial);
     }
 
@@ -149,10 +175,10 @@ std::string ingresoDeLocalidadConValidacion() {
     while (!std::regex_match(localidad, expresionRegular)) {
         std::cout << std::endl;
         std::cout << "El texto ingresado no es válido." << std::endl;
-        std::cout << "Reglas de ingreso de razón social: " << std::endl;
+        std::cout << "Reglas de ingreso de localidad: " << std::endl;
         std::cout << "- Puede contener hasta 29 caracteres" << std::endl;
         std::cout << "- Permite letras, números y caracteres de \".\", \",\", \"-\" y \"_\"." << std::endl;
-
+        std::cout << "Ingrese nuevamente: ";
         getline(std::cin, localidad);
     }
 

@@ -5,6 +5,9 @@
 #include <limits>
 #include <conio.h>
 
+#include "Usuario.h"
+#include "UsuarioArchivo.h"
+
 // Constructores
 Programa::Programa(bool estado) {
     setEstadoLogin(estado);
@@ -21,9 +24,13 @@ void Programa::login() {
     int contadorIntentos = 0;
     bool acceso = false;
 
+    Usuario usuarioReg;
+    UsuarioArchivo usuarioArchivoReg;
+
+
     // Usuario y Contraseña hardcodeado
-    std::string us = "admin";
-    std::string cs = "admin";
+    // std::string us = "admin";
+    // std::string cs = "admin";
 
     centrarTexto("SISTEMA DE GESTIÓN DE STOCK Y VENTAS", 5 + 3);
     centrarTexto("----------------------------------------------------------", 6 + 3);
@@ -82,16 +89,24 @@ void Programa::login() {
             caracter = getch();
         }
 
-        if (usuario == us && contrasenia == cs) {
-            acceso = true;
+        usuario = stringAMayus(usuario);
+
+        int cantidadDeUsuarios = usuarioArchivoReg.getCantidadDeUsuarios();
+
+        for (int i = 0; i < cantidadDeUsuarios; i++) {
+            usuarioReg = usuarioArchivoReg.leer(i);
+            if (strcmp(usuarioReg.getAlias(), usuario.c_str()) == 0 && strcmp(usuarioReg.getContrasenia(), contrasenia.c_str()) == 0) {
+                acceso = true;
+            }
         }
-        else {
+
+        if (acceso == false) {
             contadorIntentos++;
         }
     }
 
     if (acceso == true) {
-        _usuarioActivo.setAlias(contrasenia);
+        _usuarioActivo.setAlias(usuario);
         _usuarioActivo.crearArchivo(_usuarioActivo);
     }
     else {
