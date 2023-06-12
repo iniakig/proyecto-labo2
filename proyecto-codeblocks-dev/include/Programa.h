@@ -5,20 +5,25 @@
 class Programa
 {
     private:
-        bool _estado;
+        bool _estadoLogin;
+        bool _estadoPrograma;
     public:
         // Constructores
         Programa(bool estado = false);
 
         // Interfaces
+        //void login(bool& estadoPrograma, bool& estadoLogin);
+        //void ejecutar(bool& estadoPrograma, bool& estadoLogin);
         void login();
         void ejecutar();
 
         // Setters
-        void setEstado(bool estado);
+        void setEstadoLogin(bool estado);
+        void setEstadoPrograma(bool estado);
 
         // Getters
-        bool getEstado();
+        bool getEstadoLogin();
+        bool getEstadoPrograma();
 };
 
 #endif // PROGRAMA_H

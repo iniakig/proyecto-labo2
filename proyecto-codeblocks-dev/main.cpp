@@ -26,11 +26,20 @@ int main()
     setSpanish();
 
     Programa programa;
-    programa.login();
 
-    if (programa.getEstado()) {
-        programa.ejecutar();
+    programa.setEstadoPrograma(true);
+
+    //bool estadoPrograma = programa.getEstadoPrograma();
+    //bool estadoLogin = programa.getEstadoLogin();
+
+    while (programa.getEstadoPrograma() == true) {
+        programa.login();
+        while(programa.getEstadoLogin() == true) {
+            programa.ejecutar();
+        }
     }
+
+
 
     //ClienteMenu clienteMenu;
 

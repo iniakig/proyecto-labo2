@@ -2,6 +2,8 @@
 #include "../rlutil.h"
 #include "../funciones.h"
 
+#include "UsuarioActivo.h"
+
 #include "ClienteMenu.h"
 
 #include <limits>
@@ -9,7 +11,8 @@
 
 // Constructores
 Programa::Programa(bool estado) {
-    setEstado(estado);
+    setEstadoLogin(estado);
+    setEstadoPrograma(estado);
 }
 
 // Interfaces
@@ -21,6 +24,7 @@ void Programa::login() {
     int limiteIntentos = 3;
     int contadorIntentos = 0;
     bool acceso = false;
+    UsuarioActivo usuarioActivo;
 
     // Usuario y Contraseña hardcodeado
     std::string us = "admin";
@@ -36,7 +40,7 @@ void Programa::login() {
     centrarTexto("----------------------------------------------------------", 14 + 3);
     centrarTexto("G3 - Laboratorio de Computación II - UTNFRGP - 1C2023", 15 + 3);
 
-    while (acceso == false && contadorIntentos != 3) {
+    while (acceso == false && contadorIntentos != limiteIntentos) {
         if (contadorIntentos > 0) {
             rlutil::cls();
             std::string mensajeIngresoIncorrecto = "Ingreso incorrecto. Intento #" + std::to_string(contadorIntentos + 1) + ".";
@@ -85,20 +89,28 @@ void Programa::login() {
         }
     }
 
-    if (_estado == false) {
+    if (acceso == true) {
+        usuarioActivo.setAlias(contrasenia);
+        usuarioActivo.crearArchivo(usuarioActivo);
+    }
+    else {
         centrarTexto("Agotó los 3 intentos. El sistema se cerrará", 8 + 3);
+        setEstadoPrograma(acceso);
     }
 
-    _estado = acceso;
+    setEstadoLogin(acceso);
 }
 
 void Programa::ejecutar() {
     ClienteMenu clienteMenu;
+    UsuarioActivo usuarioActivo;
 
     int opcion = -1;
 
     do {
         rlutil::cls();
+        std::cout << "USUARIO ACTIVO: " << usuarioActivo.leerArchivo() << std::endl;
+        std::cout << "--------------------------------------------" << std::endl;
         std::cout << "MENÚ PRINCIPAL" << std::endl;
         std::cout << "--------------------------------------------" << std::endl;
         std::cout << "1. GESTIÓN DE VENTAS" << std::endl;
@@ -108,16 +120,16 @@ void Programa::ejecutar() {
         std::cout << "5. INFORMES" << std::endl;
         std::cout << "6. CONFIGURACIÓN" << std::endl;
         std::cout << "--------------------------------------------" << std::endl;
-        std::cout << "0. SALIR DEL PROGRAMA" << std::endl;
+        std::cout << "0. CERRAR SESIÓN" << std::endl;
+        std::cout << "666. SALIR DEL PROGRAMA" << std::endl;
         std::cout << "--------------------------------------------" << std::endl;
         std::cout << "OPCIÓN SELECCIONADA: ";
         std::cin >> opcion;
+        std::cin.ignore();
 
         switch(opcion) {
             case 0:
-                std::cout << std::endl;
-                mensajeSalidaDelPrograma();
-                rlutil::anykey();
+                setEstadoLogin(false);
                 break;
             case 1:
                 break;
@@ -132,23 +144,38 @@ void Programa::ejecutar() {
                 break;
             case 6:
                 break;
+            case 666:
+                setEstadoPrograma(false);
+                setEstadoLogin(false);
+                std::cout << std::endl;
+                mensajeSalidaDelPrograma();
+                rlutil::anykey();
+                break;
             default:
                 break;
         }
     }
 
-    while (opcion != 0);
+    while (opcion != 0 && opcion != 666);
 }
 
 
 // Setters
-void Programa::setEstado(bool estado) {
-    _estado = estado;
+void Programa::setEstadoLogin(bool estado) {
+    _estadoLogin = estado;
+}
+
+void Programa::setEstadoPrograma(bool estado) {
+    _estadoPrograma = estado;
 }
 
 // Getters
-bool Programa::getEstado() {
-    return _estado;
+bool Programa::getEstadoLogin() {
+    return _estadoLogin;
+}
+
+bool Programa::getEstadoPrograma() {
+    return _estadoPrograma;
 }
 
 
