@@ -4,6 +4,9 @@
 
 #include "ClienteMenu.h"
 
+#include <limits>
+#include <conio.h>
+
 // Constructores
 Programa::Programa(bool estado) {
     setEstado(estado);
@@ -49,8 +52,30 @@ void Programa::login() {
         }
         rlutil::locate(45, 10 + 3);
         getline(std::cin, usuario);
+
         rlutil::locate(48, 12 + 3);
+        /*
         getline(std::cin, contrasenia);
+        */
+
+        char caracter;
+        contrasenia = "";
+        caracter = getch();
+
+        rlutil::locate(48, 12 + 3);
+        while (caracter != '\r') { // "13" es el código ASCII de la tecla Enter.
+            if (caracter == '\b') { // "127" es Delete.
+                if (!contrasenia.empty()) {
+                    contrasenia.pop_back(); // Borra último caracter ingresado
+                    std::cout << "\b \b"; // Borra asterisco impreso en consola
+                }
+            }
+            else {
+                contrasenia.push_back(caracter);
+                std::cout << "*";
+            }
+            caracter = getch();
+        }
 
         if (usuario == us && contrasenia == cs) {
             acceso = true;

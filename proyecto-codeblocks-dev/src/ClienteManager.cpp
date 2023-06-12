@@ -206,8 +206,10 @@ void ClienteManager::modificar() {
                     std::cout << "Ingrese el nuevo nro de Documento (Debe corresponder con el tipo de Documento registrado): ";
                     nroDocumento = ingresoDeDocumentoConValidacion();
                     std::cout << std::endl;
+
                     cliente.setTipoDocumento(tipoDeDocumento);
                     cliente.setNroDocumento(nroDocumento.c_str());
+
                     if (_archivo.modificar(cliente, posicion)) {
                         std::cout << std::endl;
                         okMensajeModificacion();
@@ -223,10 +225,13 @@ void ClienteManager::modificar() {
                     break;
                 case 2:
                     std::cout << std::endl;
-                    if (cliente.getRazonSocial() != "null") {
+                    char null[5];
+                    strcpy(null, "null");
+                    if (strcmp(cliente.getRazonSocial(), null) != 0) {
                         std::cout << "El cliente está registrado como una persona jurídica" << std::endl;
                         std::cout << "¿Desea modificar el registro como persona física? (SI | NO): ";
                         decision = ingresoDeDecisionConValidacion();
+                        std::cout << std::endl;
 
                         if (decision == "SI") {
                             std::cout << "Ingrese el nuevo nombre: ";
@@ -278,6 +283,7 @@ void ClienteManager::modificar() {
                         std::cout << "El cliente está registrado como una persona física" << std::endl;
                         std::cout << "¿Desea modificar el registro como persona jurídica? (SI | NO): ";
                         decision = ingresoDeDecisionConValidacion();
+                        std::cout << std::endl;
 
                         if (decision == "SI") {
                             std::cout << "Ingrese la nueva razón social: ";
@@ -333,8 +339,56 @@ void ClienteManager::modificar() {
                     break;
                 case 3:
                     std::cout << std::endl;
+                    std::cout << "Ingrese el nuevo domicilio: ";
+                    domicilio = ingresoDeDomicilioConValidacion();
+                    std::cout << "Ingrese localidad: ";
+                    localidad = ingresoDeLocalidadConValidacion();
+                    std::cout << "Seleccionar provincia: " << std::endl;
+                    std::cout << std::endl;
+                    listarProvincias();
+                    std::cout << std::endl;
+                    std::cout << "Nro de provincia: ";
+                    provincia = ingresoDeProvinciaConValidacion();
+                    std::cout << std::endl;
+
+                    cliente.setDomicilio(domicilio);
+                    cliente.setLocalidad(localidad);
+                    cliente.setProvincia(provincia);
+
+                    if (_archivo.modificar(cliente, posicion)) {
+                        std::cout << std::endl;
+                        okMensajeModificacion();
+                        rlutil::anykey();
+                        opcion = 0;
+                    }
+                    else {
+                        std::cout << std::endl;
+                        errorMensajeModificacion();
+                        rlutil::anykey();
+                        opcion = 0;
+                    }
+                    std::cout << std::endl;
                     break;
                 case 4:
+                    std::cout << std::endl;
+                    std::cout << "Ingrese el nuevo email: ";
+                    email = ingresoDeEmailConValidacion();
+                    std::cout << std::endl;
+
+                    cliente.setEmail(email.c_str());
+
+                    if (_archivo.modificar(cliente, posicion)) {
+                        std::cout << std::endl;
+                        okMensajeModificacion();
+                        rlutil::anykey();
+                        opcion = 0;
+                    }
+                    else {
+                        std::cout << std::endl;
+                        errorMensajeModificacion();
+                        rlutil::anykey();
+                        opcion = 0;
+                    }
                     std::cout << std::endl;
                     break;
                 default:

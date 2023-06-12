@@ -17,7 +17,7 @@ class ClienteManager
     public:
         void cargar(); // Hecho - Testear
         void listarClientes(); // En curso
-        void modificar(); // Hecho - Testear
+        void modificar(); // En curso
         void darDeBaja(); // Hecho - Testear
         void reactivar(); // Hecho - Testear
         void setPermisos(bool adm = false, bool sup = false, bool ven = false); // Hecho - Testear
