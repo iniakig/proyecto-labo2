@@ -51,10 +51,8 @@ int ClienteArchivo::buscar(std::string nroDocumento) {
 
     for (int i = 0; i < cantidadDeClientes; i++) {
         cliente = leer(i);
-        // Acá se crea una nueva variable string tomando el nroDocumento del objeto leído.
-        // Si es mayor a 8 significa que no es un DNI, sino un CUIT, entonces extrae el DNI del CUIT.
-        std::string nro(cliente.getNroDocumento());
-        if (nro.length() > 8) {
+        std::string nro(cliente.getNroDocumento()); // Acá se crea una nueva variable string tomando el nroDocumento del objeto leído.
+        if (nro.length() > 8) { // Si es mayor a 8 significa que no es un DNI, sino un CUIT, entonces extrae el DNI del CUIT.
             nroNuevo = cortarCuit(nro);
         }
         else {
@@ -66,6 +64,7 @@ int ClienteArchivo::buscar(std::string nroDocumento) {
         }
         /*
         // Código viejo que servía para búsquedas libres, pero no tenía en cuenta los dos números del comienzo y el del final del CUIT
+
         if (strstr(cliente.getNroDocumento(), nroDocumento.c_str()) != NULL) {
             posicion = i;
             return i;

@@ -41,6 +41,7 @@
 		<Unit filename="include/ClienteArchivo.h" />
 		<Unit filename="include/ClienteManager.h" />
 		<Unit filename="include/ClienteMenu.h" />
+		<Unit filename="include/ConfiguracionMenu.h" />
 		<Unit filename="include/Encabezado.h" />
 		<Unit filename="include/Fecha.h" />
 		<Unit filename="include/Marca.h" />
@@ -70,6 +71,7 @@
 		<Unit filename="src/ClienteArchivo.cpp" />
 		<Unit filename="src/ClienteManager.cpp" />
 		<Unit filename="src/ClienteMenu.cpp" />
+		<Unit filename="src/ConfiguracionMenu.cpp" />
 		<Unit filename="src/Encabezado.cpp" />
 		<Unit filename="src/Fecha.cpp" />
 		<Unit filename="src/Marca.cpp" />

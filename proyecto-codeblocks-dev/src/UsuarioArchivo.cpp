@@ -11,6 +11,29 @@ UsuarioArchivo::UsuarioArchivo(std::string nombre)
 }
 
 // Interfaces
+int UsuarioArchivo::buscar(std::string nroDocumento) {
+    Usuario usuario;
+    int posicion = -1;
+    int cantidadDeUsuarios = getCantidadDeUsuarios();
+
+    FILE* p;
+
+    p = fopen(_nombre.c_str(), "rb");
+
+    if (p == nullptr) {
+        return false;
+    }
+
+    for (int i = 0; i < cantidadDeUsuarios; i++) {
+        usuario = leer(i);
+        if (strcmp(usuario.getNroDocumento(), nroDocumento.c_str()) == 0) {
+            posicion = i;
+        }
+    }
+
+    return posicion;
+}
+
 int UsuarioArchivo::buscar(int tipoDocumento, std::string nroDocumento) {
     Usuario reg;
     int posicion = -1;
@@ -34,6 +57,7 @@ int UsuarioArchivo::buscar(int tipoDocumento, std::string nroDocumento) {
     return posicion;
 }
 
+/*
 int UsuarioArchivo::buscar(std::string alias) {
     Usuario usuario;
     int posicion = -1;
@@ -57,6 +81,23 @@ int UsuarioArchivo::buscar(std::string alias) {
 
     return posicion;
 }
+*/
+
+bool UsuarioArchivo::crear(Usuario reg) {
+    FILE* p;
+
+    p = fopen(_nombre.c_str(), "ab");
+
+    if (p == nullptr) {
+        return false;
+    }
+
+    bool escribio = fwrite(&reg, sizeof(Usuario), 1, p);
+
+    fclose(p);
+
+    return escribio;
+}
 
 Usuario UsuarioArchivo::leer(int posicion) {
     Usuario reg;
@@ -75,14 +116,16 @@ Usuario UsuarioArchivo::leer(int posicion) {
     return reg;
 }
 
-bool UsuarioArchivo::crear(Usuario reg) {
+bool UsuarioArchivo::modificar(Usuario reg, int posicion) {
     FILE* p;
 
-    p = fopen(_nombre.c_str(), "ab");
+    p = fopen(_nombre.c_str(), "rb+");
 
     if (p == nullptr) {
         return false;
     }
+
+    fseek(p, posicion * sizeof(Usuario), SEEK_SET);
 
     bool escribio = fwrite(&reg, sizeof(Usuario), 1, p);
 

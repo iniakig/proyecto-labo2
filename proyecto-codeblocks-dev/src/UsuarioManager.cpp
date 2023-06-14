@@ -5,6 +5,8 @@
 #include <iomanip>
 #include <../rlutil.h>
 
+#include "Usuario.h"
+
 void UsuarioManager::cargar() {
     int tipoDocumento;
     std::string nroDocumento;
@@ -36,7 +38,7 @@ void UsuarioManager::cargar() {
     std::cout << "Contraseña: ";
     contrasenia = ingresoDeContraseniaConValidacion();
     std::cout << "Rol (0. Administrador | 1. Supervisor | 2. Vendedor): ";
-    std::cin >> rol;
+    rol = ingresoDeRolConValidacion();
 
 
     Usuario usuario(tipoDocumento, nroDocumento.c_str(), nombre.c_str(), apellido.c_str(), email.c_str(), estado, fechaRegistro, alias.c_str(), contrasenia.c_str(), rol);
@@ -48,6 +50,302 @@ void UsuarioManager::cargar() {
     else {
         std::cout << std::endl;
         errorMensajeCreacion();
+    }
+}
+
+void UsuarioManager::modificar() {
+    rlutil::cls();
+    Usuario usuario;
+
+    std::string nroDocumento;
+    std::string nombre;
+    std::string apellido;
+    std::string email;
+    Fecha fechaRegistro;
+    std::string alias;
+    std::string contrasenia;
+    int rol;
+
+    std::cout << "MODIFICACIÓN DE DATOS DE USUARIO" << std::endl;
+    std::cout << "------------------------------------------------------------------------------------------------------------------------" << std::endl;
+
+    std::cout << "Ingrese nro de documento del usuario a modificar: ";
+    nroDocumento = ingresoDeDocumentoConValidacion();
+    std::cout << std::endl;
+
+    int posicion = _archivo.buscar(nroDocumento);
+    if (posicion > -1) {
+        usuario = _archivo.leer(posicion);
+        std::cout << "Datos del usuario: " << std::endl;
+        listar(usuario, 0);
+        std::cout << std::endl;
+        std::cout << std::endl;
+        std::cout << "¿Desea modificar datos de este usuario? (SI | NO): ";
+        std::string decision = ingresoDeDecisionConValidacion();
+
+        if (decision == "SI") {
+            int opcion = -1;
+            std::string decision;
+
+            do {
+                std::cout << std::endl;
+                std::cout << "ELIJA EL CAMPO QUE DESEA MODIFICAR" << std::endl;
+                std::cout << "---------------------------------------------------" << std::endl;
+                std::cout << "1. NRO DE DOCUMENTO" << std::endl;
+                std::cout << "2. NOMBRE Y APELLIDO" << std::endl;
+                std::cout << "3. EMAIL" << std::endl;
+                std::cout << "4. ALIAS" << std::endl;
+                std::cout << "5. CONTRASEÑA" << std::endl;
+                std::cout << "6. ROL" << std::endl;
+                std::cout << "---------------------------------------------------" << std::endl;
+                std::cout << "0. VOLVER AL MENÚ DE GESTIÓN DE USUARIOS" << std::endl;
+                std::cout << "---------------------------------------------------" << std::endl;
+                std::cout << "OPCIÓN SELECCIONADA: ";
+                std::cin >> opcion;
+                std::cin.ignore();
+
+                switch(opcion) {
+                case 0:
+                    break;
+                case 1:
+                    std::cout << std::endl;
+                    std::cout << "Ingrese el nuevo nro de Documento: ";
+                    nroDocumento = ingresoDeDocumentoConValidacion();
+                    std::cout << std::endl;
+
+                    usuario.setNroDocumento(nroDocumento.c_str());
+
+                    if (_archivo.modificar(usuario, posicion)) {
+                        std::cout << std::endl;
+                        okMensajeModificacion();
+                        rlutil::anykey();
+                        opcion = 0;
+                    }
+                    else {
+                        std::cout << std::endl;
+                        errorMensajeModificacion();
+                        rlutil::anykey();
+                        opcion = 0;
+                    }
+                    break;
+                case 2:
+                    std::cout << std::endl;
+                    std::cout << "Ingrese el nuevo nombre: ";
+                    nombre = ingresoDeNombreApellidoConValidacion();
+                    std::cout << "Ingrese el nuevo apellido: ";
+                    apellido = ingresoDeNombreApellidoConValidacion();
+                    std::cout << std::endl;
+
+                    usuario.setNombre(nombre.c_str());
+                    usuario.setApellido(apellido.c_str());
+
+                    if (_archivo.modificar(usuario, posicion)) {
+                        std::cout << std::endl;
+                        okMensajeModificacion();
+                        rlutil::anykey();
+                        opcion = 0;
+                    }
+                    else {
+                        std::cout << std::endl;
+                        errorMensajeModificacion();
+                        rlutil::anykey();
+                        opcion = 0;
+                    }
+                case 3:
+                    std::cout << std::endl;
+                    std::cout << "Ingrese el nuevo email: ";
+                    email = ingresoDeEmailConValidacion();
+                    std::cout << std::endl;
+
+                    usuario.setEmail(email.c_str());
+
+                    if (_archivo.modificar(usuario, posicion)) {
+                        std::cout << std::endl;
+                        okMensajeModificacion();
+                        rlutil::anykey();
+                        opcion = 0;
+                    }
+                    else {
+                        std::cout << std::endl;
+                        errorMensajeModificacion();
+                        rlutil::anykey();
+                        opcion = 0;
+                    }
+                    std::cout << std::endl;
+                    break;
+                case 4:
+                    std::cout << std::endl;
+                    std::cout << "Ingrese el nuevo alias: ";
+                    alias = ingresoDeAliasConValidacion();
+                    std::cout << std::endl;
+
+                    usuario.setAlias(alias.c_str());
+
+                    if (_archivo.modificar(usuario, posicion)) {
+                        std::cout << std::endl;
+                        okMensajeModificacion();
+                        rlutil::anykey();
+                        opcion = 0;
+                    }
+                    else {
+                        std::cout << std::endl;
+                        errorMensajeModificacion();
+                        rlutil::anykey();
+                        opcion = 0;
+                    }
+                    break;
+                case 5:
+                    std::cout << std::endl;
+                    std::cout << "Ingrese la nueva contraseña: ";
+                    contrasenia = ingresoDeContraseniaConValidacion();
+                    std::cout << std::endl;
+
+                    usuario.setContrasenia(contrasenia.c_str());
+
+                    if (_archivo.modificar(usuario, posicion)) {
+                        std::cout << std::endl;
+                        okMensajeModificacion();
+                        rlutil::anykey();
+                        opcion = 0;
+                    }
+                    else {
+                        std::cout << std::endl;
+                        errorMensajeModificacion();
+                        rlutil::anykey();
+                        opcion = 0;
+                    }
+                case 6:
+                    std::cout << std::endl;
+                    std::cout << "Ingrese el nuevo rol (0. Administrador | 1. Supervisor | 2. Vendedor): ";
+                    rol = ingresoDeRolConValidacion();
+                    std::cout << std::endl;
+
+                    usuario.setRol(rol);
+
+                    if (_archivo.modificar(usuario, posicion)) {
+                        std::cout << std::endl;
+                        okMensajeModificacion();
+                        rlutil::anykey();
+                        opcion = 0;
+                    }
+                    else {
+                        std::cout << std::endl;
+                        errorMensajeModificacion();
+                        rlutil::anykey();
+                        opcion = 0;
+                    }
+                default:
+                    std::cout << "La opción seleccionada es invalida. Ingrese nuevamente." << std::endl;
+                    break;
+                }
+            }
+
+            while(opcion != 0);
+        }
+    }
+    else {
+        registroNoEncontradoMensaje();
+        rlutil::anykey();
+    }
+}
+
+void UsuarioManager::darDeBaja() {
+    rlutil::cls();
+    Usuario usuario;
+    std::string nroDocumento;
+
+    std::cout << "Ingrese nro de documento del usuario a dar de baja: ";
+    nroDocumento = ingresoDeDocumentoConValidacion();
+    std::cout << std::endl;
+
+    int posicion = _archivo.buscar(nroDocumento);
+    if (posicion > -1) {
+        usuario = _archivo.leer(posicion);
+        if (usuario.getEstado()) {
+            std::cout << "Datos del usuario: ";
+            listar(usuario, 0);
+            std::cout << std::endl;
+            std::cout << std::endl;
+            std::cout << "¿Desea dar de baja a este usuario? (SI | NO): ";
+            std::string decision = ingresoDeDecisionConValidacion();
+
+            if (decision == "SI") {
+                usuario.setEstado(false);
+            }
+
+            _archivo.modificar(usuario, posicion);
+
+            if (_archivo.modificar(usuario, posicion)) {
+                std::cout << std::endl;
+                okMensajeBaja();
+                rlutil::anykey();
+            }
+            else {
+                std::cout << std::endl;
+                errorMensajeBaja();
+                rlutil::anykey();
+            }
+        }
+        else {
+            std::cout << std::endl;
+            registroNoEncontradoMensaje();
+            rlutil::anykey();
+        }
+    }
+    else {
+        std::cout << std::endl;
+        registroNoEncontradoMensaje();
+        rlutil::anykey();
+    }
+}
+
+void UsuarioManager::reactivar() {
+    rlutil::cls();
+    Usuario usuario;
+    std::string nroDocumento;
+
+    std::cout << "Ingrese nro de documento del usuario a dar de baja: ";
+    nroDocumento = ingresoDeDocumentoConValidacion();
+    std::cout << std::endl;
+
+    int posicion = _archivo.buscar(nroDocumento);
+    if (posicion > -1) {
+        usuario = _archivo.leer(posicion);
+        if (!usuario.getEstado()) {
+            std::cout << "Datos del usuario: ";
+            listar(usuario, 0);
+            std::cout << std::endl;
+            std::cout << std::endl;
+            std::cout << "¿Desea reactivar este usuario? (SI | NO): ";
+            std::string decision = ingresoDeDecisionConValidacion();
+
+            if (decision == "SI") {
+                usuario.setEstado(true);
+            }
+
+            _archivo.modificar(usuario, posicion);
+
+            if (_archivo.modificar(usuario, posicion)) {
+                std::cout << std::endl;
+                okMensajeReactivacion();
+                rlutil::anykey();
+            }
+            else {
+                std::cout << std::endl;
+                errorMensajeReactivacion();
+                rlutil::anykey();
+            }
+        }
+        else {
+            std::cout << std::endl;
+            registroNoEncontradoMensaje();
+            rlutil::anykey();
+        }
+    }
+    else {
+        std::cout << std::endl;
+        registroNoEncontradoMensaje();
+        rlutil::anykey();
     }
 }
 
@@ -85,15 +383,13 @@ void UsuarioManager::listar(Usuario usuario, int tipoListado) {
 void UsuarioManager::listarPorAlias() {
     // rlutil::cls();
     Usuario usuario;
-    int cantidadDeRegistros = _archivo.getCantidadDeUsuarios();
-    int posicion;
     std::string alias;
 
     std::cout << "Ingrese el alias de usuario: ";
     getline(std::cin, alias);
     std::cout << std::endl;
 
-    posicion = _archivo.buscar(alias);
+    int posicion = _archivo.buscar(alias);
 
     if (posicion > -1) {
         usuario = _archivo.leer(posicion);
@@ -109,8 +405,6 @@ void UsuarioManager::listarPorAlias() {
 void UsuarioManager::listarPorDNI() {
     // rlutil::cls();
     Usuario usuario;
-    int cantidadDeRegistros = _archivo.getCantidadDeUsuarios();
-    int posicion;
     int tipoDocumento = 1;
     std::string nroDeDocumento;
 
@@ -118,7 +412,7 @@ void UsuarioManager::listarPorDNI() {
     nroDeDocumento = ingresoDeDocumentoConValidacion();
     std::cout << std::endl;
 
-    posicion = _archivo.buscar(1, nroDeDocumento);
+    int posicion = _archivo.buscar(tipoDocumento, nroDeDocumento);
 
     if (posicion > -1) {
         usuario = _archivo.leer(posicion);
@@ -197,7 +491,7 @@ void UsuarioManager::listarInactivos() {
         std::cout << "-------------------------------------------------------------------" << std::endl;
         for (int i = 0; i < cantidadDeRegistros; i++) {
             usuario = _archivo.leer(i);
-            if (usuario.getEstado()) {
+            if (!usuario.getEstado()) {
                 listar(usuario, 1);
                 std::cout << std::endl;
             }
@@ -248,53 +542,6 @@ void UsuarioManager::listarUsuarios() {
         case 4:
             std::cout << std::endl;
             listarInactivos();
-            break;
-        case 5:
-
-            break;
-        default:
-            std::cout << "La opción seleccionada es invalida. Ingrese nuevamente." << std::endl;
-            break;
-        }
-    }
-
-    while(opcion != 0);
-}
-
-void UsuarioManager::modificar() {
-    int opcion = -1;
-
-    do {
-        rlutil::cls();
-        std::cout << "ELIJA EL CAMPO QUE DESEA MODIFICAR" << std::endl;
-        std::cout << "---------------------------------------------------" << std::endl;
-        std::cout << "1. TIPO DE DOCUMENTO" << std::endl;
-        std::cout << "2. NRO DE DOCUMENTO" << std::endl;
-        std::cout << "3. NOMBRE" << std::endl;
-        std::cout << "4. APELLIDO" << std::endl;
-        std::cout << "5. ROL" << std::endl;
-        std::cout << "6. CONTRASEÑA" << std::endl;
-        std::cout << "---------------------------------------------------" << std::endl;
-        std::cout << "0. VOLVER AL MENÚ DE GESTIÓN DE USUARIOS" << std::endl;
-        std::cout << "---------------------------------------------------" << std::endl;
-        std::cout << "OPCIÓN SELECCIONADA: ";
-        std::cin >> opcion;
-        std::cin.ignore();
-
-        switch(opcion) {
-        case 0:
-            break;
-        case 1:
-            std::cout << std::endl;
-            break;
-        case 2:
-            std::cout << std::endl;
-            break;
-        case 3:
-            std::cout << std::endl;
-            break;
-        case 4:
-            std::cout << std::endl;
             break;
         case 5:
 
