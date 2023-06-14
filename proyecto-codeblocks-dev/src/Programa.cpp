@@ -40,7 +40,7 @@ void Programa::login() {
     rlutil::locate(34, 12 + 3);
     std::cout << "  Contraseña: " << std::endl;
     centrarTexto("----------------------------------------------------------", 14 + 3);
-    centrarTexto("G3 - Laboratorio de Computación II - UTNFRGP - 1C2023", 15 + 3);
+    centrarTexto("G3 * Laboratorio de Computación II * UTNFRGP * 1C2023", 15 + 3);
 
     while (acceso == false && contadorIntentos != limiteIntentos) {
         if (contadorIntentos > 0) {

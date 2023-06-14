@@ -151,6 +151,7 @@ std::string ingresoDeEmailConValidacion() {
 
 std::string ingresoDeRazonSocialConValidacion() {
     std::string razonSocial;
+    std::string razonSocialConvertida;
     const std::regex expresionRegular("[a-zA-Z0-9._,\\s-]{1,29}");
 
     getline(std::cin, razonSocial);
@@ -163,6 +164,8 @@ std::string ingresoDeRazonSocialConValidacion() {
         std::cout << "Ingrese nuevamente: ";
         getline(std::cin, razonSocial);
     }
+
+    razonSocialConvertida = stringAMayus(razonSocial);
 
     return razonSocial;
 }
@@ -224,7 +227,7 @@ int ingresoDeTipoDeClienteConValidacion() {
 int ingresoDeProvinciaConValidacion() {
     std::string provinciaAux;
     int provincia;
-    const std::regex expresionRegular("[1-24]");
+    const std::regex expresionRegular("[1-9]|1[0-9]|2[0-4]");
 
     getline(std::cin, provinciaAux);
     while (!std::regex_match(provinciaAux, expresionRegular)) {
@@ -269,6 +272,22 @@ std::string ingresoDeMarcaConValidacion()
 
     texto = stringAMayus(texto);
     return texto;
+}
+
+int ingresoDeRolConValidacion() {
+    std::string rolAux;
+    int rol;
+    const std::regex expresionRegular("[0-2]");
+
+    getline(std::cin, rolAux);
+    while (!std::regex_match(rolAux, expresionRegular)) {
+        std::cout << std::endl;
+        std::cout << "El valor ingresado no es válido. El valor permitido es un número entero entre 0 y 2. Ingrese nuevamente: ";
+        getline(std::cin, rolAux);
+    }
+
+    rol = enteroConvertidoAInt(rolAux);
+    return rol;
 }
 
 int ingresoOpcSimpleConValidacion()

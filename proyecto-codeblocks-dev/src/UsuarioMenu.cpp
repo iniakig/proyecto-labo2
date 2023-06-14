@@ -27,10 +27,13 @@ void UsuarioMenu::mostrar() {
             _usuarioManager.cargar();
             break;
         case 2:
+            _usuarioManager.modificar();
             break;
         case 3:
+            _usuarioManager.darDeBaja();
             break;
         case 4:
+            _usuarioManager.reactivar();
             break;
         case 5:
             _usuarioManager.listarUsuarios();

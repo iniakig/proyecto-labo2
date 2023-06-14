@@ -117,8 +117,9 @@ void ClienteManager::listar(Cliente cliente, int tipoListado) {
         std::cout << std::setw(15) << cliente.getNroDocumento();
         std::string null = "null";
         if (strcmp(cliente.getRazonSocial(), null.c_str()) == 0) {
-            //std::cout << std::setw(18) << cliente.getNombre();
-            //std::cout << std::setw(18) << cliente.getApellido();
+            // std::cout << std::setw(18) << cliente.getNombre();
+            // std::cout << std::setw(18) << cliente.getApellido();
+            // Concatenamos apellido y nombre. Usamos constructores de String para convertir Char en String.
             std::string apellidoNombre = std::string(cliente.getApellido()) + " " + std::string(cliente.getNombre());
             std::cout << std::setw(38) << apellidoNombre;
         }
@@ -226,8 +227,8 @@ void ClienteManager::modificar() {
                 case 2:
                     std::cout << std::endl;
                     char null[5];
-                    strcpy(null, "null");
-                    if (strcmp(cliente.getRazonSocial(), null) != 0) {
+                    strcpy(null, "null"); // Cargo un vector de char como null para poder comparar
+                    if (strcmp(cliente.getRazonSocial(), null) != 0) { // Si tiene razón social significa que es una persona jurídica
                         std::cout << "El cliente está registrado como una persona jurídica" << std::endl;
                         std::cout << "¿Desea modificar el registro como persona física? (SI | NO): ";
                         decision = ingresoDeDecisionConValidacion();
