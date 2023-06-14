@@ -8,12 +8,10 @@ using namespace std;
 #include "Marca.h"
 #include "MarcaManager.h"
 #include "Producto.h"
+#include <../rlutil.h>
 
 int ProductoManager::GenerarId()
 {
-
-
-
     return _archivo.getCantidadDeRegistros()+1;
 }
 void ProductoManager::Listar(Producto producto)
@@ -27,7 +25,6 @@ void ProductoManager::Listar(Producto producto)
     std::cout<<"DESCRIPCION: "<<producto.getDescripcion()<<std::endl;
     std::cout<<"PRECIO: "<<producto.getPrecio()<<std::endl;
     std::cout<<"STOCK: "<<producto.getStock()<<std::endl;
-
 }
 void ProductoManager::ListarTodos()
 {
@@ -43,10 +40,10 @@ void ProductoManager::ListarTodos()
             cout << endl;
         }
     }
+    rlutil::anykey();
 }
 void ProductoManager::ListarXId()
 {
-
     int id;
 
     cout << "Ingrese el ID: ";
@@ -64,8 +61,9 @@ void ProductoManager::ListarXId()
     }
     else
     {
-        cout << "No existe el registro con ID: " << id << endl;
+        registroNoEncontradoMensaje();
     }
+    rlutil::anykey();
 }
 void ProductoManager::ListarPorMarca()
 {
@@ -84,7 +82,7 @@ void ProductoManager::ListarPorMarca()
     }
     else
     {
-        cout << "MARCA NO EXISTENTE "<< endl;
+        registroNoEncontradoMensaje();
     }
     Producto producto;
     ProductoArchivo archivoProducto;
@@ -99,6 +97,7 @@ void ProductoManager::ListarPorMarca()
         }
 
     }
+    rlutil::anykey();
 }
 
 void ProductoManager::ListarPorTopePrecio()
@@ -141,6 +140,7 @@ void ProductoManager::ListarPorTopePrecio()
             Listar(producto);
         }
     }
+    rlutil::anykey();
 
 }
 
@@ -241,6 +241,7 @@ void ProductoManager::ListarPorStock()
         }
     }
     delete []ProductosOrdenadosStock;
+    rlutil::anykey();
 }
 void ProductoManager::Cargar()
 {
@@ -288,14 +289,14 @@ void ProductoManager::Cargar()
     {
         if(_archivo.guardar(reg))
         {
-            cout<<"PRODUCTO AGREGADO CORRECTAMENTE"<<endl;
+            okMensajeCreacion();
         }
         else
         {
-            cout<<"ERROR AL AGREGAR EL PRODUCTO, INTENTELO NUEVAMENTE"<<endl;
+            errorMensajeCreacion();
         }
     }
-
+    rlutil::anykey();
 }
 void ProductoManager::Editar()
 {
@@ -307,7 +308,7 @@ void ProductoManager::Editar()
     posicion=_archivo.buscar(id);
     if(posicion<0)
     {
-        std::cout<<"EL ID NO EXISTE"<<std::endl;
+        registroNoEncontradoMensaje();
     }
     else
     {
@@ -401,16 +402,17 @@ void ProductoManager::Editar()
             {
                 if(_archivo.guardar(producto, posicion))
                 {
-                    cout<<"PRODUCTO MODIFICADO CORRECTAMENTE"<<endl;
+                    okMensajeModificacion();
                 }
                 else
                 {
-                    cout<<"ERROR AL MODIFICAR EL PRODUCTO, INTENTELO NUEVAMENTE"<<endl;
+                    errorMensajeModificacion();
                 }
             }
 
         }
     }
+    rlutil::anykey();
 }
 
 void ProductoManager::Eliminar()
@@ -427,16 +429,74 @@ void ProductoManager::Eliminar()
     {
         producto = _archivo.leer(posicion);
         Listar(producto);
-        cout << endl;
-        producto.setActivo(false);
-        _archivo.guardar(producto, posicion);
-        cout << "Registro #" << id << " eliminado correctamente" << endl;
+        cout<<"CONFIRMAR? 1--SI // 2--NO: ";
+        int opc;
+        opc = ingresoOpcSimpleConValidacion();
+        if(opc == 1)
+        {
+            producto.setActivo(false);
+            if(_archivo.guardar(producto, posicion))
+            {
+                okMensajeReactivacion();
+            }
+            else
+            {
+                errorMensajeReactivacion();
+            }
+        }
     }
     else
     {
-        cout << "No existe el registro con ID #" << id << endl;
+        registroNoEncontradoMensaje();
     }
+    rlutil::anykey();
 }
+
+void ProductoManager::reactivar()
+{
+    Producto reg;
+    int id, posicion;
+    cout<<"ID PRODUCTO A REACTIVAR: ";
+    cin>>id;
+    cout<<endl;
+
+    posicion = _archivo.buscar(id);
+
+    if(posicion >= 0)
+    {
+        reg = _archivo.leer(posicion);
+        if(!reg.getActivo())
+        {
+            cout<<"REACTIVARA EL SIGUIENTE PRODUCTO: "<<endl;
+            Listar(reg);
+            cout<<"CONFIRMAR? 1--SI // 2--NO: ";
+            int opc;
+            opc = ingresoOpcSimpleConValidacion();
+            if(opc == 1)
+            {
+                reg.setActivo(true);
+                if(_archivo.guardar(reg, posicion))
+                {
+                    okMensajeReactivacion();
+                }
+                else
+                {
+                    errorMensajeReactivacion();
+                }
+            }
+        }
+        else
+        {
+            cout<<"EL REGISTRO INGRESADO NO SE ENCUENTRA ELIMINADA"<<endl;
+        }
+    }
+    else
+    {
+        registroNoEncontradoMensaje();
+    }
+    rlutil::anykey();
+}
+
 void ProductoManager::setPermisos(bool adm, bool sup, bool ven)
 {
     _permisos[0] = adm;

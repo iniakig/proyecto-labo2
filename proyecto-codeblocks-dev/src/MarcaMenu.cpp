@@ -7,7 +7,7 @@ void MarcaMenu::mostrar()
     int opcion;
     do
     {
-        //rlutil::cls();
+        rlutil::cls();
         std::cout << "GESTIÓN DE MARCAS" << std::endl;
         std::cout << "---------------------------------------------------" << std::endl;
         std::cout << "1. AGREGAR MARCA" << std::endl;

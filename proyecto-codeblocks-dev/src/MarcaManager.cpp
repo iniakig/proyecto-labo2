@@ -1,6 +1,7 @@
 #include<iostream>
 #include "MarcaManager.h"
 #include "../funciones.h"
+#include <../rlutil.h>
 
 using namespace std;
 
@@ -15,6 +16,7 @@ void MarcaManager::listar(Marca marca)
     cout<<"ID: "<<marca.getID()<<endl;
     cout<<"NOMBRE: "<<marca.getNombre()<<endl;
     cout<<"ESTADO: :"<<marca.getActivo()<<endl;
+    rlutil::anykey();
 }
 
 void MarcaManager::listarXID()
@@ -33,7 +35,7 @@ void MarcaManager::listarXID()
     }
     else
     {
-        cout<<"NO EXISTE NINGUNA MARCA CON ESE ID"<<endl;
+        registroNoEncontradoMensaje();
     }
 }
 
@@ -52,8 +54,9 @@ void MarcaManager::listarXNombre()
     }
     else
     {
-        cout<<"NO EXISTE NINGUNA MARCA CON ESE NOMBRE"<<endl;
+        registroNoEncontradoMensaje();
     }
+    rlutil::anykey();
 
 }
 void MarcaManager::listarTodos()
@@ -66,6 +69,7 @@ void MarcaManager::listarTodos()
         reg = _archivo.leer(i);
         listar(reg);
     }
+    rlutil::anykey();
 }
 void MarcaManager::cargar()
 {
@@ -86,11 +90,11 @@ void MarcaManager::cargar()
         {
             if(_archivo.guardar(reg))
             {
-                cout<<"MARCA AGREGADA CORRECTAMENTE"<<endl;
+                okMensajeCreacion();
             }
             else
             {
-                cout<<"ERROR AL AGREGAR LA MARCA, INTENTELO NUEVAMENTE"<<endl;
+                errorMensajeCreacion();
             }
         }
     }
@@ -98,10 +102,11 @@ void MarcaManager::cargar()
     {
         Marca reg;
         reg = _archivo.leer(_archivo.buscar(nombre));
-        cout<<"LA MARCA QUE ESTA INTENTANDO CARGAR YA EXISTE: "<<endl;
+        existeRegistroMensaje();
         listar(reg);
 
     }
+    rlutil::anykey();
 
 
 }
@@ -129,12 +134,12 @@ int MarcaManager::cargarDesdeProducto(std::string nombreMarca)
     {
         if(_archivo.guardar(reg))
         {
-            cout<<"MARCA AGREGADA CORRECTAMENTE"<<endl;
+            okMensajeCreacion();
             return ID;
         }
         else
         {
-            cout<<"ERROR AL AGREGAR LA MARCA, INTENTELO NUEVAMENTE"<<endl;
+            errorMensajeCreacion();
             reg = Marca();
             return ID;
         }
@@ -162,6 +167,7 @@ void MarcaManager::modificar()
     {
         modificarXNombre();
     }
+    rlutil::anykey();
 }
 
 void MarcaManager::modificarXID()
@@ -190,21 +196,22 @@ void MarcaManager::modificarXID()
         {
             if(_archivo.guardar(reg, pos))
             {
-                cout<<pos<<endl;
-                cout<<"MARCA MODIFICADA CORRECTAMENTE"<<endl;
+                okMensajeModificacion();
                 listar(_archivo.leer(pos));
             }
             else
             {
-                cout<<"ERROR AL MODIFICAR LA MARCA, INTENTELO NUEVAMENTE"<<endl;
+                errorMensajeModificacion();
             }
         }
 
     }
     else
     {
-        cout<<"NO EXISTE NINGUNA MARCA CON ESE ID"<<endl;
+        registroNoEncontradoMensaje();
     }
+    rlutil::anykey();
+
 }
 
 void MarcaManager::modificarXNombre()
@@ -235,21 +242,22 @@ void MarcaManager::modificarXNombre()
             {
                 if(_archivo.guardar(reg, pos))
                 {
-                    cout<<"MARCA MODIFICADA CORRECTAMENTE"<<endl;
+                    okMensajeModificacion();
                     listar(_archivo.leer(pos));
                 }
                 else
                 {
-                    cout<<"ERROR AL MODIFICAR LA MARCA, INTENTELO NUEVAMENTE"<<endl;
+                    errorMensajeModificacion();
                 }
             }
 
         }
         else
         {
-            cout<<"NO EXISTE NINGUNA MARCA CON ESE NOMBRE"<<endl;
+            registroNoEncontradoMensaje();
         }
     }
+    rlutil::anykey();
 
 }
 
@@ -279,6 +287,7 @@ void MarcaManager::hacerCopiaSeguridad()
     }
 
     delete []vec;
+    rlutil::anykey();
 }
 
 void MarcaManager::restaurarCopiaSeguridad()
@@ -306,6 +315,7 @@ void MarcaManager::restaurarCopiaSeguridad()
     }
 
     delete []vec;
+    rlutil::anykey();
 }
 
 void MarcaManager::eliminar()
@@ -330,6 +340,7 @@ void MarcaManager::eliminar()
 
         int marcaAsignada = 0;
         int cantProductos = arProductos.getCantidadDeRegistros();
+        ProductoManager managerProducto;
         for(int i = 0; i<cantProductos; i++)
         {
             Producto prodAux;
@@ -339,14 +350,12 @@ void MarcaManager::eliminar()
                 if(!marcaAsignada)
                 {
                     cout<<"NO ES POSIBLE ELIMINAR LA MARCA SELECCIONADA. LA MISMA ESTA ASIGNADA A LOS SIGUIENTES PRODUCTOS:"<<endl;
-                    //MOSTRAR PRODUCTO CON EL LISTAR DE MANAGER PROD
-                    cout<<"ACA SE MUESTRA EL PRODUCTO CANDO ESTE LISTAR DE MANAGER";
+                    managerProducto.Listar(prodAux);
                     marcaAsignada = 1;
                 }
                 else
                 {
-                    //MOSTRAR PRODUCTO CON EL LISTAR DE MANAGER PROD
-                    cout<<"ACA SE MUESTRA EL PRODUCTO CANDO ESTE LISTAR DE MANAGER";
+                    managerProducto.Listar(prodAux);
                 }
             }
         }
@@ -362,19 +371,20 @@ void MarcaManager::eliminar()
                 reg.setActivo(false);
                 if(_archivo.guardar(reg, posicion))
                 {
-                    cout<<"MARCA ELIMINADA CORRECTAMENTE"<<endl;
+                    okMensajeBaja();
                 }
                 else
                 {
-                    cout<<"ERROR AL ELIMINAR LA MARCA, INTENTELO NUEVAMENTE"<<endl;
+                    errorMensajeBaja();
                 }
             }
         }
     }
     else
     {
-        cout<<"NO EXISTE MARCA REGISTRADA BAJO ESE ID"<<endl;
+        registroNoEncontradoMensaje();
     }
+    rlutil::anykey();
 }
 
 void MarcaManager::reactivar()
@@ -402,11 +412,11 @@ void MarcaManager::reactivar()
                 reg.setActivo(true);
                 if(_archivo.guardar(reg, posicion))
                 {
-                    cout<<"MARCA ACTIVADA CORRECTAMENTE"<<endl;
+                    okMensajeReactivacion();
                 }
                 else
                 {
-                    cout<<"ERROR AL ACTIVAR LA MARCA, INTENTELO NUEVAMENTE"<<endl;
+                    errorMensajeReactivacion();
                 }
             }
         }
@@ -417,6 +427,7 @@ void MarcaManager::reactivar()
     }
     else
     {
-        cout<<"NO EXISTE MARCA REGISTRADA BAJO ESE ID"<<endl;
+        registroNoEncontradoMensaje();
     }
+    rlutil::anykey();
 }

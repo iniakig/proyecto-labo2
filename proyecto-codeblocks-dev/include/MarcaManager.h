@@ -2,6 +2,7 @@
 #define MARCAMANAGER_H
 #include "MarcaArchivo.h"
 #include "ProductoArchivo.h"
+#include "ProductoManager.h"
 
 class MarcaManager
 {

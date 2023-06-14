@@ -7,19 +7,20 @@ void ProductoMenu::mostrar()
     int opcion;
     do
     {
-        //rlutil::cls();
+        rlutil::cls();
         std::cout << "GESTIÓN DE PRODUCTOS" << std::endl;
         std::cout << "---------------------------------------------------" << std::endl;
         std::cout << " 1. AGREGAR PRODUCTO" << std::endl;
         std::cout << " 2. MODIFICAR PRODUCTO" << std::endl;
         std::cout << " 3. ELIMINAR PRODUCTO" << std::endl;
-        std::cout << " 4. LISTAR PRODUCTOS" << std::endl;
-        std::cout << " 5. BUSCAR PRODUCTO POR ID" << std::endl;
-        std::cout << " 6. LISTAR POR MARCA" << std::endl;
-        std::cout << " 7. LISTAR POR TOPE DE PRECIO" << std::endl;
-        std::cout << " 8. LISTAR POR STOCK" << std::endl;
-        std::cout << " 9. REALIZAR COPIA SEGURIDAD" << std::endl;
-        std::cout << "10. RESTAURAR COPIA SEGURIDAD" << std::endl;
+        std::cout << " 4. REACTIVAR PRODUCTO" << std::endl;
+        std::cout << " 5. LISTAR PRODUCTOS" << std::endl;
+        std::cout << " 6. BUSCAR PRODUCTO POR ID" << std::endl;
+        std::cout << " 7. LISTAR POR MARCA" << std::endl;
+        std::cout << " 8. LISTAR POR TOPE DE PRECIO" << std::endl;
+        std::cout << " 9. LISTAR POR STOCK" << std::endl;
+        std::cout << " 10. REALIZAR COPIA SEGURIDAD" << std::endl;
+        std::cout << "11. RESTAURAR COPIA SEGURIDAD" << std::endl;
         std::cout << "---------------------------------------------------" << std::endl;
         std::cout << " 0. VOLVER AL MENÚ PRINCIPAL" << std::endl;
         std::cout << "---------------------------------------------------" << std::endl;
@@ -32,7 +33,7 @@ void ProductoMenu::mostrar()
         case 0:
             break;
         case 1:
-           _productoManager.Cargar();
+            _productoManager.Cargar();
             break;
         case 2:
             _productoManager.Editar();
@@ -41,24 +42,27 @@ void ProductoMenu::mostrar()
             _productoManager.Eliminar();
             break;
         case 4:
-            _productoManager.ListarTodos();
+            _productoManager.reactivar();
             break;
         case 5:
-            _productoManager.ListarXId();
+            _productoManager.ListarTodos();
             break;
         case 6:
-            _productoManager.ListarPorMarca();
+            _productoManager.ListarXId();
             break;
         case 7:
-            _productoManager.ListarPorTopePrecio();
+            _productoManager.ListarPorMarca();
             break;
         case 8:
-            _productoManager.ListarPorStock();
+            _productoManager.ListarPorTopePrecio();
             break;
         case 9:
-            _productoManager.HacerCopiaDeSeguridad();
+            _productoManager.ListarPorStock();
             break;
         case 10:
+            _productoManager.HacerCopiaDeSeguridad();
+            break;
+        case 11:
             _productoManager.RestaurarCopiaDeSeguridad();
             break;
 

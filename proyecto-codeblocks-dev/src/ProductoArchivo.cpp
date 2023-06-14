@@ -72,7 +72,7 @@ bool ProductoArchivo::guardar(Producto reg)
 
 bool ProductoArchivo::guardar(Producto reg, int posicionAReemplazar)
 {
-    FILE *p = fopen(_ruta.c_str(), "ab");
+    FILE *p = fopen(_ruta.c_str(), "rb+");
 
     if (p == NULL)
     {

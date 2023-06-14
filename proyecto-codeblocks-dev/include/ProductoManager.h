@@ -9,6 +9,7 @@ public:
 	void Cargar();
 	void Editar();
 	void Eliminar();
+	void reactivar();
 	void ListarTodos();
 	void ListarXId();
 	void ListarPorMarca();

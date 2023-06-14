@@ -178,7 +178,7 @@
 1685416392 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\proyecto-labo-ii\include\usuariomenu.h
 	"UsuarioManager.h"
 
-1686571842 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\funciones.cpp
+1686775222 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\funciones.cpp
 	<iostream>
 	<locale.h>
 	<regex>
@@ -187,9 +187,9 @@
 	"funciones.h"
 	"rlutil.h"
 
-1686571842 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\funciones.h
+1686751480 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\funciones.h
 
-1686571842 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\main.cpp
+1686751426 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\main.cpp
 	<iostream>
 	"rlutil.h"
 	"funciones.h"
@@ -245,12 +245,12 @@
 	<string.h>
 	"../rlutil.h"
 
-1685896223 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\usuarioarchivo.h
+1686751480 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\usuarioarchivo.h
 	<iostream>
 	<string>
 	<Usuario.h>
 
-1686335092 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\usuariomanager.h
+1686751480 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\usuariomanager.h
 	"UsuarioArchivo.h"
 
 1685896227 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\encabezado.cpp
@@ -288,24 +288,25 @@
 1685896227 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\usuario.cpp
 	"Usuario.h"
 
-1685912670 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\usuarioarchivo.cpp
+1686751480 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\usuarioarchivo.cpp
 	"UsuarioArchivo.h"
 
-1686335092 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\usuariomanager.cpp
+1686751480 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\usuariomanager.cpp
 	"UsuarioManager.h"
 	"../funciones.h"
 	<iostream>
 	<iomanip>
 	<../rlutil.h>
+	"Usuario.h"
 
-1686571842 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\usuariomenu.cpp
+1686751480 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\usuariomenu.cpp
 	"UsuarioMenu.h"
 	"../rlutil.h"
 
 1685896223 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\usuariomenu.h
 	"UsuarioManager.h"
 
-1686334799 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\producto.cpp
+1686714619 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\producto.cpp
 	<iostream>
 	"Producto.h"
 
@@ -479,16 +480,18 @@
 1685963863 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\include\usuariomenu.h
 	"UsuarioManager.h"
 
-1686323078 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\marcamanager.h
+1686774994 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\marcamanager.h
 	"MarcaArchivo.h"
 	"ProductoArchivo.h"
+	"ProductoManager.h"
 
-1686571840 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\marcamanager.cpp
+1686776846 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\marcamanager.cpp
 	<iostream>
 	"MarcaManager.h"
 	"../funciones.h"
+	<../rlutil.h>
 
-1686323442 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\marcamenu.cpp
+1686775461 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\marcamenu.cpp
 	<iostream>
 	"MarcaMenu.h"
 	"../rlutil.h"
@@ -518,7 +521,7 @@
 	<string>
 	<cstdio>
 
-1686258116 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\productoarchivo.cpp
+1686778378 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\productoarchivo.cpp
 	"ProductoArchivo.h"
 
 1686334061 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\include\productoarchivo.h
@@ -618,13 +621,18 @@
 1686239634 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\cliente.h
 	<Persona.h>
 
-1686571842 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\programa.h
+1686600876 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\programa.h
+	"UsuarioActivo.h"
+	"ProductoMenu.h"
+	"MarcaMenu.h"
+	"ClienteMenu.h"
+	"ConfiguracionMenu.h"
 
 1686239634 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\cliente.cpp
 	"Cliente.h"
 	<string>
 
-1686571842 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\clientearchivo.cpp
+1686751480 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\clientearchivo.cpp
 	"ClienteArchivo.h"
 	"Cliente.h"
 	<iostream>
@@ -632,7 +640,7 @@
 	<string>
 	<../funciones.h>
 
-1686571842 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\clientemanager.cpp
+1686751480 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\clientemanager.cpp
 	"ClienteManager.h"
 	"Cliente.h"
 	"../funciones.h"
@@ -666,4 +674,63 @@
 
 1686592880 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\include\configuracionmenu.h
 	"UsuarioMenu.h"
+
+1686575533 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\productomenu.h
+	"ProductoManager.h"
+
+1686777506 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\productomanager.h
+	"Producto.h"
+	"ProductoArchivo.h"
+
+1686600876 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\configuracionmenu.h
+	"UsuarioMenu.h"
+
+1686600876 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\configuracionmenu.cpp
+	"ConfiguracionMenu.h"
+	"../rlutil.h"
+
+1686778190 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\productomanager.cpp
+	"ProductoManager.h"
+	"../funciones.h"
+	"string.h"
+	<iostream>
+	<iomanip>
+	<../rlutil.h>
+	"Marca.h"
+	"MarcaManager.h"
+	"Producto.h"
+	<../rlutil.h>
+
+1686778064 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\productomenu.cpp
+	<iostream>
+	"ProductoMenu.h"
+	"../rlutil.h"
+
+1686751480 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\programa.cpp
+	"Programa.h"
+	"../rlutil.h"
+	"../funciones.h"
+	<limits>
+	<conio.h>
+	"Usuario.h"
+	"UsuarioArchivo.h"
+
+1686750419 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\venta.cpp
+	<iostream>
+	"Venta.h"
+
+1686750529 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\venta.h
+	"Fecha.h"
+	"Producto.h"
+	"Cliente.h"
+	"UsuarioActivo.h"
+	<string>
+	<cstring>
+
+1686747841 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\ventaarchivo.cpp
+	<iostream>
+	"VentaArchivo.h"
+
+1686747757 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\ventaarchivo.h
+	"Venta.h"
 
