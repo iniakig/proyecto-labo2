@@ -41,6 +41,7 @@
 		<Unit filename="include/ClienteArchivo.h" />
 		<Unit filename="include/ClienteManager.h" />
 		<Unit filename="include/ClienteMenu.h" />
+		<Unit filename="include/ConfiguracionMenu.h" />
 		<Unit filename="include/Encabezado.h" />
 		<Unit filename="include/Fecha.h" />
 		<Unit filename="include/Marca.h" />
@@ -62,6 +63,9 @@
 		<Unit filename="include/UsuarioArchivo.h" />
 		<Unit filename="include/UsuarioManager.h" />
 		<Unit filename="include/UsuarioMenu.h" />
+		<Unit filename="include/Venta.h" />
+		<Unit filename="include/VentaArchivo.h" />
+		<Unit filename="include/VentaManager.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="rlutil.h">
 			<Option virtualFolder="include/" />
@@ -70,6 +74,7 @@
 		<Unit filename="src/ClienteArchivo.cpp" />
 		<Unit filename="src/ClienteManager.cpp" />
 		<Unit filename="src/ClienteMenu.cpp" />
+		<Unit filename="src/ConfiguracionMenu.cpp" />
 		<Unit filename="src/Encabezado.cpp" />
 		<Unit filename="src/Fecha.cpp" />
 		<Unit filename="src/Marca.cpp" />
@@ -91,6 +96,8 @@
 		<Unit filename="src/UsuarioArchivo.cpp" />
 		<Unit filename="src/UsuarioManager.cpp" />
 		<Unit filename="src/UsuarioMenu.cpp" />
+		<Unit filename="src/Venta.cpp" />
+		<Unit filename="src/VentaArchivo.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

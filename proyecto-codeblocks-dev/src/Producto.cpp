@@ -14,7 +14,7 @@ Producto::Producto()
     _stock = 0;
     _activo = false;
 }
-
+ // CONSTRUCTOR POR PARAMETROS
 Producto::Producto(int ID,int categoria, int idMarca, std::string modelo, std::string descripcion, float precioVenta, int stock, bool activo)
 {
     _ID = ID;
