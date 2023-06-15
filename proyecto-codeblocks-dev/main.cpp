@@ -25,12 +25,14 @@ int main()
 {
     setSpanish();
 
+    // Usuario usuario(1, "33781477", "NAHUEL", "ALVEZ", "nalvez@gmail.com", true, Fecha().fechaActual(), "NALVEZ", "$nalvez1234", 0);
+    // UsuarioArchivo usuarioArchivo;
+
+    // usuarioArchivo.crear(usuario);
+
     Programa programa;
 
     programa.setEstadoPrograma(true);
-
-    //bool estadoPrograma = programa.getEstadoPrograma();
-    //bool estadoLogin = programa.getEstadoLogin();
 
     while (programa.getEstadoPrograma() == true) {
         programa.login();

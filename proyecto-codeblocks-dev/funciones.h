@@ -40,6 +40,7 @@ void errorMensajeReactivacion();
 void registroNoEncontradoMensaje();
 void existeRegistroMensaje();
 void mensajeSalidaDelPrograma();
+void mensajeAccesoRestringido();
 
 
 #endif // FUNCIONES_H_INCLUDED

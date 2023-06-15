@@ -5,6 +5,23 @@
 
 UsuarioActivo::UsuarioActivo() {
     strcpy(_alias, "null");
+    _rol = 0;
+}
+
+void UsuarioActivo::setAlias(std::string alias) {
+    strcpy(_alias, alias.c_str());
+}
+
+void UsuarioActivo::setRol(int rol) {
+    _rol = rol;
+}
+
+std::string UsuarioActivo::getAlias() {
+    return _alias;
+}
+
+int UsuarioActivo::getRol() {
+    return _rol;
 }
 
 bool UsuarioActivo::crearArchivo(UsuarioActivo usuarioActivo) {
@@ -23,7 +40,7 @@ bool UsuarioActivo::crearArchivo(UsuarioActivo usuarioActivo) {
     return escribio;
 }
 
-std::string UsuarioActivo::leerArchivo() {
+std::string UsuarioActivo::getAliasUsuarioActivo() {
     UsuarioActivo usuarioActivo;
     std::string alias;
 
@@ -44,10 +61,23 @@ std::string UsuarioActivo::leerArchivo() {
     return alias;
 }
 
-void UsuarioActivo::setAlias(std::string alias) {
-    strcpy(_alias, alias.c_str());
-}
+int UsuarioActivo::getRolUsuarioActivo() {
+    UsuarioActivo usuarioActivo;
+    int rol;
 
-std::string UsuarioActivo::getAlias() {
-    return _alias;
+    FILE* p;
+
+    p = fopen("usuarioActivo.dat", "rb");
+
+    if (p == nullptr) {
+        exit(666);
+    }
+
+    fread(&usuarioActivo, sizeof(UsuarioActivo), 1, p);
+
+    rol = usuarioActivo.getRol();
+
+    fclose(p);
+
+    return rol;
 }

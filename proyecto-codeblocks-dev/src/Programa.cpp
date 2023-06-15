@@ -106,7 +106,8 @@ void Programa::login() {
     }
 
     if (acceso == true) {
-        _usuarioActivo.setAlias(usuario);
+        _usuarioActivo.setAlias(usuarioReg.getAlias());
+        _usuarioActivo.setRol(usuarioReg.getRol());
         _usuarioActivo.crearArchivo(_usuarioActivo);
     }
     else {
@@ -125,7 +126,7 @@ void Programa::ejecutar() {
     do {
         rlutil::cls();
         rlutil::setColor(rlutil::LIGHTGREEN);
-        std::cout << "USUARIO ACTIVO: " << _usuarioActivo.leerArchivo() << std::endl;
+        std::cout << "USUARIO ACTIVO: " << _usuarioActivo.getAliasUsuarioActivo() << std::endl;
         rlutil::setColor(rlutil::WHITE);
         std::cout << "--------------------------------------------" << std::endl;
         std::cout << "MENÚ PRINCIPAL" << std::endl;

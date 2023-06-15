@@ -425,3 +425,12 @@ void mensajeSalidaDelPrograma() {
     centrarTexto("Muchas gracias por usar la aplicación.", 15);
     rlutil::setColor(rlutil::WHITE);
 }
+
+void mensajeAccesoRestringido() {
+    std::cout << std::endl;
+    rlutil::setColor(rlutil::LIGHTRED);
+    std::cout << "Este menú se encuentra restringido para tu perfil de usuario." << std::endl;
+    rlutil::setColor(rlutil::YELLOW);
+    std::cout << "Cualquier duda consultá con el administrador de la aplicación." << std::endl;
+    rlutil::setColor(rlutil::WHITE);
+}
