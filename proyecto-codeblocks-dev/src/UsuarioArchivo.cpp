@@ -106,7 +106,7 @@ Usuario UsuarioArchivo::leer(int posicion) {
     p = fopen(_nombre.c_str(), "rb");
 
     if (p == nullptr) {
-        return false;
+        return reg;
     }
 
     fseek(p, sizeof(Usuario) * posicion, SEEK_SET);
@@ -114,6 +114,20 @@ Usuario UsuarioArchivo::leer(int posicion) {
     fclose(p);
 
     return reg;
+}
+
+Usuario UsuarioArchivo::leer(Usuario* listadoDeUsuarios, int cantidadDeRegistros) {
+    Usuario reg;
+    FILE* p;
+
+    p = fopen(_nombre.c_str(), "rb");
+
+    if (p == nullptr) {
+        return reg;
+    }
+
+    fread(listadoDeUsuarios, sizeof(Usuario), cantidadDeRegistros, p);
+    fclose(p);
 }
 
 bool UsuarioArchivo::modificar(Usuario reg, int posicion) {

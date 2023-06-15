@@ -22,6 +22,7 @@ public:
 
     bool crear(Usuario reg);
     Usuario leer(int posicion);
+    Usuario leer(Usuario* listadoDeUsuarios, int cantidadDeRegistros);
     bool modificar(Usuario reg, int posicion);
     bool darDeBaja (Usuario reg, int posicion);
 

@@ -20,6 +20,7 @@ void Programa::login() {
     rlutil::cls();
     std::string usuario;
     std::string contrasenia;
+    int rol;
     int limiteIntentos = 3;
     int contadorIntentos = 0;
     bool acceso = false;
@@ -97,6 +98,7 @@ void Programa::login() {
             usuarioReg = usuarioArchivoReg.leer(i);
             if (strcmp(usuarioReg.getAlias(), usuario.c_str()) == 0 && strcmp(usuarioReg.getContrasenia(), contrasenia.c_str()) == 0) {
                 acceso = true;
+                rol = usuarioReg.getRol(); // Le asigno a la variable rol el rol del usuario encontrado
             }
         }
 
@@ -106,8 +108,8 @@ void Programa::login() {
     }
 
     if (acceso == true) {
-        _usuarioActivo.setAlias(usuarioReg.getAlias());
-        _usuarioActivo.setRol(usuarioReg.getRol());
+        _usuarioActivo.setAlias(usuario); // Seteo en usuarioActivo el alias del usuario logueado
+        _usuarioActivo.setRol(rol); // Seteo en usaurioActivo el rol del usuario logueado
         _usuarioActivo.crearArchivo(_usuarioActivo);
     }
     else {

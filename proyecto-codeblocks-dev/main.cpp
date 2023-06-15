@@ -25,10 +25,16 @@ int main()
 {
     setSpanish();
 
-    // Usuario usuario(1, "33781477", "NAHUEL", "ALVEZ", "nalvez@gmail.com", true, Fecha().fechaActual(), "NALVEZ", "$nalvez1234", 0);
+    // UsuarioArchivo usuarioArchivo;
+
+    // Usuario usuario(1, "33781477", "NAHUEL", "ALVEZ", "nalvez@gmail.com", true, Fecha(13, 6, 2023), "NALVEZ", "$nalvez1234", 0);
+
+    // usuarioArchivo.modificar(usuario, 0);
+
     // UsuarioArchivo usuarioArchivo;
 
     // usuarioArchivo.crear(usuario);
+
 
     Programa programa;
 

@@ -15,6 +15,7 @@ private:
     void listarActivos(); // Hecho - Testear
     void listarInactivos(); // Hecho - Testear
     void ordenarPorAlias(); // Pendiente
+    void ordenarPorFecha(Usuario *listaDeUsuarios, int cantidadDeRegistros);
 
 public:
     void cargar(); // Hecho - Testear

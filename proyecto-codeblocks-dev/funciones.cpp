@@ -434,3 +434,10 @@ void mensajeAccesoRestringido() {
     std::cout << "Cualquier duda consultá con el administrador de la aplicación." << std::endl;
     rlutil::setColor(rlutil::WHITE);
 }
+
+void mensajeListadoSinDatosEncontrados() {
+    std::cout << std::endl;
+    rlutil::setColor(rlutil::YELLOW);
+    std::cout << "No se encontraron registros relacionados a este listado" << std::endl;
+    rlutil::setColor(rlutil::WHITE);
+}

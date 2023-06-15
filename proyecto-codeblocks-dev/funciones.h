@@ -41,6 +41,7 @@ void registroNoEncontradoMensaje();
 void existeRegistroMensaje();
 void mensajeSalidaDelPrograma();
 void mensajeAccesoRestringido();
+void mensajeListadoSinDatosEncontrados();
 
 
 #endif // FUNCIONES_H_INCLUDED

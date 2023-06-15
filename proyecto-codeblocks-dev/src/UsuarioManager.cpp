@@ -7,6 +7,231 @@
 
 #include "Usuario.h"
 
+void UsuarioManager::listar(Usuario usuario, int tipoListado) {
+
+    // Tipos de listado
+    // --------------------
+    // 0. Listado detallado
+    // 1. Listado resumido (para tabla)
+
+    switch (tipoListado) {
+    case 0:
+        std::cout << "Tipo de documento: " << usuario.getTipoDocumentoDescripcion() << std::endl;
+        std::cout << "Nro de documento: " << usuario.getNroDocumento() << std::endl;
+        std::cout << "Alias: " << usuario.getAlias() << std::endl;
+        std::cout << "Nombre: " << usuario.getNombre() << std::endl;
+        std::cout << "Apellido: " << usuario.getApellido() << std::endl;
+        std::cout << "Email: " << usuario.getEmail() << std::endl;
+        std::cout << "Fecha de registro: " << usuario.getFechaRegistro().toString() << std::endl;
+        std::cout << "Rol: " << usuario.getRolDescripcion() << std::endl;
+        break;
+    case 1:
+        std::cout << std::left;
+        std::cout << std::setw(7) << usuario.getTipoDocumentoDescripcion();
+        std::cout << std::setw(15) << usuario.getNroDocumento();
+        std::cout << std::setw(18) << usuario.getAlias();
+        std::cout << std::setw(16) << usuario.getRolDescripcion();
+        std::cout << std::setw(13) << usuario.getFechaRegistro().toString();
+        break;
+    default:
+        break;
+    }
+}
+
+void UsuarioManager::listarPorAlias() {
+    // rlutil::cls();
+    Usuario usuario;
+    std::string alias;
+
+    std::cout << "Ingrese el alias de usuario: ";
+    getline(std::cin, alias);
+    std::cout << std::endl;
+
+    int posicion = _archivo.buscar(alias);
+
+    if (posicion > -1) {
+        usuario = _archivo.leer(posicion);
+        listar(usuario, 0);
+        rlutil::anykey();
+    }
+    else {
+        std::cout << "No se encontró ningún registro con el alias ingresado.";
+        rlutil::anykey();
+    }
+}
+
+void UsuarioManager::listarPorDNI() {
+    // rlutil::cls();
+    Usuario usuario;
+    int tipoDocumento = 1;
+    std::string nroDeDocumento;
+
+    std::cout << "Ingrese el nro de DNI del usuario: ";
+    nroDeDocumento = ingresoDeDocumentoConValidacion();
+    std::cout << std::endl;
+
+    int posicion = _archivo.buscar(tipoDocumento, nroDeDocumento);
+
+    if (posicion > -1) {
+        usuario = _archivo.leer(posicion);
+        listar(usuario, 0);
+        rlutil::anykey();
+    }
+    else {
+        std::cout << "No se encontró ningún registro con el DNI ingresado.";
+        rlutil::anykey();
+    }
+}
+
+void UsuarioManager::listarActivos() {
+    int cantidadDeRegistros = _archivo.getCantidadDeUsuarios();
+    Usuario *listaDeUsuarios = new Usuario[cantidadDeRegistros];
+    int resultadosEncontrados = 0;
+
+    if (listaDeUsuarios == nullptr) {
+        std::cout << "Ocurrió un error al visualizar el listado" << std::endl;
+        return;
+    }
+
+    _archivo.leer(listaDeUsuarios, cantidadDeRegistros);
+    ordenarPorFecha(listaDeUsuarios, cantidadDeRegistros);
+
+    for (int i = 0; i < cantidadDeRegistros; i++) {
+        if (listaDeUsuarios[i].getEstado()) {
+            resultadosEncontrados++;
+        }
+    }
+
+    if (resultadosEncontrados > 0) {
+        std::cout << "Registros encontrados: " << resultadosEncontrados << std::endl;
+        std::cout << std::endl;
+        std::cout << std::left;
+        std::cout << std::setw(7) << "Tipo";
+        std::cout << std::setw(15) << "N. Documento";
+        std::cout << std::setw(18) << "Alias";
+        std::cout << std::setw(16) << "Rol";
+        std::cout << std::setw(13) << "F. Registro";
+        std::cout << std::endl;
+        std::cout << "-------------------------------------------------------------------" << std::endl;
+
+        for (int i = 0; i < cantidadDeRegistros; i++) {
+            if (listaDeUsuarios[i].getEstado()) {
+                listar(listaDeUsuarios[i], 1);
+                std::cout << std::endl;
+            }
+        }
+    }
+    else {
+        mensajeListadoSinDatosEncontrados();
+    }
+
+    delete[] listaDeUsuarios;
+
+    rlutil::anykey();
+}
+
+/*
+void UsuarioManager::listarActivos() {
+    // rlutil::cls();
+    Usuario usuario;
+    int cantidadDeRegistros = _archivo.getCantidadDeUsuarios();
+    int resultadosEncontrados = 0;
+
+    for (int i = 0; i < cantidadDeRegistros; i++) {
+        usuario = _archivo.leer(i);
+        if (usuario.getEstado()) {
+            resultadosEncontrados++;
+        }
+    }
+
+    if (resultadosEncontrados > 0) {
+        std::cout << "Registros encontrados: " << resultadosEncontrados << std::endl;
+        std::cout << std::endl;
+        std::cout << std::left;
+        std::cout << std::setw(7) << "Tipo";
+        std::cout << std::setw(15) << "N. Documento";
+        std::cout << std::setw(18) << "Alias";
+        std::cout << std::setw(16) << "Rol";
+        std::cout << std::setw(13) << "F. Registro";
+        std::cout << std::endl;
+        std::cout << "-------------------------------------------------------------------" << std::endl;
+        for (int i = 0; i < cantidadDeRegistros; i++) {
+            usuario = _archivo.leer(i);
+            if (usuario.getEstado()) {
+                listar(usuario, 1);
+                std::cout << std::endl;
+            }
+        }
+    }
+    else {
+        std::cout << "No se encontraron registros con estado activo";
+    }
+
+    std::cout << std::endl;
+    rlutil::anykey();
+}
+*/
+
+void UsuarioManager::listarInactivos() {
+    // rlutil::cls();
+    Usuario usuario;
+    int cantidadDeRegistros = _archivo.getCantidadDeUsuarios();
+    int resultadosEncontrados = 0;
+
+    for (int i = 0; i < cantidadDeRegistros; i++) {
+        usuario = _archivo.leer(i);
+        if (!usuario.getEstado()) {
+            resultadosEncontrados++;
+        }
+    }
+
+    if (resultadosEncontrados > 0) {
+        std::cout << "Registros encontrados: " << resultadosEncontrados << std::endl;
+        std::cout << std::endl;
+        std::cout << std::left;
+        std::cout << std::setw(7) << "Tipo";
+        std::cout << std::setw(15) << "N. Documento";
+        std::cout << std::setw(18) << "Alias";
+        std::cout << std::setw(16) << "Rol";
+        std::cout << std::setw(13) << "F. Registro";
+        std::cout << std::endl;
+        std::cout << "-------------------------------------------------------------------" << std::endl;
+        for (int i = 0; i < cantidadDeRegistros; i++) {
+            usuario = _archivo.leer(i);
+            if (!usuario.getEstado()) {
+                listar(usuario, 1);
+                std::cout << std::endl;
+            }
+        }
+    }
+    else {
+        std::cout << "No se encontraron registros con estado inactivo";
+    }
+
+    std::cout << std::endl;
+    rlutil::anykey();
+}
+
+void UsuarioManager::ordenarPorFecha(Usuario *listaDeUsuarios, int cantidadDeRegistros) {
+    Usuario usuarioAux;
+    int mayor = 0;
+
+    for (int i = 0; i < cantidadDeRegistros - 1; i++) {
+        mayor = i;
+        for (int j = i + 1; j < cantidadDeRegistros; j++) {
+            if (listaDeUsuarios[j].getFechaRegistro().toString("YYYY/MM/DD") > listaDeUsuarios[mayor].getFechaRegistro().toString("YYYY/MM/DD")) {
+                mayor = j;
+            }
+        }
+
+        if (i != mayor) {
+            usuarioAux = listaDeUsuarios[i];
+            listaDeUsuarios[i] = listaDeUsuarios[mayor];
+            listaDeUsuarios[mayor] = usuarioAux;
+        }
+    }
+}
+
 void UsuarioManager::cargar() {
     int tipoDocumento;
     std::string nroDocumento;
@@ -347,162 +572,6 @@ void UsuarioManager::reactivar() {
         registroNoEncontradoMensaje();
         rlutil::anykey();
     }
-}
-
-void UsuarioManager::listar(Usuario usuario, int tipoListado) {
-
-    // Tipos de listado
-    // --------------------
-    // 0. Listado detallado
-    // 1. Listado resumido (para tabla)
-
-    switch (tipoListado) {
-    case 0:
-        std::cout << "Tipo de documento: " << usuario.getTipoDocumentoDescripcion() << std::endl;
-        std::cout << "Nro de documento: " << usuario.getNroDocumento() << std::endl;
-        std::cout << "Alias: " << usuario.getAlias() << std::endl;
-        std::cout << "Nombre: " << usuario.getNombre() << std::endl;
-        std::cout << "Apellido: " << usuario.getApellido() << std::endl;
-        std::cout << "Email: " << usuario.getEmail() << std::endl;
-        std::cout << "Fecha de registro: " << usuario.getFechaRegistro().toString() << std::endl;
-        std::cout << "Rol: " << usuario.getRolDescripcion() << std::endl;
-        break;
-    case 1:
-        std::cout << std::left;
-        std::cout << std::setw(7) << usuario.getTipoDocumentoDescripcion();
-        std::cout << std::setw(15) << usuario.getNroDocumento();
-        std::cout << std::setw(18) << usuario.getAlias();
-        std::cout << std::setw(16) << usuario.getRolDescripcion();
-        std::cout << std::setw(13) << usuario.getFechaRegistro().toString();
-        break;
-    default:
-        break;
-    }
-}
-
-void UsuarioManager::listarPorAlias() {
-    // rlutil::cls();
-    Usuario usuario;
-    std::string alias;
-
-    std::cout << "Ingrese el alias de usuario: ";
-    getline(std::cin, alias);
-    std::cout << std::endl;
-
-    int posicion = _archivo.buscar(alias);
-
-    if (posicion > -1) {
-        usuario = _archivo.leer(posicion);
-        listar(usuario, 0);
-        rlutil::anykey();
-    }
-    else {
-        std::cout << "No se encontró ningún registro con el alias ingresado.";
-        rlutil::anykey();
-    }
-}
-
-void UsuarioManager::listarPorDNI() {
-    // rlutil::cls();
-    Usuario usuario;
-    int tipoDocumento = 1;
-    std::string nroDeDocumento;
-
-    std::cout << "Ingrese el nro de DNI del usuario: ";
-    nroDeDocumento = ingresoDeDocumentoConValidacion();
-    std::cout << std::endl;
-
-    int posicion = _archivo.buscar(tipoDocumento, nroDeDocumento);
-
-    if (posicion > -1) {
-        usuario = _archivo.leer(posicion);
-        listar(usuario, 0);
-        rlutil::anykey();
-    }
-    else {
-        std::cout << "No se encontró ningún registro con el DNI ingresado.";
-        rlutil::anykey();
-    }
-}
-
-void UsuarioManager::listarActivos() {
-    // rlutil::cls();
-    Usuario usuario;
-    int cantidadDeRegistros = _archivo.getCantidadDeUsuarios();
-    int resultadosEncontrados = 0;
-
-    for (int i = 0; i < cantidadDeRegistros; i++) {
-        usuario = _archivo.leer(i);
-        if (usuario.getEstado()) {
-            resultadosEncontrados++;
-        }
-    }
-
-    if (resultadosEncontrados > 0) {
-        std::cout << "Registros encontrados: " << resultadosEncontrados << std::endl;
-        std::cout << std::endl;
-        std::cout << std::left;
-        std::cout << std::setw(7) << "Tipo";
-        std::cout << std::setw(15) << "N. Documento";
-        std::cout << std::setw(18) << "Alias";
-        std::cout << std::setw(16) << "Rol";
-        std::cout << std::setw(13) << "F. Registro";
-        std::cout << std::endl;
-        std::cout << "-------------------------------------------------------------------" << std::endl;
-        for (int i = 0; i < cantidadDeRegistros; i++) {
-            usuario = _archivo.leer(i);
-            if (usuario.getEstado()) {
-                listar(usuario, 1);
-                std::cout << std::endl;
-            }
-        }
-    }
-    else {
-        std::cout << "No se encontraron registros con estado activo";
-    }
-
-    std::cout << std::endl;
-    rlutil::anykey();
-}
-
-void UsuarioManager::listarInactivos() {
-    // rlutil::cls();
-    Usuario usuario;
-    int cantidadDeRegistros = _archivo.getCantidadDeUsuarios();
-    int resultadosEncontrados = 0;
-
-    for (int i = 0; i < cantidadDeRegistros; i++) {
-        usuario = _archivo.leer(i);
-        if (!usuario.getEstado()) {
-            resultadosEncontrados++;
-        }
-    }
-
-    if (resultadosEncontrados > 0) {
-        std::cout << "Registros encontrados: " << resultadosEncontrados << std::endl;
-        std::cout << std::endl;
-        std::cout << std::left;
-        std::cout << std::setw(7) << "Tipo";
-        std::cout << std::setw(15) << "N. Documento";
-        std::cout << std::setw(18) << "Alias";
-        std::cout << std::setw(16) << "Rol";
-        std::cout << std::setw(13) << "F. Registro";
-        std::cout << std::endl;
-        std::cout << "-------------------------------------------------------------------" << std::endl;
-        for (int i = 0; i < cantidadDeRegistros; i++) {
-            usuario = _archivo.leer(i);
-            if (!usuario.getEstado()) {
-                listar(usuario, 1);
-                std::cout << std::endl;
-            }
-        }
-    }
-    else {
-        std::cout << "No se encontraron registros con estado inactivo";
-    }
-
-    std::cout << std::endl;
-    rlutil::anykey();
 }
 
 void UsuarioManager::listarUsuarios() {
