@@ -94,7 +94,8 @@ void UsuarioManager::listarActivos() {
     }
 
     _archivo.leer(listaDeUsuarios, cantidadDeRegistros);
-    ordenarPorFecha(listaDeUsuarios, cantidadDeRegistros);
+    // ordenarPorFecha(listaDeUsuarios, cantidadDeRegistros);
+    ordenarPorAlias(listaDeUsuarios, cantidadDeRegistros);
 
     for (int i = 0; i < cantidadDeRegistros; i++) {
         if (listaDeUsuarios[i].getEstado()) {
@@ -126,8 +127,6 @@ void UsuarioManager::listarActivos() {
     }
 
     delete[] listaDeUsuarios;
-
-    rlutil::anykey();
 }
 
 /*
@@ -228,6 +227,26 @@ void UsuarioManager::ordenarPorFecha(Usuario *listaDeUsuarios, int cantidadDeReg
             usuarioAux = listaDeUsuarios[i];
             listaDeUsuarios[i] = listaDeUsuarios[mayor];
             listaDeUsuarios[mayor] = usuarioAux;
+        }
+    }
+}
+
+void UsuarioManager::ordenarPorAlias(Usuario *listaDeUsuarios, int cantidadDeRegistros) {
+    Usuario usuarioAux;
+    int menor = 0; // Menor porque es de la A a la Z
+
+    for (int i = 0; i < cantidadDeRegistros - 1; i++) {
+        menor = i;
+        for (int j = i + 1; j < cantidadDeRegistros; j++) {
+            if (strcmp(listaDeUsuarios[j].getAlias(), listaDeUsuarios[menor].getAlias()) < 0) {
+                menor = j;
+            }
+        }
+
+        if (i != menor) {
+            usuarioAux = listaDeUsuarios[i];
+            listaDeUsuarios[i] = listaDeUsuarios[menor];
+            listaDeUsuarios[menor] = usuarioAux;
         }
     }
 }
@@ -607,6 +626,7 @@ void UsuarioManager::listarUsuarios() {
         case 3:
             std::cout << std::endl;
             listarActivos();
+            rlutil::anykey();
             break;
         case 4:
             std::cout << std::endl;

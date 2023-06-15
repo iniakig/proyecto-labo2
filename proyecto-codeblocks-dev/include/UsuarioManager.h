@@ -12,10 +12,10 @@ private:
     void listar(Usuario usuario, int tipoListado); // En curso
     void listarPorAlias(); // Hecho - Testear
     void listarPorDNI(); // Hecho - Testear
-    void listarActivos(); // Hecho - Testear
-    void listarInactivos(); // Hecho - Testear
-    void ordenarPorAlias(); // Pendiente
-    void ordenarPorFecha(Usuario *listaDeUsuarios, int cantidadDeRegistros);
+    void listarActivos(); // En curso
+    void listarInactivos(); // Para rehacer con memoria dinámica y ordenadores
+    void ordenarPorAlias(Usuario *listaDeUsuarios, int cantidadDeRegistros); // Hecho - Testear
+    void ordenarPorFecha(Usuario *listaDeUsuarios, int cantidadDeRegistros); // Hecho - Testear
 
 public:
     void cargar(); // Hecho - Testear

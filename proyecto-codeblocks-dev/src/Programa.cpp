@@ -63,6 +63,8 @@ void Programa::login() {
             centrarTexto("----------------------------------------------------------", 14 + 3);
             centrarTexto("G3 - Laboratorio de Computación II - UTNFRGP - 1C2023", 15 + 3);
         }
+
+        rlutil::locate(45, 10 + 3);
         rlutil::locate(45, 10 + 3);
         getline(std::cin, usuario);
 

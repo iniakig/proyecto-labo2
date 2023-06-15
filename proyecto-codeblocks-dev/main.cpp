@@ -1,21 +1,22 @@
 #include <iostream>
 
 #include "rlutil.h"
-
 #include "funciones.h"
-#include "Fecha.h"
-#include "Persona.h"
-#include "Usuario.h"
-#include "Encabezado.h"
-#include "PieDePagina.h"
-#include "Pantalla.h"
-#include "UsuarioArchivo.h"
-#include "UsuarioManager.h"
-#include "Producto.h"
-#include "MarcaManager.h"
-#include "MarcaArchivo.h"
-#include "MarcaMenu.h"
-#include "ClienteMenu.h"
+
+// #include "Fecha.h"
+// #include "Persona.h"
+// #include "Usuario.h"
+// #include "Encabezado.h"
+// #include "PieDePagina.h"
+// #include "Pantalla.h"
+// #include "UsuarioArchivo.h"
+// #include "UsuarioManager.h"
+// #include "Producto.h"
+// #include "MarcaManager.h"
+// #include "MarcaArchivo.h"
+// #include "MarcaMenu.h"
+// #include "ClienteMenu.h"
+
 #include "Programa.h"
 
 
@@ -27,14 +28,15 @@ int main()
 
     // UsuarioArchivo usuarioArchivo;
 
-    // Usuario usuario(1, "33781477", "NAHUEL", "ALVEZ", "nalvez@gmail.com", true, Fecha(13, 6, 2023), "NALVEZ", "$nalvez1234", 0);
+    // Usuario usuario(1, "33781477", "NAHUEL", "ALVEZ", "nalvez@gmail.com", true, Fecha(13, 6, 2023), "NALVEZ", "$nalvez1234", 0); //posicion 0
+
+    // Usuario usuario(1, "44444444", "AYLEN", "ARROYO", "aarroyo@gmail.com", true, Fecha(14, 6, 2023), "AARROYO", "$aarroyo1234", 0); // posicion 2
 
     // usuarioArchivo.modificar(usuario, 0);
 
     // UsuarioArchivo usuarioArchivo;
 
     // usuarioArchivo.crear(usuario);
-
 
     Programa programa;
 
@@ -46,7 +48,6 @@ int main()
             programa.ejecutar();
         }
     }
-
 
 
     //ClienteMenu clienteMenu;
