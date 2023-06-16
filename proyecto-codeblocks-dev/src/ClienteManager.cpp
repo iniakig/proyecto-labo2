@@ -7,7 +7,8 @@
 #include <iostream>
 #include <iomanip>
 
-void ClienteManager::cargar() {
+void ClienteManager::cargar()
+{
     rlutil::cls();
     int tipoDeCliente;
     int tipoDocumento;
@@ -36,21 +37,23 @@ void ClienteManager::cargar() {
     Cliente clienteBuscado;
     int posicionBusqueda = _archivo.buscar(nroDocumento);
 
-    if (posicionBusqueda == -1) {
-        switch(tipoDeCliente) {
-            case 1:
-                std::cout << "Nombre: ";
-                nombre = ingresoDeNombreApellidoConValidacion();
-                std::cout << "Apellido: ";
-                apellido = ingresoDeNombreApellidoConValidacion();
-                razonSocial = "null";
-                break;
-            case 2:
-                std::cout << "Razón social: ";
-                razonSocial = ingresoDeRazonSocialConValidacion();
-                nombre = "null";
-                apellido = "null";
-                break;
+    if (posicionBusqueda == -1)
+    {
+        switch(tipoDeCliente)
+        {
+        case 1:
+            std::cout << "Nombre: ";
+            nombre = ingresoDeNombreApellidoConValidacion();
+            std::cout << "Apellido: ";
+            apellido = ingresoDeNombreApellidoConValidacion();
+            razonSocial = "null";
+            break;
+        case 2:
+            std::cout << "Razón social: ";
+            razonSocial = ingresoDeRazonSocialConValidacion();
+            nombre = "null";
+            apellido = "null";
+            break;
         }
 
         std::cout << "Email: ";
@@ -70,40 +73,47 @@ void ClienteManager::cargar() {
 
         Cliente cliente(tipoDocumento, nroDocumento.c_str(), nombre.c_str(), apellido.c_str(), razonSocial.c_str(), email.c_str(), domicilio.c_str(), localidad.c_str(), provincia, estado, fechaRegistro);
 
-        if (_archivo.crear(cliente) == true) {
+        if (_archivo.crear(cliente) == true)
+        {
             std::cout << std::endl;
             okMensajeCreacion();
             rlutil::anykey();
         }
-        else {
+        else
+        {
             std::cout << std::endl;
             errorMensajeCreacion();
             rlutil::anykey();
         }
     }
-    else {
+    else
+    {
         std::cout << std::endl;
         existeRegistroMensaje();
         rlutil::anykey();
     }
 }
 
-void ClienteManager::listar(Cliente cliente, int tipoListado) {
+void ClienteManager::listar(Cliente cliente, int tipoListado)
+{
     // Tipos de listado
     // --------------------
     // 0. Listado detallado
     // 1. Listado resumido (para tabla)
 
-    switch (tipoListado) {
+    switch (tipoListado)
+    {
     case 0:
         std::cout << "Tipo de documento: " << cliente.getTipoDocumentoDescripcion() << std::endl;
         std::cout << "Nro de documento: " << cliente.getNroDocumento() << std::endl;
         // Si getRazonSocial es "Null" significa que es una persona física
-        if (strcmp(cliente.getRazonSocial(),"null") == 0) {
+        if (strcmp(cliente.getRazonSocial(),"null") == 0)
+        {
             std::cout << "Nombre: " << cliente.getApellido() << std::endl;
             std::cout << "Apellido: " << cliente.getNombre() << std::endl;
         }
-        else {
+        else
+        {
             std::cout << "Razón Social: " << cliente.getRazonSocial() << std::endl;
         }
         std::cout << "Email: " << cliente.getEmail() << std::endl;
@@ -116,14 +126,16 @@ void ClienteManager::listar(Cliente cliente, int tipoListado) {
         std::cout << std::setw(7) << cliente.getTipoDocumentoDescripcion();
         std::cout << std::setw(15) << cliente.getNroDocumento();
         std::string null = "null";
-        if (strcmp(cliente.getRazonSocial(), null.c_str()) == 0) {
+        if (strcmp(cliente.getRazonSocial(), null.c_str()) == 0)
+        {
             // std::cout << std::setw(18) << cliente.getNombre();
             // std::cout << std::setw(18) << cliente.getApellido();
             // Concatenamos apellido y nombre. Usamos constructores de String para convertir Char en String.
             std::string apellidoNombre = std::string(cliente.getApellido()) + " " + std::string(cliente.getNombre());
             std::cout << std::setw(38) << apellidoNombre;
         }
-        else {
+        else
+        {
             std::cout << std::setw(33) << cliente.getRazonSocial();
         }
         std::cout << std::setw(13) << cliente.getFechaRegistro().toString();
@@ -131,13 +143,15 @@ void ClienteManager::listar(Cliente cliente, int tipoListado) {
     }
 }
 
-void ClienteManager::listarClientes() {
+void ClienteManager::listarClientes()
+{
     std::cout << std::endl;
     std::cout << std::endl;
     Cliente cliente;
     int cantidadRegistrosClientes = _archivo.getCantidadDeClientes();
 
-    for (int i = 0; i < cantidadRegistrosClientes; i++) {
+    for (int i = 0; i < cantidadRegistrosClientes; i++)
+    {
         cliente = _archivo.leer(i);
         listar(cliente, 1);
         std::cout << std::endl;
@@ -145,7 +159,8 @@ void ClienteManager::listarClientes() {
     rlutil::anykey();
 }
 
-void ClienteManager::modificar() {
+void ClienteManager::modificar()
+{
     rlutil::cls();
     Cliente cliente;
 
@@ -169,7 +184,8 @@ void ClienteManager::modificar() {
     std::cout << std::endl;
 
     int posicion = _archivo.buscar(nroDocumento);
-    if (posicion > -1) {
+    if (posicion > -1)
+    {
         cliente = _archivo.leer(posicion);
         std::cout << "Datos del cliente: " << std::endl;
         listar(cliente, 0);
@@ -178,11 +194,13 @@ void ClienteManager::modificar() {
         std::cout << "¿Desea modificar datos de este cliente? (SI | NO): ";
         std::string decision = ingresoDeDecisionConValidacion();
 
-        if (decision == "SI") {
+        if (decision == "SI")
+        {
             int opcion = -1;
             std::string decision;
 
-            do {
+            do
+            {
                 std::cout << std::endl;
                 std::cout << "ELIJA EL CAMPO QUE DESEA MODIFICAR" << std::endl;
                 std::cout << "---------------------------------------------------" << std::endl;
@@ -197,7 +215,8 @@ void ClienteManager::modificar() {
                 std::cin >> opcion;
                 std::cin.ignore();
 
-                switch(opcion) {
+                switch(opcion)
+                {
                 case 0:
                     break;
                 case 1:
@@ -211,13 +230,15 @@ void ClienteManager::modificar() {
                     cliente.setTipoDocumento(tipoDeDocumento);
                     cliente.setNroDocumento(nroDocumento.c_str());
 
-                    if (_archivo.modificar(cliente, posicion)) {
+                    if (_archivo.modificar(cliente, posicion))
+                    {
                         std::cout << std::endl;
                         okMensajeModificacion();
                         rlutil::anykey();
                         opcion = 0;
                     }
-                    else {
+                    else
+                    {
                         std::cout << std::endl;
                         errorMensajeModificacion();
                         rlutil::anykey();
@@ -228,13 +249,15 @@ void ClienteManager::modificar() {
                     std::cout << std::endl;
                     char null[5];
                     strcpy(null, "null"); // Cargo un vector de char como null para poder comparar
-                    if (strcmp(cliente.getRazonSocial(), null) != 0) { // Si tiene razón social significa que es una persona jurídica
+                    if (strcmp(cliente.getRazonSocial(), null) != 0)   // Si tiene razón social significa que es una persona jurídica
+                    {
                         std::cout << "El cliente está registrado como una persona jurídica" << std::endl;
                         std::cout << "¿Desea modificar el registro como persona física? (SI | NO): ";
                         decision = ingresoDeDecisionConValidacion();
                         std::cout << std::endl;
 
-                        if (decision == "SI") {
+                        if (decision == "SI")
+                        {
                             std::cout << "Ingrese el nuevo nombre: ";
                             nombre = ingresoDeNombreApellidoConValidacion();
                             std::cout << "Ingrese el nuevo apellido: ";
@@ -246,33 +269,38 @@ void ClienteManager::modificar() {
                             cliente.setApellido(apellido.c_str());
                             cliente.setRazonSocial(razonSocial.c_str());
 
-                            if (_archivo.modificar(cliente, posicion)) {
+                            if (_archivo.modificar(cliente, posicion))
+                            {
                                 std::cout << std::endl;
                                 okMensajeModificacion();
                                 rlutil::anykey();
                                 opcion = 0;
                             }
-                            else {
+                            else
+                            {
                                 std::cout << std::endl;
                                 errorMensajeModificacion();
                                 rlutil::anykey();
                                 opcion = 0;
                             }
                         }
-                        else {
+                        else
+                        {
                             std::cout << "Ingrese la nueva razón social: ";
                             razonSocial = ingresoDeRazonSocialConValidacion();
                             std::cout << std::endl;
 
                             cliente.setRazonSocial(razonSocial.c_str());
 
-                            if (_archivo.modificar(cliente, posicion)) {
+                            if (_archivo.modificar(cliente, posicion))
+                            {
                                 std::cout << std::endl;
                                 okMensajeModificacion();
                                 rlutil::anykey();
                                 opcion = 0;
                             }
-                            else {
+                            else
+                            {
                                 std::cout << std::endl;
                                 errorMensajeModificacion();
                                 rlutil::anykey();
@@ -280,13 +308,15 @@ void ClienteManager::modificar() {
                             }
                         }
                     }
-                    else {
+                    else
+                    {
                         std::cout << "El cliente está registrado como una persona física" << std::endl;
                         std::cout << "¿Desea modificar el registro como persona jurídica? (SI | NO): ";
                         decision = ingresoDeDecisionConValidacion();
                         std::cout << std::endl;
 
-                        if (decision == "SI") {
+                        if (decision == "SI")
+                        {
                             std::cout << "Ingrese la nueva razón social: ";
                             razonSocial = ingresoDeRazonSocialConValidacion();
                             std::cout << std::endl;
@@ -297,20 +327,23 @@ void ClienteManager::modificar() {
                             cliente.setNombre(nombre.c_str());
                             cliente.setApellido(apellido.c_str());
 
-                            if (_archivo.modificar(cliente, posicion)) {
+                            if (_archivo.modificar(cliente, posicion))
+                            {
                                 std::cout << std::endl;
                                 okMensajeModificacion();
                                 rlutil::anykey();
                                 opcion = 0;
                             }
-                            else {
+                            else
+                            {
                                 std::cout << std::endl;
                                 errorMensajeModificacion();
                                 rlutil::anykey();
                                 opcion = 0;
                             }
                         }
-                        else {
+                        else
+                        {
                             std::cout << "Ingrese el nuevo nombre: ";
                             nombre = ingresoDeNombreApellidoConValidacion();
                             std::cout << "Ingrese el nuevo apellido: ";
@@ -322,13 +355,15 @@ void ClienteManager::modificar() {
                             cliente.setApellido(apellido.c_str());
                             cliente.setRazonSocial(razonSocial.c_str());
 
-                            if (_archivo.modificar(cliente, posicion)) {
+                            if (_archivo.modificar(cliente, posicion))
+                            {
                                 std::cout << std::endl;
                                 okMensajeModificacion();
                                 rlutil::anykey();
                                 opcion = 0;
                             }
-                            else {
+                            else
+                            {
                                 std::cout << std::endl;
                                 errorMensajeModificacion();
                                 rlutil::anykey();
@@ -356,13 +391,15 @@ void ClienteManager::modificar() {
                     cliente.setLocalidad(localidad);
                     cliente.setProvincia(provincia);
 
-                    if (_archivo.modificar(cliente, posicion)) {
+                    if (_archivo.modificar(cliente, posicion))
+                    {
                         std::cout << std::endl;
                         okMensajeModificacion();
                         rlutil::anykey();
                         opcion = 0;
                     }
-                    else {
+                    else
+                    {
                         std::cout << std::endl;
                         errorMensajeModificacion();
                         rlutil::anykey();
@@ -378,13 +415,15 @@ void ClienteManager::modificar() {
 
                     cliente.setEmail(email.c_str());
 
-                    if (_archivo.modificar(cliente, posicion)) {
+                    if (_archivo.modificar(cliente, posicion))
+                    {
                         std::cout << std::endl;
                         okMensajeModificacion();
                         rlutil::anykey();
                         opcion = 0;
                     }
-                    else {
+                    else
+                    {
                         std::cout << std::endl;
                         errorMensajeModificacion();
                         rlutil::anykey();
@@ -401,13 +440,15 @@ void ClienteManager::modificar() {
             while(opcion != 0);
         }
     }
-    else {
+    else
+    {
         registroNoEncontradoMensaje();
         rlutil::anykey();
     }
 }
 
-void ClienteManager::darDeBaja() {
+void ClienteManager::darDeBaja()
+{
     rlutil::cls();
     Cliente cliente;
     std::string nroDocumento;
@@ -417,9 +458,11 @@ void ClienteManager::darDeBaja() {
     std::cout << std::endl;
 
     int posicion = _archivo.buscar(nroDocumento);
-    if (posicion > -1) {
+    if (posicion > -1)
+    {
         cliente = _archivo.leer(posicion);
-        if (cliente.getEstado()) {
+        if (cliente.getEstado())
+        {
             std::cout << "Datos del cliente: ";
             listar(cliente, 0);
             std::cout << std::endl;
@@ -427,24 +470,28 @@ void ClienteManager::darDeBaja() {
             std::cout << "¿Desea dar de baja a este cliente? (SI | NO): ";
             std::string decision = ingresoDeDecisionConValidacion();
 
-            if (decision == "SI") {
+            if (decision == "SI")
+            {
                 cliente.setEstado(false);
             }
 
             _archivo.modificar(cliente, posicion);
         }
-        else {
+        else
+        {
             std::cout << std::endl;
             registroNoEncontradoMensaje();
         }
     }
-    else {
+    else
+    {
         std::cout << std::endl;
         registroNoEncontradoMensaje();
     }
 }
 
-void ClienteManager::reactivar() {
+void ClienteManager::reactivar()
+{
     rlutil::cls();
     Cliente cliente;
     std::string nroDocumento;
@@ -454,9 +501,11 @@ void ClienteManager::reactivar() {
     std::cout << std::endl;
 
     int posicion = _archivo.buscar(nroDocumento);
-    if (posicion > -1) {
+    if (posicion > -1)
+    {
         cliente = _archivo.leer(posicion);
-        if (!cliente.getEstado()) {
+        if (!cliente.getEstado())
+        {
             std::cout << "Datos del cliente: ";
             listar(cliente, 0);
             std::cout << std::endl;
@@ -464,19 +513,58 @@ void ClienteManager::reactivar() {
             std::cout << "¿Desea reactivar este cliente? (SI | NO): ";
             std::string decision = ingresoDeDecisionConValidacion();
 
-            if (decision == "SI") {
+            if (decision == "SI")
+            {
                 cliente.setEstado(true);
             }
 
             _archivo.modificar(cliente, posicion);
         }
-        else {
+        else
+        {
             std::cout << std::endl;
             registroNoEncontradoMensaje();
         }
     }
-    else {
+    else
+    {
         std::cout << std::endl;
         registroNoEncontradoMensaje();
+    }
+}
+
+bool ClienteManager::reactivarDesdeVenta(std::string nroDocumento)
+{
+    Cliente cliente;
+
+    int posicion = _archivo.buscar(nroDocumento);
+    if (posicion > -1)
+    {
+        cliente = _archivo.leer(posicion);
+        listar(cliente, 0);
+        std::cout << std::endl;
+        std::cout << std::endl;
+        std::cout << "¿Desea reactivar este cliente? (SI | NO): ";
+        std::string decision = ingresoDeDecisionConValidacion();
+
+        if (decision == "SI")
+        {
+            cliente.setEstado(true);
+            if(_archivo.modificar(cliente, posicion))
+            {
+                okMensajeReactivacion();
+                return true;
+            }
+            else
+            {
+                errorMensajeReactivacion();
+                return false;
+            }
+        }
+        else
+        {
+            return false;
+        }
+
     }
 }

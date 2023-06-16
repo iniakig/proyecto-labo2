@@ -20,6 +20,7 @@ class ClienteManager
         void modificar(); // En curso
         void darDeBaja(); // Hecho - Testear
         void reactivar(); // Hecho - Testear
+        bool reactivarDesdeVenta(std::string nroDocumento);
         void setPermisos(bool adm = false, bool sup = false, bool ven = false); // Hecho - Testear
 };
 
