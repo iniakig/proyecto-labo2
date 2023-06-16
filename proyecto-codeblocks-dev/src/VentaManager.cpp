@@ -17,13 +17,17 @@ void VentaManager::Listar(Venta venta) // MOSTRAR OK, AGREGAR TEMA DE BUSCAR ID 
     std::cout<<"PRODUCTOS:"<<endl;
     const int* vecProductos = venta.getVecIdProducto();
     const int* vecUnidades = venta.getVecUnidadesxProducto();
-    for(int i = 0; i<10; i++)
+    for(int i = 0; i<venta.getCantidadProductos(); i++)
     {
-        if(vecProductos[i] > 0)
-        {
-            std::cout<<"ID: "<<vecProductos[i]<<std::endl;
-            std::cout<<"CANTIDAD: "<<vecUnidades[i]<<std::endl;
-        }
+        // REVISAR ESTO, PROBABLEMENTE DEBA TRAERLO DESDE UNA FUNCION DE MANAGER PROD Y MANAGER MARCA TAMBIEN
+        ProductoArchivo arProducto;
+        MarcaArchivo arMarca;
+        Producto productoAux;
+        productoAux = arProducto.leer(arProducto.buscar(vecProductos[i]));
+        Marca marcaAux;
+        marcaAux = arMarca.leer(arMarca.buscar(productoAux.getIdMarca()));
+        std::cout<<marcaAux.getNombre()<<" "<< productoAux.getModelo()<<std::endl;
+        std::cout<<"CANTIDAD: "<<vecUnidades[i]<<std::endl;
     }
     std::cout<<"IMPORTE: $"<<venta.getMontoCompra()<<endl;
     std::cout<<"METODO PAGO: "<<venta.getMetodoPago()<<endl;
@@ -38,6 +42,7 @@ void VentaManager::Cargar()
     Fecha fechaCompra;
     int vecIdProducto[10];
     int vecUnidadesxProducto[10];
+    int cantidadProductos = 0;
     float montoCompra;
     int metodoPago;
     std::string aliasVendedor;
@@ -123,6 +128,7 @@ void VentaManager::Cargar()
 
         if (decision == "NO")
         {
+            cantidadProductos = i+1;
             i = 9;
         }
     }
@@ -132,7 +138,7 @@ void VentaManager::Cargar()
     std::cout<<"ALIAS VENDEDOR: "<<std::endl; // VER CON NAHUE TEMA USUARIO ACTIVO. HARDCODEADO PARA AVANZAR
     getline(cin, aliasVendedor);
 
-    Venta reg(idPedido, nroDocCliente, fechaCompra, vecIdProducto, vecUnidadesxProducto, montoCompra, metodoPago, aliasVendedor, activo);
+    Venta reg(idPedido, nroDocCliente, fechaCompra, vecIdProducto, vecUnidadesxProducto, cantidadProductos, montoCompra, metodoPago, aliasVendedor, activo);
     std::cout<<"HA CARGADO LA SIGUIENTE VENTA: "<<std::endl;
     Listar(reg);
     std::cout<<"QUIERE GUARDARLA? (SI | NO): "<<std::endl;

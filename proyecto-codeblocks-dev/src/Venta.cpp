@@ -18,7 +18,7 @@ Venta::Venta()
 
 //CONSTRUCTOR POR PARAMETROS
 
-Venta::Venta(int idPedido, std::string nroDocCliente, const Fecha& fechaCompra, const int vecIdProducto[], const int vecUnidadesxProducto[],float montoCompra, int metodoPago, std::string aliasVendedor, bool activo)
+Venta::Venta(int idPedido, std::string nroDocCliente, const Fecha& fechaCompra, const int vecIdProducto[], const int vecUnidadesxProducto[], int cantidadProductos, float montoCompra, int metodoPago, std::string aliasVendedor, bool activo)
 {
 
     _idPedido = idPedido;
@@ -29,6 +29,7 @@ Venta::Venta(int idPedido, std::string nroDocCliente, const Fecha& fechaCompra, 
         _vecIdProducto[i] = vecIdProducto[i];
         _vecUnidadesxProducto[i] = vecUnidadesxProducto[i];
     }
+    _cantidadProductos = cantidadProductos;
     _montoCompra = montoCompra;
     _metodoPago = metodoPago;
     strcpy(_aliasVendedor, aliasVendedor.c_str());
@@ -116,10 +117,17 @@ const int* Venta::getVecUnidadesxProducto()
 {
     return _vecUnidadesxProducto;
 }
+
+int Venta::getCantidadProductos()
+{
+    return _cantidadProductos;
+}
+
 float Venta::getMontoCompra()
 {
     return _montoCompra;
 }
+
 int Venta::getMetodoPago()
 {
     return _metodoPago;
