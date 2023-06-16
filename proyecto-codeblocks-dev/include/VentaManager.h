@@ -3,6 +3,10 @@
 
 #include "Venta.h"
 #include "VentaArchivo.h"
+#include "ClienteArchivo.h"
+#include "ClienteManager.h"
+#include "ProductoArchivo.h"
+#include "../funciones.h"
 
 class VentaManager{
 public:

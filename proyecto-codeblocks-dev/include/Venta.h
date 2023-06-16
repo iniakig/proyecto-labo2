@@ -13,6 +13,7 @@ class Venta
 {
    private:
         int _idPedido;
+        int _tipoDocumento; // Puede ser: ( 1. DNI | 2. CUIL | 3. CUIT ) -- REVISAR CON NAHUE
         char _nroDocCliente[12];
         Fecha _fechaCompra;
         int _vecIdProducto[10];
@@ -25,10 +26,11 @@ class Venta
     public:
         // CONSTRUCTORES
         Venta();
-        Venta(int idPedido, std::string nroDocCliente, const Fecha& fechaCompra, const int vecIdProducto[], const int vecUnidadesxProducto[],float montoCompra, int metodoPago, std::string aliasVendedor, bool activo);
+        Venta(int idPedido, int tipoDocumento, std::string nroDocCliente, const Fecha& fechaCompra, const int vecIdProducto[], const int vecUnidadesxProducto[],float montoCompra, int metodoPago, std::string aliasVendedor, bool activo);
 
         //GETTERS
         int getIdPedido();
+        int getTipoDocumento();
         std::string getNroDocCliente();
         Fecha getFecha();
         const int* getVecIdProducto();
@@ -40,6 +42,7 @@ class Venta
 
         // SETTERS
         void setIdPedido(int idPedido);
+        void setTipoDocumento(int tipoDocumento);
         void setNroDocCliente(std::string nroDocCliente);
         void setFechaCompra(Fecha fechaCompra);
         void setVecIdProducto(const int* vecIdProducto);

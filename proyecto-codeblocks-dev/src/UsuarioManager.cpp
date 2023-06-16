@@ -1,11 +1,4 @@
 #include "UsuarioManager.h"
-#include "../funciones.h"
-
-#include <iostream>
-#include <iomanip>
-#include <../rlutil.h>
-
-#include "Usuario.h"
 
 void UsuarioManager::listar(Usuario usuario, int tipoListado) {
 

@@ -16,7 +16,7 @@
 // #include "MarcaArchivo.h"
 // #include "MarcaMenu.h"
 // #include "ClienteMenu.h"
-
+#include "VentaManager.h"
 #include "Programa.h"
 
 
@@ -38,7 +38,8 @@ int main()
 
     // usuarioArchivo.crear(usuario);
 
-    Programa programa;
+    /// ----------*-*
+    /*Programa programa;
 
     programa.setEstadoPrograma(true);
 
@@ -47,7 +48,10 @@ int main()
         while(programa.getEstadoLogin() == true) {
             programa.ejecutar();
         }
-    }
+    }*/
+    /// ----------------*-*-
+    VentaManager manager;
+    manager.Cargar();
 
 
     //ClienteMenu clienteMenu;

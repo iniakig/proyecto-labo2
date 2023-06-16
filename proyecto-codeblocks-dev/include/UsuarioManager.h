@@ -2,6 +2,11 @@
 #define USUARIOMANAGER_H
 
 #include "UsuarioArchivo.h"
+#include "Usuario.h"
+#include "../funciones.h"
+#include <iostream>
+#include <iomanip>
+#include <../rlutil.h>
 
 class UsuarioManager
 {

@@ -6,6 +6,7 @@ using namespace std;
 Venta::Venta()
 {
     _idPedido = 0;
+    _tipoDocumento = 0;
     strcpy(_nroDocCliente, "NULL");
     _fechaCompra = Fecha();
     _vecIdProducto[10] = {};
@@ -18,10 +19,11 @@ Venta::Venta()
 
 //CONSTRUCTOR POR PARAMETROS
 
-Venta::Venta(int idPedido, std::string nroDocCliente, const Fecha& fechaCompra, const int vecIdProducto[], const int vecUnidadesxProducto[],float montoCompra, int metodoPago, std::string aliasVendedor, bool activo)
+Venta::Venta(int idPedido, int tipoDocumento, std::string nroDocCliente, const Fecha& fechaCompra, const int vecIdProducto[], const int vecUnidadesxProducto[],float montoCompra, int metodoPago, std::string aliasVendedor, bool activo)
 {
 
     _idPedido = idPedido;
+    _tipoDocumento = tipoDocumento;
     strcpy(_nroDocCliente, nroDocCliente.c_str());
     _fechaCompra = fechaCompra;
     for (int i = 0; i < 10; i++)
@@ -40,6 +42,11 @@ Venta::Venta(int idPedido, std::string nroDocCliente, const Fecha& fechaCompra, 
 void Venta::setIdPedido(int idPedido)
 {
     _idPedido = idPedido;
+}
+
+void Venta::setTipoDocumento(int tipoDocumento)
+{
+    _tipoDocumento = tipoDocumento;
 }
 
 void Venta::setNroDocCliente(std::string nroDocCliente)
@@ -84,7 +91,8 @@ void Venta::setAliasVendedor(std::string aliasVendedor)
     strcpy(_aliasVendedor, aliasVendedor.c_str());
 }
 
-void Venta::setActivo(bool activo){
+void Venta::setActivo(bool activo)
+{
     _activo = activo;
 }
 
@@ -94,6 +102,10 @@ int  Venta::getIdPedido()
     return _idPedido;
 }
 
+int Venta::getTipoDocumento()
+{
+    return _tipoDocumento;
+}
 std::string Venta::getNroDocCliente()
 {
     std::string nroDocCliente;
@@ -131,6 +143,7 @@ std::string Venta::getAliasVendedor()
     return aliasVendedor;
 }
 
-bool Venta::getActivo(){
+bool Venta::getActivo()
+{
     return _activo;
 }

@@ -1,14 +1,13 @@
+using namespace std;
 #include "ProductoManager.h"
 #include "../funciones.h"
+#include <../rlutil.h>
 #include "string.h"
 #include <iostream>
 #include <iomanip>
-#include <../rlutil.h>
-using namespace std;
 #include "Marca.h"
 #include "MarcaManager.h"
 #include "Producto.h"
-#include <../rlutil.h>
 
 int ProductoManager::GenerarId()
 {
@@ -104,7 +103,7 @@ void ProductoManager::ListarPorTopePrecio()
 {
     float topePrecio;
     std::cout<<"INGRESE TOPE DE PRECIO "<<std::endl;
-    std::cin>>topePrecio;
+    std::cin>>topePrecio; // VALIDACION PENDIENTE
 
     Producto producto;
     ProductoArchivo archivoProducto;
@@ -259,8 +258,7 @@ void ProductoManager::Cargar()
 
     ID=GenerarId();
     std::cout<<"INGRESE CATEGORIA DEL PRODUCTO"<<std::endl;
-    std::cin>>categoria;
-    cout<<categoria;
+    std::cin>>categoria; // VALIDACION PENDIENTE
     std::cout<<"INGRESE NOMBRE DE LA MARCA DEL PRODUCTO"<<std::endl;
     do
     {
@@ -270,14 +268,14 @@ void ProductoManager::Cargar()
     while(idMarca<=0);
     std::cout<<"INGRESE MODELO DEL PRODUCTO"<<std::endl;// Convertir a mayuscula pendiente
     std::cin.ignore();
-    getline(std::cin, modelo);
+    getline(std::cin, modelo); // VALIDACION PENDIENTE
     std::cout<<"INGRESE DESCRIPCION DEL PRODUCTO"<<std::endl;// Convertir a mayuscula pendiente
     std::cin.ignore();
-    getline(cin, descripcion);
+    getline(cin, descripcion); // VALIDACION PENDIENTE
     std::cout<<"INGRESE PRECIO DE VENTA"<<std::endl;
-    std::cin>>precioVenta;
+    std::cin>>precioVenta; // VALIDACION PENDIENTE
     std::cout<<"INGRESE STOCK"<<std::endl;
-    std::cin>>stock;
+    std::cin>>stock; // VALIDACION PENDIENTE
 
     Producto reg(ID, categoria, idMarca,modelo, descripcion, precioVenta, stock, activo);
     Listar(reg);

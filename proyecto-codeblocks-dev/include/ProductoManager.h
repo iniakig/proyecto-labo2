@@ -1,7 +1,6 @@
 #ifndef PRODUCTOMANAGER_H_INCLUDED
 #define PRODUCTOMANAGER_H_INCLUDED
 
-#include "Producto.h"
 #include "ProductoArchivo.h"
 
 class ProductoManager{
