@@ -24,6 +24,7 @@ void ProductoManager::Listar(Producto producto)
     std::cout<<"DESCRIPCION: "<<producto.getDescripcion()<<std::endl;
     std::cout<<"PRECIO: "<<producto.getPrecio()<<std::endl;
     std::cout<<"STOCK: "<<producto.getStock()<<std::endl;
+    std::cout<<"ESTADO: "<<producto.getActivo()<<std::endl;
 }
 void ProductoManager::ListarTodos()
 {
@@ -467,10 +468,10 @@ void ProductoManager::reactivar()
         {
             cout<<"REACTIVARA EL SIGUIENTE PRODUCTO: "<<endl;
             Listar(reg);
-            cout<<"CONFIRMAR? 1--SI // 2--NO: ";
-            int opc;
-            opc = ingresoOpcSimpleConValidacion();
-            if(opc == 1)
+            cout<<"CONFIRMAR? (SI | NO): ";
+            std::string opc;
+            opc = ingresoDeDecisionConValidacion();
+            if (opc == "SI")
             {
                 reg.setActivo(true);
                 if(_archivo.guardar(reg, posicion))
@@ -485,7 +486,8 @@ void ProductoManager::reactivar()
         }
         else
         {
-            cout<<"EL REGISTRO INGRESADO NO SE ENCUENTRA ELIMINADA"<<endl;
+            cout<<"EL REGISTRO INGRESADO NO SE ENCUENTRA ELIMINADO"<<endl;
+            rlutil::anykey();
         }
     }
     else
@@ -493,6 +495,140 @@ void ProductoManager::reactivar()
         registroNoEncontradoMensaje();
     }
     rlutil::anykey();
+}
+void ProductoManager::CargarStock()
+{
+    Producto reg;
+    int id, posicion;
+    cout<<"INGRESE EL ID DEL PRODUCTO: ";
+    cin>>id;
+    cout<<endl;
+
+    posicion = _archivo.buscar(id);
+
+    if(posicion >=0 )
+    {
+        reg = _archivo.leer(posicion);
+        if(!reg.getActivo())
+        {
+            std::cout<<"EL PRODUCTO INGRESADO SE ENCUENTRA DADO DE BAJA"<<std::endl;
+            rlutil::anykey();
+        }
+        else
+        {
+            std::cout<<"ACTUALIZARA EL STOCK DEL SIGUIENTE PRODUCTO:"<<std::endl;
+            Listar(reg);
+
+            cout<<"CONTINUAR? (SI | NO): ";
+            std::string opc;
+            opc = ingresoDeDecisionConValidacion();
+            if (opc == "SI")
+            {
+                int stockActual = reg.getStock();
+                int unidadesNuevas;
+                std::cout<<"INGRESE LA CANTIDAD DE UNIDADES A AGREGAR: "<<std::endl;
+                std::cin>>unidadesNuevas;
+                reg.setStock(stockActual + unidadesNuevas);
+                if(_archivo.guardar(reg, posicion))
+                {
+                    std::cout<<"STOCK ACTUALIZADO"<<std::endl;
+                    rlutil::anykey();
+                }
+                else
+                {
+                    std::cout<<"ERROR AL ACTUALIZAR EL STOCK"<<std::endl;
+                    rlutil::anykey();
+                }
+            }
+        }
+    }
+    else
+    {
+        registroNoEncontradoMensaje();
+        rlutil::anykey();
+    }
+}
+
+void ProductoManager::RestarStock()
+{
+    Producto reg;
+    int id, posicion;
+    cout<<"INGRESE EL ID DEL PRODUCTO: ";
+    cin>>id;
+    cout<<endl;
+
+    posicion = _archivo.buscar(id);
+
+    if(posicion >=0 )
+    {
+        reg = _archivo.leer(posicion);
+        if(!reg.getActivo())
+        {
+            std::cout<<"EL PRODUCTO INGRESADO SE ENCUENTRA DADO DE BAJA"<<std::endl;
+            rlutil::anykey();
+        }
+        else
+        {
+            std::cout<<"ACTUALIZARA EL STOCK DEL SIGUIENTE PRODUCTO:"<<std::endl;
+            Listar(reg);
+
+            cout<<"CONTINUAR? (SI | NO): ";
+            std::string opc;
+            opc = ingresoDeDecisionConValidacion();
+            if (opc == "SI")
+            {
+                int stockActual = reg.getStock();
+                int unidades;
+                std::cout<<"INGRESE LA CANTIDAD DE UNIDADES A RESTAR: "<<std::endl;
+                std::cin>>unidades;
+                if(stockActual - unidades >=0)
+                {
+                    reg.setStock(stockActual - unidades);
+                    if(_archivo.guardar(reg, posicion))
+                    {
+                        std::cout<<"STOCK ACTUALIZADO"<<std::endl;
+                        rlutil::anykey();
+                    }
+                    else
+                    {
+                        std::cout<<"ERROR AL ACTUALIZAR EL STOCK"<<std::endl;
+                        rlutil::anykey();
+                    }
+
+                }
+                else
+                {
+                    std::cout<<"NO ES POSIBLE RESTAR EL STOCK, INGRESO MAS UNIDADES DE LAS DISPONIBLES"<<std::endl;
+                    rlutil::anykey();
+                }
+            }
+        }
+    }
+    else
+    {
+        registroNoEncontradoMensaje();
+        rlutil::anykey();
+    }
+}
+
+bool ProductoManager::RestarStock(int id, int unidades)
+{
+    int posicion = _archivo.buscar(id);
+    Producto reg;
+    reg = _archivo.leer(posicion);
+    if(reg.getStock()-unidades >= 0)
+    {
+        int stockActual = reg.getStock();
+        reg.setStock(stockActual - unidades);
+        _archivo.guardar(reg, posicion);
+        return true;
+    }
+    else
+    {
+        std::cout<<"STOCK INSUFICIENTE. UNIDADES DISPONIBLES: "<<reg.getStock()<<std::endl;
+        return false;
+    }
+
 }
 
 void ProductoManager::setPermisos(bool adm, bool sup, bool ven)

@@ -6,6 +6,7 @@
 #include "ClienteArchivo.h"
 #include "ClienteManager.h"
 #include "ProductoArchivo.h"
+#include "ProductoManager.h"
 #include "MarcaArchivo.h"
 #include "../funciones.h"
 

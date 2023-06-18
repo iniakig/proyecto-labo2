@@ -39,7 +39,7 @@ int main()
     // usuarioArchivo.crear(usuario);
 
     /// ----------*-*
-    /*Programa programa;
+    Programa programa;
 
     programa.setEstadoPrograma(true);
 
@@ -48,10 +48,10 @@ int main()
         while(programa.getEstadoLogin() == true) {
             programa.ejecutar();
         }
-    }*/
-    /// ----------------*-*-
-    VentaManager manager;
-    manager.Cargar();
+    }
+    /// ---------------*-*-
+//VentaManager manager;
+    //manager.Cargar();
 
 
     //ClienteMenu clienteMenu;

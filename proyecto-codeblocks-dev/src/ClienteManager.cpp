@@ -603,7 +603,7 @@ void ClienteManager::reactivar()
     }
 }
 
-bool ClienteManager::reactivarDesdeVenta(std::string nroDocumento)
+bool ClienteManager::reactivar(std::string nroDocumento)
 {
     Cliente cliente;
 

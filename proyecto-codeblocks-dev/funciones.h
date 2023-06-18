@@ -27,7 +27,6 @@ std::string ingresoDeDomicilioConValidacion();
 int ingresoDeProvinciaConValidacion();
 std::string ingresoDeDecisionConValidacion();
 
-
 // Mensajes
 void okMensajeModificacion();
 void errorMensajeModificacion();

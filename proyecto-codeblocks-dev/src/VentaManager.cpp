@@ -72,7 +72,7 @@ void VentaManager::Cargar()
             {
                 ClienteManager clienteManager;
                 std::cout<<"EL CLIENTE ESTA REGISTRADO PERO DADO DE BAJA:"<<std::endl;
-                if(clienteManager.reactivarDesdeVenta(nroDocCliente))
+                if(clienteManager.reactivar(nroDocCliente))
                 {
                     clienteValido = true;
                 }
@@ -81,7 +81,8 @@ void VentaManager::Cargar()
         else
         {
             ClienteManager clienteManager;
-            if(clienteManager.cargar(nroDocCliente)){
+            if(clienteManager.cargar(nroDocCliente))
+            {
                 clienteValido = true;
             }
 
@@ -92,39 +93,49 @@ void VentaManager::Cargar()
     for(int i = 0; i<10; i++)
     {
         ProductoArchivo arProducto;
-        std::cout<<"INGRESE EL ID DEL PRODUCTO"<<std::endl;
-        int existeProducto = 0;
+        bool productoValido = false;
         do
         {
-            int id;
-            cin>>id;
-            if(arProducto.buscar(id)>= 0)
+        std::cout<<"INGRESE EL ID DEL PRODUCTO"<<std::endl;
+            bool existeProducto = false;
+            do
             {
-                vecIdProducto[i] = id;
-                existeProducto = 1;
+                int id;
+                cin>>id;
+                if(arProducto.buscar(id)>= 0)
+                {
+                    vecIdProducto[i] = id;
+                    existeProducto = true;
+                }
+                else
+                {
+                    cout<<"NO EXISTE UN PRODUCTO BAJO ESE ID, INGRESELO NUEVAMENTE"<<endl;
+                }
             }
-            else
+            while(!existeProducto);
+            std::cout<<"INGRESE UNIDADES DEL PRODUCTO"<<std::endl;
+            int unidades;
+            cin>>unidades;
+            Producto producto;
+            producto = arProducto.leer(arProducto.buscar(vecIdProducto[i]));
+            ProductoManager productoManager;
+            if(productoManager.RestarStock(producto.getID(), unidades))
             {
-                cout<<"NO EXISTE UN PRODUCTO BAJO ESE ID, INGRESELO NUEVAMENTE"<<endl;
-            }
-        }
-        while(existeProducto == 0);
-        std::cout<<"INGRESE UNIDADES DEL PRODUCTO"<<std::endl;
-        int unidades;
-        cin>>unidades;
-        vecUnidadesxProducto[i] = unidades;
-        Producto producto;
-        producto = arProducto.leer(arProducto.buscar(vecIdProducto[i]));
-        float montoProductos = producto.getPrecio() * unidades; // REFACTORIZAR
-        montoCompra += montoProductos;
-        std::cout<<"QUIERE AGREGAR OTRO PRODUCTO? (SI | NO): "<<std::endl;
-        std::string decision = ingresoDeDecisionConValidacion();
+                vecUnidadesxProducto[i] = unidades;
+                float montoProductos = producto.getPrecio() * unidades; // REFACTORIZAR
+                montoCompra += montoProductos;
+                std::cout<<"QUIERE AGREGAR OTRO PRODUCTO? (SI | NO): "<<std::endl;
+                std::string decision = ingresoDeDecisionConValidacion();
 
-        if (decision == "NO")
-        {
-            cantidadProductos = i+1;
-            i = 9;
+                if (decision == "NO")
+                {
+                    cantidadProductos = i+1;
+                    i = 9;
+                }
+                productoValido = true;
+            }
         }
+        while(!productoValido);
     }
 
     std::cout<<"INGRESE EL METODO DE PAGO: "<<std::endl;
@@ -151,8 +162,3 @@ void VentaManager::Cargar()
 
     }
 }
-
-
-
-
-

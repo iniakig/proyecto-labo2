@@ -17,6 +17,9 @@ public:
     void ListarPorProxAgotarse();
     void ListarPorMasVendidos();
     void Listar(Producto producto);
+    void CargarStock();
+    void RestarStock();
+    bool RestarStock(int id, int unidades);
 	void HacerCopiaDeSeguridad();
 	void RestaurarCopiaDeSeguridad();
 	void setPermisos(bool adm, bool sup, bool ven);

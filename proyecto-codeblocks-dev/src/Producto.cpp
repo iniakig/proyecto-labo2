@@ -24,7 +24,7 @@ Producto::Producto(int ID,int categoria, int idMarca, std::string modelo, std::s
     strcpy(_descripcion, descripcion.c_str());
     _precioVenta = precioVenta;
     _stock = stock;
-    activo = true;
+    _activo = activo;
 }
 
 //SETTERS
