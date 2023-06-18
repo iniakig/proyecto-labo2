@@ -16,6 +16,7 @@ class ClienteManager
 
     public:
         void cargar(); // Hecho - Testear
+        bool cargar(std::string nroDocumento);
         void listarClientes(); // En curso
         void modificar(); // En curso
         void darDeBaja(); // Hecho - Testear

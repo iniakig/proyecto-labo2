@@ -81,14 +81,8 @@ void VentaManager::Cargar()
         else
         {
             ClienteManager clienteManager;
-            clienteManager.cargar();
-            if(arClientes.buscar(nroDocCliente)>= 0)
-            {
+            if(clienteManager.cargar(nroDocCliente)){
                 clienteValido = true;
-            }
-            else
-            {
-                std::cout<<"ERROR AL CARGAR EL NUEVO CLIENTE, POR FAVOR INTENTELO NUEVAMENTE"<<endl;
             }
 
         } // AGREGAR VALIDACION POR SI NO SE CARGO CORRECTAMENTE

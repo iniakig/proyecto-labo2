@@ -94,6 +94,76 @@ void ClienteManager::cargar()
     }
 }
 
+bool ClienteManager::cargar(std::string nroDocumento)
+{
+    rlutil::cls();
+    int tipoDeCliente;
+    int tipoDocumento;
+    std::string nombre;
+    std::string apellido;
+    std::string razonSocial;
+    std::string email;
+    bool estado;
+    Fecha fechaRegistro;
+    std::string domicilio;
+    std::string localidad;
+    int provincia;
+
+    std::cout << "CARGAR NUEVO CLIENTE" << std::endl;
+    std::cout << "-------------------------------------------------------------" << std::endl;
+
+    std::cout << "Tipo de Cliente (1. Persona física | 2. Persona jurídica): ";
+    tipoDeCliente = ingresoDeTipoDeClienteConValidacion();
+
+    std::cout << "Tipo de documento (1. DNI | 2. CUIT): ";
+    tipoDocumento = ingresoTipoDeDocumentoConValidacion();
+
+    switch(tipoDeCliente)
+    {
+    case 1:
+        std::cout << "Nombre: ";
+        nombre = ingresoDeNombreApellidoConValidacion();
+        std::cout << "Apellido: ";
+        apellido = ingresoDeNombreApellidoConValidacion();
+        razonSocial = "null";
+        break;
+    case 2:
+        std::cout << "Razón social: ";
+        razonSocial = ingresoDeRazonSocialConValidacion();
+        nombre = "null";
+        apellido = "null";
+        break;
+    }
+    std::cout << "Email: ";
+    email = ingresoDeEmailConValidacion();
+    estado = true;
+    fechaRegistro = Fecha().fechaActual();
+    std::cout << "Domicilio: ";
+    domicilio = ingresoDeDomicilioConValidacion();
+    std::cout << "Localidad: ";
+    localidad = ingresoDeLocalidadConValidacion();
+    std::cout << "Seleccionar provincia: " << std::endl;
+    std::cout << std::endl;
+    listarProvincias();
+    std::cout << std::endl;
+    std::cout << "Nro de provincia: ";
+    provincia = ingresoDeProvinciaConValidacion();
+
+    Cliente cliente(tipoDocumento, nroDocumento.c_str(), nombre.c_str(), apellido.c_str(), razonSocial.c_str(), email.c_str(), domicilio.c_str(), localidad.c_str(), provincia, estado, fechaRegistro);
+        if (_archivo.crear(cliente) == true)
+        {
+            std::cout << std::endl;
+            okMensajeCreacion();
+            return true;
+        }
+        else
+        {
+            std::cout << std::endl;
+            errorMensajeCreacion();
+            return false;
+        }
+}
+
 void ClienteManager::listar(Cliente cliente, int tipoListado)
 {
     // Tipos de listado
