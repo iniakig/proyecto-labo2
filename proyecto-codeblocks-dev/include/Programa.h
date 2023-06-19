@@ -2,6 +2,7 @@
 #define PROGRAMA_H
 
 #include "UsuarioActivo.h"
+#include "VentaMenu.h"
 #include "ProductoMenu.h"
 #include "MarcaMenu.h"
 #include "ClienteMenu.h"
@@ -15,6 +16,7 @@ class Programa
         bool _estadoPrograma;
 
         UsuarioActivo _usuarioActivo;
+        VentaMenu _ventaMenu;
         ProductoMenu _productoMenu;
         MarcaMenu _marcaMenu;
         ClienteMenu _clienteMenu;

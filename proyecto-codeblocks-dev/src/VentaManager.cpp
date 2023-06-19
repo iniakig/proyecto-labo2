@@ -96,16 +96,25 @@ void VentaManager::Cargar()
         bool productoValido = false;
         do
         {
-        std::cout<<"INGRESE EL ID DEL PRODUCTO"<<std::endl;
             bool existeProducto = false;
             do
             {
+                std::cout<<"INGRESE EL ID DEL PRODUCTO"<<std::endl;
                 int id;
                 cin>>id;
                 if(arProducto.buscar(id)>= 0)
                 {
-                    vecIdProducto[i] = id;
-                    existeProducto = true;
+                    Producto producto;
+                    producto = arProducto.leer(arProducto.buscar(id));
+                    if(producto.getActivo())
+                    {
+                        vecIdProducto[i] = id;
+                        existeProducto = true;
+                    }
+                    else
+                    {
+                        std::cout<<"EL PRODUCTO INGRESADO ESTA DADO DE BAJA:"<<std::endl;
+                    }
                 }
                 else
                 {
@@ -154,11 +163,111 @@ void VentaManager::Cargar()
         if(_archivo.guardar(reg))
         {
             okMensajeCreacion();
+            rlutil::anykey();
         }
         else
         {
             errorMensajeCreacion();
+            rlutil::anykey();
         }
 
+    }
+}
+
+void VentaManager::Eliminar()
+{
+
+    int posicion, idVenta;
+    std::cout<<"ID VENTA A ELIMINAR: "<<std::endl;
+    std::cin>>idVenta;
+
+    posicion = _archivo.buscar(idVenta);
+
+    if(posicion >= 0)
+    {
+        Venta reg;
+        reg = _archivo.leer(posicion);
+        if(reg.getActivo())
+        {
+            std::cout<<"ELIMINARA LA SIGUIENTE VENTA: "<<std::endl;
+            Listar(reg);
+            std::cout<<"CONTINUAR? (SI | NO): "<<std::endl;
+            std::string decision = ingresoDeDecisionConValidacion();
+
+            if(decision == "SI")
+            {
+                reg.setActivo(false);
+                if(_archivo.guardar(reg, posicion))
+                {
+                    okMensajeBaja();
+                    rlutil::anykey();
+                }
+                else
+                {
+                    errorMensajeBaja();
+                    rlutil::anykey();
+                }
+            }
+        }
+        else
+        {
+            registroYaEliminado();
+            rlutil::anykey();
+        }
+    }
+    else
+    {
+        registroNoEncontradoMensaje();
+        rlutil::anykey();
+    }
+
+}
+
+void VentaManager::Reactivar()
+{
+
+    int posicion, idVenta;
+    std::cout<<"ID VENTA A REACTIVAR: "<<std::endl;
+    std::cin>>idVenta;
+
+    posicion = _archivo.buscar(idVenta);
+
+    if(posicion >= 0)
+    {
+        Venta reg;
+        reg = _archivo.leer(posicion);
+
+        if(!reg.getActivo())
+        {
+            std::cout<<"REACTIVARA LA SIGUIENTE VENTA: "<<std::endl;
+            Listar(reg);
+            std::cout<<"CONTINUAR? (SI | NO): "<<std::endl;
+            std::string decision = ingresoDeDecisionConValidacion();
+
+            if(decision == "SI")
+            {
+                reg.setActivo(true);
+                if(_archivo.guardar(reg, posicion))
+                {
+                    okMensajeReactivacion();
+                    rlutil::anykey();
+                }
+                else
+                {
+                    errorMensajeReactivacion();
+                    rlutil::anykey();
+                }
+            }
+        }
+        else
+        {
+            registroNoEliminado();
+            rlutil::anykey();
+        }
+    }
+    else
+    {
+        registroNoEncontradoMensaje();
+        rlutil::anykey();
     }
 }

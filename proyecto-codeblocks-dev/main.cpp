@@ -49,41 +49,6 @@ int main()
             programa.ejecutar();
         }
     }
-    /// ---------------*-*-
-//VentaManager manager;
-    //manager.Cargar();
-
-
-    //ClienteMenu clienteMenu;
-
-    //clienteMenu.mostrar();
-
-    //MarcaMenu menu;
-    //MarcaManager manager;
-
-    //menu.mostrar();
-
-    //manager.hacerCopiaSeguridad();
-    //manager.restaurarCopiaSeguridad();
-    //manager.listarTodos();
-    //manager.modificar();
-    //manager.listarXID();
-    //manager.listarXNombre();
-    /// POSIBLE SOLUCION PARA CARGAR MARCA DESDE PRODUCTO ///
-    /*int id;
-    do
-    {
-        std::string nombre = ingresoDeMarcaConValidacion();
-        Marca reg;
-        reg = manager.cargarDesdeProducto(nombre);
-        id = reg.getID();
-        cout<<id;
-    }
-    while(id==0);*/
-    //---------------------------------------------------------------//
-
-    //archivo.vaciar();
-    //manager.cargar();
 
     /*int ID, stock;
     Marca marca;

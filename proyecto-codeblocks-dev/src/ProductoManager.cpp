@@ -419,7 +419,7 @@ void ProductoManager::Eliminar()
 
     Producto producto;
     int id, posicion;
-    cout << "ID a buscar: ";
+    cout << "ID A ELIMINAR: ";
     cin >> id;
     cout << endl;
 

@@ -37,6 +37,8 @@ void errorMensajeBaja();
 void okMensajeReactivacion();
 void errorMensajeReactivacion();
 void registroNoEncontradoMensaje();
+void registroYaEliminado();
+void registroNoEliminado();
 void existeRegistroMensaje();
 void mensajeSalidaDelPrograma();
 void mensajeAccesoRestringido();

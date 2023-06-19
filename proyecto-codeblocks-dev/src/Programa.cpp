@@ -153,6 +153,7 @@ void Programa::ejecutar() {
                 setEstadoLogin(false);
                 break;
             case 1:
+                _ventaMenu.Mostrar();
                 break;
             case 2:
                 _productoMenu.mostrar();

@@ -414,6 +414,18 @@ void registroNoEncontradoMensaje() {
     rlutil::setColor(rlutil::WHITE);
 }
 
+void registroYaEliminado() {
+    rlutil::setColor(rlutil::LIGHTRED);
+    std::cout << "El registro ingresado ya se encuentra eliminado." << std::endl;
+    rlutil::setColor(rlutil::WHITE);
+}
+
+void registroNoEliminado(){
+    rlutil::setColor(rlutil::LIGHTRED);
+    std::cout << "El registro no se encuentra eliminado." << std::endl;
+    rlutil::setColor(rlutil::WHITE);
+}
+
 void existeRegistroMensaje() {
     rlutil::setColor(rlutil::LIGHTRED);
     std::cout << "Ya existe un registro creado con ese nro de identificación." << std::endl;

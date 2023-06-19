@@ -8,13 +8,16 @@
 #include "ProductoArchivo.h"
 #include "ProductoManager.h"
 #include "MarcaArchivo.h"
+
 #include "../funciones.h"
+#include <../rlutil.h>
 
 class VentaManager{
 public:
 	void Cargar();
 	void Editar();
 	void Eliminar();
+    void Reactivar();
     void Listar(Venta venta);
 	void ventasPorEmpleado();
 	void recaudacionAnual();
