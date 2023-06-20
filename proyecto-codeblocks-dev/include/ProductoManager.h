@@ -18,6 +18,7 @@ public:
     void ListarPorMasVendidos();
     void Listar(Producto producto);
     void CargarStock();
+    bool RestaurarStock(int id, int unidades);
     void RestarStock();
     bool RestarStock(int id, int unidades);
 	void HacerCopiaDeSeguridad();

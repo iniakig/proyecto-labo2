@@ -19,6 +19,7 @@ public:
 	void Eliminar();
     void Reactivar();
     void Listar(Venta venta);
+    void ListarTodas();
 	void ventasPorEmpleado();
 	void recaudacionAnual();
 	void listarPorMedioDePago();
@@ -31,6 +32,7 @@ private:
 	VentaArchivo _archivo;
 	VentaArchivo _archivoBkp = VentaArchivo("ventas.bkp");
 	int GenerarId();
+	bool restaurarStock(const int* vecProductos, const int* vecUnidades, int cantidadProductos);
 };
 
 

@@ -39,7 +39,7 @@ void VentaMenu::Mostrar()
                 _manager.Reactivar();
             break;
         case 5:
-                std::cout<<"ACA SE LISTARAN LAS VENTAS"<<std::endl;
+                _manager.ListarTodas();
             break;
         default:
             std::cout << "La opción seleccionada es invalida. Ingrese nuevamente." << std::endl;

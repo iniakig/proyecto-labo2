@@ -1,4 +1,5 @@
 #include<iostream>
+#include <cstdio>
 using namespace std;
 
 #include "VentaManager.h"
@@ -6,6 +7,15 @@ using namespace std;
 int VentaManager::GenerarId()
 {
     return _archivo.getCantidadRegistros()+1;
+}
+
+bool VentaManager::restaurarStock(const int* vecProductos, const int* vecUnidades, int cantidadProductos)
+{
+    ProductoManager productoManager;
+    for(int i = 0; i<cantidadProductos; i++)
+    {
+        productoManager.RestaurarStock(vecProductos[i], vecUnidades[i]);
+    }
 }
 
 void VentaManager::Listar(Venta venta) // MOSTRAR OK, AGREGAR TEMA DE BUSCAR ID PRODUCTO PARA QUE SALGA NOMBRE
@@ -32,6 +42,21 @@ void VentaManager::Listar(Venta venta) // MOSTRAR OK, AGREGAR TEMA DE BUSCAR ID 
     std::cout<<"IMPORTE: $"<<venta.getMontoCompra()<<endl;
     std::cout<<"METODO PAGO: "<<venta.getMetodoPago()<<endl;
     std::cout<<"VENDEDOR: "<<venta.getAliasVendedor()<<endl;
+}
+
+void VentaManager::ListarTodas()
+{
+    int cantidadRegistros = _archivo.getCantidadRegistros();
+
+    for(int i = 0; i < cantidadRegistros; i++)
+    {
+        Venta reg;
+        reg = _archivo.leer(i);
+
+        Listar(reg);
+        rlutil::anykey();
+
+    }
 }
 
 void VentaManager::Cargar()
@@ -93,6 +118,7 @@ void VentaManager::Cargar()
     for(int i = 0; i<10; i++)
     {
         ProductoArchivo arProducto;
+        Producto producto;
         bool productoValido = false;
         do
         {
@@ -102,9 +128,9 @@ void VentaManager::Cargar()
                 std::cout<<"INGRESE EL ID DEL PRODUCTO"<<std::endl;
                 int id;
                 cin>>id;
+                cin.ignore();
                 if(arProducto.buscar(id)>= 0)
                 {
-                    Producto producto;
                     producto = arProducto.leer(arProducto.buscar(id));
                     if(producto.getActivo())
                     {
@@ -124,9 +150,7 @@ void VentaManager::Cargar()
             while(!existeProducto);
             std::cout<<"INGRESE UNIDADES DEL PRODUCTO"<<std::endl;
             int unidades;
-            cin>>unidades;
-            Producto producto;
-            producto = arProducto.leer(arProducto.buscar(vecIdProducto[i]));
+            unidades = ingresoStockConValidacion();
             ProductoManager productoManager;
             if(productoManager.RestarStock(producto.getID(), unidades))
             {
@@ -171,6 +195,10 @@ void VentaManager::Cargar()
             rlutil::anykey();
         }
 
+    }
+    else
+    {
+        restaurarStock(vecIdProducto, vecUnidadesxProducto, cantidadProductos);
     }
 }
 

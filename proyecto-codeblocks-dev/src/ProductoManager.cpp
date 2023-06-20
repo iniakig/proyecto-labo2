@@ -548,6 +548,26 @@ void ProductoManager::CargarStock()
     }
 }
 
+bool ProductoManager::RestaurarStock(int id, int unidades)
+{
+
+    Producto reg;
+    int posicion = _archivo.buscar(id);
+    reg = _archivo.leer(posicion);
+
+    int stockActual = reg.getStock();
+    reg.setStock(stockActual + unidades);
+
+    if(_archivo.guardar(reg, posicion))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
 void ProductoManager::RestarStock()
 {
     Producto reg;
@@ -619,8 +639,15 @@ bool ProductoManager::RestarStock(int id, int unidades)
     {
         int stockActual = reg.getStock();
         reg.setStock(stockActual - unidades);
-        _archivo.guardar(reg, posicion);
-        return true;
+        if(_archivo.guardar(reg, posicion))
+        {
+            return true;
+        }
+        else
+        {
+            std::cout<<"ERROR AL MODIFICAR EL REGISTRO DE STOCK, INTENTELO NUEVAMENTE"<<std::endl;
+            return false;
+        }
     }
     else
     {
