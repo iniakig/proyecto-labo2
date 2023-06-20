@@ -79,14 +79,14 @@ void MarcaManager::cargar()
     if(_archivo.buscar(nombre)<0)
     {
         int ID = generarID();
-        int opc;
         bool activo = true;
         Marca reg(ID,nombre.c_str(), activo);
         cout<<"CARGO LA SIGUIENTE MARCA: "<<endl;
         listar(reg);
-        cout<<"GUARDAR? 1--SI // 2--NO: ";
-        opc = ingresoOpcSimpleConValidacion();
-        if(opc == 1)
+        cout<<"CONTINUAR? (SI | NO): ";
+        std::string opc;
+        opc = ingresoDeDecisionConValidacion();
+        if (opc == "SI")
         {
             if(_archivo.guardar(reg))
             {
@@ -113,7 +113,6 @@ void MarcaManager::cargar()
 
 int MarcaManager::cargarDesdeProducto(std::string nombreMarca)
 {
-    // POSIBLE OPTIMIZACION: QUE SI CUMPLE LA CONDICION DIRECTAMENTE DEVUELVA LA MARCA ENCONTRADA Y SINO PIDA CARGARLA (INVERTIR EL ORDEN DE EJECUCION)
     if(_archivo.buscar(nombreMarca)>=0)
     {
         Marca reg;
@@ -122,15 +121,15 @@ int MarcaManager::cargarDesdeProducto(std::string nombreMarca)
     }
 
     int ID = generarID();
-    int opc;
     bool activo = true;
     Marca reg(ID,nombreMarca.c_str(), activo);
     cout<<"CARGO LA SIGUIENTE MARCA: "<<endl;
     cout<<"ID: "<<reg.getID()<<endl;
     cout<<"NOMBRE: "<<reg.getNombre()<<endl;
-    cout<<"GUARDAR? 1--SI // 2--NO: ";
-    opc = ingresoOpcSimpleConValidacion();
-    if(opc == 1)
+    cout<<"CONTINUAR? (SI | NO): ";
+    std::string decision;
+    decision = ingresoDeDecisionConValidacion();
+    if (decision == "SI")
     {
         if(_archivo.guardar(reg))
         {
@@ -140,13 +139,14 @@ int MarcaManager::cargarDesdeProducto(std::string nombreMarca)
         else
         {
             errorMensajeCreacion();
-            reg = Marca();
+            ID = -1;
             return ID;
         }
     }
-    else if(opc == 2)
+    else if(decision == "NO")
     {
         reg = Marca();
+        ID = -1;
         return ID;
     }
 

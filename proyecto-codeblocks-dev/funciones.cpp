@@ -30,6 +30,14 @@ int enteroConvertidoAInt(std::string stringParaConvertir)
     return numero;
 }
 
+float stringConvertidoAFloat(std::string stringParaConvertir){
+    float numero = 0;
+
+    numero = std::stof(stringParaConvertir);
+
+    return numero;
+}
+
 std::string stringAMayus(std::string cadena)
 {
     std::string cadenaMayus = cadena;
@@ -55,6 +63,51 @@ int ingresoTipoDeDocumentoConValidacion() {
 
     tipoDocumento = enteroConvertidoAInt(tipoDocumentoAux);
     return tipoDocumento;
+}
+
+int ingresoCategoriaProdConValidacion(){
+    std::string nroCategoriaAux;
+    int nroCategoria;
+    const std::regex expresionRegular("[1-3]");
+
+    getline(std::cin, nroCategoriaAux);
+    while(!std::regex_match(nroCategoriaAux, expresionRegular)){
+        std::cout << std::endl;
+        std::cout << "El valor ingresado no es válido. 1. CELULARES | 2. TABLETS | 3. ACCESORIOS. Ingrese nuevamente: ";
+        getline(std::cin, nroCategoriaAux);
+    }
+    nroCategoria = enteroConvertidoAInt(nroCategoriaAux);
+    return nroCategoria;
+}
+
+int ingresoStockConValidacion(){
+    std::string stockAux;
+    int stock;
+    const std::regex expresionRegular("^[1-9][0-9]*$");
+
+    getline(std::cin, stockAux);
+    while(!std::regex_match(stockAux, expresionRegular)){
+        std::cout << std::endl;
+        std::cout << "El valor ingresado no es válido. Solo puede ingresar numeros enteros.";
+        getline(std::cin, stockAux);
+    }
+    stock = enteroConvertidoAInt(stockAux);
+    return stock;
+}
+
+float ingresoPrecioConValidacion() {
+    std::string precioAux;
+    float precio;
+    const std::regex expresionRegular("^[0-9]+(\\.[0-9]+)?$");
+
+    getline(std::cin, precioAux);
+    while(!std::regex_match(precioAux, expresionRegular)){
+        std::cout << std::endl;
+        std::cout << "El precio ingresado no es válido. Solo puede ingresar numeros.";
+        getline(std::cin, precioAux);
+    }
+    precio = stringConvertidoAFloat(precioAux);
+    return precio;
 }
 
 std::string ingresoDeDocumentoConValidacion() {
@@ -186,6 +239,44 @@ std::string ingresoDeLocalidadConValidacion() {
     }
 
     return localidad;
+}
+
+std::string ingresoModeloConValidacion() {
+    std::string modelo;
+    const std::regex expresionRegular("[a-zA-Z0-9.\\s_-]+{1,29}");
+
+    getline(std::cin, modelo);
+    while(!std::regex_match(modelo, expresionRegular)){
+        std::cout << std::endl;
+        std::cout << "El texto ingresado no es válido." << std::endl;
+        std::cout << "Reglas de ingreso de nombre de modelo: " << std::endl;
+        std::cout << "- Puede contener hasta 14 caracteres" << std::endl;
+        std::cout << "- Permite letras, números y caracteres de \".\", \",\", \"-\" y \"_\"." << std::endl;
+        std::cout << "Ingrese nuevamente: ";
+        getline(std::cin, modelo);
+    }
+    std::string textoConvertido = stringAMayus(modelo);
+    return textoConvertido;
+
+}
+
+std::string ingresoDescripcionConValidacion(){
+    std::string descripcion;
+    const std::regex expresionRegular("[a-zA-Z0-9.\\s]+{1,49}");
+
+    getline(std::cin, descripcion);
+    while(!std::regex_match(descripcion, expresionRegular)){
+        std::cout << std::endl;
+        std::cout << "El texto ingresado no es válido." << std::endl;
+        std::cout << "Reglas de ingreso de nombre de modelo: " << std::endl;
+        std::cout << "- Puede contener hasta 14 caracteres" << std::endl;
+        std::cout << "- Permite letras, números y caracteres de \".\", \",\", \"-\" y \"_\"." << std::endl;
+        std::cout << "Ingrese nuevamente: ";
+        getline(std::cin, descripcion);
+    }
+    std::string textoConvertido = stringAMayus(descripcion);
+    return textoConvertido;
+
 }
 
 std::string ingresoDeDomicilioConValidacion() {

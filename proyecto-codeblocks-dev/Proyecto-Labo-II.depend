@@ -178,7 +178,7 @@
 1685416392 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\proyecto-labo-ii\include\usuariomenu.h
 	"UsuarioManager.h"
 
-1687200475 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\funciones.cpp
+1687224069 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\funciones.cpp
 	<iostream>
 	<locale.h>
 	<regex>
@@ -187,7 +187,7 @@
 	"funciones.h"
 	"rlutil.h"
 
-1687200453 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\funciones.h
+1687224038 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\funciones.h
 
 1687201450 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\main.cpp
 	<iostream>
@@ -455,12 +455,14 @@
 1685963863 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\include\usuariomenu.h
 	"UsuarioManager.h"
 
-1686774994 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\marcamanager.h
+1687225039 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\marcamanager.h
 	"MarcaArchivo.h"
 	"ProductoArchivo.h"
 	"ProductoManager.h"
+	<iostream>
+	<string>
 
-1686776846 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\marcamanager.cpp
+1687225233 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\marcamanager.cpp
 	<iostream>
 	"MarcaManager.h"
 	"../funciones.h"
@@ -671,7 +673,7 @@
 	"../rlutil.h"
 	"../funciones.h"
 
-1687199785 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\productomanager.cpp
+1687224379 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\productomanager.cpp
 	"ProductoManager.h"
 	"../funciones.h"
 	<../rlutil.h>

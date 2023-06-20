@@ -7,6 +7,7 @@ void listarProvincias();
 std::string cortarCuit(std::string stringParaCortar);
 void centrarTexto(std::string texto, int posy);
 int enteroConvertidoAInt(std::string stringParaConvertir);
+float stringConvertidoAFloat(std::string stringParaConvertir);
 std::string stringAMayus(std::string cadena);
 
 
@@ -21,8 +22,13 @@ std::string ingresoDeMarcaConValidacion();
 int ingresoDeTipoDeClienteConValidacion();
 int ingresoTipoDeDocumentoConValidacion();
 int ingresoOpcSimpleConValidacion();
+int ingresoCategoriaProdConValidacion();
+int ingresoStockConValidacion();
+float ingresoPrecioConValidacion();
 std::string ingresoDeRazonSocialConValidacion();
 std::string ingresoDeLocalidadConValidacion();
+std::string ingresoModeloConValidacion();
+std::string ingresoDescripcionConValidacion();
 std::string ingresoDeDomicilioConValidacion();
 int ingresoDeProvinciaConValidacion();
 std::string ingresoDeDecisionConValidacion();

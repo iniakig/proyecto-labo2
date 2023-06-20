@@ -4,6 +4,9 @@
 #include "ProductoArchivo.h"
 #include "ProductoManager.h"
 
+#include <iostream>
+#include <string>
+
 class MarcaManager
 {
 public:

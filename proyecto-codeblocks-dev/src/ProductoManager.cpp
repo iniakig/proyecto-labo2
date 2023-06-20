@@ -258,33 +258,31 @@ void ProductoManager::Cargar()
     MarcaManager managerMarca;
 
     ID=GenerarId();
-    std::cout<<"INGRESE CATEGORIA DEL PRODUCTO"<<std::endl;
-    std::cin>>categoria; // VALIDACION PENDIENTE
-    std::cout<<"INGRESE NOMBRE DE LA MARCA DEL PRODUCTO"<<std::endl;
+    std::cout<<"INGRESE CATEGORIA DEL PRODUCTO (1. CELULARES | 2. TABLETS | 3. ACCESORIOS):"<<std::endl;
+    categoria = ingresoCategoriaProdConValidacion();
     do
     {
+        std::cout<<"INGRESE NOMBRE DE LA MARCA DEL PRODUCTO"<<std::endl;
         nombreMarca=ingresoDeMarcaConValidacion();
         idMarca=managerMarca.cargarDesdeProducto(nombreMarca);
     }
     while(idMarca<=0);
-    std::cout<<"INGRESE MODELO DEL PRODUCTO"<<std::endl;// Convertir a mayuscula pendiente
-    std::cin.ignore();
-    getline(std::cin, modelo); // VALIDACION PENDIENTE
+    std::cout<<"INGRESE MODELO DEL PRODUCTO"<<std::endl;
+    modelo = ingresoModeloConValidacion();
     std::cout<<"INGRESE DESCRIPCION DEL PRODUCTO"<<std::endl;// Convertir a mayuscula pendiente
-    std::cin.ignore();
-    getline(cin, descripcion); // VALIDACION PENDIENTE
+    descripcion = ingresoDescripcionConValidacion();
     std::cout<<"INGRESE PRECIO DE VENTA"<<std::endl;
-    std::cin>>precioVenta; // VALIDACION PENDIENTE
+    precioVenta = ingresoPrecioConValidacion();
     std::cout<<"INGRESE STOCK"<<std::endl;
-    std::cin>>stock; // VALIDACION PENDIENTE
+    stock = ingresoStockConValidacion();
 
     Producto reg(ID, categoria, idMarca,modelo, descripcion, precioVenta, stock, activo);
-    Listar(reg);
     cout<<"CARGO EL SIGUIENTE PRODUCTO: "<<endl;
     Listar(reg);
-    cout<<"GUARDAR? 1--SI // 2--NO: ";
-    int opc = ingresoOpcSimpleConValidacion();
-    if(opc == 1)
+    cout<<"CONTINUAR? (SI | NO): ";
+    std::string opc;
+    opc = ingresoDeDecisionConValidacion();
+    if (opc == "SI")
     {
         if(_archivo.guardar(reg))
         {
@@ -335,7 +333,7 @@ void ProductoManager::Editar()
             std::cout << "5. PRECIO DE VENTA" << std::endl;
             std::cout << "6. STOCK" << std::endl;
             std::cout << "---------------------------------------------------" << std::endl;
-            std::cout << "0. VOLVER AL MENÚ DE GESTIÓN DE USUARIOS" << std::endl;
+            std::cout << "0. VOLVER AL MENÚ DE GESTIÓN DE PRODUCTOS" << std::endl;
             std::cout << "---------------------------------------------------" << std::endl;
             std::cout << "OPCIÓN SELECCIONADA: ";
             std::cin >> opcion;
@@ -347,7 +345,7 @@ void ProductoManager::Editar()
                 break;
             case 1:
                 std::cout <<"INGRESE CATEGORIA: "<< std::endl;
-                std::cin>>categoria;
+                categoria = ingresoCategoriaProdConValidacion();
                 producto.setCategoria(categoria);
                 edito = 1;
                 break;
@@ -363,25 +361,25 @@ void ProductoManager::Editar()
                 break;
             case 3:
                 std::cout <<"INGRESE MODELO: "<< std::endl;
-                getline(cin, modelo);
+                modelo = ingresoModeloConValidacion();
                 producto.setModelo(modelo);
                 edito = 1;
                 break;
             case 4:
                 std::cout <<"INGRESE DESCRIPCION: "<< std::endl;
-                getline(cin, descripcion);
+                descripcion = ingresoDescripcionConValidacion();
                 producto.setDescripcion(descripcion);
                 edito = 1;
                 break;
             case 5:
                 std::cout <<"INGRESE PRECIO DE VENTA: "<< std::endl;
-                cin>>precioVenta;
+                precioVenta = ingresoPrecioConValidacion();
                 producto.setPrecio(precioVenta);
                 edito = 1;
                 break;
             case 6:
                 std::cout <<"INGRESE STOCK: "<< std::endl;
-                cin>>stock;
+                stock = ingresoStockConValidacion();
                 producto.setStock(stock);
                 edito = 1;
                 break;
@@ -395,9 +393,10 @@ void ProductoManager::Editar()
         {
             cout<<"MODIFICO EL SIGUIENTE PRODUCTO: "<<endl;
             Listar(producto);
-            cout<<"GUARDAR CAMBIOS? 1--SI // 2--NO: ";
-            int opc = ingresoOpcSimpleConValidacion();
-            if(opc == 1)
+            cout<<"CONTINUAR? (SI | NO): ";
+            std::string opc;
+            opc = ingresoDeDecisionConValidacion();
+            if (opc == "SI")
             {
                 if(_archivo.guardar(producto, posicion))
                 {
@@ -527,7 +526,7 @@ void ProductoManager::CargarStock()
                 int stockActual = reg.getStock();
                 int unidadesNuevas;
                 std::cout<<"INGRESE LA CANTIDAD DE UNIDADES A AGREGAR: "<<std::endl;
-                std::cin>>unidadesNuevas;
+                unidadesNuevas = ingresoStockConValidacion();
                 reg.setStock(stockActual + unidadesNuevas);
                 if(_archivo.guardar(reg, posicion))
                 {
@@ -580,7 +579,7 @@ void ProductoManager::RestarStock()
                 int stockActual = reg.getStock();
                 int unidades;
                 std::cout<<"INGRESE LA CANTIDAD DE UNIDADES A RESTAR: "<<std::endl;
-                std::cin>>unidades;
+                unidades = ingresoStockConValidacion();
                 if(stockActual - unidades >=0)
                 {
                     reg.setStock(stockActual - unidades);
