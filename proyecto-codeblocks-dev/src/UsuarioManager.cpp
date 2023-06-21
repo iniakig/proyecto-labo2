@@ -1,9 +1,11 @@
 #include "UsuarioManager.h"
-#include "../funciones.h"
 
 #include <iostream>
 #include <iomanip>
 #include <../rlutil.h>
+#include "../funciones.h"
+#include "../validaciones.h"
+#include "../mensajes.h"
 
 #include "Usuario.h"
 

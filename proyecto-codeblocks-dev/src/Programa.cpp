@@ -1,6 +1,8 @@
 #include "Programa.h"
 #include "../rlutil.h"
 #include "../funciones.h"
+#include "../mensajes.h"
+#include "../validaciones.h"
 
 #include <limits>
 #include <conio.h>

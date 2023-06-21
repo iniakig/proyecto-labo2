@@ -21,6 +21,7 @@ public:
 
     // Interfaces
     void Mostrar();
+    void listarProvincias();
 
     // Setters
     void setId(int Id);

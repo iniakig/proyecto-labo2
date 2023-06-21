@@ -2,6 +2,8 @@ using namespace std;
 #include "ProductoManager.h"
 #include "../funciones.h"
 #include <../rlutil.h>
+#include "../validaciones.h"
+#include "../mensajes.h"
 #include "string.h"
 #include <iostream>
 #include <iomanip>

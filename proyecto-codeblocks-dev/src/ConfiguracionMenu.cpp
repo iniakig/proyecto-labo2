@@ -3,6 +3,7 @@
 
 #include "../rlutil.h"
 #include "../funciones.h"
+#include "../mensajes.h"
 
 void ConfiguracionMenu::mostrar() {
     UsuarioActivo usuarioActivo;
