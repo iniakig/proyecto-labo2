@@ -4,20 +4,20 @@
 #include <string>
 
 UsuarioActivo::UsuarioActivo() {
-    strcpy(_alias, "null");
+    _id = -1;
     _rol = 0;
 }
 
-void UsuarioActivo::setAlias(std::string alias) {
-    strcpy(_alias, alias.c_str());
+void UsuarioActivo::setId(int id) {
+    _id = id;
 }
 
 void UsuarioActivo::setRol(int rol) {
     _rol = rol;
 }
 
-std::string UsuarioActivo::getAlias() {
-    return _alias;
+int UsuarioActivo::getId() {
+    return _id;
 }
 
 int UsuarioActivo::getRol() {
@@ -40,9 +40,9 @@ bool UsuarioActivo::crearArchivo(UsuarioActivo usuarioActivo) {
     return escribio;
 }
 
-std::string UsuarioActivo::getAliasUsuarioActivo() {
+int UsuarioActivo::getIdUsuarioActivo() {
     UsuarioActivo usuarioActivo;
-    std::string alias;
+    int id;
 
     FILE* p;
 
@@ -54,11 +54,11 @@ std::string UsuarioActivo::getAliasUsuarioActivo() {
 
     fread(&usuarioActivo, sizeof(UsuarioActivo), 1, p);
 
-    alias = usuarioActivo.getAlias();
+    id = usuarioActivo.getId();
 
     fclose(p);
 
-    return alias;
+    return id;
 }
 
 int UsuarioActivo::getRolUsuarioActivo() {

@@ -16,6 +16,7 @@ public:
     UsuarioArchivo(std::string nombre);
 
     // Interfaces
+    int buscar(int id);
     int buscar(std::string nroDocumento);
     int buscar(int tipoDocumento, std::string nroDocumento);
     //int buscar(std::string alias);

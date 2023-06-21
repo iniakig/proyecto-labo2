@@ -49,7 +49,6 @@
 		<Unit filename="include/MarcaManager.h" />
 		<Unit filename="include/MarcaMenu.h" />
 		<Unit filename="include/Pantalla.h" />
-		<Unit filename="include/PerfilEmpresa.h" />
 		<Unit filename="include/Permiso.h" />
 		<Unit filename="include/Persona.h" />
 		<Unit filename="include/PieDePagina.h" />
@@ -83,7 +82,6 @@
 		<Unit filename="src/MarcaManager.cpp" />
 		<Unit filename="src/MarcaMenu.cpp" />
 		<Unit filename="src/Pantalla.cpp" />
-		<Unit filename="src/PerfilEmpresa.cpp" />
 		<Unit filename="src/Permiso.cpp" />
 		<Unit filename="src/Persona.cpp" />
 		<Unit filename="src/PieDePagina.cpp" />

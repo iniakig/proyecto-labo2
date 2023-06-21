@@ -1,7 +1,8 @@
 #include "Persona.h"
 
 // Constructores
-Persona::Persona(int tipoDocumento, const char* nroDocumento, const char* nombre, const char* apellido, const char* razonSocial, const char* email, bool estado, Fecha fechaRegistro) {
+Persona::Persona(int id, int tipoDocumento, const char* nroDocumento, const char* nombre, const char* apellido, const char* razonSocial, const char* email, bool estado, Fecha fechaRegistro) {
+    setId(id);
     setTipoDocumento(tipoDocumento);
     setNroDocumento(nroDocumento);
     setNombre(nombre);
@@ -24,6 +25,9 @@ void Persona::Mostrar() {
 }
 
 // Setters
+void Persona::setId(int id) {
+    _id = id;
+}
 
 void Persona::setTipoDocumento(int tipoDocumento) {
     _tipoDocumento = tipoDocumento;
@@ -58,6 +62,10 @@ void Persona::setFechaRegistro(Fecha fechaRegistro) {
 }
 
 // Getters
+int Persona::getId() {
+    return _id;
+}
+
 int Persona::getTipoDocumento() {
     return _tipoDocumento;
 }

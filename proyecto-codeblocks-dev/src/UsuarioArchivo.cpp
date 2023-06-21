@@ -11,6 +11,29 @@ UsuarioArchivo::UsuarioArchivo(std::string nombre)
 }
 
 // Interfaces
+int UsuarioArchivo::buscar(int id) {
+    Usuario usuario;
+    int posicion = -1;
+    int cantidadDeUsuarios = getCantidadDeUsuarios();
+
+    FILE* p;
+
+    p = fopen(_nombre.c_str(), "rb");
+
+    if (p == nullptr) {
+        return false;
+    }
+
+    for (int i = 0; i < cantidadDeUsuarios; i++) {
+        usuario = leer(i);
+        if (usuario.getId() == id) {
+            posicion = i;
+        }
+    }
+
+    return posicion;
+}
+
 int UsuarioArchivo::buscar(std::string nroDocumento) {
     Usuario usuario;
     int posicion = -1;

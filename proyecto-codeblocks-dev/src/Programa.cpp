@@ -20,6 +20,7 @@ void Programa::login() {
     rlutil::cls();
     std::string usuario;
     std::string contrasenia;
+    int id;
     int rol;
     int limiteIntentos = 3;
     int contadorIntentos = 0;
@@ -100,6 +101,7 @@ void Programa::login() {
             usuarioReg = usuarioArchivoReg.leer(i);
             if (strcmp(usuarioReg.getAlias(), usuario.c_str()) == 0 && strcmp(usuarioReg.getContrasenia(), contrasenia.c_str()) == 0) {
                 acceso = true;
+                id = usuarioReg.getId();
                 rol = usuarioReg.getRol(); // Le asigno a la variable rol el rol del usuario encontrado
             }
         }
@@ -110,7 +112,7 @@ void Programa::login() {
     }
 
     if (acceso == true) {
-        _usuarioActivo.setAlias(usuario); // Seteo en usuarioActivo el alias del usuario logueado
+        _usuarioActivo.setId(id); // Seteo en usuarioActivo el id del usuario logueado
         _usuarioActivo.setRol(rol); // Seteo en usaurioActivo el rol del usuario logueado
         _usuarioActivo.crearArchivo(_usuarioActivo);
     }
@@ -125,12 +127,21 @@ void Programa::login() {
 }
 
 void Programa::ejecutar() {
+    UsuarioArchivo usuarioArchivo;
+    Usuario usuario;
+    int posicion;
+
+    posicion = usuarioArchivo.buscar(_usuarioActivo.getIdUsuarioActivo());
+    usuario = usuarioArchivo.leer(posicion);
+
+    std::string aliasUsuarioActivo(usuario.getAlias());
+
     int opcion = -1;
 
     do {
         rlutil::cls();
         rlutil::setColor(rlutil::LIGHTGREEN);
-        std::cout << "USUARIO ACTIVO: " << _usuarioActivo.getAliasUsuarioActivo() << std::endl;
+        std::cout << "USUARIO ACTIVO: " << aliasUsuarioActivo << std::endl;
         rlutil::setColor(rlutil::WHITE);
         std::cout << "--------------------------------------------" << std::endl;
         std::cout << "MENÚ PRINCIPAL" << std::endl;
