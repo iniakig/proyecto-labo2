@@ -18,6 +18,112 @@ bool VentaManager::restaurarStock(const int* vecProductos, const int* vecUnidade
     }
 }
 
+int VentaManager::cargarProductos(int* vecProductos, int* vecUnidades)
+{
+    int cantidadProductos;
+    for(int i = 0; i<10; i++)
+    {
+        ProductoArchivo arProducto;
+        Producto producto;
+        bool productoValido = false;
+        do
+        {
+            bool existeProducto = false;
+            do
+            {
+                std::cout<<"INGRESE EL ID DEL PRODUCTO"<<std::endl;
+                int id;
+                cin>>id;
+                cin.ignore();
+                if(arProducto.buscar(id)>= 0)
+                {
+                    producto = arProducto.leer(arProducto.buscar(id));
+                    if(producto.getActivo())
+                    {
+                        vecProductos[i] = id;
+                        existeProducto = true;
+                    }
+                    else
+                    {
+                        std::cout<<"EL PRODUCTO INGRESADO ESTA DADO DE BAJA:"<<std::endl;
+                    }
+                }
+                else
+                {
+                    cout<<"NO EXISTE UN PRODUCTO BAJO ESE ID, INGRESELO NUEVAMENTE"<<endl;
+                }
+            }
+            while(!existeProducto);
+            std::cout<<"INGRESE UNIDADES DEL PRODUCTO"<<std::endl;
+            int unidades;
+            unidades = ingresoStockConValidacion();
+            ProductoManager productoManager;
+            if(productoManager.RestarStock(producto.getID(), unidades))
+            {
+                vecUnidades[i] = unidades;
+                std::cout<<"QUIERE AGREGAR OTRO PRODUCTO? (SI | NO): "<<std::endl;
+                std::string decision = ingresoDeDecisionConValidacion();
+
+                if (decision == "NO")
+                {
+                    cantidadProductos = i+1;
+                    i = 9;
+                }
+                productoValido = true;
+            }
+        }
+        while(!productoValido);
+    }
+    return cantidadProductos;
+}
+
+std::string VentaManager::validarCliente(){
+    std::string nroDocCliente;
+    ClienteArchivo arClientes;
+    bool clienteValido = false;
+    do // REVISAR CON NAHUE LAS BUSQUEDAS DE CLIENTE -- PENDIENTE ESTA VALIDACION
+    {
+        std::cout<<"INGRESE NUMERO DE DOCUMENTO O CUIT DEL CLIENTE"<<std::endl;
+        nroDocCliente = ingresoDeDocumentoConValidacion();
+        if(arClientes.buscar(nroDocCliente)>= 0)
+        {
+            Cliente clienteAux;
+            clienteAux = arClientes.leer(arClientes.buscar(nroDocCliente));
+            if(clienteAux.getEstado())
+            {
+                std::cout<<"CLIENTE REGISTRADO EN LA BASE DE DATOS:"<<std::endl;
+                clienteAux.Mostrar();
+                std::cout<<"CONTINUAR? (SI | NO): ";
+                std::string decision = ingresoDeDecisionConValidacion();
+                if (decision == "SI")
+                {
+                    clienteValido = true;
+                }
+            }
+            else
+            {
+                ClienteManager clienteManager;
+                std::cout<<"EL CLIENTE ESTA REGISTRADO PERO DADO DE BAJA:"<<std::endl;
+                if(clienteManager.reactivar(nroDocCliente))
+                {
+                    clienteValido = true;
+                }
+            }
+        }
+        else
+        {
+            ClienteManager clienteManager;
+            if(clienteManager.cargar(nroDocCliente))
+            {
+                clienteValido = true;
+            }
+
+        } // AGREGAR VALIDACION POR SI NO SE CARGO CORRECTAMENTE
+    }
+    while(!clienteValido);
+    return nroDocCliente;
+}
+
 void VentaManager::Listar(Venta venta) // MOSTRAR OK, AGREGAR TEMA DE BUSCAR ID PRODUCTO PARA QUE SALGA NOMBRE
 {
 
@@ -61,7 +167,6 @@ void VentaManager::ListarTodas()
 
 void VentaManager::Cargar()
 {
-    ClienteArchivo arClientes;
     int idPedido = GenerarId();
     std::string nroDocCliente;
     Fecha fechaCompra;
@@ -73,109 +178,26 @@ void VentaManager::Cargar()
     std::string aliasVendedor;
     bool activo = true;
 
-    bool clienteValido = false;
-    do // REVISAR CON NAHUE LAS BUSQUEDAS DE CLIENTE -- PENDIENTE ESTA VALIDACION
-    {
-        std::cout<<"INGRESE NUMERO DE DOCUMENTO O CUIT DEL CLIENTE"<<std::endl;
-        nroDocCliente = ingresoDeDocumentoConValidacion();
-        if(arClientes.buscar(nroDocCliente)>= 0)
-        {
-            Cliente clienteAux;
-            clienteAux = arClientes.leer(arClientes.buscar(nroDocCliente));
-            if(clienteAux.getEstado())
-            {
-                std::cout<<"CLIENTE REGISTRADO EN LA BASE DE DATOS:"<<std::endl;
-                clienteAux.Mostrar();
-                std::cout<<"CONTINUAR? (SI | NO): ";
-                std::string decision = ingresoDeDecisionConValidacion();
-                if (decision == "SI")
-                {
-                    clienteValido = true;
-                }
-            }
-            else
-            {
-                ClienteManager clienteManager;
-                std::cout<<"EL CLIENTE ESTA REGISTRADO PERO DADO DE BAJA:"<<std::endl;
-                if(clienteManager.reactivar(nroDocCliente))
-                {
-                    clienteValido = true;
-                }
-            }
-        }
-        else
-        {
-            ClienteManager clienteManager;
-            if(clienteManager.cargar(nroDocCliente))
-            {
-                clienteValido = true;
-            }
-
-        } // AGREGAR VALIDACION POR SI NO SE CARGO CORRECTAMENTE
-    }
-    while(!clienteValido);
+    nroDocCliente = validarCliente();
     fechaCompra = Fecha().fechaActual();
-    for(int i = 0; i<10; i++)
-    {
-        ProductoArchivo arProducto;
-        Producto producto;
-        bool productoValido = false;
-        do
-        {
-            bool existeProducto = false;
-            do
-            {
-                std::cout<<"INGRESE EL ID DEL PRODUCTO"<<std::endl;
-                int id;
-                cin>>id;
-                cin.ignore();
-                if(arProducto.buscar(id)>= 0)
-                {
-                    producto = arProducto.leer(arProducto.buscar(id));
-                    if(producto.getActivo())
-                    {
-                        vecIdProducto[i] = id;
-                        existeProducto = true;
-                    }
-                    else
-                    {
-                        std::cout<<"EL PRODUCTO INGRESADO ESTA DADO DE BAJA:"<<std::endl;
-                    }
-                }
-                else
-                {
-                    cout<<"NO EXISTE UN PRODUCTO BAJO ESE ID, INGRESELO NUEVAMENTE"<<endl;
-                }
-            }
-            while(!existeProducto);
-            std::cout<<"INGRESE UNIDADES DEL PRODUCTO"<<std::endl;
-            int unidades;
-            unidades = ingresoStockConValidacion();
-            ProductoManager productoManager;
-            if(productoManager.RestarStock(producto.getID(), unidades))
-            {
-                vecUnidadesxProducto[i] = unidades;
-                float montoProductos = producto.getPrecio() * unidades; // REFACTORIZAR
-                montoCompra += montoProductos;
-                std::cout<<"QUIERE AGREGAR OTRO PRODUCTO? (SI | NO): "<<std::endl;
-                std::string decision = ingresoDeDecisionConValidacion();
 
-                if (decision == "NO")
-                {
-                    cantidadProductos = i+1;
-                    i = 9;
-                }
-                productoValido = true;
-            }
-        }
-        while(!productoValido);
-    }
+    cantidadProductos = cargarProductos(vecIdProducto, vecUnidadesxProducto);
 
     std::cout<<"INGRESE EL METODO DE PAGO: "<<std::endl;
     cin>>metodoPago;
     std::cout<<"ALIAS VENDEDOR: "<<std::endl; // VER CON NAHUE TEMA USUARIO ACTIVO. HARDCODEADO PARA AVANZAR
     getline(cin, aliasVendedor);
 
+    for(int i = 0; i<cantidadProductos; i++){
+        ProductoArchivo arProducto;
+        int posicion = arProducto.buscar(vecIdProducto[i]);
+        Producto producto;
+
+        producto = arProducto.leer(posicion);
+
+        float monto = producto.getPrecio() * vecUnidadesxProducto[i];
+        montoCompra += monto;
+    }
     Venta reg(idPedido, nroDocCliente, fechaCompra, vecIdProducto, vecUnidadesxProducto, cantidadProductos, montoCompra, metodoPago, aliasVendedor, activo);
     std::cout<<"HA CARGADO LA SIGUIENTE VENTA: "<<std::endl;
     Listar(reg);
