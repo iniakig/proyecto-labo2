@@ -2,6 +2,8 @@
 #include "MarcaManager.h"
 #include "../funciones.h"
 #include <../rlutil.h>
+#include "../mensajes.h"
+#include "../validaciones.h"
 
 using namespace std;
 

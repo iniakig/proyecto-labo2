@@ -1,5 +1,9 @@
 #include<iostream>
 #include <cstdio>
+
+#include "../mensajes.h"
+#include "../validaciones.h"
+
 using namespace std;
 
 #include "VentaManager.h"

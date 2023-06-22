@@ -1,8 +1,10 @@
 #include "ClienteManager.h"
 #include "Cliente.h"
 
+#include "../rlutil.h"
 #include "../funciones.h"
-#include <../rlutil.h>
+#include "../mensajes.h"
+#include "../validaciones.h"
 
 #include <iostream>
 #include <iomanip>
@@ -66,7 +68,7 @@ void ClienteManager::cargar()
         localidad = ingresoDeLocalidadConValidacion();
         std::cout << "Seleccionar provincia: " << std::endl;
         std::cout << std::endl;
-        listarProvincias();
+        clienteBuscado.listarProvincias(); // Reutilizo el objeto clienteBuscado para listar las provincias
         std::cout << std::endl;
         std::cout << "Nro de provincia: ";
         provincia = ingresoDeProvinciaConValidacion();
@@ -144,7 +146,8 @@ bool ClienteManager::cargar(std::string nroDocumento)
     localidad = ingresoDeLocalidadConValidacion();
     std::cout << "Seleccionar provincia: " << std::endl;
     std::cout << std::endl;
-    listarProvincias();
+    Cliente aux;
+    aux.listarProvincias();
     std::cout << std::endl;
     std::cout << "Nro de provincia: ";
     provincia = ingresoDeProvinciaConValidacion();
@@ -451,7 +454,7 @@ void ClienteManager::modificar()
                     localidad = ingresoDeLocalidadConValidacion();
                     std::cout << "Seleccionar provincia: " << std::endl;
                     std::cout << std::endl;
-                    listarProvincias();
+                    cliente.listarProvincias();
                     std::cout << std::endl;
                     std::cout << "Nro de provincia: ";
                     provincia = ingresoDeProvinciaConValidacion();

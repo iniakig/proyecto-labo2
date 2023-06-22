@@ -42,6 +42,8 @@
 		<Unit filename="include/ClienteManager.h" />
 		<Unit filename="include/ClienteMenu.h" />
 		<Unit filename="include/ConfiguracionMenu.h" />
+		<Unit filename="include/Empresa.h" />
+		<Unit filename="include/EmpresaArchivo.h" />
 		<Unit filename="include/Encabezado.h" />
 		<Unit filename="include/Fecha.h" />
 		<Unit filename="include/Marca.h" />
@@ -49,7 +51,6 @@
 		<Unit filename="include/MarcaManager.h" />
 		<Unit filename="include/MarcaMenu.h" />
 		<Unit filename="include/Pantalla.h" />
-		<Unit filename="include/PerfilEmpresa.h" />
 		<Unit filename="include/Permiso.h" />
 		<Unit filename="include/Persona.h" />
 		<Unit filename="include/PieDePagina.h" />
@@ -68,6 +69,8 @@
 		<Unit filename="include/VentaManager.h" />
 		<Unit filename="include/VentaMenu.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="mensajes.cpp" />
+		<Unit filename="mensajes.h" />
 		<Unit filename="rlutil.h">
 			<Option virtualFolder="include/" />
 		</Unit>
@@ -76,6 +79,8 @@
 		<Unit filename="src/ClienteManager.cpp" />
 		<Unit filename="src/ClienteMenu.cpp" />
 		<Unit filename="src/ConfiguracionMenu.cpp" />
+		<Unit filename="src/Empresa.cpp" />
+		<Unit filename="src/EmpresaArchivo.cpp" />
 		<Unit filename="src/Encabezado.cpp" />
 		<Unit filename="src/Fecha.cpp" />
 		<Unit filename="src/Marca.cpp" />
@@ -83,7 +88,6 @@
 		<Unit filename="src/MarcaManager.cpp" />
 		<Unit filename="src/MarcaMenu.cpp" />
 		<Unit filename="src/Pantalla.cpp" />
-		<Unit filename="src/PerfilEmpresa.cpp" />
 		<Unit filename="src/Permiso.cpp" />
 		<Unit filename="src/Persona.cpp" />
 		<Unit filename="src/PieDePagina.cpp" />
@@ -101,6 +105,8 @@
 		<Unit filename="src/VentaArchivo.cpp" />
 		<Unit filename="src/VentaManager.cpp" />
 		<Unit filename="src/VentaMenu.cpp" />
+		<Unit filename="validaciones.cpp" />
+		<Unit filename="validaciones.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

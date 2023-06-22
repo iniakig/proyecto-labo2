@@ -6,19 +6,19 @@
 class UsuarioActivo
 {
     private:
-        char _alias[15];
+        int _id;
         int _rol;
 
-        std::string getAlias();
+        int getId();
         int getRol();
 
     public:
         UsuarioActivo();
 
-        void setAlias(std::string alias);
+        void setId(int id);
         void setRol(int rol);
         bool crearArchivo(UsuarioActivo usuarioActivo);
-        std::string getAliasUsuarioActivo(); // Estos getters traen directamente del archivo
+        int getIdUsuarioActivo(); // Estos getters traen directamente del archivo
         int getRolUsuarioActivo(); // Estos getters traen directamente del archivo
 };
 

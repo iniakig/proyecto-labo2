@@ -5,7 +5,8 @@
 
 class Persona {
 private:
-    int _tipoDocumento; // Puede ser: ( 1. DNI | 2. CUIL | 3. CUIT )
+    int _id; // nuevo
+    int _tipoDocumento; // Puede ser: ( 1. DNI | 2. CUIT )
     char _nroDocumento[12];
     char _nombre[20];
     char _apellido[15];
@@ -16,12 +17,14 @@ private:
 
 public:
     // Constructores
-    Persona(int tipoDocumento = 0, const char* nroDocumento = "null", const char* nombre = "null", const char* apellido = "null", const char* razonSocial = "null", const char* email = "null", bool estado = "false", Fecha fechaRegistro = Fecha());
+    Persona(int id = -1, int tipoDocumento = 0, const char* nroDocumento = "null", const char* nombre = "null", const char* apellido = "null", const char* razonSocial = "null", const char* email = "null", bool estado = "false", Fecha fechaRegistro = Fecha());
 
     // Interfaces
     void Mostrar();
+    void listarProvincias();
 
     // Setters
+    void setId(int Id);
     void setTipoDocumento(int tipoDocumento);
     void setNroDocumento(const char* nroDocumento);
     void setNombre(const char* nombre);
@@ -32,6 +35,7 @@ public:
     void setFechaRegistro(Fecha fechaRegistro);
 
     // Getters
+    int getId();
     int getTipoDocumento();
     std::string getTipoDocumentoDescripcion();
     const char* getNroDocumento();

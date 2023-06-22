@@ -16,6 +16,7 @@ public:
     UsuarioArchivo(std::string nombre);
 
     // Interfaces
+    int buscar(int id);
     int buscar(std::string nroDocumento);
     int buscar(int tipoDocumento, std::string nroDocumento);
     //int buscar(std::string alias);
@@ -24,7 +25,6 @@ public:
     Usuario leer(int posicion);
     Usuario leer(Usuario* listadoDeUsuarios, int cantidadDeRegistros);
     bool modificar(Usuario reg, int posicion);
-    bool darDeBaja (Usuario reg, int posicion);
 
     // Setters
     void setNombre(std::string nombre);

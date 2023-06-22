@@ -11,7 +11,7 @@ class Usuario: public Persona {
 
     public:
         // Constructores
-        Usuario(int tipoDocumento = 0, const char* nroDocumento = "null", const char* nombre = "null", const char* apellido = "null", const char* email = "null", bool estado = false, Fecha fechaRegistro = Fecha(), const char* alias = "null", const char* contrasenia = "null", int rol = -1);
+        Usuario(int id = -1, int tipoDocumento = 0, const char* nroDocumento = "null", const char* nombre = "null", const char* apellido = "null", const char* email = "null", bool estado = false, Fecha fechaRegistro = Fecha(), const char* alias = "null", const char* contrasenia = "null", int rol = -1);
 
         // Interfaces
 

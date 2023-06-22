@@ -1,5 +1,18 @@
 #include "UsuarioManager.h"
 
+#include <iostream>
+#include <iomanip>
+#include <../rlutil.h>
+#include "../funciones.h"
+#include "../validaciones.h"
+#include "../mensajes.h"
+
+#include "Usuario.h"
+
+int UsuarioManager::generarId() {
+   return _archivo.getCantidadDeUsuarios() + 1;
+}
+
 void UsuarioManager::listar(Usuario usuario, int tipoListado) {
 
     // Tipos de listado
@@ -9,6 +22,7 @@ void UsuarioManager::listar(Usuario usuario, int tipoListado) {
 
     switch (tipoListado) {
     case 0:
+        std::cout << "Id: " << usuario.getId() << std::endl;
         std::cout << "Tipo de documento: " << usuario.getTipoDocumentoDescripcion() << std::endl;
         std::cout << "Nro de documento: " << usuario.getNroDocumento() << std::endl;
         std::cout << "Alias: " << usuario.getAlias() << std::endl;
@@ -20,6 +34,7 @@ void UsuarioManager::listar(Usuario usuario, int tipoListado) {
         break;
     case 1:
         std::cout << std::left;
+        std::cout << std::setw(6) << usuario.getId();
         std::cout << std::setw(7) << usuario.getTipoDocumentoDescripcion();
         std::cout << std::setw(15) << usuario.getNroDocumento();
         std::cout << std::setw(18) << usuario.getAlias();
@@ -77,6 +92,11 @@ void UsuarioManager::listarPorDNI() {
 }
 
 void UsuarioManager::listarActivos() {
+    rlutil::cls();
+    std::cout << "USUARIOS ACTIVOS" << std::endl;
+    std::cout << "---------------------------------------------------------------------------------" << std::endl;
+    std::cout << std::endl;
+
     int cantidadDeRegistros = _archivo.getCantidadDeUsuarios();
     Usuario *listaDeUsuarios = new Usuario[cantidadDeRegistros];
     int resultadosEncontrados = 0;
@@ -87,8 +107,6 @@ void UsuarioManager::listarActivos() {
     }
 
     _archivo.leer(listaDeUsuarios, cantidadDeRegistros);
-    // ordenarPorFecha(listaDeUsuarios, cantidadDeRegistros);
-    ordenarPorAlias(listaDeUsuarios, cantidadDeRegistros);
 
     for (int i = 0; i < cantidadDeRegistros; i++) {
         if (listaDeUsuarios[i].getEstado()) {
@@ -97,19 +115,95 @@ void UsuarioManager::listarActivos() {
     }
 
     if (resultadosEncontrados > 0) {
+        std::cout << "El listado se listará por defecto ordenado por Alias de la A a la Z" << std::endl;
+        std::cout << "¿Desea cambiar el ordenamiento a por fecha de forma descendente? (SI | NO): ";
+        std::string decision = ingresoDeDecisionConValidacion();
+        std::cout << std::endl;
+
+        if (decision == "SI") {
+            ordenarPorFecha(listaDeUsuarios, cantidadDeRegistros);
+        }
+        else {
+            ordenarPorAlias(listaDeUsuarios, cantidadDeRegistros);
+        }
+
         std::cout << "Registros encontrados: " << resultadosEncontrados << std::endl;
         std::cout << std::endl;
         std::cout << std::left;
+        std::cout << std::setw(6) << "Id";
         std::cout << std::setw(7) << "Tipo";
         std::cout << std::setw(15) << "N. Documento";
         std::cout << std::setw(18) << "Alias";
         std::cout << std::setw(16) << "Rol";
         std::cout << std::setw(13) << "F. Registro";
         std::cout << std::endl;
-        std::cout << "-------------------------------------------------------------------" << std::endl;
+        std::cout << "-------------------------------------------------------------------------" << std::endl;
 
         for (int i = 0; i < cantidadDeRegistros; i++) {
             if (listaDeUsuarios[i].getEstado()) {
+                listar(listaDeUsuarios[i], 1);
+                std::cout << std::endl;
+            }
+        }
+    }
+    else {
+        mensajeListadoSinDatosEncontrados();
+    }
+
+    delete[] listaDeUsuarios;
+}
+
+void UsuarioManager::listarInactivos() {
+    rlutil::cls();
+    std::cout << "USUARIOS INACTIVOS" << std::endl;
+    std::cout << "---------------------------------------------------------------------------------" << std::endl;
+    std::cout << std::endl;
+
+    int cantidadDeRegistros = _archivo.getCantidadDeUsuarios();
+    Usuario *listaDeUsuarios = new Usuario[cantidadDeRegistros];
+    int resultadosEncontrados = 0;
+
+    if (listaDeUsuarios == nullptr) {
+        std::cout << "Ocurrió un error al visualizar el listado" << std::endl;
+        return;
+    }
+
+    _archivo.leer(listaDeUsuarios, cantidadDeRegistros);
+
+
+    for (int i = 0; i < cantidadDeRegistros; i++) {
+        if (!listaDeUsuarios[i].getEstado()) {
+            resultadosEncontrados++;
+        }
+    }
+
+    if (resultadosEncontrados > 0) {
+        std::cout << "El listado se listará por defecto ordenado por Alias de la A a la Z" << std::endl;
+        std::cout << "¿Desea cambiar el ordenamiento a por fecha de forma descendente? (SI | NO): ";
+        std::string decision = ingresoDeDecisionConValidacion();
+        std::cout << std::endl;
+
+        if (decision == "SI") {
+            ordenarPorFecha(listaDeUsuarios, cantidadDeRegistros);
+        }
+        else {
+            ordenarPorAlias(listaDeUsuarios, cantidadDeRegistros);
+        }
+
+        std::cout << "Registros encontrados: " << resultadosEncontrados << std::endl;
+        std::cout << std::endl;
+        std::cout << std::left;
+        std::cout << std::setw(6) << "Id";
+        std::cout << std::setw(7) << "Tipo";
+        std::cout << std::setw(15) << "N. Documento";
+        std::cout << std::setw(18) << "Alias";
+        std::cout << std::setw(16) << "Rol";
+        std::cout << std::setw(13) << "F. Registro";
+        std::cout << std::endl;
+        std::cout << "-------------------------------------------------------------------------" << std::endl;
+
+        for (int i = 0; i < cantidadDeRegistros; i++) {
+            if (!listaDeUsuarios[i].getEstado()) {
                 listar(listaDeUsuarios[i], 1);
                 std::cout << std::endl;
             }
@@ -164,6 +258,7 @@ void UsuarioManager::listarActivos() {
 }
 */
 
+/*
 void UsuarioManager::listarInactivos() {
     // rlutil::cls();
     Usuario usuario;
@@ -203,6 +298,7 @@ void UsuarioManager::listarInactivos() {
     std::cout << std::endl;
     rlutil::anykey();
 }
+*/
 
 void UsuarioManager::ordenarPorFecha(Usuario *listaDeUsuarios, int cantidadDeRegistros) {
     Usuario usuarioAux;
@@ -245,6 +341,7 @@ void UsuarioManager::ordenarPorAlias(Usuario *listaDeUsuarios, int cantidadDeReg
 }
 
 void UsuarioManager::cargar() {
+    int id;
     int tipoDocumento;
     std::string nroDocumento;
     std::string nombre;
@@ -258,6 +355,7 @@ void UsuarioManager::cargar() {
 
     tipoDocumento = 1;
 
+    id = generarId();
     std::cout << "Nro de DNI: ";
     nroDocumento = ingresoDeDocumentoConValidacion();
     std::cout << "Nombre: ";
@@ -278,7 +376,7 @@ void UsuarioManager::cargar() {
     rol = ingresoDeRolConValidacion();
 
 
-    Usuario usuario(tipoDocumento, nroDocumento.c_str(), nombre.c_str(), apellido.c_str(), email.c_str(), estado, fechaRegistro, alias.c_str(), contrasenia.c_str(), rol);
+    Usuario usuario(id,tipoDocumento, nroDocumento.c_str(), nombre.c_str(), apellido.c_str(), email.c_str(), estado, fechaRegistro, alias.c_str(), contrasenia.c_str(), rol);
 
     if (_archivo.crear(usuario)) {
         std::cout << std::endl;
@@ -611,10 +709,12 @@ void UsuarioManager::listarUsuarios() {
         case 1:
             std::cout << std::endl;
             listarPorAlias();
+            rlutil::anykey();
             break;
         case 2:
             std::cout << std::endl;
             listarPorDNI();
+            rlutil::anykey();
             break;
         case 3:
             std::cout << std::endl;
@@ -624,6 +724,7 @@ void UsuarioManager::listarUsuarios() {
         case 4:
             std::cout << std::endl;
             listarInactivos();
+            rlutil::anykey();
             break;
         case 5:
 

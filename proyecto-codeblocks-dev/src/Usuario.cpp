@@ -1,7 +1,8 @@
 #include "Usuario.h"
 
 // Constructores
-Usuario::Usuario(int tipoDocumento, const char* nroDocumento, const char* nombre, const char* apellido, const char* email, bool estado, Fecha fechaRegistro, const char* alias, const char* contrasenia, int rol) {
+Usuario::Usuario(int id, int tipoDocumento, const char* nroDocumento, const char* nombre, const char* apellido, const char* email, bool estado, Fecha fechaRegistro, const char* alias, const char* contrasenia, int rol) {
+    setId(id);
     setTipoDocumento(tipoDocumento);
     setNroDocumento(nroDocumento);
     setNombre(nombre);
