@@ -20,13 +20,13 @@ class Venta
         int _cantidadProductos;
         float _montoCompra;
         int _metodoPago;
-        char _aliasVendedor[15];
+        int _idVendedor;
         bool _activo;
 
     public:
         // CONSTRUCTORES
         Venta();
-        Venta(int idPedido, std::string nroDocCliente, const Fecha& fechaCompra, const int vecIdProducto[], const int vecUnidadesxProducto[], int cantidadProductos, float montoCompra, int metodoPago, std::string aliasVendedor, bool activo);
+        Venta(int idPedido, std::string nroDocCliente, const Fecha& fechaCompra, const int vecIdProducto[], const int vecUnidadesxProducto[], int cantidadProductos, float montoCompra, int metodoPago, int idVendedor, bool activo);
 
         //GETTERS
         int getIdPedido();
@@ -37,7 +37,7 @@ class Venta
         int getCantidadProductos();
         float getMontoCompra();
         int getMetodoPago();
-        std::string getAliasVendedor();
+        int getIdVendedor();
         bool getActivo();
 
         // SETTERS
@@ -46,9 +46,10 @@ class Venta
         void setFechaCompra(Fecha fechaCompra);
         void setVecIdProducto(const int* vecIdProducto);
         void setVecUnidadesxProducto(const int* vecUnidadesxProducto);
+        void setCantidadProductos(int cantidad);
         void setMontoCompra(float montoCompra);
         void setMetodoPago(int metodoPago);
-        void setAliasVendedor(std::string aliasVendedor);
+        void setIdVendedor(int idVendedor);
         void setActivo(bool activo);
 };
 

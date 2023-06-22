@@ -12,13 +12,13 @@ Venta::Venta()
     _vecUnidadesxProducto[10] = {};
     _montoCompra = 0;
     _metodoPago = 0;
-    strcpy(_aliasVendedor, "NULL");
+    _idVendedor = 0;
     _activo = false;
 }
 
 //CONSTRUCTOR POR PARAMETROS
 
-Venta::Venta(int idPedido, std::string nroDocCliente, const Fecha& fechaCompra, const int vecIdProducto[], const int vecUnidadesxProducto[], int cantidadProductos, float montoCompra, int metodoPago, std::string aliasVendedor, bool activo)
+Venta::Venta(int idPedido, std::string nroDocCliente, const Fecha& fechaCompra, const int vecIdProducto[], const int vecUnidadesxProducto[], int cantidadProductos, float montoCompra, int metodoPago, int idVendedor, bool activo)
 {
 
     _idPedido = idPedido;
@@ -32,7 +32,7 @@ Venta::Venta(int idPedido, std::string nroDocCliente, const Fecha& fechaCompra, 
     _cantidadProductos = cantidadProductos;
     _montoCompra = montoCompra;
     _metodoPago = metodoPago;
-    strcpy(_aliasVendedor, aliasVendedor.c_str());
+    _idVendedor = idVendedor;
     _activo = activo;
 }
 
@@ -70,6 +70,10 @@ void Venta::setVecUnidadesxProducto(const int* vecUnidadesxProducto)
     }
 }
 
+void Venta::setCantidadProductos(int cantidad){
+    _cantidadProductos = cantidad;
+}
+
 void Venta::setMontoCompra(float montoCompra)
 {
     _montoCompra = montoCompra;
@@ -80,9 +84,9 @@ void Venta::setMetodoPago(int metodoPago)
     _metodoPago = metodoPago;
 }
 
-void Venta::setAliasVendedor(std::string aliasVendedor)
+void Venta::setIdVendedor(int idVendedor)
 {
-    strcpy(_aliasVendedor, aliasVendedor.c_str());
+    _idVendedor = idVendedor;
 }
 
 void Venta::setActivo(bool activo)
@@ -133,11 +137,9 @@ int Venta::getMetodoPago()
     return _metodoPago;
 }
 
-std::string Venta::getAliasVendedor()
+int Venta::getIdVendedor()
 {
-    std::string aliasVendedor;
-    aliasVendedor = _aliasVendedor;
-    return aliasVendedor;
+    return _idVendedor;
 }
 
 bool Venta::getActivo()

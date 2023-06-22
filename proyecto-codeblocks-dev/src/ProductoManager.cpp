@@ -428,21 +428,29 @@ void ProductoManager::Eliminar()
     if (posicion >= 0)
     {
         producto = _archivo.leer(posicion);
-        Listar(producto);
-        cout<<"CONFIRMAR? 1--SI // 2--NO: ";
-        int opc;
-        opc = ingresoOpcSimpleConValidacion();
-        if(opc == 1)
+        if(producto.getActivo())
         {
-            producto.setActivo(false);
-            if(_archivo.guardar(producto, posicion))
+            Listar(producto);
+            cout<<"CONTINUAR? (SI | NO): ";
+            std::string opc;
+            opc = ingresoDeDecisionConValidacion();
+            if (opc == "SI")
             {
-                okMensajeReactivacion();
+                producto.setActivo(false);
+                if(_archivo.guardar(producto, posicion))
+                {
+                    okMensajeBaja();
+                }
+                else
+                {
+                    errorMensajeBaja();
+                }
             }
-            else
-            {
-                errorMensajeReactivacion();
-            }
+        }
+        else
+        {
+            cout<<"EL REGISTRO INGRESADO YA SE ENCUENTRA ELIMINADO"<<endl;
+            rlutil::anykey();
         }
     }
     else

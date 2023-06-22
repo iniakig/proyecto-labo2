@@ -8,6 +8,8 @@
 #include "ProductoArchivo.h"
 #include "ProductoManager.h"
 #include "MarcaArchivo.h"
+#include "Usuario.h"
+#include "UsuarioArchivo.h"
 
 #include "../funciones.h"
 #include <../rlutil.h>

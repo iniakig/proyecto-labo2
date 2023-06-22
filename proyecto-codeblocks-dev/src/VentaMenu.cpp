@@ -4,6 +4,7 @@
 
 void VentaMenu::Mostrar()
 {
+
     int opcion;
     do
     {
@@ -27,19 +28,19 @@ void VentaMenu::Mostrar()
         case 0:
             break;
         case 1:
-                _manager.Cargar();
+            _manager.Cargar();
             break;
         case 2:
-                std::cout<<"ACA SE EDITARAN LAS VENTAS"<<std::endl;
+            _manager.Editar();
             break;
         case 3:
-                _manager.Eliminar();
+            _manager.Eliminar();
             break;
         case 4:
-                _manager.Reactivar();
+            _manager.Reactivar();
             break;
         case 5:
-                _manager.ListarTodas();
+            _manager.ListarTodas();
             break;
         default:
             std::cout << "La opción seleccionada es invalida. Ingrese nuevamente." << std::endl;

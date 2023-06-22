@@ -1,6 +1,6 @@
 #include "EmpresaArchivo.h"
 
-EmpresaArchivo::EmpresaArchivo()
+/*EmpresaArchivo::EmpresaArchivo()
 {
     setNombre("perfilEmpresa.dat");
 }
@@ -9,7 +9,7 @@ EmpresaArchivo::EmpresaArchivo(std::string nombre) {
     setNombre(nombre.c_str());
 }
 
-bool crear(Empresa empresa) {
+bool EmpresaArchivo::crear(Empresa empresa) {
     FILE* p;
 
     p = fopen(_nombre.c_str(), "wb");
@@ -19,4 +19,5 @@ bool crear(Empresa empresa) {
     }
 
     bool escribio = fwrite(); // Falta terminar
-}
+}*/
+
