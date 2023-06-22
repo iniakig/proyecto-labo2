@@ -25,7 +25,6 @@ public:
     Usuario leer(int posicion);
     Usuario leer(Usuario* listadoDeUsuarios, int cantidadDeRegistros);
     bool modificar(Usuario reg, int posicion);
-    bool darDeBaja (Usuario reg, int posicion);
 
     // Setters
     void setNombre(std::string nombre);

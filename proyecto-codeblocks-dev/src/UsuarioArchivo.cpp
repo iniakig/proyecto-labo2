@@ -21,7 +21,7 @@ int UsuarioArchivo::buscar(int id) {
     p = fopen(_nombre.c_str(), "rb");
 
     if (p == nullptr) {
-        return false;
+        return -1;
     }
 
     for (int i = 0; i < cantidadDeUsuarios; i++) {

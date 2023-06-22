@@ -1,7 +1,7 @@
 #include "Empresa.h"
 
-/*
-Empresa::Empresa(int tipoDocumento = 2, const char* nroDocumento, const char* nombre = "null", const char* apellido = "null", const char* razonSocial = "null", const char* email = "null", bool estado = false, Fecha fechaRegistro.Fecha().fechaActual())
+
+Empresa::Empresa(int tipoDocumento, const char* nroDocumento, const char* nombre, const char* apellido, const char* razonSocial, const char* email, bool estado, Fecha fechaRegistro)
 {
     setTipoDocumento(tipoDocumento);
     setNroDocumento(nroDocumento);
@@ -10,8 +10,6 @@ Empresa::Empresa(int tipoDocumento = 2, const char* nroDocumento, const char* no
     setRazonSocial(razonSocial);
     setEmail(email);
     setEstado(estado);
-    setFechaRegistro(fecha);
+    setFechaRegistro(fechaRegistro);
     setEstado(estado);
-
 }
-*/
