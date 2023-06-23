@@ -147,12 +147,15 @@ void VentaManager::Listar(Venta venta) // MOSTRAR OK, AGREGAR TEMA DE BUSCAR ID 
         productoAux = arProducto.leer(arProducto.buscar(vecProductos[i]));
         Marca marcaAux;
         marcaAux = arMarca.leer(arMarca.buscar(productoAux.getIdMarca()));
-        std::cout<<marcaAux.getNombre()<<" "<< productoAux.getModelo()<<std::endl;
+        std::cout<<"ID: "<<vecProductos[i]<<" | "<<marcaAux.getNombre()<<" | "<< productoAux.getModelo()<<std::endl;
         std::cout<<"CANTIDAD: "<<vecUnidades[i]<<std::endl;
     }
     std::cout<<"IMPORTE: $"<<venta.getMontoCompra()<<endl;
     std::cout<<"METODO PAGO: "<<venta.getMetodoPago()<<endl;
-    std::cout<<"VENDEDOR: "<<venta.getIdVendedor()<<endl;
+    UsuarioArchivo arUsuario;
+    Usuario vendedor;
+    vendedor = arUsuario.leer(arUsuario.buscar(2));
+    std::cout<<"VENDEDOR: "<<vendedor.getNombre()<<" "<<vendedor.getApellido()<<endl;
 }
 
 void VentaManager::ListarTodas()
@@ -172,66 +175,78 @@ void VentaManager::ListarTodas()
 
 void VentaManager::Cargar()
 {
-    UsuarioActivo usuario;
-    int idPedido = GenerarId();
-    std::string nroDocCliente;
-    Fecha fechaCompra;
-    int vecIdProducto[10];
-    int vecUnidadesxProducto[10];
-    int cantidadProductos = 0;
-    float montoCompra;
-    int metodoPago;
-    int idVendedor;
-    bool activo = true;
-
-    nroDocCliente = validarCliente();
-    fechaCompra = Fecha().fechaActual();
-
-    cantidadProductos = cargarProductos(vecIdProducto, vecUnidadesxProducto);
-
-    for(int i = 0; i<cantidadProductos; i++)
+    ProductoArchivo arProducto;
+    if(arProducto.getCantidadRegistrosActivos() <= 0)
     {
-        ProductoArchivo arProducto;
-        int posicion = arProducto.buscar(vecIdProducto[i]);
-        Producto producto;
-
-        producto = arProducto.leer(posicion);
-
-        float monto = producto.getPrecio() * vecUnidadesxProducto[i];
-        montoCompra += monto;
+        std::cout << std::endl;
+        rlutil::setColor(rlutil::LIGHTRED);
+        std::cout << "NO ES POSIBLE CARGAR LA VENTA. NO HAY NINGUN PRODUCTO REGISTRADO" << std::endl;
+        rlutil::setColor(rlutil::WHITE);
+        rlutil::anykey();
     }
-
-    idVendedor = usuario.getIdUsuarioActivo();
-    std::cout<<"INGRESE EL METODO DE PAGO: "<<std::endl;
-    cin>>metodoPago;
-    Venta reg(idPedido, nroDocCliente, fechaCompra, vecIdProducto, vecUnidadesxProducto, cantidadProductos, montoCompra, metodoPago, idVendedor, activo);
-    std::cout<<"HA CARGADO LA SIGUIENTE VENTA: "<<std::endl;
-    Listar(reg);
-    std::cout<<"QUIERE GUARDARLA? (SI | NO): "<<std::endl;
-    std::string decision = ingresoDeDecisionConValidacion();
-
-    if (decision == "SI")
+    else
     {
-        if(_archivo.guardar(reg))
+        UsuarioActivo usuario;
+        int idPedido = GenerarId();
+        std::string nroDocCliente;
+        Fecha fechaCompra;
+        int vecIdProducto[10];
+        int vecUnidadesxProducto[10];
+        int cantidadProductos = 0;
+        float montoCompra;
+        int metodoPago;
+        int idVendedor;
+        bool activo = true;
+
+        nroDocCliente = validarCliente();
+        fechaCompra = Fecha().fechaActual();
+
+        cantidadProductos = cargarProductos(vecIdProducto, vecUnidadesxProducto);
+
+        for(int i = 0; i<cantidadProductos; i++)
         {
-            okMensajeCreacion();
-            rlutil::anykey();
+            int posicion = arProducto.buscar(vecIdProducto[i]);
+            Producto producto;
+
+            producto = arProducto.leer(posicion);
+
+            float monto = producto.getPrecio() * vecUnidadesxProducto[i];
+            montoCompra += monto;
+        }
+
+        idVendedor = usuario.getIdUsuarioActivo();
+        std::cout<<"INGRESE EL METODO DE PAGO: "<<std::endl;
+        cin>>metodoPago;
+        cin.ignore();
+        Venta reg(idPedido, nroDocCliente, fechaCompra, vecIdProducto, vecUnidadesxProducto, cantidadProductos, montoCompra, metodoPago, idVendedor, activo);
+        std::cout<<"HA CARGADO LA SIGUIENTE VENTA: "<<std::endl;
+        Listar(reg);
+        std::cout<<"QUIERE GUARDARLA? (SI | NO): "<<std::endl;
+        std::string decision = ingresoDeDecisionConValidacion();
+
+        if (decision == "SI")
+        {
+            if(_archivo.guardar(reg))
+            {
+                okMensajeCreacion();
+                rlutil::anykey();
+            }
+            else
+            {
+                restaurarStock(vecIdProducto, vecUnidadesxProducto, cantidadProductos);
+                errorMensajeCreacion();
+                rlutil::anykey();
+            }
+
         }
         else
         {
             restaurarStock(vecIdProducto, vecUnidadesxProducto, cantidadProductos);
-            errorMensajeCreacion();
-            rlutil::anykey();
         }
-
-    }
-    else
-    {
-        restaurarStock(vecIdProducto, vecUnidadesxProducto, cantidadProductos);
     }
 }
 
-void VentaManager::Eliminar()
+void VentaManager::Anular()
 {
 
     int posicion, idVenta;
@@ -256,6 +271,10 @@ void VentaManager::Eliminar()
                 reg.setActivo(false);
                 if(_archivo.guardar(reg, posicion))
                 {
+                    const int* vecIdProductos = reg.getVecIdProducto();
+                    const int* vecUnidadesXProducto = reg.getVecUnidadesxProducto();
+                    int cantidadProductos = reg.getCantidadProductos();
+                    restaurarStock(vecIdProductos, vecUnidadesXProducto, cantidadProductos);
                     okMensajeBaja();
                     rlutil::anykey();
                 }
@@ -280,128 +299,6 @@ void VentaManager::Eliminar()
 
 }
 
-void VentaManager::Editar()
-{
-    Venta venta;
-    int idVenta, posicion;
-
-    std::cout << "INGRESE ID DE VENTA A MODIFICAR" << std::endl;
-    std::cin>>idVenta;
-    posicion=_archivo.buscar(idVenta);
-    if(posicion<0)
-    {
-        registroNoEncontradoMensaje();
-        rlutil::anykey();
-    }
-    else
-    {
-        venta =_archivo.leer(posicion);
-        std::cout<<"EDITARA LA SIGUIENTE VENTA: "<<std::endl;
-        Listar(venta);
-        std::cout<<"CONTINUAR? (SI | NO): "<<std::endl;
-        std::string decision = ingresoDeDecisionConValidacion();
-        if(decision == "SI")
-        {
-
-            const int* vecProductosOriginal = venta.getVecIdProducto();
-            const int* vecUnidadesXProductoOriginal = venta.getVecUnidadesxProducto();
-            const int cantidadProductosOriginal = venta.getCantidadProductos();
-            int nuevoVecIdProducto[10];
-            int nuevoVecUnidadesxProducto[10];
-            int opcion;
-            int idCliente;
-            int metodoPago;
-            bool activo;
-
-            do
-            {
-                //rlutil::cls();
-                std::cout << "ELIJA EL CAMPO QUE DESEA MODIFICAR" << std::endl;
-                std::cout << "---------------------------------------------------" << std::endl;
-                std::cout << "1. CLIENTE" << std::endl;
-                std::cout << "2. VOLVER A CARGAR LOS PRODUCTOS" << std::endl;
-                std::cout << "3. METODO DE PAGO" << std::endl;
-                std::cout << "---------------------------------------------------" << std::endl;
-                std::cout << "0. VOLVER AL MENÚ DE GESTIÓN DE VENTAS" << std::endl;
-                std::cout << "---------------------------------------------------" << std::endl;
-                std::cout << "OPCIÓN SELECCIONADA: ";
-                std::cin >> opcion;
-                std::cin.ignore();
-
-                switch(opcion)
-                {
-                case 0:
-                    break;
-                case 1:
-                    std::cout <<"INGRESE NUMERO DE DOCUMENTO DEL CLIENTE: "<< std::endl;
-                    break;
-                case 2:
-                {
-                    restaurarStock(vecProductosOriginal, vecUnidadesXProductoOriginal, cantidadProductosOriginal); // DEVUELVE EL STOCK DE LOS PRODUCTOS CARGADOS ORIGINALMENTE
-                    int cantidadProductos = cargarProductos(nuevoVecIdProducto, nuevoVecUnidadesxProducto); // VUELVE A SOLICITAR LA CARGA DE PRODUCTOS
-                    venta.setVecIdProducto(nuevoVecIdProducto);
-                    venta.setVecUnidadesxProducto(nuevoVecUnidadesxProducto);
-                    venta.setCantidadProductos(cantidadProductos);
-                    float montoCompra = 0;
-                    for(int i = 0; i<cantidadProductos; i++)
-                    {
-                        ProductoArchivo arProducto;
-                        int posicion = arProducto.buscar(nuevoVecIdProducto[i]);
-                        Producto producto;
-
-                        producto = arProducto.leer(posicion);
-
-                        float monto = producto.getPrecio() * nuevoVecUnidadesxProducto[i];
-                        montoCompra += monto;
-                    }
-                    venta.setMontoCompra(montoCompra);
-                    if (_archivo.guardar(venta, posicion))
-                    {
-                        std::cout << std::endl;
-                        Listar(venta);
-                        okMensajeModificacion();
-                        rlutil::anykey();
-                    }
-                    else
-                    {
-                        std::cout << std::endl;
-                        ProductoManager managerProducto;
-                        restaurarStock(nuevoVecIdProducto, nuevoVecUnidadesxProducto, venta.getCantidadProductos());
-                        // EN CASO DE ERROR AL SOBREESCRIBIR EL REGISTRO DEVUELVE EL STOCK DE LOS NUEVOS PRODUCTOS Y RESTA LOS QUE ESTABAN ORIGINALMENTE.
-                        for(int i; i < cantidadProductosOriginal; i ++)
-                        {
-                            managerProducto.RestarStock(vecProductosOriginal[i], vecUnidadesXProductoOriginal[i]);
-                        }
-                        errorMensajeModificacion();
-                        rlutil::anykey();
-                    }
-                }
-                break;
-                case 3:
-                    std::cout<<"INGRESE EL METODO DE PAGO: "<<std::endl;
-                    std::cin>>metodoPago;
-                    venta.setMetodoPago(metodoPago);
-                    if (_archivo.guardar(venta, posicion))
-                    {
-                        std::cout << std::endl;
-                        okMensajeModificacion();
-                        rlutil::anykey();
-                    }
-                    else
-                    {
-                        std::cout << std::endl;
-                        errorMensajeModificacion();
-                        rlutil::anykey();
-                    }
-                    break;
-
-
-                }
-            }
-            while(opcion!=0);
-        }
-    }
-}
 void VentaManager::Reactivar()
 {
 
@@ -428,6 +325,14 @@ void VentaManager::Reactivar()
                 reg.setActivo(true);
                 if(_archivo.guardar(reg, posicion))
                 {
+                    ProductoManager managerProducto;
+                    const int* vecIdProductos = reg.getVecIdProducto();
+                    const int* vecUnidadesProductos = reg.getVecUnidadesxProducto();
+                    int cantidadProductos = reg.getCantidadProductos();
+                    for(int i = 0; i < cantidadProductos; i++)
+                    {
+                        managerProducto.RestarStock(vecIdProductos[i], vecUnidadesProductos[i]);
+                    }
                     okMensajeReactivacion();
                     rlutil::anykey();
                 }

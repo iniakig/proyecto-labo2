@@ -28,6 +28,19 @@ int ProductoArchivo::getCantidadDeRegistros()
     return bytes / sizeof(Producto);
 }
 
+int ProductoArchivo::getCantidadRegistrosActivos(){
+    int cantidadRegistros = getCantidadDeRegistros();
+    int cantidadRegistrosActivos = 0;
+    for(int i = 0; i < cantidadRegistros; i++){
+        Producto reg;
+        reg = leer(i);
+        if(reg.getActivo()){
+            cantidadRegistrosActivos ++;
+        }
+    }
+    return cantidadRegistrosActivos;
+}
+
 //INTERFACES
 Producto ProductoArchivo::leer(int posicion)
 {

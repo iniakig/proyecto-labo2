@@ -17,8 +17,7 @@
 class VentaManager{
 public:
 	void Cargar();
-	void Editar();
-	void Eliminar();
+	void Anular();
     void Reactivar();
     void Listar(Venta venta);
     void ListarTodas();

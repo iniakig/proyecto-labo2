@@ -14,6 +14,7 @@ public:
 
     //GETTERS
     int getCantidadDeRegistros();
+    int getCantidadRegistrosActivos();
 
     //INTERFACES
     bool guardar(Producto reg);
