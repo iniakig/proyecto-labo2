@@ -2,7 +2,7 @@
 
 #include "../mensajes.h"
 
-// Constructor
+// Constructores
 UsuarioArchivo::UsuarioArchivo() {
     setNombre("usuarios.dat");
 }

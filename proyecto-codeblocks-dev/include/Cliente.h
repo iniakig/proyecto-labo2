@@ -12,7 +12,7 @@ class Cliente: public Persona
 
     public:
         // Constructores
-        Cliente (int tipoDocumento = 0, const char* nroDocumento = "null", const char* nombre = "null", const char* apellido = "null", const char* razonSocial = "null", const char* email = "null", const char* domicilio = "null", const char* localidad = "null", int provincia = 0, bool estado = "false", Fecha fechaRegistro = Fecha());
+        Cliente (int id = -1, int tipoDocumento = 0, const char* nroDocumento = "null", const char* nombre = "null", const char* apellido = "null", const char* razonSocial = "null", const char* email = "null", const char* domicilio = "null", const char* localidad = "null", int provincia = 0, bool estado = "false", Fecha fechaRegistro = Fecha());
 
         // Setters
         void setDomicilio(std::string domicilio);

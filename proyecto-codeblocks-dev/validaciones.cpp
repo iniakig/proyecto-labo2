@@ -22,7 +22,7 @@ int ingresoTipoDeDocumentoConValidacion() {
     return tipoDocumento;
 }
 
-int ingresoCategoriaProdConValidacion(){
+int ingresoCategoriaProdConValidacion() {
     std::string nroCategoriaAux;
     int nroCategoria;
     const std::regex expresionRegular("[1-3]");
@@ -37,7 +37,7 @@ int ingresoCategoriaProdConValidacion(){
     return nroCategoria;
 }
 
-int ingresoStockConValidacion(){
+int ingresoStockConValidacion() {
     std::string stockAux;
     int stock;
     const std::regex expresionRegular("^[1-9][0-9]*$");
@@ -217,7 +217,7 @@ std::string ingresoModeloConValidacion() {
 
 }
 
-std::string ingresoDescripcionConValidacion(){
+std::string ingresoDescripcionConValidacion() {
     std::string descripcion;
     const std::regex expresionRegular("[a-zA-Z0-9.\\s]+{1,49}");
 
@@ -271,7 +271,6 @@ int ingresoDeTipoDeClienteConValidacion() {
     return tipoDeCliente;
 }
 
-
 int ingresoDeProvinciaConValidacion() {
     std::string provinciaAux;
     int provincia;
@@ -305,8 +304,7 @@ std::string ingresoDeDecisionConValidacion() {
     return textoConvertido;
 }
 
-std::string ingresoDeMarcaConValidacion()
-{
+std::string ingresoDeMarcaConValidacion() {
     std::string texto;
     const std::regex expresionRegular("[A-Za-z0-9 ]{1,29}");
 
@@ -338,8 +336,7 @@ int ingresoDeRolConValidacion() {
     return rol;
 }
 
-int ingresoOpcSimpleConValidacion()
-{
+int ingresoOpcSimpleConValidacion() {
     std::string opcAux;
     int opcion;
     const std::regex expresionRegular("[1-2]");

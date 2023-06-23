@@ -11,15 +11,16 @@
 #include "UsuarioArchivo.h"
 
 // Constructores
-Programa::Programa(bool estado) {
-    setEstadoLogin(estado);
-    setEstadoPrograma(estado);
+Programa::Programa() {
+    setEstadoPrograma(true);
+    setEstadoLogin(false);
 }
 
 // Interfaces
 
 void Programa::login() {
     rlutil::cls();
+    rlutil::hidecursor();
     std::string usuario;
     std::string contrasenia;
     int id;
@@ -31,15 +32,11 @@ void Programa::login() {
     Usuario usuarioReg;
     UsuarioArchivo usuarioArchivoReg;
 
-
-    // Usuario y Contraseña hardcodeado
-    // std::string us = "admin";
-    // std::string cs = "admin";
-
     centrarTexto("SISTEMA DE GESTIÓN DE STOCK Y VENTAS", 5 + 3);
     centrarTexto("----------------------------------------------------------", 6 + 3);
     centrarTexto("Ingresá tus credenciales de acceso", 8 + 3);
     rlutil::locate(34, 10 + 3);
+    rlutil::showcursor();
     std::cout << "  Usuario: " << std::endl;
     rlutil::locate(34, 12 + 3);
     std::cout << "  Contraseña: " << std::endl;
@@ -72,9 +69,6 @@ void Programa::login() {
         getline(std::cin, usuario);
 
         rlutil::locate(48, 12 + 3);
-        /*
-        getline(std::cin, contrasenia);
-        */
 
         char caracter;
         contrasenia = "";
@@ -120,7 +114,7 @@ void Programa::login() {
     }
     else {
         rlutil::setColor(rlutil::LIGHTRED);
-        centrarTexto("Agotó los 3 intentos. El sistema se cerrará", 8 + 3);
+        centrarTexto("Agotó los 3 intentos. El sistema se cerrará.", 8 + 3);
         rlutil::setColor(rlutil::WHITE);
         setEstadoPrograma(acceso);
     }
@@ -187,6 +181,7 @@ void Programa::ejecutar() {
                 setEstadoLogin(false);
 
                 rlutil::cls();
+                rlutil::hidecursor();
                 mensajeSalidaDelPrograma();
 
                 rlutil::anykey();

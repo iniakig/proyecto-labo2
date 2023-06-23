@@ -8,6 +8,8 @@ class ClienteManager
     private:
         ClienteArchivo _archivo;
         bool permisos[3];
+
+        int generarId(); // Hecho
         void listar(Cliente cliente, int tipoListado); // Hecho - Testear
         void listarPorNombreDeCliente(); // Pendiente
         void listarPorAlias(); // Pendiente

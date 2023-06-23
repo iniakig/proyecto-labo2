@@ -24,11 +24,9 @@ class Programa
 
     public:
         // Constructores
-        Programa(bool estado = false);
+        Programa();
 
         // Interfaces
-        //void login(bool& estadoPrograma, bool& estadoLogin);
-        //void ejecutar(bool& estadoPrograma, bool& estadoLogin);
         void login();
         void ejecutar();
 

@@ -6,6 +6,7 @@
 #include <string>
 #include <../funciones.h>
 
+// Constructores
 ClienteArchivo::ClienteArchivo(std::string nombre) {
     setNombre(nombre);
 }
@@ -14,6 +15,7 @@ ClienteArchivo::ClienteArchivo() {
     setNombre("clientes.dat");
 }
 
+// Interfaces
 Cliente ClienteArchivo::leer(int posicion) {
     Cliente cliente;
 
@@ -148,10 +150,12 @@ void ClienteArchivo::vaciar() {
     }
 }
 
+// Setters
 void ClienteArchivo::setNombre(std::string nombre) {
     _nombre = nombre;
 }
 
+// Getters
 int ClienteArchivo::getCantidadDeClientes() {
     Cliente cliente;
     int cantidadClientes = 0;
@@ -161,8 +165,7 @@ int ClienteArchivo::getCantidadDeClientes() {
     p = fopen(_nombre.c_str(), "rb");
 
     if (p == nullptr) {
-        std::cout << "No se pudo abrir el archivo";
-        return -1;
+        return cantidadClientes;
     }
 
     while (fread(&cliente, sizeof(Cliente), 1, p) == 1) {

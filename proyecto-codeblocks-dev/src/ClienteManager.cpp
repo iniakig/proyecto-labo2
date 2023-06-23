@@ -9,9 +9,14 @@
 #include <iostream>
 #include <iomanip>
 
+int ClienteManager::generarId() {
+   return _archivo.getCantidadDeClientes() + 1;
+}
+
 void ClienteManager::cargar()
 {
     rlutil::cls();
+    int id;
     int tipoDeCliente;
     int tipoDocumento;
     std::string nroDocumento;
@@ -27,6 +32,8 @@ void ClienteManager::cargar()
 
     std::cout << "CARGAR NUEVO CLIENTE" << std::endl;
     std::cout << "-------------------------------------------------------------" << std::endl;
+
+    id = generarId();
 
     std::cout << "Tipo de Cliente (1. Persona física | 2. Persona jurídica): ";
     tipoDeCliente = ingresoDeTipoDeClienteConValidacion();
@@ -73,7 +80,7 @@ void ClienteManager::cargar()
         std::cout << "Nro de provincia: ";
         provincia = ingresoDeProvinciaConValidacion();
 
-        Cliente cliente(tipoDocumento, nroDocumento.c_str(), nombre.c_str(), apellido.c_str(), razonSocial.c_str(), email.c_str(), domicilio.c_str(), localidad.c_str(), provincia, estado, fechaRegistro);
+        Cliente cliente(id, tipoDocumento, nroDocumento.c_str(), nombre.c_str(), apellido.c_str(), razonSocial.c_str(), email.c_str(), domicilio.c_str(), localidad.c_str(), provincia, estado, fechaRegistro);
 
         if (_archivo.crear(cliente) == true)
         {
@@ -99,6 +106,7 @@ void ClienteManager::cargar()
 bool ClienteManager::cargar(std::string nroDocumento)
 {
     rlutil::cls();
+    int id;
     int tipoDeCliente;
     int tipoDocumento;
     std::string nombre;
@@ -113,6 +121,8 @@ bool ClienteManager::cargar(std::string nroDocumento)
 
     std::cout << "CARGAR NUEVO CLIENTE" << std::endl;
     std::cout << "-------------------------------------------------------------" << std::endl;
+
+    id = generarId();
 
     std::cout << "Tipo de Cliente (1. Persona física | 2. Persona jurídica): ";
     tipoDeCliente = ingresoDeTipoDeClienteConValidacion();
@@ -151,7 +161,7 @@ bool ClienteManager::cargar(std::string nroDocumento)
     std::cout << "Nro de provincia: ";
     provincia = ingresoDeProvinciaConValidacion();
 
-    Cliente cliente(tipoDocumento, nroDocumento.c_str(), nombre.c_str(), apellido.c_str(), razonSocial.c_str(), email.c_str(), domicilio.c_str(), localidad.c_str(), provincia, estado, fechaRegistro);
+    Cliente cliente(id, tipoDocumento, nroDocumento.c_str(), nombre.c_str(), apellido.c_str(), razonSocial.c_str(), email.c_str(), domicilio.c_str(), localidad.c_str(), provincia, estado, fechaRegistro);
         if (_archivo.crear(cliente) == true)
         {
             std::cout << std::endl;
@@ -176,6 +186,7 @@ void ClienteManager::listar(Cliente cliente, int tipoListado)
     switch (tipoListado)
     {
     case 0:
+        std::cout << "Id: " << cliente.getId() << std::endl;
         std::cout << "Tipo de documento: " << cliente.getTipoDocumentoDescripcion() << std::endl;
         std::cout << "Nro de documento: " << cliente.getNroDocumento() << std::endl;
         // Si getRazonSocial es "Null" significa que es una persona física
@@ -195,6 +206,7 @@ void ClienteManager::listar(Cliente cliente, int tipoListado)
         break;
     case 1:
         std::cout << std::left;
+        std::cout << std::setw(6) << cliente.getId();
         std::cout << std::setw(7) << cliente.getTipoDocumentoDescripcion();
         std::cout << std::setw(15) << cliente.getNroDocumento();
         std::string null = "null";
@@ -208,7 +220,7 @@ void ClienteManager::listar(Cliente cliente, int tipoListado)
         }
         else
         {
-            std::cout << std::setw(33) << cliente.getRazonSocial();
+            std::cout << std::setw(38) << cliente.getRazonSocial();
         }
         std::cout << std::setw(13) << cliente.getFechaRegistro().toString();
         break;
@@ -221,6 +233,20 @@ void ClienteManager::listarClientes()
     std::cout << std::endl;
     Cliente cliente;
     int cantidadRegistrosClientes = _archivo.getCantidadDeClientes();
+
+    if (_archivo.getCantidadDeClientes() != 0) {
+        std::cout << std::left;
+        std::cout << std::setw(6) << "Id";
+        std::cout << std::setw(7) << "Tipo";
+        std::cout << std::setw(15) << "Nro";
+        std::cout << std::setw(38) << "Cliente";
+        std::cout << std::setw(13) << "F. Registro";
+        std::cout << std::endl;
+        std::cout << "-----------------------------------------------------------------------------" << std::endl;
+    }
+    else {
+        mensajeListadoSinDatosEncontrados();
+    }
 
     for (int i = 0; i < cantidadRegistrosClientes; i++)
     {

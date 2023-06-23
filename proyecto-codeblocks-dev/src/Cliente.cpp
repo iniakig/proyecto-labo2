@@ -2,7 +2,9 @@
 
 #include <string>
 
-Cliente::Cliente(int tipoDocumento, const char* nroDocumento, const char* nombre, const char* apellido, const char* razonSocial, const char* email, const char* domicilio, const char* localidad, int provincia, bool estado, Fecha fechaRegistro) {
+// Constructores
+Cliente::Cliente(int id, int tipoDocumento, const char* nroDocumento, const char* nombre, const char* apellido, const char* razonSocial, const char* email, const char* domicilio, const char* localidad, int provincia, bool estado, Fecha fechaRegistro) {
+    setId(id);
     setTipoDocumento(tipoDocumento);
     setNroDocumento(nroDocumento);
     setNombre(nombre);
@@ -16,6 +18,7 @@ Cliente::Cliente(int tipoDocumento, const char* nroDocumento, const char* nombre
     setFechaRegistro(fechaRegistro);
 }
 
+// Setters
 void Cliente::setDomicilio(std::string domicilio) {
     strcpy(_domicilio, domicilio.c_str());
 }
@@ -28,6 +31,7 @@ void Cliente::setProvincia(int provincia) {
     _provincia = provincia;
 }
 
+// Getters
 std::string Cliente::getDomicilio() {
     return _domicilio;
 }
