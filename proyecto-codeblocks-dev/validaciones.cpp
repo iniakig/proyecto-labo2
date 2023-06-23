@@ -177,7 +177,7 @@ std::string ingresoDeRazonSocialConValidacion() {
 
     razonSocialConvertida = stringAMayus(razonSocial);
 
-    return razonSocial;
+    return razonSocialConvertida;
 }
 
 std::string ingresoDeLocalidadConValidacion() {

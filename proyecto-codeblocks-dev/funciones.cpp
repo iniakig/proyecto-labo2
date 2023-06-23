@@ -6,13 +6,6 @@
 #include <string>
 #include "rlutil.h"
 
-/*
-void setSpanish()
-{
-    setlocale(LC_ALL, "Spanish");
-}
-*/
-
 void setSpanish()
 {
     SetConsoleOutputCP(1252);
@@ -59,4 +52,39 @@ void centrarTexto(std::string texto, int posy) {
 	posx = rlutil::tcols() / 2 - texto.size() / 2;
 	rlutil::locate(posx, posy);
 	std::cout << texto;
+}
+
+void listarProvincias() {
+    const int cantidadProvincias = 24;
+    std::string provincias[cantidadProvincias] = {
+        "CABA",
+        "Buenos Aires",
+        "Catamarca",
+        "Chaco",
+        "Chubut",
+        "Córdoba",
+        "Corrientes",
+        "Entre Ríos",
+        "Formosa",
+        "Jujuy",
+        "La Pampa",
+        "La Rioja",
+        "Mendoza",
+        "Misiones",
+        "Neuquén",
+        "Río Negro",
+        "Salta",
+        "San Juan",
+        "San Luis",
+        "Santa Cruz",
+        "Santa Fe",
+        "Santiago del Estero",
+        "Tierra del Fuego",
+        "Tucumán"
+    };
+
+    for (int i = 0; i < cantidadProvincias; i++) {
+        std::cout << "\t" << i + 1 << ": " << provincias[i];
+        std::cout << std::endl;
+    }
 }

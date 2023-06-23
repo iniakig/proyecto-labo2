@@ -5,8 +5,8 @@
 #include "VentaMenu.h"
 #include "ProductoMenu.h"
 #include "MarcaMenu.h"
-#include "ClienteMenu.h"
 #include "ConfiguracionMenu.h"
+#include "ClienteMenu.h"
 
 
 class Programa

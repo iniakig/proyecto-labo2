@@ -1,5 +1,7 @@
 #include "UsuarioArchivo.h"
 
+#include "../mensajes.h"
+
 // Constructor
 UsuarioArchivo::UsuarioArchivo() {
     setNombre("usuarios.dat");
@@ -112,6 +114,7 @@ bool UsuarioArchivo::crear(Usuario reg) {
     p = fopen(_nombre.c_str(), "ab");
 
     if (p == nullptr) {
+        mensajeNoSePudoCrearArchivo();
         return false;
     }
 
@@ -129,6 +132,7 @@ Usuario UsuarioArchivo::leer(int posicion) {
     p = fopen(_nombre.c_str(), "rb");
 
     if (p == nullptr) {
+        mensajeNoSePudoLeerArchivo();
         return reg;
     }
 
@@ -146,6 +150,7 @@ Usuario UsuarioArchivo::leer(Usuario* listadoDeUsuarios, int cantidadDeRegistros
     p = fopen(_nombre.c_str(), "rb");
 
     if (p == nullptr) {
+        mensajeNoSePudoLeerArchivo();
         return reg;
     }
 
@@ -159,6 +164,7 @@ bool UsuarioArchivo::modificar(Usuario reg, int posicion) {
     p = fopen(_nombre.c_str(), "rb+");
 
     if (p == nullptr) {
+        mensajeNoSePudoLeerArchivo();
         return false;
     }
 
@@ -186,6 +192,7 @@ int UsuarioArchivo::getCantidadDeUsuarios() {
     p = fopen(_nombre.c_str(), "rb");
 
     if (p == nullptr) {
+        mensajeNoSePudoLeerArchivo();
         return false;
     }
 

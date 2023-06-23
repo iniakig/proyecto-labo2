@@ -68,7 +68,7 @@ void ClienteManager::cargar()
         localidad = ingresoDeLocalidadConValidacion();
         std::cout << "Seleccionar provincia: " << std::endl;
         std::cout << std::endl;
-        clienteBuscado.listarProvincias(); // Reutilizo el objeto clienteBuscado para listar las provincias
+        listarProvincias();
         std::cout << std::endl;
         std::cout << "Nro de provincia: ";
         provincia = ingresoDeProvinciaConValidacion();
@@ -146,8 +146,7 @@ bool ClienteManager::cargar(std::string nroDocumento)
     localidad = ingresoDeLocalidadConValidacion();
     std::cout << "Seleccionar provincia: " << std::endl;
     std::cout << std::endl;
-    Cliente aux;
-    aux.listarProvincias();
+    listarProvincias();
     std::cout << std::endl;
     std::cout << "Nro de provincia: ";
     provincia = ingresoDeProvinciaConValidacion();
@@ -454,7 +453,7 @@ void ClienteManager::modificar()
                     localidad = ingresoDeLocalidadConValidacion();
                     std::cout << "Seleccionar provincia: " << std::endl;
                     std::cout << std::endl;
-                    cliente.listarProvincias();
+                    listarProvincias();
                     std::cout << std::endl;
                     std::cout << "Nro de provincia: ";
                     provincia = ingresoDeProvinciaConValidacion();
