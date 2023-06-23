@@ -114,38 +114,3 @@ std::string Persona::getEstadoDescripcion() {
         return "Inactivo";
     }
 }
-
-void Persona::listarProvincias() {
-    const int cantidadProvincias = 24;
-    std::string provincias[cantidadProvincias] = {
-        "CABA",
-        "Buenos Aires",
-        "Catamarca",
-        "Chaco",
-        "Chubut",
-        "Córdoba",
-        "Corrientes",
-        "Entre Ríos",
-        "Formosa",
-        "Jujuy",
-        "La Pampa",
-        "La Rioja",
-        "Mendoza",
-        "Misiones",
-        "Neuquén",
-        "Río Negro",
-        "Salta",
-        "San Juan",
-        "San Luis",
-        "Santa Cruz",
-        "Santa Fe",
-        "Santiago del Estero",
-        "Tierra del Fuego",
-        "Tucumán"
-    };
-
-    for (int i = 0; i < cantidadProvincias; i++) {
-        std::cout << "\t" << i + 1 << ": " << provincias[i];
-        std::cout << std::endl;
-    }
-}

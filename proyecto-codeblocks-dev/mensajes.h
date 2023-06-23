@@ -16,5 +16,7 @@ void existeRegistroMensaje();
 void mensajeSalidaDelPrograma();
 void mensajeAccesoRestringido();
 void mensajeListadoSinDatosEncontrados();
+void mensajeNoSePudoCrearArchivo();
+void mensajeNoSePudoLeerArchivo();
 
 #endif // MENSAJES_H_INCLUDED

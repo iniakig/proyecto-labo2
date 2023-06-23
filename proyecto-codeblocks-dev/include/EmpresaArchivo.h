@@ -13,9 +13,8 @@ class EmpresaArchivo
         EmpresaArchivo();
         EmpresaArchivo(std::string nombre);
 
-        bool crear(Empresa empresa);
-        Empresa leer();
-        bool modificar(Empresa empresa);
+        bool crear(Empresa empresa); // Hecho - Testear
+        Empresa leer(); // Hecho - Testear
 
         // Setters
         void setNombre(std::string nombre);

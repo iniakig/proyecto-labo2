@@ -2,11 +2,14 @@
 #define CONFIGURACIONMENU_H
 
 #include "UsuarioMenu.h"
+#include "EmpresaMenu.h"
 
 class ConfiguracionMenu
 {
     private:
         UsuarioMenu _usuarioMenu;
+        EmpresaMenu _empresaMenu;
+
         bool _permisos[3];
 
     public:

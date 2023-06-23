@@ -44,6 +44,8 @@
 		<Unit filename="include/ConfiguracionMenu.h" />
 		<Unit filename="include/Empresa.h" />
 		<Unit filename="include/EmpresaArchivo.h" />
+		<Unit filename="include/EmpresaManager.h" />
+		<Unit filename="include/EmpresaMenu.h" />
 		<Unit filename="include/Encabezado.h" />
 		<Unit filename="include/Fecha.h" />
 		<Unit filename="include/Marca.h" />
@@ -81,6 +83,8 @@
 		<Unit filename="src/ConfiguracionMenu.cpp" />
 		<Unit filename="src/Empresa.cpp" />
 		<Unit filename="src/EmpresaArchivo.cpp" />
+		<Unit filename="src/EmpresaManager.cpp" />
+		<Unit filename="src/EmpresaMenu.cpp" />
 		<Unit filename="src/Encabezado.cpp" />
 		<Unit filename="src/Fecha.cpp" />
 		<Unit filename="src/Marca.cpp" />

@@ -32,6 +32,7 @@ void ConfiguracionMenu::mostrar() {
                     _usuarioMenu.mostrar();
                     break;
                 case 2:
+                    _empresaMenu.mostrar();
                     break;
                 case 3:
                     break;
