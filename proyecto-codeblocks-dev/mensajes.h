@@ -18,5 +18,6 @@ void mensajeAccesoRestringido();
 void mensajeListadoSinDatosEncontrados();
 void mensajeNoSePudoCrearArchivo();
 void mensajeNoSePudoLeerArchivo();
+void mensajeFinDelListado();
 
 #endif // MENSAJES_H_INCLUDED

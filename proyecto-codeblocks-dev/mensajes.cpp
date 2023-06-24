@@ -124,3 +124,11 @@ void mensajeNoSePudoLeerArchivo() {
     std::cout << "No existe archivo creado o no se pudo leer el archivo." << std::endl;
     rlutil::setColor(rlutil::WHITE);
 }
+
+void mensajeFinDelListado() {
+    std::cout << std::endl;
+    rlutil::setColor(rlutil::YELLOW);
+    std::cout << "Fin del listado." << std::endl;
+    rlutil::hidecursor();
+    rlutil::setColor(rlutil::WHITE);
+}

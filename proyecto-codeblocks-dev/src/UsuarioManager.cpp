@@ -66,6 +66,7 @@ void UsuarioManager::listarPorAlias() {
     if (posicion > -1) {
         usuario = _archivo.leer(posicion);
         listar(usuario, 0);
+        mensajeFinDelListado();
         rlutil::anykey();
     }
     else {
@@ -92,6 +93,7 @@ void UsuarioManager::listarPorDNI() {
     if (posicion > -1) {
         usuario = _archivo.leer(posicion);
         listar(usuario, 0);
+        mensajeFinDelListado();
         rlutil::anykey();
     }
     else {
@@ -154,6 +156,7 @@ void UsuarioManager::listarActivos() {
                 std::cout << std::endl;
             }
         }
+        mensajeFinDelListado();
     }
     else {
         mensajeListadoSinDatosEncontrados();
@@ -218,6 +221,8 @@ void UsuarioManager::listarInactivos() {
                 std::cout << std::endl;
             }
         }
+
+        mensajeFinDelListado();
     }
     else {
         mensajeListadoSinDatosEncontrados();
@@ -282,6 +287,8 @@ void UsuarioManager::listarPorBusquedaLibre() {
 
     if (resultadosEncontrados > 0) {
         std::cout << std::endl;
+        std::cout << "Registros encontrados: " << resultadosEncontrados << std::endl;
+        std::cout << std::endl;
         std::cout << std::left;
         std::cout << std::setw(6) << "Id";
         std::cout << std::setw(7) << "Tipo";
@@ -321,6 +328,8 @@ void UsuarioManager::listarPorBusquedaLibre() {
             }
             */
         }
+
+        mensajeFinDelListado();
     }
     else {
         mensajeListadoSinDatosEncontrados();
