@@ -382,7 +382,7 @@
 	<string>
 	<Usuario.h>
 
-1687530948 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\include\usuariomanager.h
+1687636304 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\include\usuariomanager.h
 	"UsuarioArchivo.h"
 	"Usuario.h"
 	"../funciones.h"
@@ -452,7 +452,7 @@
 	"UsuarioArchivo.h"
 	"../mensajes.h"
 
-1687611018 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\src\usuariomanager.cpp
+1687637936 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\src\usuariomanager.cpp
 	"UsuarioManager.h"
 	<iostream>
 	<iomanip>

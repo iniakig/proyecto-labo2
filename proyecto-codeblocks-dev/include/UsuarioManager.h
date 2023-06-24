@@ -20,6 +20,7 @@ private:
     void listarPorDNI(); // Hecho - Testear
     void listarActivos(); // En curso
     void listarInactivos(); // Para rehacer con memoria dinámica y ordenadores
+    void listarPorBusquedaLibre();
     void ordenarPorAlias(Usuario *listaDeUsuarios, int cantidadDeRegistros); // Hecho - Testear
     void ordenarPorFecha(Usuario *listaDeUsuarios, int cantidadDeRegistros); // Hecho - Testear
 

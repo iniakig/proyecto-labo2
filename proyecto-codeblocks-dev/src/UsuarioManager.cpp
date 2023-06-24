@@ -9,6 +9,8 @@
 
 #include "Usuario.h"
 
+// Métodos privados
+
 int UsuarioManager::generarId() {
    return _archivo.getCantidadDeUsuarios() + 1;
 }
@@ -47,10 +49,13 @@ void UsuarioManager::listar(Usuario usuario, int tipoListado) {
 }
 
 void UsuarioManager::listarPorAlias() {
-    // rlutil::cls();
+    rlutil::cls();
     Usuario usuario;
     std::string alias;
 
+    std::cout << "USUARIO POR ALIAS" << std::endl;
+    std::cout << "---------------------------------------------------------------------------------" << std::endl;
+    std::cout << std::endl;
     std::cout << "Ingrese el alias de usuario: ";
     getline(std::cin, alias);
     alias = stringAMayus(alias);
@@ -70,11 +75,14 @@ void UsuarioManager::listarPorAlias() {
 }
 
 void UsuarioManager::listarPorDNI() {
-    // rlutil::cls();
+    rlutil::cls();
     Usuario usuario;
     int tipoDocumento = 1;
     std::string nroDeDocumento;
 
+    std::cout << "USUARIO POR DNI" << std::endl;
+    std::cout << "---------------------------------------------------------------------------------" << std::endl;
+    std::cout << std::endl;
     std::cout << "Ingrese el nro de DNI del usuario: ";
     nroDeDocumento = ingresoDeDocumentoConValidacion();
     std::cout << std::endl;
@@ -152,6 +160,7 @@ void UsuarioManager::listarActivos() {
     }
 
     delete[] listaDeUsuarios;
+    rlutil::anykey();
 }
 
 void UsuarioManager::listarInactivos() {
@@ -215,6 +224,110 @@ void UsuarioManager::listarInactivos() {
     }
 
     delete[] listaDeUsuarios;
+    rlutil::anykey();
+}
+
+void UsuarioManager::listarPorBusquedaLibre() {
+    rlutil::cls();
+    std::string cadenaDeBusquedaLibre;
+
+
+    std::cout << "USUARIOS POR BÚSQUEDA LIBRE" << std::endl;
+    std::cout << "---------------------------------------------------------------------------------" << std::endl;
+    std::cout << std::endl;
+    std::cout << "Ingrese nombre, apellido, alias o DNI: ";
+    getline(std::cin, cadenaDeBusquedaLibre);
+
+    cadenaDeBusquedaLibre = stringAMayus(cadenaDeBusquedaLibre);
+
+    int cantidadDeRegistros = _archivo.getCantidadDeUsuarios();
+    Usuario *listaDeUsuarios = new Usuario[cantidadDeRegistros];
+    int resultadosEncontrados = 0;
+
+    if (listaDeUsuarios == nullptr) {
+        std::cout << "Ocurrió un error al visualizar el listado" << std::endl;
+        return;
+    }
+
+    _archivo.leer(listaDeUsuarios, cantidadDeRegistros);
+
+    for (int i = 0; i < cantidadDeRegistros; i++) {
+        std::string datosConcatenados = "";
+        std::string nombre(listaDeUsuarios[i].getNombre());
+        std::string apellido(listaDeUsuarios[i].getApellido());
+        std::string alias(listaDeUsuarios[i].getAlias());
+        std::string dni(listaDeUsuarios[i].getNroDocumento());
+
+        datosConcatenados += nombre;
+        datosConcatenados += " ";
+        datosConcatenados += apellido;
+        datosConcatenados += " ";
+        datosConcatenados += alias;
+        datosConcatenados += " ";
+        datosConcatenados += dni;
+
+
+        // Implementación con método de cstring strstr()
+        if (strstr(datosConcatenados.c_str(), cadenaDeBusquedaLibre.c_str()) != nullptr) {
+            resultadosEncontrados++;
+        }
+
+        // Implementación con método de string find()
+        /*
+        if (datosConcatenados.find(cadenaDeBusquedaLibre) > -1) {
+            resultadosEncontrados++;
+        }
+        */
+    }
+
+    if (resultadosEncontrados > 0) {
+        std::cout << std::endl;
+        std::cout << std::left;
+        std::cout << std::setw(6) << "Id";
+        std::cout << std::setw(7) << "Tipo";
+        std::cout << std::setw(15) << "N. Documento";
+        std::cout << std::setw(18) << "Alias";
+        std::cout << std::setw(16) << "Rol";
+        std::cout << std::setw(13) << "F. Registro";
+        std::cout << std::endl;
+        std::cout << "-------------------------------------------------------------------------" << std::endl;
+
+        for (int i = 0; i < cantidadDeRegistros; i++) {
+            std::string datosConcatenados = "";
+            std::string nombre(listaDeUsuarios[i].getNombre());
+            std::string apellido(listaDeUsuarios[i].getApellido());
+            std::string alias(listaDeUsuarios[i].getAlias());
+            std::string dni(listaDeUsuarios[i].getNroDocumento());
+
+            datosConcatenados += nombre;
+            datosConcatenados += " ";
+            datosConcatenados += apellido;
+            datosConcatenados += " ";
+            datosConcatenados += alias;
+            datosConcatenados += " ";
+            datosConcatenados += dni;
+
+            // Implementación con método de cstring strstr()
+            if (strstr(datosConcatenados.c_str(), cadenaDeBusquedaLibre.c_str()) != nullptr) {
+                listar(listaDeUsuarios[i], 1);
+                std::cout << std::endl;
+            }
+
+            // Implementación con método de string find()
+            /*
+            if (datosConcatenados.find(cadenaDeBusquedaLibre) > -1) {
+                listar(listaDeUsuarios[i], 1);
+                std::cout << std::endl;
+            }
+            */
+        }
+    }
+    else {
+        mensajeListadoSinDatosEncontrados();
+    }
+
+    delete[] listaDeUsuarios;
+    rlutil::anykey();
 }
 
 /*
@@ -340,6 +453,8 @@ void UsuarioManager::ordenarPorAlias(Usuario *listaDeUsuarios, int cantidadDeReg
         }
     }
 }
+
+// Métodos públicos
 
 void UsuarioManager::cargar() {
     int id;
@@ -710,25 +825,21 @@ void UsuarioManager::listarUsuarios() {
         case 1:
             std::cout << std::endl;
             listarPorAlias();
-            rlutil::anykey();
             break;
         case 2:
             std::cout << std::endl;
             listarPorDNI();
-            rlutil::anykey();
             break;
         case 3:
             std::cout << std::endl;
             listarActivos();
-            rlutil::anykey();
             break;
         case 4:
             std::cout << std::endl;
             listarInactivos();
-            rlutil::anykey();
             break;
         case 5:
-
+            listarPorBusquedaLibre();
             break;
         default:
             std::cout << "La opción seleccionada es invalida. Ingrese nuevamente." << std::endl;
