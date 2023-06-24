@@ -53,9 +53,10 @@ void UsuarioManager::listarPorAlias() {
 
     std::cout << "Ingrese el alias de usuario: ";
     getline(std::cin, alias);
+    alias = stringAMayus(alias);
     std::cout << std::endl;
 
-    int posicion = _archivo.buscar(alias);
+    int posicion = _archivo.buscarPorAlias(alias);
 
     if (posicion > -1) {
         usuario = _archivo.leer(posicion);
@@ -63,7 +64,7 @@ void UsuarioManager::listarPorAlias() {
         rlutil::anykey();
     }
     else {
-        std::cout << "No se encontró ningún registro con el alias ingresado.";
+        registroNoEncontradoMensaje();
         rlutil::anykey();
     }
 }

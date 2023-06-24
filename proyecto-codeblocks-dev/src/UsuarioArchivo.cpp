@@ -7,8 +7,7 @@ UsuarioArchivo::UsuarioArchivo() {
     setNombre("usuarios.dat");
 }
 
-UsuarioArchivo::UsuarioArchivo(std::string nombre)
-{
+UsuarioArchivo::UsuarioArchivo(std::string nombre) {
     setNombre(nombre);
 }
 
@@ -75,6 +74,29 @@ int UsuarioArchivo::buscar(int tipoDocumento, std::string nroDocumento) {
     for (int i = 0; i < cantidadDeUsuarios; i++) {
         reg = leer(i);
         if (reg.getTipoDocumento() == tipoDocumento && strcmp(reg.getNroDocumento(), nroDocumento.c_str()) == 0) {
+            posicion = i;
+        }
+    }
+
+    return posicion;
+}
+
+int UsuarioArchivo::buscarPorAlias(std::string alias) {
+    Usuario usuario;
+    int posicion = -1;
+    int cantidadDeUsuarios = getCantidadDeUsuarios();
+
+    FILE* p;
+
+    p = fopen(_nombre.c_str(), "rb");
+
+    if (p == nullptr) {
+        return false;
+    }
+
+    for (int i = 0; i < cantidadDeUsuarios; i++) {
+        usuario = leer(i);
+        if (strcmp(usuario.getAlias(), alias.c_str()) == 0) {
             posicion = i;
         }
     }

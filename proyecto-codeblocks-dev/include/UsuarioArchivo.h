@@ -19,6 +19,7 @@ public:
     int buscar(int id);
     int buscar(std::string nroDocumento);
     int buscar(int tipoDocumento, std::string nroDocumento);
+    int buscarPorAlias(std::string alias);
     //int buscar(std::string alias);
 
     bool crear(Usuario reg);
