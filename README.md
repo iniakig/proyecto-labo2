@@ -1,6 +1,8 @@
 <h1 align="center"> Sistema de Gestión de Empresa de Venta de Celulares <h1>
 
-![PROYECTO DE SOFTWARE DE GESTIÓN](https://github.com/iniakig/proyecto-labo2/assets/98610137/153fbd06-c61a-48ba-a80e-5d09357e8391)
+<div align="center">
+  <img src="https://github.com/iniakig/proyecto-labo2/assets/98610137/153fbd06-c61a-48ba-a80e-5d09357e8391" alt="PROYECTO DE SOFTWARE DE GESTION">
+</div>
 
 ![Static Badge](https://img.shields.io/badge/ESTADO-EN_DESARROLLO-GREEN)
 
