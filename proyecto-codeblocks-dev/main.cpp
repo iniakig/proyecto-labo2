@@ -18,5 +18,8 @@ int main()
     rlutil::hidecursor();
     rlutil::setColor(rlutil::BLACK);
     rlutil::locate(12, 26);
+
+
+
     return 0;
 }

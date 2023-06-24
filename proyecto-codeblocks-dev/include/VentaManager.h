@@ -1,14 +1,10 @@
 #ifndef VENTAMANAGER_H_INCLUDED
 #define VENTAMANAGER_H_INCLUDED
 
-#include "Venta.h"
 #include "VentaArchivo.h"
-#include "ClienteArchivo.h"
 #include "ClienteManager.h"
-#include "ProductoArchivo.h"
 #include "ProductoManager.h"
 #include "MarcaArchivo.h"
-#include "Usuario.h"
 #include "UsuarioArchivo.h"
 
 #include "../funciones.h"
@@ -21,6 +17,7 @@ public:
     void Reactivar();
     void Listar(Venta venta);
     void ListarTodas();
+    void generarComprobante(Venta venta);
 	void ventasPorEmpleado();
 	void recaudacionAnual();
 	void listarPorMedioDePago();

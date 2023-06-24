@@ -154,7 +154,7 @@ void VentaManager::Listar(Venta venta) // MOSTRAR OK, AGREGAR TEMA DE BUSCAR ID 
     std::cout<<"METODO PAGO: "<<venta.getMetodoPago()<<endl;
     UsuarioArchivo arUsuario;
     Usuario vendedor;
-    vendedor = arUsuario.leer(arUsuario.buscar(2));
+    vendedor = arUsuario.leer(arUsuario.buscar(venta.getIdVendedor()));
     std::cout<<"VENDEDOR: "<<vendedor.getNombre()<<" "<<vendedor.getApellido()<<endl;
 }
 
@@ -171,6 +171,57 @@ void VentaManager::ListarTodas()
         rlutil::anykey();
 
     }
+}
+
+void VentaManager::generarComprobante(Venta venta)
+{
+
+    std::string nombreArchivo = "Venta"+std::to_string(venta.getIdPedido())+".txt";
+    char archivo [50];
+    strcpy(archivo, nombreArchivo.c_str());
+
+    /*std::string directorio = "../Comprobantes";
+    std::string rutaTxt = directorio + nombreArchivo;*/
+
+    //std::string nombreArchivo = "/Venta"+std::to_string(venta.getIdPedido())+".txt";
+    //std::string rutaCompleta = std::string(nombreDirectorio) + nombreArchivo;
+
+    const int* vecIdProducto = venta.getVecIdProducto();
+    const int* vecUnidadesProducto = venta.getVecUnidadesxProducto();
+    int cantidadProductos = venta.getCantidadProductos();
+
+    FILE* archivoTxt = fopen(nombreArchivo.c_str(), "ab");
+    if (archivoTxt != nullptr)
+    {
+        fprintf(archivoTxt, "Información de venta:\n");
+        fprintf(archivoTxt, "CLIENTE: %s\n", venta.getNroDocCliente().c_str());
+        fprintf(archivoTxt, "FECHA COMPRA: %s\n", venta.getFecha().toString().c_str());
+        for(int i = 0; i<cantidadProductos; i++)
+        {
+            ProductoArchivo arProducto;
+            MarcaArchivo arMarca;
+            Producto productoAux;
+            productoAux = arProducto.leer(arProducto.buscar(vecIdProducto[i]));
+            Marca marcaAux;
+            marcaAux = arMarca.leer(arMarca.buscar(productoAux.getIdMarca()));
+            std::string nombreString(marcaAux.getNombre());
+            std::string productoString = nombreString + " | " + productoAux.getModelo();
+            fprintf(archivoTxt, "%s\n", productoString.c_str());
+            fprintf(archivoTxt, "UNIDADES: %d\n", vecUnidadesProducto[i]);
+        }
+        fprintf(archivoTxt, "IMPORTE FINAL:$ %f\n", venta.getMontoCompra());
+
+        UsuarioArchivo arUsuario;
+        Usuario vendedor;
+        vendedor = arUsuario.leer(arUsuario.buscar(venta.getIdVendedor()));
+        std::string nombreVendedor = (vendedor.getNombre());
+        std::string apellidoVendedor = (vendedor.getApellido());
+
+        std::string vendedorString = "VENDEDOR: " + nombreVendedor + " " + apellidoVendedor;
+        fprintf(archivoTxt, "%s\n", vendedorString.c_str());
+        fclose(archivoTxt);
+    }
+
 }
 
 void VentaManager::Cargar()
@@ -229,6 +280,7 @@ void VentaManager::Cargar()
             if(_archivo.guardar(reg))
             {
                 okMensajeCreacion();
+                generarComprobante(reg);
                 rlutil::anykey();
             }
             else

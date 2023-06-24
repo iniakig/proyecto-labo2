@@ -1,5 +1,9 @@
 <h1 align="center"> Sistema de Gestión de Empresa de Venta de Celulares <h1>
 
+<div align="center">
+  <img src="https://github.com/iniakig/proyecto-labo2/assets/98610137/153fbd06-c61a-48ba-a80e-5d09357e8391" alt="PROYECTO DE SOFTWARE DE GESTION">
+</div>
+
 ![Static Badge](https://img.shields.io/badge/ESTADO-EN_DESARROLLO-GREEN)
 
 ## Descripción del proyecto
@@ -14,7 +18,7 @@ Para conocer más detalles te invitamos a leer el [informe](https://drive.google
 
 ## Equipo de desarrollo 💪💪💪
 
-_Todo el equipo en conjunto se dedicó de forma integral en análisis y elaboración del informe incial del proyecto, así como también en el desarrollo en código_
+_Todo el equipo en conjunto se dedicó de forma integral al análisis y elaboración del informe incial del proyecto, así como también en el desarrollo en código_
 
 **Grupo 3**
 
