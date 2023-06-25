@@ -339,90 +339,6 @@ void UsuarioManager::listarPorBusquedaLibre() {
     rlutil::anykey();
 }
 
-/*
-void UsuarioManager::listarActivos() {
-    // rlutil::cls();
-    Usuario usuario;
-    int cantidadDeRegistros = _archivo.getCantidadDeUsuarios();
-    int resultadosEncontrados = 0;
-
-    for (int i = 0; i < cantidadDeRegistros; i++) {
-        usuario = _archivo.leer(i);
-        if (usuario.getEstado()) {
-            resultadosEncontrados++;
-        }
-    }
-
-    if (resultadosEncontrados > 0) {
-        std::cout << "Registros encontrados: " << resultadosEncontrados << std::endl;
-        std::cout << std::endl;
-        std::cout << std::left;
-        std::cout << std::setw(7) << "Tipo";
-        std::cout << std::setw(15) << "N. Documento";
-        std::cout << std::setw(18) << "Alias";
-        std::cout << std::setw(16) << "Rol";
-        std::cout << std::setw(13) << "F. Registro";
-        std::cout << std::endl;
-        std::cout << "-------------------------------------------------------------------" << std::endl;
-        for (int i = 0; i < cantidadDeRegistros; i++) {
-            usuario = _archivo.leer(i);
-            if (usuario.getEstado()) {
-                listar(usuario, 1);
-                std::cout << std::endl;
-            }
-        }
-    }
-    else {
-        std::cout << "No se encontraron registros con estado activo";
-    }
-
-    std::cout << std::endl;
-    rlutil::anykey();
-}
-*/
-
-/*
-void UsuarioManager::listarInactivos() {
-    // rlutil::cls();
-    Usuario usuario;
-    int cantidadDeRegistros = _archivo.getCantidadDeUsuarios();
-    int resultadosEncontrados = 0;
-
-    for (int i = 0; i < cantidadDeRegistros; i++) {
-        usuario = _archivo.leer(i);
-        if (!usuario.getEstado()) {
-            resultadosEncontrados++;
-        }
-    }
-
-    if (resultadosEncontrados > 0) {
-        std::cout << "Registros encontrados: " << resultadosEncontrados << std::endl;
-        std::cout << std::endl;
-        std::cout << std::left;
-        std::cout << std::setw(7) << "Tipo";
-        std::cout << std::setw(15) << "N. Documento";
-        std::cout << std::setw(18) << "Alias";
-        std::cout << std::setw(16) << "Rol";
-        std::cout << std::setw(13) << "F. Registro";
-        std::cout << std::endl;
-        std::cout << "-------------------------------------------------------------------" << std::endl;
-        for (int i = 0; i < cantidadDeRegistros; i++) {
-            usuario = _archivo.leer(i);
-            if (!usuario.getEstado()) {
-                listar(usuario, 1);
-                std::cout << std::endl;
-            }
-        }
-    }
-    else {
-        std::cout << "No se encontraron registros con estado inactivo";
-    }
-
-    std::cout << std::endl;
-    rlutil::anykey();
-}
-*/
-
 void UsuarioManager::ordenarPorFecha(Usuario *listaDeUsuarios, int cantidadDeRegistros) {
     Usuario usuarioAux;
     int mayor = 0;
@@ -832,19 +748,19 @@ void UsuarioManager::listarUsuarios() {
         case 0:
             break;
         case 1:
-            std::cout << std::endl;
+            //std::cout << std::endl;
             listarPorAlias();
             break;
         case 2:
-            std::cout << std::endl;
+            //std::cout << std::endl;
             listarPorDNI();
             break;
         case 3:
-            std::cout << std::endl;
+            //std::cout << std::endl;
             listarActivos();
             break;
         case 4:
-            std::cout << std::endl;
+            //std::cout << std::endl;
             listarInactivos();
             break;
         case 5:

@@ -11,10 +11,11 @@ class ClienteManager
 
         int generarId(); // Hecho
         void listar(Cliente cliente, int tipoListado); // Hecho - Testear
-        void listarPorNombreDeCliente(); // Pendiente
-        void listarPorAlias(); // Pendiente
         void listarPorNroDeDocumento(); // Pendiente
+        void listarActivos();
+        void listarInactivos();
         void listarPorBusquedaLibre(); // Pendiente
+        void ordenarPorNombre(Cliente *listaDeClientes, int cantidadDeRegistros); // Hecho - Testear
 
     public:
         void cargar(); // Hecho - Testear

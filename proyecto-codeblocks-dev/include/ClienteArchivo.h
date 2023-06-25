@@ -17,7 +17,8 @@ class ClienteArchivo
 
         // Interfaces
         Cliente leer(int posicion); // Hecho - Testear
-        int buscar(std::string nroDocumento); // Método de búsqueda libre
+        Cliente leer(Cliente *listaDeClientes, int cantidadDeClientes);
+        int buscar(std::string nroDocumentoIngresado);
         int buscar(int tipoDocumento, std::string nroDocumento);
         bool crear(Cliente cliente); // Hecho - Testear
         bool modificar(Cliente cliente, int posicion); // Hecho - Testear

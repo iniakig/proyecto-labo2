@@ -4,7 +4,9 @@
 #include <iostream>
 #include <string.h>
 #include <string>
+
 #include <../funciones.h>
+#include <../mensajes.h>
 
 // Constructores
 ClienteArchivo::ClienteArchivo(std::string nombre) {
@@ -34,10 +36,24 @@ Cliente ClienteArchivo::leer(int posicion) {
     return cliente;
 }
 
-int ClienteArchivo::buscar(std::string nroDocumento) {
+Cliente ClienteArchivo::leer(Cliente* listaDeClientes, int cantidadDeClientes) {
+    Cliente reg;
+    FILE* p;
+
+    p = fopen(_nombre.c_str(), "rb");
+
+    if (p == nullptr) {
+        mensajeNoSePudoLeerArchivo();
+        return reg;
+    }
+
+    fread(listaDeClientes, sizeof(Cliente), cantidadDeClientes, p);
+    fclose(p);
+}
+
+int ClienteArchivo::buscar(std::string nroDocumentoIngresado) {
     // Método de búsqueda libre
     // REHACER
-    std::string nroNuevo;
     int posicion = -1;
     Cliente cliente;
 
@@ -53,25 +69,22 @@ int ClienteArchivo::buscar(std::string nroDocumento) {
 
     for (int i = 0; i < cantidadDeClientes; i++) {
         cliente = leer(i);
-        std::string nro(cliente.getNroDocumento()); // Acá se crea una nueva variable string tomando el nroDocumento del objeto leído.
-        if (nro.length() > 8) { // Si es mayor a 8 significa que no es un DNI, sino un CUIT, entonces extrae el DNI del CUIT.
-            nroNuevo = cortarCuit(nro);
+        std::string nroDocumento(cliente.getNroDocumento()); // Acá se crea una nueva variable string tomando el nroDocumento del objeto leído.
+        std::cout << "NRO: " << nroDocumento << std::endl;
+        if (nroDocumento.length() > 8) { // Si es mayor a 8 significa que no es un DNI, sino un CUIT, entonces extrae el DNI del CUIT.
+            nroDocumento = cortarCuit(nroDocumento);
+            std::cout << "NRO CORTADO: " << nroDocumento << std::endl;
         }
-        else {
-            nroNuevo = nro;
-        }
-        if (strcmp(nroNuevo.c_str(), nroDocumento.c_str()) == 0) {
-            posicion = i;
-            return i;
-        }
-        /*
-        // Código viejo que servía para búsquedas libres, pero no tenía en cuenta los dos números del comienzo y el del final del CUIT
 
-        if (strstr(cliente.getNroDocumento(), nroDocumento.c_str()) != NULL) {
+        if (nroDocumentoIngresado.length() > 8) {
+            nroDocumentoIngresado = cortarCuit(nroDocumentoIngresado);
+            std::cout << "NRO INGRESADO CORTADO: " << nroDocumentoIngresado << std::endl;
+        }
+
+        if (strcmp(nroDocumento.c_str(), nroDocumentoIngresado.c_str()) == 0) {
             posicion = i;
             return i;
         }
-        */
     }
 
     return posicion;

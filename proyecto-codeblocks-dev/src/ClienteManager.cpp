@@ -8,13 +8,252 @@
 
 #include <iostream>
 #include <iomanip>
+#include <string>
 
+// Métodos privados
 int ClienteManager::generarId() {
    return _archivo.getCantidadDeClientes() + 1;
 }
 
-void ClienteManager::cargar()
-{
+void ClienteManager::listar(Cliente cliente, int tipoListado) {
+    // Tipos de listado
+    // --------------------
+    // 0. Listado detallado
+    // 1. Listado resumido (para tabla)
+
+    switch (tipoListado)
+    {
+    case 0:
+        std::cout << "Id: " << cliente.getId() << std::endl;
+        std::cout << "Tipo de documento: " << cliente.getTipoDocumentoDescripcion() << std::endl;
+        std::cout << "Nro de documento: " << cliente.getNroDocumento() << std::endl;
+        // Si getRazonSocial es "Null" significa que es una persona física
+        if (strcmp(cliente.getRazonSocial(),"null") == 0)
+        {
+            std::cout << "Apellido: " << cliente.getApellido() << std::endl;
+            std::cout << "Nombre: " << cliente.getNombre() << std::endl;
+        }
+        else
+        {
+            std::cout << "Razón Social: " << cliente.getRazonSocial() << std::endl;
+        }
+        std::cout << "Email: " << cliente.getEmail() << std::endl;
+        std::cout << "Domicilio: " << cliente.getDomicilio() << std::endl;
+        std::cout << "Fecha de registro: " << cliente.getFechaRegistro().toString() << std::endl;
+        std::cout << "Estado: " << cliente.getEstadoDescripcion() << std::endl;
+        break;
+    case 1:
+        std::cout << std::left;
+        std::cout << std::setw(6) << cliente.getId();
+        std::cout << std::setw(7) << cliente.getTipoDocumentoDescripcion();
+        std::cout << std::setw(15) << cliente.getNroDocumento();
+        std::string null = "null";
+        if (strcmp(cliente.getRazonSocial(), null.c_str()) == 0)
+        {
+            // std::cout << std::setw(18) << cliente.getNombre();
+            // std::cout << std::setw(18) << cliente.getApellido();
+            // Concatenamos apellido y nombre. Usamos constructores de String para convertir Char en String.
+            std::string apellidoNombre = std::string(cliente.getApellido()) + " " + std::string(cliente.getNombre());
+            std::cout << std::setw(38) << apellidoNombre;
+        }
+        else
+        {
+            std::cout << std::setw(38) << cliente.getRazonSocial();
+        }
+        std::cout << std::setw(13) << cliente.getFechaRegistro().toString();
+        break;
+    }
+}
+
+void ClienteManager::listarPorNroDeDocumento() {
+    rlutil::cls();
+    Cliente cliente;
+    int tipoDocumento;
+    std::string nroDeDocumento;
+
+    std::cout << "LISTAR POR NRO DE DOCUMENTO" << std::endl;
+    std::cout << "---------------------------------------------------------------------------------" << std::endl;
+    std::cout << "Ingrese el DNI o CUIT del cliente: ";
+    nroDeDocumento = ingresoDeDocumentoConValidacion();
+    std::cout << std::endl;
+
+    int posicion = _archivo.buscar(nroDeDocumento);
+
+    if (posicion > -1) {
+        cliente = _archivo.leer(posicion);
+        listar(cliente, 0);
+        mensajeFinDelListado();
+    }
+    else {
+        registroNoEncontradoMensaje();
+    }
+
+    rlutil::anykey();
+}
+
+void ClienteManager::listarActivos() {
+    rlutil::cls();
+    std::cout << "CLIENTES ACTIVOS" << std::endl;
+    std::cout << "---------------------------------------------------------------------------------" << std::endl;
+
+    int cantidadDeRegistros = _archivo.getCantidadDeClientes();
+    Cliente *listaDeClientes = new Cliente[cantidadDeRegistros];
+    int resultadosEncontrados = 0;
+
+    if(listaDeClientes == nullptr) {
+        std::cout << std::endl;
+        std::cout << "Ocurrió un error al visualizar el listado" << std::endl;
+        return;
+    }
+
+    _archivo.leer(listaDeClientes, cantidadDeRegistros);
+
+    for (int i = 0; i < cantidadDeRegistros; i++) {
+        if (listaDeClientes[i].getEstado()) {
+            resultadosEncontrados++;
+        }
+    }
+
+    if (resultadosEncontrados > 0) {
+        ordenarPorNombre(listaDeClientes, cantidadDeRegistros);
+        std::cout << std::endl;
+        std::cout << "Registros encontrados: " << resultadosEncontrados << std::endl;
+        std::cout << std::endl;
+        std::cout << std::left;
+        std::cout << std::setw(6) << "Id";
+        std::cout << std::setw(7) << "Tipo";
+        std::cout << std::setw(15) << "Nro";
+        std::cout << std::setw(38) << "Cliente";
+        std::cout << std::setw(13) << "F. Registro";
+        std::cout << std::endl;
+        std::cout << "-----------------------------------------------------------------------------" << std::endl;
+
+        for (int i = 0; i < cantidadDeRegistros; i++) {
+            if (listaDeClientes[i].getEstado()) {
+                listar(listaDeClientes[i], 1);
+                std::cout << std::endl;
+            }
+        }
+        mensajeFinDelListado();
+    }
+    else {
+        mensajeListadoSinDatosEncontrados();
+    }
+
+    delete[] listaDeClientes;
+    rlutil::anykey();
+}
+
+void ClienteManager::listarInactivos() {
+    rlutil::cls();
+    std::cout << "CLIENTES INACTIVOS" << std::endl;
+    std::cout << "---------------------------------------------------------------------------------" << std::endl;
+
+    int cantidadDeRegistros = _archivo.getCantidadDeClientes();
+    Cliente *listaDeClientes = new Cliente[cantidadDeRegistros];
+    int resultadosEncontrados = 0;
+
+    if(listaDeClientes == nullptr) {
+        std::cout << std::endl;
+        std::cout << "Ocurrió un error al visualizar el listado" << std::endl;
+        return;
+    }
+
+    _archivo.leer(listaDeClientes, cantidadDeRegistros);
+
+    for (int i = 0; i < cantidadDeRegistros; i++) {
+        if (!listaDeClientes[i].getEstado()) {
+            resultadosEncontrados++;
+        }
+    }
+
+    if (resultadosEncontrados > 0) {
+        ordenarPorNombre(listaDeClientes, cantidadDeRegistros);
+        std::cout << std::endl;
+        std::cout << "Registros encontrados: " << resultadosEncontrados << std::endl;
+        std::cout << std::endl;
+        std::cout << std::left;
+        std::cout << std::setw(6) << "Id";
+        std::cout << std::setw(7) << "Tipo";
+        std::cout << std::setw(15) << "Nro";
+        std::cout << std::setw(38) << "Cliente";
+        std::cout << std::setw(13) << "F. Registro";
+        std::cout << std::endl;
+        std::cout << "-----------------------------------------------------------------------------" << std::endl;
+
+        for (int i = 0; i < cantidadDeRegistros; i++) {
+            if (!listaDeClientes[i].getEstado()) {
+                listar(listaDeClientes[i], 1);
+                std::cout << std::endl;
+            }
+        }
+        mensajeFinDelListado();
+    }
+    else {
+        mensajeListadoSinDatosEncontrados();
+    }
+
+    delete[] listaDeClientes;
+    rlutil::anykey();
+}
+
+void ClienteManager::ordenarPorNombre(Cliente *listaDeClientes, int cantidadDeRegistros) {
+    Cliente clienteAux;
+    int menor = 0;
+
+    for (int i = 0; i < cantidadDeRegistros - 1; i++) {
+        menor = i;
+
+        // Procesamiento de nombres de posicion i para concatenarlos y unificarlos
+        std::string nombreCliente = "";
+
+        std::string null = "null";
+        if (strcmp(listaDeClientes[i].getRazonSocial(), null.c_str()) == 0) {
+            std::string apellido(listaDeClientes[i].getApellido());
+            std::string nombre(listaDeClientes[i].getNombre());
+            // Concateno en nombreCliente el Apellido y el nombre
+            nombreCliente += apellido;
+            nombreCliente += " ";
+            nombreCliente += nombre;
+        }
+        else {
+            std::string razonSocial(listaDeClientes[i].getRazonSocial());
+            nombreCliente += razonSocial;
+        }
+
+        for (int j = i + 1; j < cantidadDeRegistros; j++) {
+            // Procesamiento de nombres de posicion j para concatenarlos y unificarlos
+            std::string nombreClienteActual = "";
+
+            if (strcmp(listaDeClientes[j].getRazonSocial(), null.c_str()) == 0) {
+                std::string apellidoActual(listaDeClientes[j].getApellido());
+                std::string nombreActual(listaDeClientes[j].getNombre());
+                // Concateno en nombreClienteActual el Apellido y el nombre
+                nombreClienteActual += apellidoActual;
+                nombreClienteActual += " ";
+                nombreClienteActual += nombreActual;
+            }
+            else {
+                std::string razonSocial(listaDeClientes[j].getRazonSocial());
+                nombreClienteActual += razonSocial;
+            }
+
+            // Ahora comparamos
+            if (strcmp(nombreClienteActual.c_str(), nombreCliente.c_str()) < 0) {
+                menor = j;
+            }
+
+            if (i != menor) {
+                clienteAux = listaDeClientes[i];
+                listaDeClientes[i] = listaDeClientes[menor];
+                listaDeClientes[menor] = clienteAux;
+            }
+        }
+    }
+}
+
+// Métodos públicos
+void ClienteManager::cargar() {
     rlutil::cls();
     int id;
     int tipoDeCliente;
@@ -103,8 +342,7 @@ void ClienteManager::cargar()
     }
 }
 
-bool ClienteManager::cargar(std::string nroDocumento)
-{
+bool ClienteManager::cargar(std::string nroDocumento) {
     rlutil::cls();
     int id;
     int tipoDeCliente;
@@ -176,89 +414,49 @@ bool ClienteManager::cargar(std::string nroDocumento)
         }
 }
 
-void ClienteManager::listar(Cliente cliente, int tipoListado)
-{
-    // Tipos de listado
-    // --------------------
-    // 0. Listado detallado
-    // 1. Listado resumido (para tabla)
+void ClienteManager::listarClientes() {
+    int opcion = -1;
 
-    switch (tipoListado)
-    {
-    case 0:
-        std::cout << "Id: " << cliente.getId() << std::endl;
-        std::cout << "Tipo de documento: " << cliente.getTipoDocumentoDescripcion() << std::endl;
-        std::cout << "Nro de documento: " << cliente.getNroDocumento() << std::endl;
-        // Si getRazonSocial es "Null" significa que es una persona física
-        if (strcmp(cliente.getRazonSocial(),"null") == 0)
-        {
-            std::cout << "Nombre: " << cliente.getApellido() << std::endl;
-            std::cout << "Apellido: " << cliente.getNombre() << std::endl;
+    do {
+        rlutil::cls();
+        std::cout << "ELIJA EL TIPO DE LISTADO" << std::endl;
+        std::cout << "---------------------------------------------------" << std::endl;
+        std::cout << "1. CLIENTE POR NRO DE DOCUMENTO" << std::endl;
+        std::cout << "2. CLIENTES ACTIVOS" << std::endl;
+        std::cout << "3. CLIENTES INACTIVOS" << std::endl;
+        std::cout << "4. BÚSQUEDA LIBRE" << std::endl;
+        std::cout << "---------------------------------------------------" << std::endl;
+        std::cout << "0. VOLVER AL MENÚ DE GESTIÓN DE USUARIOS" << std::endl;
+        std::cout << "---------------------------------------------------" << std::endl;
+        std::cout << "OPCIÓN SELECCIONADA: ";
+        std::cin >> opcion;
+        std::cin.ignore();
+
+        switch(opcion) {
+        case 0:
+            break;
+        case 1:
+            listarPorNroDeDocumento();
+            break;
+        case 2:
+            listarActivos();
+            break;
+        case 3:
+            listarInactivos();
+            break;
+        case 4:
+
+            break;
+        default:
+            std::cout << "La opción seleccionada es invalida. Ingrese nuevamente." << std::endl;
+            break;
         }
-        else
-        {
-            std::cout << "Razón Social: " << cliente.getRazonSocial() << std::endl;
-        }
-        std::cout << "Email: " << cliente.getEmail() << std::endl;
-        std::cout << "Domicilio: " << cliente.getDomicilio() << std::endl;
-        std::cout << "Fecha de registro: " << cliente.getFechaRegistro().toString() << std::endl;
-        std::cout << "Estado: " << cliente.getEstadoDescripcion();
-        break;
-    case 1:
-        std::cout << std::left;
-        std::cout << std::setw(6) << cliente.getId();
-        std::cout << std::setw(7) << cliente.getTipoDocumentoDescripcion();
-        std::cout << std::setw(15) << cliente.getNroDocumento();
-        std::string null = "null";
-        if (strcmp(cliente.getRazonSocial(), null.c_str()) == 0)
-        {
-            // std::cout << std::setw(18) << cliente.getNombre();
-            // std::cout << std::setw(18) << cliente.getApellido();
-            // Concatenamos apellido y nombre. Usamos constructores de String para convertir Char en String.
-            std::string apellidoNombre = std::string(cliente.getApellido()) + " " + std::string(cliente.getNombre());
-            std::cout << std::setw(38) << apellidoNombre;
-        }
-        else
-        {
-            std::cout << std::setw(38) << cliente.getRazonSocial();
-        }
-        std::cout << std::setw(13) << cliente.getFechaRegistro().toString();
-        break;
     }
+
+    while(opcion != 0);
 }
 
-void ClienteManager::listarClientes()
-{
-    std::cout << std::endl;
-    std::cout << std::endl;
-    Cliente cliente;
-    int cantidadRegistrosClientes = _archivo.getCantidadDeClientes();
-
-    if (_archivo.getCantidadDeClientes() != 0) {
-        std::cout << std::left;
-        std::cout << std::setw(6) << "Id";
-        std::cout << std::setw(7) << "Tipo";
-        std::cout << std::setw(15) << "Nro";
-        std::cout << std::setw(38) << "Cliente";
-        std::cout << std::setw(13) << "F. Registro";
-        std::cout << std::endl;
-        std::cout << "-----------------------------------------------------------------------------" << std::endl;
-    }
-    else {
-        mensajeListadoSinDatosEncontrados();
-    }
-
-    for (int i = 0; i < cantidadRegistrosClientes; i++)
-    {
-        cliente = _archivo.leer(i);
-        listar(cliente, 1);
-        std::cout << std::endl;
-    }
-    rlutil::anykey();
-}
-
-void ClienteManager::modificar()
-{
+void ClienteManager::modificar() {
     rlutil::cls();
     Cliente cliente;
 
@@ -545,8 +743,7 @@ void ClienteManager::modificar()
     }
 }
 
-void ClienteManager::darDeBaja()
-{
+void ClienteManager::darDeBaja() {
     rlutil::cls();
     Cliente cliente;
     std::string nroDocumento;
@@ -561,7 +758,7 @@ void ClienteManager::darDeBaja()
         cliente = _archivo.leer(posicion);
         if (cliente.getEstado())
         {
-            std::cout << "Datos del cliente: ";
+            std::cout << "Datos del cliente: " << std::endl;
             listar(cliente, 0);
             std::cout << std::endl;
             std::cout << std::endl;
@@ -571,25 +768,26 @@ void ClienteManager::darDeBaja()
             if (decision == "SI")
             {
                 cliente.setEstado(false);
+                _archivo.modificar(cliente, posicion);
+                okMensajeBaja();
             }
-
-            _archivo.modificar(cliente, posicion);
+            else {
+                errorMensajeBaja();
+            }
         }
         else
         {
-            std::cout << std::endl;
             registroNoEncontradoMensaje();
         }
     }
     else
     {
-        std::cout << std::endl;
         registroNoEncontradoMensaje();
     }
+    rlutil::anykey();
 }
 
-void ClienteManager::reactivar()
-{
+void ClienteManager::reactivar() {
     rlutil::cls();
     Cliente cliente;
     std::string nroDocumento;
@@ -604,7 +802,7 @@ void ClienteManager::reactivar()
         cliente = _archivo.leer(posicion);
         if (!cliente.getEstado())
         {
-            std::cout << "Datos del cliente: ";
+            std::cout << "Datos del cliente: " << std::endl;
             listar(cliente, 0);
             std::cout << std::endl;
             std::cout << std::endl;
@@ -614,25 +812,26 @@ void ClienteManager::reactivar()
             if (decision == "SI")
             {
                 cliente.setEstado(true);
+                _archivo.modificar(cliente, posicion);
+                okMensajeModificacion();
             }
-
-            _archivo.modificar(cliente, posicion);
+            else {
+                errorMensajeModificacion();
+            }
         }
         else
         {
-            std::cout << std::endl;
             registroNoEncontradoMensaje();
         }
     }
     else
     {
-        std::cout << std::endl;
         registroNoEncontradoMensaje();
     }
+    rlutil::anykey();
 }
 
-bool ClienteManager::reactivar(std::string nroDocumento)
-{
+bool ClienteManager::reactivar(std::string nroDocumento) {
     Cliente cliente;
 
     int posicion = _archivo.buscar(nroDocumento);
