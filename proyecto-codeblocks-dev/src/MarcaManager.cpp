@@ -7,7 +7,6 @@
 
 using namespace std;
 
-
 int MarcaManager::generarID()
 {
     return _archivo.getCantidadDeRegistros()+1;
@@ -61,6 +60,7 @@ void MarcaManager::listarXNombre()
     rlutil::anykey();
 
 }
+
 void MarcaManager::listarTodos()
 {
     int cantidadRegistros = _archivo.getCantidadDeRegistros();
@@ -73,6 +73,7 @@ void MarcaManager::listarTodos()
     }
     rlutil::anykey();
 }
+
 void MarcaManager::cargar()
 {
     cout<<"INGRESE EL NOMBRE DE LA MARCA: ";
@@ -272,7 +273,7 @@ void MarcaManager::hacerCopiaSeguridad()
 
     if (vec == nullptr)
     {
-        cout << "ERROR AL REALIZAR LA COPIA DE SEGURIDAD" << endl;
+        errorMensajeCopiaDeSeguridad();
         return;
     }
 
@@ -281,11 +282,11 @@ void MarcaManager::hacerCopiaSeguridad()
 
     if(_archivoBkp.guardar(vec, cantidadRegs))
     {
-        cout << "COPIA DE SEGURIDAD REALIZADA CON EXITO" << endl;
+        okMensajeCopiaDeSeguridad();
     }
     else
     {
-        cout << "ERROR AL REALIZAR LA COPIA DE SEGURIDAD" << endl;
+        errorMensajeCopiaDeSeguridad();
     }
 
     delete []vec;
@@ -299,7 +300,7 @@ void MarcaManager::restaurarCopiaSeguridad()
     Marca *vec = new Marca[cantidadRegs];
     if (vec == nullptr)
     {
-        cout << "ERROR AL RESTAURAR LA COPIA DE SEGURIDAD" << endl;
+        errorMensajeRestauracionCopiaDeSeguridad();
         return;
     }
 
@@ -309,11 +310,11 @@ void MarcaManager::restaurarCopiaSeguridad()
     if(_archivo.guardar(vec, cantidadRegs))
     {
 
-        cout << "COPIA DE SEGURIDAD RESTAURADA CON EXITO" << endl;
+        okMensajeRestauracionCopiaDeSeguridad();
     }
     else
     {
-        cout << "ERROR AL REALIZAR LA COPIA DE SEGURIDAD" << endl;
+        errorMensajeRestauracionCopiaDeSeguridad();
     }
 
     delete []vec;

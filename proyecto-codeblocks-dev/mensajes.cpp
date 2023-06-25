@@ -132,3 +132,31 @@ void mensajeFinDelListado() {
     rlutil::hidecursor();
     rlutil::setColor(rlutil::WHITE);
 }
+
+void okMensajeCopiaDeSeguridad() {
+    std::cout << std::endl;
+    rlutil::setColor(rlutil::LIGHTGREEN);
+    std::cout << "La copia de seguridad se realizó correctamente." << std::endl;
+    rlutil::setColor(rlutil::WHITE);
+}
+
+void errorMensajeCopiaDeSeguridad() {
+    std::cout << std::endl;
+    rlutil::setColor(rlutil::LIGHTRED);
+    std::cout << "No se pudo realizar la copia de seguridad." << std::endl;
+    rlutil::setColor(rlutil::WHITE);
+}
+
+void okMensajeRestauracionCopiaDeSeguridad() {
+    std::cout << std::endl;
+    rlutil::setColor(rlutil::LIGHTGREEN);
+    std::cout << "La restauración de la copia de seguridad se realizó correctamente." << std::endl;
+    rlutil::setColor(rlutil::WHITE);
+}
+
+void errorMensajeRestauracionCopiaDeSeguridad() {
+    std::cout << std::endl;
+    rlutil::setColor(rlutil::LIGHTRED);
+    std::cout << "No se pudo restaurar la copia de seguridad." << std::endl;
+    rlutil::setColor(rlutil::WHITE);
+}
