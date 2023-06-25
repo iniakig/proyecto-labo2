@@ -322,7 +322,7 @@ void ProductoManager::Editar()
         float precioVenta;
         int stock;
         bool edito = 0;
-
+        bool seguirModificando = true;
         do
         {
             rlutil::cls();
@@ -345,13 +345,20 @@ void ProductoManager::Editar()
             {
             case 0:
                 break;
-            case 1:
+            case 1:{
                 std::cout <<"INGRESE CATEGORIA: "<< std::endl;
                 categoria = ingresoCategoriaProdConValidacion();
                 producto.setCategoria(categoria);
                 edito = 1;
-                break;
-            case 2:
+                // Preguntar al usuario si quiere seguir modificando
+                cout<<"¿Desea seguir haciendo modificaciones? (SI/NO)"<<endl;
+                std::string respuesta; // variable para almacenar la respuesta del usuario
+                respuesta = ingresoDeDecisionConValidacion(); // leer la respuesta del usuario
+                if (respuesta == "NO") { // si no quiere seguir modificando
+                  seguirModificando = false; // indicar que no quiere seguir modificando
+                }
+                break;}
+            case 2:{
                 do
                 {
                     std::cout <<"INGRESE MARCA: "<< std::endl;
@@ -360,37 +367,72 @@ void ProductoManager::Editar()
                 }
                 while(producto.getIdMarca()<=0);
                 edito = 1;
-                break;
-            case 3:
+                // Preguntar al usuario si quiere seguir modificando
+                cout<<"¿Desea seguir haciendo modificaciones? (SI/NO)"<<endl;
+                std::string respuesta; // variable para almacenar la respuesta del usuario
+                respuesta = ingresoDeDecisionConValidacion(); // leer la respuesta del usuario
+                if (respuesta == "NO") { // si no quiere seguir modificando
+                  seguirModificando = false; // indicar que no quiere seguir modificando
+                }
+                break;}
+            case 3:{
                 std::cout <<"INGRESE MODELO: "<< std::endl;
                 modelo = ingresoModeloConValidacion();
                 producto.setModelo(modelo);
                 edito = 1;
-                break;
-            case 4:
+                // Preguntar al usuario si quiere seguir modificando
+                cout<<"¿Desea seguir haciendo modificaciones? (SI/NO)"<<endl;
+                std::string respuesta; // variable para almacenar la respuesta del usuario
+                respuesta = ingresoDeDecisionConValidacion(); // leer la respuesta del usuario
+                if (respuesta == "NO") { // si no quiere seguir modificando
+                  seguirModificando = false; // indicar que no quiere seguir modificando
+                }
+                break;}
+            case 4:{
                 std::cout <<"INGRESE DESCRIPCION: "<< std::endl;
                 descripcion = ingresoDescripcionConValidacion();
                 producto.setDescripcion(descripcion);
                 edito = 1;
-                break;
-            case 5:
+                // Preguntar al usuario si quiere seguir modificando
+                cout<<"¿Desea seguir haciendo modificaciones? (SI/NO)"<<endl;
+                std::string respuesta; // variable para almacenar la respuesta del usuario
+                respuesta = ingresoDeDecisionConValidacion(); // leer la respuesta del usuario
+                if (respuesta == "NO") { // si no quiere seguir modificando
+                  seguirModificando = false; // indicar que no quiere seguir modificando
+                }
+                break;}
+            case 5:{
                 std::cout <<"INGRESE PRECIO DE VENTA: "<< std::endl;
                 precioVenta = ingresoPrecioConValidacion();
                 producto.setPrecio(precioVenta);
                 edito = 1;
-                break;
-            case 6:
+                // Preguntar al usuario si quiere seguir modificando
+                cout<<"¿Desea seguir haciendo modificaciones? (SI/NO)"<<endl;
+                std::string respuesta; // variable para almacenar la respuesta del usuario
+                respuesta = ingresoDeDecisionConValidacion(); // leer la respuesta del usuario
+                if (respuesta == "NO") { // si no quiere seguir modificando
+                  seguirModificando = false; // indicar que no quiere seguir modificando
+                }
+                break;}
+            case 6:{
                 std::cout <<"INGRESE STOCK: "<< std::endl;
                 stock = ingresoStockConValidacion();
                 producto.setStock(stock);
                 edito = 1;
-                break;
+               // Preguntar al usuario si quiere seguir modificando
+                cout<<"¿Desea seguir haciendo modificaciones? (SI/NO)"<<endl;
+                std::string respuesta; // variable para almacenar la respuesta del usuario
+                respuesta = ingresoDeDecisionConValidacion(); // leer la respuesta del usuario
+                if (respuesta == "NO") { // si no quiere seguir modificando
+                  seguirModificando = false; // indicar que no quiere seguir modificando
+                }
+                break;}
             default:
                 std::cout << "La opción seleccionada es invalida. Ingrese nuevamente." << std::endl;
-                break;
+
             }
         }
-        while(opcion != 0);
+        while(seguirModificando);
         if(edito)
         {
             cout<<"MODIFICO EL SIGUIENTE PRODUCTO: "<<endl;
