@@ -15,6 +15,7 @@ int ProductoManager::GenerarId()
 {
     return _archivo.getCantidadDeRegistros()+1;
 }
+
 void ProductoManager::Listar(Producto producto)
 {
 
@@ -28,6 +29,7 @@ void ProductoManager::Listar(Producto producto)
     std::cout<<"STOCK: "<<producto.getStock()<<std::endl;
     std::cout<<"ESTADO: "<<producto.getActivo()<<std::endl;
 }
+
 void ProductoManager::ListarTodos()
 {
 
@@ -44,6 +46,7 @@ void ProductoManager::ListarTodos()
     }
     rlutil::anykey();
 }
+
 void ProductoManager::ListarXId()
 {
     int id;
@@ -67,6 +70,7 @@ void ProductoManager::ListarXId()
     }
     rlutil::anykey();
 }
+
 void ProductoManager::ListarPorMarca()
 {
 
@@ -174,6 +178,7 @@ void ProductoManager::HacerCopiaDeSeguridad()
 
     delete []vec;
 }
+
 void ProductoManager::RestaurarCopiaDeSeguridad()
 {
 
@@ -202,6 +207,7 @@ void ProductoManager::RestaurarCopiaDeSeguridad()
 
     delete []vec;
 }
+
 void ProductoManager::ListarPorStock()
 {
 
@@ -245,6 +251,7 @@ void ProductoManager::ListarPorStock()
     delete []ProductosOrdenadosStock;
     rlutil::anykey();
 }
+
 void ProductoManager::Cargar()
 {
 
@@ -297,6 +304,7 @@ void ProductoManager::Cargar()
     }
     rlutil::anykey();
 }
+
 void ProductoManager::Editar()
 {
     Producto producto;
@@ -547,6 +555,7 @@ void ProductoManager::reactivar()
     }
     rlutil::anykey();
 }
+
 void ProductoManager::CargarStock()
 {
     Producto reg;

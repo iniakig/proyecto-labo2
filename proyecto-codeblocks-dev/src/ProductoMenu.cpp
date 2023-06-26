@@ -10,21 +10,19 @@ void ProductoMenu::mostrar()
         rlutil::cls();
         std::cout << "GESTIÓN DE PRODUCTOS" << std::endl;
         std::cout << "---------------------------------------------------" << std::endl;
-        std::cout << " 1. AGREGAR PRODUCTO" << std::endl;
-        std::cout << " 2. MODIFICAR PRODUCTO" << std::endl;
-        std::cout << " 3. ELIMINAR PRODUCTO" << std::endl;
-        std::cout << " 4. REACTIVAR PRODUCTO" << std::endl;
-        std::cout << " 5. LISTAR PRODUCTOS" << std::endl;
-        std::cout << " 6. BUSCAR PRODUCTO POR ID" << std::endl;
-        std::cout << " 7. LISTAR POR MARCA" << std::endl;
-        std::cout << " 8. LISTAR POR TOPE DE PRECIO" << std::endl;
-        std::cout << " 9. LISTAR POR STOCK" << std::endl;
-        std::cout << " 10. RESTAR STOCK" << std::endl;
-        std::cout << " 11. CARGAR STOCK" << std::endl;
-        std::cout << " 12. REALIZAR COPIA SEGURIDAD" << std::endl;
-        std::cout << " 13. RESTAURAR COPIA SEGURIDAD" << std::endl;
+        std::cout << "1. AGREGAR PRODUCTO" << std::endl;
+        std::cout << "2. MODIFICAR PRODUCTO" << std::endl;
+        std::cout << "3. ELIMINAR PRODUCTO" << std::endl;
+        std::cout << "4. REACTIVAR PRODUCTO" << std::endl;
+        std::cout << "5. LISTAR PRODUCTOS" << std::endl;
+        std::cout << "6. BUSCAR PRODUCTO POR ID" << std::endl;
+        std::cout << "7. LISTAR POR MARCA" << std::endl;
+        std::cout << "8. LISTAR POR TOPE DE PRECIO" << std::endl;
+        std::cout << "9. LISTAR POR STOCK" << std::endl;
+        std::cout << "10. RESTAR STOCK" << std::endl;
+        std::cout << "11. CARGAR STOCK" << std::endl;
         std::cout << "---------------------------------------------------" << std::endl;
-        std::cout << " 0. VOLVER AL MENÚ PRINCIPAL" << std::endl;
+        std::cout << "0. VOLVER AL MENÚ PRINCIPAL" << std::endl;
         std::cout << "---------------------------------------------------" << std::endl;
         std::cout << "OPCIÓN SELECCIONADA: ";
         std::cin >> opcion;
@@ -66,12 +64,6 @@ void ProductoMenu::mostrar()
             break;
         case 11:
             _productoManager.CargarStock();
-            break;
-        case 12:
-            _productoManager.HacerCopiaDeSeguridad();
-            break;
-        case 13:
-            _productoManager.RestaurarCopiaDeSeguridad();
             break;
         default:
             std::cout << "La opción seleccionada es invalida. Ingrese nuevamente." << std::endl;

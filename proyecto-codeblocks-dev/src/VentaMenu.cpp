@@ -11,12 +11,12 @@ void VentaMenu::Mostrar()
         rlutil::cls();
         std::cout << "GESTIÓN DE VENTAS" << std::endl;
         std::cout << "---------------------------------------------------" << std::endl;
-        std::cout << " 1. CARGAR VENTA" << std::endl;
-        std::cout << " 2. ANULAR VENTA" << std::endl;
-        std::cout << " 3. REACTIVAR VENTA" << std::endl;
-        std::cout << " 4. LISTAR VENTAS" << std::endl;
+        std::cout << "1. CARGAR VENTA" << std::endl;
+        std::cout << "2. ANULAR VENTA" << std::endl;
+        std::cout << "3. REACTIVAR VENTA" << std::endl;
+        std::cout << "4. LISTAR VENTAS" << std::endl;
         std::cout << "---------------------------------------------------" << std::endl;
-        std::cout << " 0. VOLVER AL MENÚ PRINCIPAL" << std::endl;
+        std::cout << "0. VOLVER AL MENÚ PRINCIPAL" << std::endl;
         std::cout << "---------------------------------------------------" << std::endl;
         std::cout << "OPCIÓN SELECCIONADA: ";
         std::cin >> opcion;
