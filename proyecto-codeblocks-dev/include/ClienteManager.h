@@ -10,7 +10,6 @@ class ClienteManager
         bool permisos[3];
 
         int generarId(); // Hecho
-        void listar(Cliente cliente, int tipoListado); // Hecho - Testear
         void listarPorNroDeDocumento(); // Pendiente
         void listarActivos();
         void listarInactivos();
@@ -20,6 +19,7 @@ class ClienteManager
     public:
         void cargar(); // Hecho - Testear
         bool cargar(std::string nroDocumento);
+        void listar(Cliente cliente, int tipoListado); // Hecho - Testear
         void listarClientes(); // En curso
         void modificar(); // En curso
         void darDeBaja(); // Hecho - Testear

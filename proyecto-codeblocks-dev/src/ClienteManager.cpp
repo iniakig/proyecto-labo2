@@ -15,56 +15,6 @@ int ClienteManager::generarId() {
    return _archivo.getCantidadDeClientes() + 1;
 }
 
-void ClienteManager::listar(Cliente cliente, int tipoListado) {
-    // Tipos de listado
-    // --------------------
-    // 0. Listado detallado
-    // 1. Listado resumido (para tabla)
-
-    switch (tipoListado)
-    {
-    case 0:
-        std::cout << "Id: " << cliente.getId() << std::endl;
-        std::cout << "Tipo de documento: " << cliente.getTipoDocumentoDescripcion() << std::endl;
-        std::cout << "Nro de documento: " << cliente.getNroDocumento() << std::endl;
-        // Si getRazonSocial es "Null" significa que es una persona física
-        if (strcmp(cliente.getRazonSocial(),"null") == 0)
-        {
-            std::cout << "Apellido: " << cliente.getApellido() << std::endl;
-            std::cout << "Nombre: " << cliente.getNombre() << std::endl;
-        }
-        else
-        {
-            std::cout << "Razón Social: " << cliente.getRazonSocial() << std::endl;
-        }
-        std::cout << "Email: " << cliente.getEmail() << std::endl;
-        std::cout << "Domicilio: " << cliente.getDomicilio() << std::endl;
-        std::cout << "Fecha de registro: " << cliente.getFechaRegistro().toString() << std::endl;
-        std::cout << "Estado: " << cliente.getEstadoDescripcion() << std::endl;
-        break;
-    case 1:
-        std::cout << std::left;
-        std::cout << std::setw(6) << cliente.getId();
-        std::cout << std::setw(7) << cliente.getTipoDocumentoDescripcion();
-        std::cout << std::setw(15) << cliente.getNroDocumento();
-        std::string null = "null";
-        if (strcmp(cliente.getRazonSocial(), null.c_str()) == 0)
-        {
-            // std::cout << std::setw(18) << cliente.getNombre();
-            // std::cout << std::setw(18) << cliente.getApellido();
-            // Concatenamos apellido y nombre. Usamos constructores de String para convertir Char en String.
-            std::string apellidoNombre = std::string(cliente.getApellido()) + " " + std::string(cliente.getNombre());
-            std::cout << std::setw(38) << apellidoNombre;
-        }
-        else
-        {
-            std::cout << std::setw(38) << cliente.getRazonSocial();
-        }
-        std::cout << std::setw(13) << cliente.getFechaRegistro().toString();
-        break;
-    }
-}
-
 void ClienteManager::listarPorNroDeDocumento() {
     rlutil::cls();
     Cliente cliente;
@@ -412,6 +362,56 @@ bool ClienteManager::cargar(std::string nroDocumento) {
             errorMensajeCreacion();
             return false;
         }
+}
+
+void ClienteManager::listar(Cliente cliente, int tipoListado) {
+    // Tipos de listado
+    // --------------------
+    // 0. Listado detallado
+    // 1. Listado resumido (para tabla)
+
+    switch (tipoListado)
+    {
+    case 0:
+        std::cout << "Id: " << cliente.getId() << std::endl;
+        std::cout << "Tipo de documento: " << cliente.getTipoDocumentoDescripcion() << std::endl;
+        std::cout << "Nro de documento: " << cliente.getNroDocumento() << std::endl;
+        // Si getRazonSocial es "Null" significa que es una persona física
+        if (strcmp(cliente.getRazonSocial(),"null") == 0)
+        {
+            std::cout << "Apellido: " << cliente.getApellido() << std::endl;
+            std::cout << "Nombre: " << cliente.getNombre() << std::endl;
+        }
+        else
+        {
+            std::cout << "Razón Social: " << cliente.getRazonSocial() << std::endl;
+        }
+        std::cout << "Email: " << cliente.getEmail() << std::endl;
+        std::cout << "Domicilio: " << cliente.getDomicilio() << std::endl;
+        std::cout << "Fecha de registro: " << cliente.getFechaRegistro().toString() << std::endl;
+        std::cout << "Estado: " << cliente.getEstadoDescripcion() << std::endl;
+        break;
+    case 1:
+        std::cout << std::left;
+        std::cout << std::setw(6) << cliente.getId();
+        std::cout << std::setw(7) << cliente.getTipoDocumentoDescripcion();
+        std::cout << std::setw(15) << cliente.getNroDocumento();
+        std::string null = "null";
+        if (strcmp(cliente.getRazonSocial(), null.c_str()) == 0)
+        {
+            // std::cout << std::setw(18) << cliente.getNombre();
+            // std::cout << std::setw(18) << cliente.getApellido();
+            // Concatenamos apellido y nombre. Usamos constructores de String para convertir Char en String.
+            std::string apellidoNombre = std::string(cliente.getApellido()) + " " + std::string(cliente.getNombre());
+            std::cout << std::setw(38) << apellidoNombre;
+        }
+        else
+        {
+            std::cout << std::setw(38) << cliente.getRazonSocial();
+        }
+        std::cout << std::setw(13) << cliente.getFechaRegistro().toString();
+        break;
+    }
 }
 
 void ClienteManager::listarClientes() {

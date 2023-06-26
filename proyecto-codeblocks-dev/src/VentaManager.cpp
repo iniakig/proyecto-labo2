@@ -88,8 +88,10 @@ std::string VentaManager::validarCliente()
     bool clienteValido = false;
     do // REVISAR CON NAHUE LAS BUSQUEDAS DE CLIENTE -- PENDIENTE ESTA VALIDACION
     {
-        std::cout<<"INGRESE NUMERO DE DOCUMENTO O CUIT DEL CLIENTE"<<std::endl;
+        std::cout<<"INGRESE NUMERO DE DOCUMENTO O CUIT DEL CLIENTE: ";
         nroDocCliente = ingresoDeDocumentoConValidacion();
+        std::cout << std::endl;
+
         if(arClientes.buscar(nroDocCliente)>= 0)
         {
             Cliente clienteAux;
@@ -97,7 +99,10 @@ std::string VentaManager::validarCliente()
             if(clienteAux.getEstado())
             {
                 std::cout<<"CLIENTE REGISTRADO EN LA BASE DE DATOS:"<<std::endl;
-                clienteAux.Mostrar();
+                //clienteAux.Mostrar();
+                ClienteManager clienteManager;
+                clienteManager.listar(clienteAux, 0);
+                std::cout << std::endl;
                 std::cout<<"CONTINUAR? (SI | NO): ";
                 std::string decision = ingresoDeDecisionConValidacion();
                 if (decision == "SI")
