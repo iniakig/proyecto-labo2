@@ -19,7 +19,7 @@ public:
     int buscar(int ID);
 
     Venta leer(int nroRegistro);
-    void leer(Producto *vec, int cantidadRegistrosALeer);
+    void leer(Venta *vec, int cantidadRegistrosALeer);
 
     void vaciar();
 };

@@ -412,3 +412,68 @@ void VentaManager::Reactivar()
         rlutil::anykey();
     }
 }
+
+void VentaManager::hacerCopiaDeSeguridad()
+{
+    int cantidadRegs = _archivo.getCantidadRegistros();
+    if(cantidadRegs <= 0){
+        errorMensajeCopiaDeSeguridadSinRegs();
+        rlutil::anykey();
+        return;
+    }
+
+    Venta *vec = new Venta[cantidadRegs];
+
+    if (vec == nullptr)
+    {
+        errorMensajeCopiaDeSeguridad();
+        return;
+    }
+
+    _archivo.leer(vec, cantidadRegs);
+    _archivoBkp.vaciar();
+
+    if(_archivoBkp.guardar(vec, cantidadRegs))
+    {
+        okMensajeCopiaDeSeguridad();
+    }
+    else
+    {
+        errorMensajeCopiaDeSeguridad();
+    }
+
+    delete []vec;
+    rlutil::anykey();
+}
+
+void VentaManager::restaurarCopiaDeSeguridad()
+{
+    int cantidadRegs = _archivoBkp.getCantidadRegistros();
+
+    /*if(cantidadRegs <= 0){
+
+    }*/
+
+    Venta *vec = new Venta[cantidadRegs];
+    if (vec == nullptr)
+    {
+        errorMensajeRestauracionCopiaDeSeguridad();
+        return;
+    }
+
+    _archivoBkp.leer(vec, cantidadRegs);
+    _archivo.vaciar();
+
+    if(_archivo.guardar(vec, cantidadRegs))
+    {
+
+        okMensajeRestauracionCopiaDeSeguridad();
+    }
+    else
+    {
+        errorMensajeRestauracionCopiaDeSeguridad();
+    }
+
+    delete []vec;
+    rlutil::anykey();
+}

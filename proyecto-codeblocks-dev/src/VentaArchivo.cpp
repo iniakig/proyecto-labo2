@@ -60,7 +60,7 @@ bool VentaArchivo::guardar(Venta *vec, int cantidadRegistrosAEscribir)
         return false;
     }
 
-    int cantidadRegistrosEscritos = fwrite(vec, sizeof(Producto),cantidadRegistrosAEscribir, p);
+    int cantidadRegistrosEscritos = fwrite(vec, sizeof(Venta),cantidadRegistrosAEscribir, p);
     fclose(p);
     return cantidadRegistrosEscritos == cantidadRegistrosAEscribir;
 }
@@ -79,14 +79,14 @@ Venta VentaArchivo::leer(int nroRegistro){
     return aux;
 }
 
-void VentaArchivo::leer(Producto *vec, int cantidadRegistrosALeer){
+void VentaArchivo::leer(Venta *vec, int cantidadRegistrosALeer){
     FILE *p = fopen(_ruta.c_str(), "rb");
     if (p == NULL)
     {
         return;
     }
 
-    fread(vec, sizeof(Producto), cantidadRegistrosALeer, p);
+    fread(vec, sizeof(Venta), cantidadRegistrosALeer, p);
     fclose(p);
 }
 
