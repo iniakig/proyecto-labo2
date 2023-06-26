@@ -12,14 +12,15 @@ class UsuarioManager
 {
 private:
     UsuarioArchivo _archivo;
+    UsuarioArchivo _archivoBkp = UsuarioArchivo("usuarios.bkp");
     bool _permisos[3]; // Posición 0. Adm | 1. Sup | 2. Ven
 
     int generarId(); // Hecho
-    void listar(Usuario usuario, int tipoListado); // En curso
+    void listar(Usuario usuario, int tipoListado); // Hecho - Testear
     void listarPorAlias(); // Hecho - Testear
     void listarPorDNI(); // Hecho - Testear
-    void listarActivos(); // En curso
-    void listarInactivos(); // Para rehacer con memoria dinámica y ordenadores
+    void listarActivos(); // Hecho - Testear
+    void listarInactivos(); // Hecho - Testear
     void listarPorBusquedaLibre();
     void ordenarPorAlias(Usuario *listaDeUsuarios, int cantidadDeRegistros); // Hecho - Testear
     void ordenarPorFecha(Usuario *listaDeUsuarios, int cantidadDeRegistros); // Hecho - Testear
@@ -29,8 +30,10 @@ public:
     void modificar(); // Hecho - Testear
     void darDeBaja(); // Hecho - Testear
     void reactivar(); // Hecho - Testear
-    void listarUsuarios(); // En curso
-    void setPermisos(bool adm = false, bool sup = false, bool ven = false); // Hecho
+    void listarUsuarios(); // Hecho - Testear
+    void hacerCopiaDeSeguridad(); // En curso
+	void restaurarCopiaDeSeguridad(); // En curso
+	void setPermisos(bool adm = false, bool sup = false, bool ven = false); // Hecho
 };
 
 #endif // USUARIOMANAGER_H

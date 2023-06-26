@@ -23,9 +23,11 @@ public:
     //int buscar(std::string alias);
 
     bool crear(Usuario reg);
+    bool crear(Usuario* listaDeUsuarios, int cantidadDeUsuarios);
     Usuario leer(int posicion);
     Usuario leer(Usuario* listadoDeUsuarios, int cantidadDeRegistros);
     bool modificar(Usuario reg, int posicion);
+    void vaciar();
 
     // Setters
     void setNombre(std::string nombre);

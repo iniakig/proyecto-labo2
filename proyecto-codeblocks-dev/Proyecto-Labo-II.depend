@@ -356,7 +356,7 @@
 	<string>
 	<windows.h>
 
-1687475295 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\include\persona.h
+1687781576 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\include\persona.h
 	"Fecha.h"
 
 1687381769 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\include\usuario.h
@@ -374,12 +374,12 @@
 	<string.h>
 	"../rlutil.h"
 
-1687610848 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\include\usuarioarchivo.h
+1687791581 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\include\usuarioarchivo.h
 	<iostream>
 	<string>
 	<Usuario.h>
 
-1687636304 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\include\usuariomanager.h
+1687796608 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\include\usuariomanager.h
 	"UsuarioArchivo.h"
 	"Usuario.h"
 	"../funciones.h"
@@ -429,7 +429,7 @@
 
 1686334061 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\include\permiso.h
 
-1687475209 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\src\persona.cpp
+1687781603 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\src\persona.cpp
 	"Persona.h"
 
 1686334061 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\src\piedepagina.cpp
@@ -445,11 +445,11 @@
 1687381843 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\src\usuario.cpp
 	"Usuario.h"
 
-1687610837 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\src\usuarioarchivo.cpp
+1687793107 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\src\usuarioarchivo.cpp
 	"UsuarioArchivo.h"
 	"../mensajes.h"
 
-1687722105 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\src\usuariomanager.cpp
+1687795375 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\src\usuariomanager.cpp
 	"UsuarioManager.h"
 	<iostream>
 	<iomanip>
@@ -807,7 +807,7 @@
 1687380848 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\include\ventamenu.h
 	"VentaManager.h"
 
-1687641958 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\src\ventamanager.cpp
+1687781413 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\src\ventamanager.cpp
 	<iostream>
 	<cstdio>
 	"../mensajes.h"
@@ -924,10 +924,12 @@
 1687741215 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\include\respaldomenu.h
 	"RespaldoManager.h"
 
-1687779912 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\include\respaldomanager.h
+1687795443 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\include\respaldomanager.h
 	"MarcaManager.h"
+	"UsuarioManager.h"
+	"ProductoManager.h"
 
-1687779949 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\src\respaldomanager.cpp
+1687795331 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\src\respaldomanager.cpp
 	"RespaldoManager.h"
 	"../rlutil.h"
 

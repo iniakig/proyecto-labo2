@@ -775,6 +775,60 @@ void UsuarioManager::listarUsuarios() {
     while(opcion != 0);
 }
 
+void UsuarioManager::hacerCopiaDeSeguridad() {
+    int cantidadDeUsuarios = _archivo.getCantidadDeUsuarios();
+
+    Usuario* listaDeUsuarios = new Usuario[cantidadDeUsuarios];
+
+    if (listaDeUsuarios == nullptr)
+    {
+        errorMensajeCopiaDeSeguridad();
+        return;
+    }
+
+    _archivo.leer(listaDeUsuarios, cantidadDeUsuarios);
+    _archivoBkp.vaciar();
+
+    if(_archivoBkp.crear(listaDeUsuarios, cantidadDeUsuarios))
+    {
+        okMensajeCopiaDeSeguridad();
+    }
+    else
+    {
+        errorMensajeCopiaDeSeguridad();
+    }
+
+    delete[] listaDeUsuarios;
+    rlutil::anykey();
+}
+
+void UsuarioManager::restaurarCopiaDeSeguridad() {
+    int cantidadDeUsuarios = _archivoBkp.getCantidadDeUsuarios();
+
+    Usuario *listaDeUsuarios = new Usuario[cantidadDeUsuarios];
+
+    if (listaDeUsuarios == nullptr)
+    {
+        errorMensajeRestauracionCopiaDeSeguridad();
+        return;
+    }
+
+    _archivoBkp.leer(listaDeUsuarios, cantidadDeUsuarios);
+    _archivo.vaciar();
+
+    if(_archivo.crear(listaDeUsuarios, cantidadDeUsuarios))
+    {
+        okMensajeRestauracionCopiaDeSeguridad();
+    }
+    else
+    {
+        errorMensajeRestauracionCopiaDeSeguridad();
+    }
+
+    delete[] listaDeUsuarios;
+    rlutil::anykey();
+}
+
 void UsuarioManager::setPermisos(bool adm, bool sup, bool ven) {
     _permisos[0] = adm;
     _permisos[1] = sup;

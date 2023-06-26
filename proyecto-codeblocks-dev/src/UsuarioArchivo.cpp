@@ -147,6 +147,19 @@ bool UsuarioArchivo::crear(Usuario reg) {
     return escribio;
 }
 
+bool UsuarioArchivo::crear(Usuario* listaDeUsuarios, int cantidadDeUsuarios) {
+    FILE* p = fopen(_nombre.c_str(), "ab");
+
+    if (p == nullptr) {
+        return false;
+    }
+
+    int cantidadDeRegistrosEscritos = fwrite(listaDeUsuarios, sizeof(Usuario), cantidadDeUsuarios, p);
+    fclose(p);
+
+    return cantidadDeRegistrosEscritos == cantidadDeUsuarios;
+}
+
 Usuario UsuarioArchivo::leer(int posicion) {
     Usuario reg;
     FILE* p;
@@ -197,6 +210,18 @@ bool UsuarioArchivo::modificar(Usuario reg, int posicion) {
     fclose(p);
 
     return escribio;
+}
+
+void UsuarioArchivo::vaciar() {
+    FILE* p;
+
+    p = fopen(_nombre.c_str(), "wb");
+
+    if (p == nullptr) {
+        return;
+    }
+
+    fclose(p);
 }
 
 // Setters

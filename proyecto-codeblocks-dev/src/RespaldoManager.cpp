@@ -25,7 +25,7 @@ void RespaldoManager::mostrarCrearRespaldos() {
         case 0:
             break;
         case 1:
-
+            _usuarioManager.hacerCopiaDeSeguridad();
             break;
         case 2:
 
@@ -71,7 +71,7 @@ void RespaldoManager::mostrarRestaurarRespaldos() {
         case 0:
             break;
         case 1:
-
+            _usuarioManager.restaurarCopiaDeSeguridad();
             break;
         case 2:
 
