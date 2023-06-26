@@ -147,6 +147,13 @@ void errorMensajeCopiaDeSeguridad() {
     rlutil::setColor(rlutil::WHITE);
 }
 
+void errorMensajeCopiaDeSeguridadSinRegs() {
+    std::cout << std::endl;
+    rlutil::setColor(rlutil::LIGHTRED);
+    std::cout << "No se pudo realizar la copia de seguridad. Archivo sin registros." << std::endl;
+    rlutil::setColor(rlutil::WHITE);
+}
+
 void okMensajeRestauracionCopiaDeSeguridad() {
     std::cout << std::endl;
     rlutil::setColor(rlutil::LIGHTGREEN);

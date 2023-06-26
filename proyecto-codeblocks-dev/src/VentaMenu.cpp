@@ -40,6 +40,7 @@ void VentaMenu::Mostrar()
             break;
         default:
             std::cout << "La opción seleccionada es invalida. Ingrese nuevamente." << std::endl;
+            rlutil::anykey();
             break;
         }
     }

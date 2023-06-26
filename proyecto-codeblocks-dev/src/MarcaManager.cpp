@@ -269,6 +269,13 @@ void MarcaManager::hacerCopiaSeguridad()
 
     int cantidadRegs = _archivo.getCantidadDeRegistros();
 
+    if(cantidadRegs <= 0)
+    {
+        errorMensajeCopiaDeSeguridadSinRegs();
+        rlutil::anykey();
+        return;
+    }
+
     Marca *vec = new Marca[cantidadRegs];
 
     if (vec == nullptr)

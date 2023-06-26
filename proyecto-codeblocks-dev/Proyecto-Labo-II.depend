@@ -212,7 +212,7 @@
 	<string>
 	<windows.h>
 
-1687484433 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\persona.h
+1687782335 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\persona.h
 	"Fecha.h"
 
 1687444562 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\usuario.h
@@ -235,7 +235,7 @@
 	<string>
 	<Usuario.h>
 
-1687630585 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\usuariomanager.h
+1687642863 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\usuariomanager.h
 	"UsuarioArchivo.h"
 	"Usuario.h"
 	"../funciones.h"
@@ -266,7 +266,7 @@
 
 1685896223 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\permiso.h
 
-1687484433 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\persona.cpp
+1687782335 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\persona.cpp
 	"Persona.h"
 
 1685896227 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\piedepagina.cpp
@@ -282,7 +282,7 @@
 	"UsuarioArchivo.h"
 	"../mensajes.h"
 
-1687630585 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\usuariomanager.cpp
+1687744474 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\usuariomanager.cpp
 	"UsuarioManager.h"
 	<iostream>
 	<iomanip>
@@ -473,7 +473,7 @@
 	<iostream>
 	<string>
 
-1687444562 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\marcamanager.cpp
+1687798134 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\marcamanager.cpp
 	<iostream>
 	"MarcaManager.h"
 	"../funciones.h"
@@ -481,7 +481,7 @@
 	"../mensajes.h"
 	"../validaciones.h"
 
-1686775461 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\marcamenu.cpp
+1687744474 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\marcamenu.cpp
 	<iostream>
 	"MarcaMenu.h"
 	"../rlutil.h"
@@ -615,10 +615,10 @@
 1686571842 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\clientemenu.h
 	"ClienteManager.h"
 
-1687630585 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\clientemanager.h
+1687782335 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\clientemanager.h
 	"ClienteArchivo.h"
 
-1686571842 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\clientearchivo.h
+1687744474 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\clientearchivo.h
 	"Cliente.h"
 	<string>
 
@@ -637,15 +637,16 @@
 	"Cliente.h"
 	<string>
 
-1687630585 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\clientearchivo.cpp
+1687744474 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\clientearchivo.cpp
 	"ClienteArchivo.h"
 	"Cliente.h"
 	<iostream>
 	<string.h>
 	<string>
 	<../funciones.h>
+	<../mensajes.h>
 
-1687630585 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\clientemanager.cpp
+1687782335 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\clientemanager.cpp
 	"ClienteManager.h"
 	"Cliente.h"
 	"../rlutil.h"
@@ -654,6 +655,7 @@
 	"../validaciones.h"
 	<iostream>
 	<iomanip>
+	<string>
 
 1686571842 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\clientemenu.cpp
 	"ClienteMenu.h"
@@ -693,18 +695,19 @@
 1687294832 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\productomanager.h
 	"ProductoArchivo.h"
 
-1687484433 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\configuracionmenu.h
+1687744474 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\configuracionmenu.h
 	"UsuarioMenu.h"
 	"EmpresaMenu.h"
+	"RespaldoMenu.h"
 
-1687484433 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\configuracionmenu.cpp
+1687744474 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\configuracionmenu.cpp
 	"ConfiguracionMenu.h"
 	"UsuarioActivo.h"
 	"../rlutil.h"
 	"../funciones.h"
 	"../mensajes.h"
 
-1687449983 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\productomanager.cpp
+1687782335 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\productomanager.cpp
 	"ProductoManager.h"
 	"../funciones.h"
 	<../rlutil.h>
@@ -717,7 +720,7 @@
 	"MarcaManager.h"
 	"Producto.h"
 
-1687117031 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\productomenu.cpp
+1687782335 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\productomenu.cpp
 	<iostream>
 	"ProductoMenu.h"
 	"../rlutil.h"
@@ -745,11 +748,11 @@
 	<string>
 	<cstring>
 
-1686747841 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\ventaarchivo.cpp
+1687797560 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\ventaarchivo.cpp
 	<iostream>
 	"VentaArchivo.h"
 
-1686747757 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\ventaarchivo.h
+1687796741 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\ventaarchivo.h
 	"Venta.h"
 
 1687516626 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\src\venta.cpp
@@ -780,14 +783,14 @@
 	"../funciones.h"
 	<../rlutil.h>
 
-1687632630 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\ventamanager.cpp
+1687797984 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\ventamanager.cpp
 	<iostream>
 	<cstdio>
 	"../mensajes.h"
 	"../validaciones.h"
 	"VentaManager.h"
 
-1687485099 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\ventamenu.cpp
+1687798102 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\ventamenu.cpp
 	<iostream>
 	"VentaMenu.h"
 	"../rlutil.h"
@@ -868,12 +871,12 @@
 	"EmpresaMenu.h"
 	"../rlutil.h"
 
-1687484433 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\mensajes.h
+1687797856 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\mensajes.h
 
 1687444562 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\validaciones.h
 	<string>
 
-1687484433 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\mensajes.cpp
+1687798029 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\mensajes.cpp
 	"mensajes.h"
 	<iostream>
 	"rlutil.h"
@@ -906,7 +909,7 @@
 1687484433 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\empresamanager.h
 	"EmpresaArchivo.h"
 
-1687484433 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\empresamanager.cpp
+1687744474 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\empresamanager.cpp
 	"EmpresaManager.h"
 	"../funciones.h"
 	"../validaciones.h"
@@ -931,6 +934,20 @@
 	"ClienteManager.h"
 
 1687799118 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\src\respaldomanager.cpp
+	"RespaldoManager.h"
+	"../rlutil.h"
+
+1687744474 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\respaldomenu.h
+	"RespaldoManager.h"
+
+1687782335 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\respaldomanager.h
+	"MarcaManager.h"
+
+1687744474 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\respaldomenu.cpp
+	"RespaldoMenu.h"
+	<../rlutil.h>
+
+1687782335 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\respaldomanager.cpp
 	"RespaldoManager.h"
 	"../rlutil.h"
 

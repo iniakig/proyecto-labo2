@@ -15,6 +15,7 @@ void errorMensajeReactivacion();
 
 void okMensajeCopiaDeSeguridad();
 void errorMensajeCopiaDeSeguridad();
+void errorMensajeCopiaDeSeguridadSinRegs();
 
 void okMensajeRestauracionCopiaDeSeguridad();
 void errorMensajeRestauracionCopiaDeSeguridad();
