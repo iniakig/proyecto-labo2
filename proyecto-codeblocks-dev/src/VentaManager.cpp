@@ -44,17 +44,28 @@ int VentaManager::cargarProductos(int* vecProductos, int* vecUnidades)
                     producto = arProducto.leer(arProducto.buscar(id));
                     if(producto.getActivo())
                     {
+                        if(producto.getStock() > 0 ){
                         vecProductos[i] = id;
                         existeProducto = true;
+
+                        }else {
+                        rlutil::setColor(rlutil::LIGHTRED);
+                        std::cout<<"EL PRODUCTO INGRESADO NO CUENTA CON STOCK DISPONIBLE"<<std::endl;
+                        rlutil::setColor(rlutil::WHITE);
+                        }
                     }
                     else
                     {
+                        rlutil::setColor(rlutil::LIGHTRED);
                         std::cout<<"EL PRODUCTO INGRESADO ESTA DADO DE BAJA:"<<std::endl;
+                        rlutil::setColor(rlutil::WHITE);
                     }
                 }
                 else
                 {
+                    rlutil::setColor(rlutil::LIGHTRED);
                     cout<<"NO EXISTE UN PRODUCTO BAJO ESE ID, INGRESELO NUEVAMENTE"<<endl;
+                    rlutil::setColor(rlutil::WHITE);
                 }
             }
             while(!existeProducto);
