@@ -865,3 +865,56 @@ bool ClienteManager::reactivar(std::string nroDocumento) {
 
     }
 }
+
+void ClienteManager::hacerCopiaDeSeguridad() {
+    int cantidadDeClientes = _archivo.getCantidadDeClientes();
+    Cliente* listaDeClientes = new Cliente[cantidadDeClientes];
+
+    if (listaDeClientes == nullptr)
+    {
+        errorMensajeCopiaDeSeguridad();
+        return;
+    }
+
+    _archivo.leer(listaDeClientes, cantidadDeClientes);
+    _archivoBkp.vaciar();
+
+    if(_archivoBkp.crear(listaDeClientes, cantidadDeClientes))
+    {
+        okMensajeCopiaDeSeguridad();
+    }
+    else
+    {
+        errorMensajeCopiaDeSeguridad();
+    }
+
+    delete[] listaDeClientes;
+    rlutil::anykey();
+}
+
+void ClienteManager::restaurarCopiaDeSeguridad() {
+    int cantidadDeClientes = _archivoBkp.getCantidadDeClientes();
+
+    Cliente *listaDeClientes = new Cliente[cantidadDeClientes];
+
+    if (listaDeClientes == nullptr)
+    {
+        errorMensajeRestauracionCopiaDeSeguridad();
+        return;
+    }
+
+    _archivoBkp.leer(listaDeClientes, cantidadDeClientes);
+    _archivo.vaciar();
+
+    if(_archivo.crear(listaDeClientes, cantidadDeClientes))
+    {
+        okMensajeRestauracionCopiaDeSeguridad();
+    }
+    else
+    {
+        errorMensajeRestauracionCopiaDeSeguridad();
+    }
+
+    delete[] listaDeClientes;
+    rlutil::anykey();
+}

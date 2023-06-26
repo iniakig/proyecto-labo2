@@ -28,7 +28,7 @@ void RespaldoManager::mostrarCrearRespaldos() {
             _usuarioManager.hacerCopiaDeSeguridad();
             break;
         case 2:
-
+            _clienteManager.hacerCopiaDeSeguridad();
             break;
         case 3:
             _marcaManager.hacerCopiaSeguridad();
@@ -74,7 +74,7 @@ void RespaldoManager::mostrarRestaurarRespaldos() {
             _usuarioManager.restaurarCopiaDeSeguridad();
             break;
         case 2:
-
+            _clienteManager.restaurarCopiaDeSeguridad();
             break;
         case 3:
             _marcaManager.restaurarCopiaSeguridad();

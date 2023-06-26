@@ -31,8 +31,8 @@ public:
     void darDeBaja(); // Hecho - Testear
     void reactivar(); // Hecho - Testear
     void listarUsuarios(); // Hecho - Testear
-    void hacerCopiaDeSeguridad(); // En curso
-	void restaurarCopiaDeSeguridad(); // En curso
+    void hacerCopiaDeSeguridad(); // Hecho - OK
+	void restaurarCopiaDeSeguridad(); // Hecho - OK
 	void setPermisos(bool adm = false, bool sup = false, bool ven = false); // Hecho
 };
 

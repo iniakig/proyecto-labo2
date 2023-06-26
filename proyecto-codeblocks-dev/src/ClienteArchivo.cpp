@@ -130,6 +130,19 @@ bool ClienteArchivo::crear(Cliente cliente) {
     return escribio;
 }
 
+bool ClienteArchivo::crear(Cliente* listaDeClientes, int cantidadDeClientes) {
+    FILE* p = fopen(_nombre.c_str(), "ab");
+
+    if (p == nullptr) {
+        return false;
+    }
+
+    int cantidadDeRegistrosEscritos = fwrite(listaDeClientes, sizeof(Cliente), cantidadDeClientes, p);
+    fclose(p);
+
+    return cantidadDeRegistrosEscritos == cantidadDeClientes;
+}
+
 bool ClienteArchivo::modificar(Cliente cliente, int posicion) {
     FILE* p;
 

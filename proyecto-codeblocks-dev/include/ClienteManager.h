@@ -7,6 +7,7 @@ class ClienteManager
 {
     private:
         ClienteArchivo _archivo;
+        ClienteArchivo _archivoBkp = ClienteArchivo("clientes.bkp");
         bool permisos[3];
 
         int generarId(); // Hecho
@@ -25,6 +26,8 @@ class ClienteManager
         void darDeBaja(); // Hecho - Testear
         void reactivar(); // Hecho - Testear
         bool reactivar(std::string nroDocumento);
+        void hacerCopiaDeSeguridad(); // En curso
+        void restaurarCopiaDeSeguridad(); // En curso
         void setPermisos(bool adm = false, bool sup = false, bool ven = false); // Hecho - Testear
 };
 
