@@ -34,7 +34,7 @@ void RespaldoManager::mostrarCrearRespaldos() {
             _marcaManager.hacerCopiaSeguridad();
             break;
         case 4:
-
+            _productoManager.HacerCopiaDeSeguridad();
             break;
         case 5:
 
@@ -80,7 +80,7 @@ void RespaldoManager::mostrarRestaurarRespaldos() {
             _marcaManager.restaurarCopiaSeguridad();
             break;
         case 4:
-
+            _productoManager.RestaurarCopiaDeSeguridad();
             break;
         case 5:
 

@@ -7,6 +7,7 @@ class RespaldoManager
 {
     private:
         MarcaManager _marcaManager;
+        ProductoManager _productoManager;
 
     public:
         void mostrarCrearRespaldos();

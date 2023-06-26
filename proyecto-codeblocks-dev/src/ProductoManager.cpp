@@ -1,4 +1,5 @@
 using namespace std;
+
 #include "ProductoManager.h"
 #include "../funciones.h"
 #include <../rlutil.h>
@@ -152,15 +153,13 @@ void ProductoManager::ListarPorTopePrecio()
 
 void ProductoManager::HacerCopiaDeSeguridad()
 {
-
-
     int cantidadRegs = _archivo.getCantidadDeRegistros();
 
     Producto *vec = new Producto[cantidadRegs];
 
     if (vec == nullptr)
     {
-        cout << "ERROR AL REALIZAR LA COPIA DE SEGURIDAD" << endl;
+        errorMensajeCopiaDeSeguridad();
         return;
     }
 
@@ -169,26 +168,25 @@ void ProductoManager::HacerCopiaDeSeguridad()
 
     if(_archivoBkp.guardar(vec, cantidadRegs))
     {
-        cout << "COPIA DE SEGURIDAD REALIZADA CON EXITO" << endl;
+        okMensajeCopiaDeSeguridad();
     }
     else
     {
-        cout << "ERROR AL REALIZAR LA COPIA DE SEGURIDAD" << endl;
+        errorMensajeCopiaDeSeguridad();
     }
 
     delete []vec;
+    rlutil::anykey();
 }
 
 void ProductoManager::RestaurarCopiaDeSeguridad()
 {
-
-
     int cantidadRegs = _archivoBkp.getCantidadDeRegistros();
 
     Producto *vec = new Producto[cantidadRegs];
     if (vec == nullptr)
     {
-        cout << "ERROR AL RESTAURAR LA COPIA DE SEGURIDAD" << endl;
+        errorMensajeRestauracionCopiaDeSeguridad();
         return;
     }
 
@@ -198,14 +196,15 @@ void ProductoManager::RestaurarCopiaDeSeguridad()
     if(_archivo.guardar(vec, cantidadRegs))
     {
 
-        cout << "COPIA DE SEGURIDAD RESTAURADA CON EXITO" << endl;
+        okMensajeRestauracionCopiaDeSeguridad();
     }
     else
     {
-        cout << "ERROR AL REALIZAR LA COPIA DE SEGURIDAD" << endl;
+        errorMensajeRestauracionCopiaDeSeguridad();
     }
 
     delete []vec;
+    rlutil::anykey();
 }
 
 void ProductoManager::ListarPorStock()
