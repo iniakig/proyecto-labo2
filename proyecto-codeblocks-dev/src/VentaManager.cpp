@@ -461,9 +461,11 @@ void VentaManager::restaurarCopiaDeSeguridad()
 {
     int cantidadRegs = _archivoBkp.getCantidadRegistros();
 
-    /*if(cantidadRegs <= 0){
-
-    }*/
+    if(cantidadRegs <= 0){
+        errorMensajeCopiaDeSeguridadSinRegs();
+        rlutil::anykey();
+        return;
+    }
 
     Venta *vec = new Venta[cantidadRegs];
     if (vec == nullptr)

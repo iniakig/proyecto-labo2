@@ -150,7 +150,7 @@ void errorMensajeCopiaDeSeguridad() {
 void errorMensajeCopiaDeSeguridadSinRegs() {
     std::cout << std::endl;
     rlutil::setColor(rlutil::LIGHTRED);
-    std::cout << "No se pudo realizar la copia de seguridad. Archivo sin registros." << std::endl;
+    std::cout << "No se puedo realizar la acción solicitada. Archivo sin registros." << std::endl;
     rlutil::setColor(rlutil::WHITE);
 }
 

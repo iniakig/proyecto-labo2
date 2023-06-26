@@ -304,6 +304,13 @@ void MarcaManager::restaurarCopiaSeguridad()
 {
     int cantidadRegs = _archivoBkp.getCantidadDeRegistros();
 
+    if(cantidadRegs <= 0)
+    {
+        errorMensajeCopiaDeSeguridadSinRegs();
+        rlutil::anykey();
+        return;
+    }
+
     Marca *vec = new Marca[cantidadRegs];
     if (vec == nullptr)
     {
