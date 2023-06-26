@@ -44,14 +44,17 @@ int VentaManager::cargarProductos(int* vecProductos, int* vecUnidades)
                     producto = arProducto.leer(arProducto.buscar(id));
                     if(producto.getActivo())
                     {
-                        if(producto.getStock() > 0 ){
-                        vecProductos[i] = id;
-                        existeProducto = true;
+                        if(producto.getStock() > 0 )
+                        {
+                            vecProductos[i] = id;
+                            existeProducto = true;
 
-                        }else {
-                        rlutil::setColor(rlutil::LIGHTRED);
-                        std::cout<<"EL PRODUCTO INGRESADO NO CUENTA CON STOCK DISPONIBLE"<<std::endl;
-                        rlutil::setColor(rlutil::WHITE);
+                        }
+                        else
+                        {
+                            rlutil::setColor(rlutil::LIGHTRED);
+                            std::cout<<"EL PRODUCTO INGRESADO NO CUENTA CON STOCK DISPONIBLE"<<std::endl;
+                            rlutil::setColor(rlutil::WHITE);
                         }
                     }
                     else
@@ -145,7 +148,26 @@ std::string VentaManager::validarCliente()
     return nroDocCliente;
 }
 
-void VentaManager::Listar(Venta venta) // MOSTRAR OK, AGREGAR TEMA DE BUSCAR ID PRODUCTO PARA QUE SALGA NOMBRE
+std::string VentaManager::metodoPagoAString(int metodoPago)
+{
+    if(metodoPago == 1)
+    {
+        std::string stringMetodoPago ="EFECTIVO";
+        return stringMetodoPago;
+    }
+    else if(metodoPago == 2)
+    {
+        std::string stringMetodoPago = "TARJETA";
+        return stringMetodoPago;
+    }
+    else
+    {
+        std::string stringMetodoPago = "TRANSFERENCIA";
+        return stringMetodoPago;
+    }
+}
+
+void VentaManager::Listar(Venta venta)
 {
 
     std::cout<<"ID PEDIDO: "<<venta.getIdPedido()<<std::endl;
@@ -154,6 +176,7 @@ void VentaManager::Listar(Venta venta) // MOSTRAR OK, AGREGAR TEMA DE BUSCAR ID 
     std::cout<<"PRODUCTOS:"<<endl;
     const int* vecProductos = venta.getVecIdProducto();
     const int* vecUnidades = venta.getVecUnidadesxProducto();
+    std::string metodoPago = metodoPagoAString(venta.getMetodoPago());
     for(int i = 0; i<venta.getCantidadProductos(); i++)
     {
         // REVISAR ESTO, PROBABLEMENTE DEBA TRAERLO DESDE UNA FUNCION DE MANAGER PROD Y MANAGER MARCA TAMBIEN
@@ -167,7 +190,7 @@ void VentaManager::Listar(Venta venta) // MOSTRAR OK, AGREGAR TEMA DE BUSCAR ID 
         std::cout<<"CANTIDAD: "<<vecUnidades[i]<<std::endl;
     }
     std::cout<<"IMPORTE: $"<<venta.getMontoCompra()<<endl;
-    std::cout<<"METODO PAGO: "<<venta.getMetodoPago()<<endl;
+    std::cout<<"METODO PAGO: "<<metodoPago<<endl;
     UsuarioArchivo arUsuario;
     Usuario vendedor;
     vendedor = arUsuario.leer(arUsuario.buscar(venta.getIdVendedor()));
@@ -184,9 +207,10 @@ void VentaManager::ListarTodas()
         reg = _archivo.leer(i);
 
         Listar(reg);
-        rlutil::anykey();
+        std::cout<<"-----------------------------------------------"<<std::endl;
 
     }
+    rlutil::anykey();
 }
 
 void VentaManager::generarComprobante(Venta venta)
@@ -282,9 +306,8 @@ void VentaManager::Cargar()
         }
 
         idVendedor = usuario.getIdUsuarioActivo();
-        std::cout<<"INGRESE EL METODO DE PAGO: "<<std::endl;
-        cin>>metodoPago;
-        cin.ignore();
+        std::cout<<"INGRESE EL METODO DE PAGO: 1. EFECTIVO | 2. TARJETA | 3. TRANSFERENCIA."<<std::endl;
+        metodoPago = ingresoMetodoPagoConValidacion();
         Venta reg(idPedido, nroDocCliente, fechaCompra, vecIdProducto, vecUnidadesxProducto, cantidadProductos, montoCompra, metodoPago, idVendedor, activo);
         std::cout<<"HA CARGADO LA SIGUIENTE VENTA: "<<std::endl;
         Listar(reg);
@@ -427,7 +450,8 @@ void VentaManager::Reactivar()
 void VentaManager::hacerCopiaDeSeguridad()
 {
     int cantidadRegs = _archivo.getCantidadRegistros();
-    if(cantidadRegs <= 0){
+    if(cantidadRegs <= 0)
+    {
         errorMensajeCopiaDeSeguridadSinRegs();
         rlutil::anykey();
         return;
@@ -461,7 +485,8 @@ void VentaManager::restaurarCopiaDeSeguridad()
 {
     int cantidadRegs = _archivoBkp.getCantidadRegistros();
 
-    if(cantidadRegs <= 0){
+    if(cantidadRegs <= 0)
+    {
         errorMensajeCopiaDeSeguridadSinRegs();
         rlutil::anykey();
         return;

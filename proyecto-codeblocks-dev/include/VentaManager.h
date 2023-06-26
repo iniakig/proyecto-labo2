@@ -33,6 +33,7 @@ private:
 	bool restaurarStock(const int* vecProductos, const int* vecUnidades, int cantidadProductos);
 	int cargarProductos(int* vecProductos, int* vecUnidades);
 	std::string validarCliente();
+	std::string metodoPagoAString(int metodoPago);
 };
 
 

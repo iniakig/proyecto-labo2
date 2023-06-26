@@ -19,11 +19,14 @@ int ProductoManager::GenerarId()
 
 void ProductoManager::Listar(Producto producto)
 {
+    MarcaArchivo arMarcas;
+    Marca marcaAux;
+    marcaAux = arMarcas.leer(arMarcas.buscar(producto.getIdMarca()));
 
     std::cout<<"-----------------------------------------------------"<<std::endl;
     std::cout<<"ID: "<<producto.getID()<<std::endl;
     std::cout<<"CATEGORIA: "<<producto.getCategoria()<<std::endl;
-    std::cout<<"ID MARCA: "<<producto.getIdMarca()<<std::endl;
+    std::cout<<"MARCA: "<<marcaAux.getNombre()<<std::endl;
     std::cout<<"MODELO: "<<producto.getModelo()<<std::endl;
     std::cout<<"DESCRIPCION: "<<producto.getDescripcion()<<std::endl;
     std::cout<<"PRECIO: "<<producto.getPrecio()<<std::endl;
@@ -111,7 +114,7 @@ void ProductoManager::ListarPorTopePrecio()
 {
     float topePrecio;
     std::cout<<"INGRESE TOPE DE PRECIO "<<std::endl;
-    std::cin>>topePrecio; // VALIDACION PENDIENTE
+    topePrecio = ingresoPrecioConValidacion();
 
     Producto producto;
     ProductoArchivo archivoProducto;

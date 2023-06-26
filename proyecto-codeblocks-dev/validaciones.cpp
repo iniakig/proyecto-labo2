@@ -37,6 +37,21 @@ int ingresoCategoriaProdConValidacion() {
     return nroCategoria;
 }
 
+int ingresoMetodoPagoConValidacion() {
+    std::string nroMetodoPago;
+    int metodoPago;
+    const std::regex expresionRegular("[1-3]");
+
+    getline(std::cin, nroMetodoPago);
+    while(!std::regex_match(nroMetodoPago, expresionRegular)){
+        std::cout << std::endl;
+        std::cout << "El valor ingresado no es válido. 1. EFECTIVO | 2. TARJETA | 3. TRANSFERENCIA. Ingrese nuevamente: ";
+        getline(std::cin, nroMetodoPago);
+    }
+    metodoPago = enteroConvertidoAInt(nroMetodoPago);
+    return metodoPago;
+}
+
 int ingresoStockConValidacion() {
     std::string stockAux;
     int stock;

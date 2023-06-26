@@ -14,6 +14,7 @@ int ingresoDeTipoDeClienteConValidacion();
 int ingresoTipoDeDocumentoConValidacion();
 int ingresoOpcSimpleConValidacion();
 int ingresoCategoriaProdConValidacion();
+int ingresoMetodoPagoConValidacion();
 int ingresoStockConValidacion();
 float ingresoPrecioConValidacion();
 std::string ingresoDeRazonSocialConValidacion();

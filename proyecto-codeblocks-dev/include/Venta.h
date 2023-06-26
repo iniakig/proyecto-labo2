@@ -26,7 +26,7 @@ class Venta
     public:
         // CONSTRUCTORES
         Venta();
-        Venta(int idPedido, std::string nroDocCliente, const Fecha& fechaCompra, const int vecIdProducto[], const int vecUnidadesxProducto[], int cantidadProductos, float montoCompra, int metodoPago, int idVendedor, bool activo);
+        Venta(int idPedido, std::string nroDocCliente, Fecha fechaCompra, const int vecIdProducto[], const int vecUnidadesxProducto[], int cantidadProductos, float montoCompra, int metodoPago, int idVendedor, bool activo);
 
         //GETTERS
         int getIdPedido();
