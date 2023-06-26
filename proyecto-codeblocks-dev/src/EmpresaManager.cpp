@@ -70,6 +70,8 @@ void EmpresaManager::listar() {
         std::cout << "Localidad: " << empresa.getLocalidad() << std::endl;
         std::cout << "Provincia: " << empresa.getProvinciaDescripcion() << std::endl;
         std::cout << "Fecha de registro: " << empresa.getFechaRegistro().toString() << std::endl;
+
+        mensajeFinDelListado();
     }
     else {
         mensajeListadoSinDatosEncontrados();
