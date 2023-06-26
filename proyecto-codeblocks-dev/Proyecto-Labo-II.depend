@@ -499,7 +499,7 @@
 1686334061 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\include\marcamenu.h
 	"MarcaManager.h"
 
-1687736965 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\src\marcamanager.cpp
+1687800809 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\src\marcamanager.cpp
 	<iostream>
 	"MarcaManager.h"
 	"../funciones.h"
@@ -767,11 +767,11 @@
 	<string>
 	<cstring>
 
-1686751801 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\src\ventaarchivo.cpp
+1687799700 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\src\ventaarchivo.cpp
 	<iostream>
 	"VentaArchivo.h"
 
-1686751801 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\include\ventaarchivo.h
+1687799687 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\include\ventaarchivo.h
 	"Venta.h"
 
 1687632861 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\ventamanager.h
@@ -798,7 +798,7 @@
 1687200999 c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\include\ventamenu.h
 	"VentaManager.h"
 
-1687641958 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\include\ventamanager.h
+1687799677 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\include\ventamanager.h
 	"VentaArchivo.h"
 	"ClienteManager.h"
 	"ProductoManager.h"
@@ -810,14 +810,14 @@
 1687380848 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\include\ventamenu.h
 	"VentaManager.h"
 
-1687781413 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\src\ventamanager.cpp
+1687799696 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\src\ventamanager.cpp
 	<iostream>
 	<cstdio>
 	"../mensajes.h"
 	"../validaciones.h"
 	"VentaManager.h"
 
-1687779739 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\src\ventamenu.cpp
+1687800809 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\src\ventamenu.cpp
 	<iostream>
 	"VentaMenu.h"
 	"../rlutil.h"
@@ -832,13 +832,13 @@
 1687385591 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\validaciones.h
 	<string>
 
-1687736714 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\mensajes.cpp
+1687800809 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\mensajes.cpp
 	"mensajes.h"
 	<iostream>
 	"rlutil.h"
 	"funciones.h"
 
-1687736851 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\mensajes.h
+1687800809 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\mensajes.h
 
 1687459335 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\include\empresamenu.h
 	"EmpresaManager.h"
@@ -927,13 +927,14 @@
 1687741215 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\include\respaldomenu.h
 	"RespaldoManager.h"
 
-1687799244 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\include\respaldomanager.h
+1687800870 c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\include\respaldomanager.h
 	"MarcaManager.h"
 	"UsuarioManager.h"
 	"ProductoManager.h"
 	"ClienteManager.h"
+	"VentaManager.h"
 
-1687799118 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\src\respaldomanager.cpp
+1687800896 source:c:\users\nahue\onedrive - frgp.utn.edu.ar\01. materias\03. tercer cuatrimestre\02. laboratorio de computacion ii\05. proyecto\github\proyecto-labo2\proyecto-codeblocks-dev\src\respaldomanager.cpp
 	"RespaldoManager.h"
 	"../rlutil.h"
 

@@ -37,7 +37,7 @@ void RespaldoManager::mostrarCrearRespaldos() {
             _productoManager.HacerCopiaDeSeguridad();
             break;
         case 5:
-
+            _ventaManager.hacerCopiaDeSeguridad();
             break;
         default:
             std::cout << "La opción seleccionada es invalida. Ingrese nuevamente." << std::endl;
@@ -83,7 +83,7 @@ void RespaldoManager::mostrarRestaurarRespaldos() {
             _productoManager.RestaurarCopiaDeSeguridad();
             break;
         case 5:
-
+            _ventaManager.restaurarCopiaDeSeguridad();
             break;
         default:
             std::cout << "La opción seleccionada es invalida. Ingrese nuevamente." << std::endl;

@@ -5,6 +5,7 @@
 #include "UsuarioManager.h"
 #include "ProductoManager.h"
 #include "ClienteManager.h"
+#include "VentaManager.h"
 
 class RespaldoManager
 {
@@ -13,6 +14,7 @@ class RespaldoManager
         ClienteManager _clienteManager;
         MarcaManager _marcaManager;
         ProductoManager _productoManager;
+        VentaManager _ventaManager;
 
     public:
         void mostrarCrearRespaldos();
