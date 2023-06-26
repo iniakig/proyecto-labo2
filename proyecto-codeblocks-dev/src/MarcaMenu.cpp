@@ -16,8 +16,6 @@ void MarcaMenu::mostrar()
         std::cout << "4. REACTIVAR MARCA" << std::endl;
         std::cout << "5. LISTAR MARCAS" << std::endl;
         std::cout << "6. BUSCAR MARCA" << std::endl;
-        std::cout << "7. REALIZAR COPIA SEGURIDAD" << std::endl;
-        std::cout << "8. RESTAURAR COPIA SEGURIDAD" << std::endl;
         std::cout << "---------------------------------------------------" << std::endl;
         std::cout << "0. VOLVER AL MENÚ PRINCIPAL" << std::endl;
         std::cout << "---------------------------------------------------" << std::endl;
@@ -47,13 +45,6 @@ void MarcaMenu::mostrar()
         case 6:
             _marcaManager.listarXNombre();
             break;
-        case 7:
-            _marcaManager.hacerCopiaSeguridad();
-            break;
-        case 8:
-            _marcaManager.restaurarCopiaSeguridad();
-            break;
-
         default:
             std::cout << "La opción seleccionada es invalida. Ingrese nuevamente." << std::endl;
             break;

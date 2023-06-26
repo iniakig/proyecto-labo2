@@ -35,6 +35,7 @@ void ConfiguracionMenu::mostrar() {
                     _empresaMenu.mostrar();
                     break;
                 case 3:
+                    _respaldoMenu.mostrar();
                     break;
                 default:
                     break;

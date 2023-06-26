@@ -3,12 +3,14 @@
 
 #include "UsuarioMenu.h"
 #include "EmpresaMenu.h"
+#include "RespaldoMenu.h"
 
 class ConfiguracionMenu
 {
     private:
         UsuarioMenu _usuarioMenu;
         EmpresaMenu _empresaMenu;
+        RespaldoMenu _respaldoMenu;
 
         bool _permisos[3];
 

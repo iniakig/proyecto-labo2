@@ -22,10 +22,11 @@ void RespaldoMenu::mostrar() {
         case 0:
             break;
         case 1:
-
+            _respaldoManager.mostrarCrearRespaldos();
             break;
         case 2:
-
+            _respaldoManager.mostrarRestaurarRespaldos();
+            break;
         default:
             std::cout << "La opción seleccionada es invalida. Ingrese nuevamente." << std::endl;
             break;

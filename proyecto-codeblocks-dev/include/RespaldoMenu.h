@@ -1,11 +1,12 @@
 #ifndef RESPALDOMENU_H
 #define RESPALDOMENU_H
 
+#include "RespaldoManager.h"
 
 class RespaldoMenu
 {
     private:
-        //RespaldoManager _respaldoManager;
+        RespaldoManager _respaldoManager;
 
     public:
         void mostrar();
