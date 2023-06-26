@@ -13,17 +13,6 @@ Persona::Persona(int id, int tipoDocumento, const char* nroDocumento, const char
     setFechaRegistro(fechaRegistro);
 }
 
-// Interfaces
-void Persona::Mostrar() {
-    std::cout << "Tipo de documento: " << getTipoDocumento() << std::endl;
-    std::cout << "Nro de documento: " << getNroDocumento() << std::endl;
-    std::cout << "Nombre: " << getNombre() << std::endl;
-    std::cout << "Apellido: " << getApellido() << std::endl;
-    std::cout << "Email: " << getEmail() << std::endl;
-    std::cout << "Estado: " << getEstado() << std::endl;
-    std::cout << "Fecha registro: " << getFechaRegistro().toString() << std::endl;
-}
-
 // Setters
 void Persona::setId(int id) {
     _id = id;

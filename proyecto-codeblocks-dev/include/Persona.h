@@ -19,9 +19,6 @@ public:
     // Constructores
     Persona(int id = -1, int tipoDocumento = 0, const char* nroDocumento = "null", const char* nombre = "null", const char* apellido = "null", const char* razonSocial = "null", const char* email = "null", bool estado = "false", Fecha fechaRegistro = Fecha());
 
-    // Interfaces
-    void Mostrar();
-
     // Setters
     void setId(int Id);
     void setTipoDocumento(int tipoDocumento);
