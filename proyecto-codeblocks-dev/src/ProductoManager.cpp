@@ -17,26 +17,45 @@ int ProductoManager::GenerarId()
     return _archivo.getCantidadDeRegistros()+1;
 }
 
-void ProductoManager::Listar(Producto producto)
+void ProductoManager::Listar(Producto producto, int tipoListado)
 {
-    MarcaArchivo arMarcas;
-    Marca marcaAux;
-    marcaAux = arMarcas.leer(arMarcas.buscar(producto.getIdMarca()));
-
-    std::cout<<"-----------------------------------------------------"<<std::endl;
+    switch (tipoListado)
+    {
+    case 0:
+        std::cout << "Id: " << producto.getID() << std::endl;
+        std::cout << "Categoria: " << producto.getCategoria() << std::endl;
+        std::cout << "ID de Marca: " << producto.getIdMarca() << std::endl;
+        std::cout << "Modelo: " << producto.getModelo() << std::endl;
+        std::cout << "Descripcion: " << producto.getDescripcion() << std::endl;
+        std::cout << "Precio: " << producto.getPrecio() << std::endl;
+        std::cout << "Stock: " << producto.getStock() << std::endl;
+        std::cout << "Estado: " << producto.getActivo() << std::endl;
+        break;
+    case 1:
+        std::cout << std::left;
+        std::cout << std::setw(6) << producto.getID();
+        std::cout << std::setw(11) << producto.getCategoria();
+        std::cout << std::setw(18) <<  producto.getIdMarca();
+        std::cout << std::setw(9) << producto.getModelo() ;
+        std::cout << std::setw(15) << producto.getDescripcion();
+        std::cout << std::setw(18) << producto.getPrecio();
+        std::cout << std::setw(8) << producto.getStock();
+        break;
+    }
+    /*std::cout<<"-----------------------------------------------------"<<std::endl;
     std::cout<<"ID: "<<producto.getID()<<std::endl;
     std::cout<<"CATEGORIA: "<<producto.getCategoria()<<std::endl;
-    std::cout<<"MARCA: "<<marcaAux.getNombre()<<std::endl;
+    std::cout<<"ID MARCA: "<<producto.getIdMarca()<<std::endl;
     std::cout<<"MODELO: "<<producto.getModelo()<<std::endl;
     std::cout<<"DESCRIPCION: "<<producto.getDescripcion()<<std::endl;
     std::cout<<"PRECIO: "<<producto.getPrecio()<<std::endl;
     std::cout<<"STOCK: "<<producto.getStock()<<std::endl;
-    std::cout<<"ESTADO: "<<producto.getActivo()<<std::endl;
+    std::cout<<"ESTADO: "<<producto.getActivo()<<std::endl;*/
 }
 
 void ProductoManager::ListarTodos()
 {
-
+    rlutil::cls();
     int cantidadRegistros = _archivo.getCantidadDeRegistros ();
 
     for (int i = 0; i<cantidadRegistros; i++)
@@ -44,15 +63,71 @@ void ProductoManager::ListarTodos()
         Producto reg = _archivo.leer(i);
         if (reg.getActivo()==true)
         {
-            Listar(reg);
+
+            Listar(reg,1);
             cout << endl;
         }
     }
     rlutil::anykey();
 }
 
+void ProductoManager::listarActivos() {
+    rlutil::cls();
+    std::cout << "PRODUCTOS ACTIVOS" << std::endl;
+    std::cout << "-------------------------------------------------------------------------------------" << std::endl;
+
+    int cantidadDeRegistros = _archivo.getCantidadRegistrosActivos();
+    Producto *listaDeProductos = new Producto[cantidadDeRegistros];
+    int resultadosEncontrados = 0;
+
+    if(listaDeProductos == nullptr) {
+        std::cout << std::endl;
+        std::cout << "Ocurrió un error al visualizar el listado" << std::endl;
+        return;
+    }
+
+    _archivo.leer(listaDeProductos, cantidadDeRegistros);
+
+    for (int i = 0; i < cantidadDeRegistros; i++) {
+        if (listaDeProductos[i].getActivo()) {
+            resultadosEncontrados++;
+        }
+    }
+
+    if (resultadosEncontrados > 0) {
+        std::cout << std::endl;
+        std::cout << "Registros encontrados: " << resultadosEncontrados << std::endl;
+        std::cout << std::endl;
+        std::cout << std::left;
+        std::cout << std::setw(6) << "Id";
+        std::cout << std::setw(11) << "Categoria";
+        std::cout << std::setw(18) << "Id de la marca";
+        std::cout << std::setw(9) << "Modelo";
+         std::cout << std::setw(15) << "Descripcion";
+          std::cout << std::setw(18) << "Precio de Venta";
+           std::cout << std::setw(8) << "Stock";
+        std::cout << std::endl;
+        std::cout << "----------------------------------------------------------------------------------" << std::endl;
+
+        for (int i = 0; i < cantidadDeRegistros; i++) {
+            if (listaDeProductos[i].getActivo()) {
+            Listar(listaDeProductos[i], 1);
+                std::cout << std::endl;
+            }
+        }
+        mensajeFinDelListado();
+    }
+    else {
+        mensajeListadoSinDatosEncontrados();
+    }
+
+    delete[] listaDeProductos;
+    rlutil::anykey();
+}
+
 void ProductoManager::ListarXId()
 {
+    rlutil::cls();
     int id;
 
     cout << "Ingrese el ID: ";
@@ -64,7 +139,18 @@ void ProductoManager::ListarXId()
         Producto producto = _archivo.leer(posicion);
         if(producto.getActivo()==true)
         {
-            Listar(producto);
+        std::cout << std::left;
+        std::cout << std::setw(6) << "Id";
+        std::cout << std::setw(11) << "Categoria";
+        std::cout << std::setw(18) << "Id de la marca";
+        std::cout << std::setw(9) << "Modelo";
+        std::cout << std::setw(15) << "Descripcion";
+        std::cout << std::setw(18) << "Precio de Venta";
+        std::cout << std::setw(8) << "Stock";
+        std::cout << std::endl;
+        std::cout << "----------------------------------------------------------------------------------" << std::endl;
+
+        Listar(producto,1);
 
         }
     }
@@ -77,7 +163,7 @@ void ProductoManager::ListarXId()
 
 void ProductoManager::ListarPorMarca()
 {
-
+    rlutil::cls();
     std::string nombre;
     int idMarca;
     MarcaArchivo archivoMarca;
@@ -93,17 +179,31 @@ void ProductoManager::ListarPorMarca()
     else
     {
         registroNoEncontradoMensaje();
+        system("pause");
+
+        return;
     }
     Producto producto;
     ProductoArchivo archivoProducto;
     int cantRegProd=archivoProducto.getCantidadDeRegistros();
-
+        std::cout << std::endl;
+        std::cout << std::left;
+        std::cout << std::setw(6) << "Id";
+        std::cout << std::setw(11) << "Categoria";
+        std::cout << std::setw(18) << "Id de la marca";
+        std::cout << std::setw(9) << "Modelo";
+        std::cout << std::setw(15) << "Descripcion";
+        std::cout << std::setw(18) << "Precio de Venta";
+        std::cout << std::setw(8) << "Stock";
+        std::cout << std::endl;
+        std::cout << "----------------------------------------------------------------------------------" << std::endl;
     for(int i=0; i<cantRegProd; i++)
     {
         producto=archivoProducto.leer(i);
         if(producto.getIdMarca()==idMarca && producto.getActivo()==true)
         {
-            Listar(producto);
+            Listar(producto,1);
+            std::cout << std::endl;
         }
 
     }
@@ -112,9 +212,10 @@ void ProductoManager::ListarPorMarca()
 
 void ProductoManager::ListarPorTopePrecio()
 {
+    rlutil::cls();
     float topePrecio;
     std::cout<<"INGRESE TOPE DE PRECIO "<<std::endl;
-    topePrecio = ingresoPrecioConValidacion();
+    std::cin>>topePrecio; // VALIDACION PENDIENTE
 
     Producto producto;
     ProductoArchivo archivoProducto;
@@ -142,12 +243,24 @@ void ProductoManager::ListarPorTopePrecio()
             }
         }
     }
+        std::cout << std::endl;
+        std::cout << std::left;
+        std::cout << std::setw(6) << "Id";
+        std::cout << std::setw(11) << "Categoria";
+        std::cout << std::setw(18) << "Id de la marca";
+        std::cout << std::setw(9) << "Modelo";
+        std::cout << std::setw(15) << "Descripcion";
+        std::cout << std::setw(18) << "Precio de Venta";
+        std::cout << std::setw(8) << "Stock";
+        std::cout << std::endl;
+        std::cout << "----------------------------------------------------------------------------------" << std::endl;
     for(int a=0; a<cantProductos; a++)
     {
         producto=ProductosOrdenadosPorPrecio[a];
         if(producto.getPrecio()<=topePrecio && producto.getActivo()==true)
         {
-            Listar(producto);
+            Listar(producto,1);
+            std::cout << std::endl;
         }
     }
     rlutil::anykey();
@@ -156,15 +269,13 @@ void ProductoManager::ListarPorTopePrecio()
 
 void ProductoManager::HacerCopiaDeSeguridad()
 {
+    rlutil::cls();
     int cantidadRegs = _archivo.getCantidadDeRegistros();
-
-    if(cantidadRegs <= 0)
-    {
-        errorMensajeCopiaDeSeguridadSinRegs();
+    if(cantidadRegs <= 0){
+        //errorMensajeCopiaDeSeguridadSinRegs();
         rlutil::anykey();
         return;
     }
-
     Producto *vec = new Producto[cantidadRegs];
 
     if (vec == nullptr)
@@ -191,14 +302,8 @@ void ProductoManager::HacerCopiaDeSeguridad()
 
 void ProductoManager::RestaurarCopiaDeSeguridad()
 {
+    rlutil::cls();
     int cantidadRegs = _archivoBkp.getCantidadDeRegistros();
-
-    if(cantidadRegs <= 0)
-    {
-        errorMensajeCopiaDeSeguridadSinRegs();
-        rlutil::anykey();
-        return;
-    }
 
     Producto *vec = new Producto[cantidadRegs];
     if (vec == nullptr)
@@ -228,7 +333,7 @@ void ProductoManager::ListarPorStock()
 {
 
 
-
+    rlutil::cls();
     Producto producto;
     ProductoArchivo archivoProducto;
     int cantProductos=archivoProducto.getCantidadDeRegistros();
@@ -255,13 +360,25 @@ void ProductoManager::ListarPorStock()
             }
         }
     }
+        std::cout << std::endl;
+        std::cout << std::left;
+        std::cout << std::setw(6) << "Id";
+        std::cout << std::setw(11) << "Categoria";
+        std::cout << std::setw(18) << "Id de la marca";
+        std::cout << std::setw(9) << "Modelo";
+        std::cout << std::setw(15) << "Descripcion";
+        std::cout << std::setw(18) << "Precio de Venta";
+        std::cout << std::setw(8) << "Stock";
+        std::cout << std::endl;
+        std::cout << "----------------------------------------------------------------------------------" << std::endl;
     for(int a=0; a<cantProductos; a++)
     {
         producto=ProductosOrdenadosStock[a];
         if(producto.getActivo()==true)
         {
 
-            Listar(producto);
+            Listar(producto,0);
+            std::cout << std::endl;
         }
     }
     delete []ProductosOrdenadosStock;
@@ -270,7 +387,7 @@ void ProductoManager::ListarPorStock()
 
 void ProductoManager::Cargar()
 {
-
+    rlutil::cls();
     int ID;
     int categoria;
     int  idMarca;
@@ -303,7 +420,7 @@ void ProductoManager::Cargar()
 
     Producto reg(ID, categoria, idMarca,modelo, descripcion, precioVenta, stock, activo);
     cout<<"CARGO EL SIGUIENTE PRODUCTO: "<<endl;
-    Listar(reg);
+    Listar(reg,0);
     cout<<"CONTINUAR? (SI | NO): ";
     std::string opc;
     opc = ingresoDeDecisionConValidacion();
@@ -323,6 +440,7 @@ void ProductoManager::Cargar()
 
 void ProductoManager::Editar()
 {
+    rlutil::cls();
     Producto producto;
     int id, posicion;
 
@@ -369,8 +487,7 @@ void ProductoManager::Editar()
             {
             case 0:
                 break;
-            case 1:
-            {
+            case 1:{
                 std::cout <<"INGRESE CATEGORIA: "<< std::endl;
                 categoria = ingresoCategoriaProdConValidacion();
                 producto.setCategoria(categoria);
@@ -379,14 +496,13 @@ void ProductoManager::Editar()
                 cout<<"¿Desea seguir haciendo modificaciones? (SI/NO)"<<endl;
                 std::string respuesta; // variable para almacenar la respuesta del usuario
                 respuesta = ingresoDeDecisionConValidacion(); // leer la respuesta del usuario
-                if (respuesta == "NO")   // si no quiere seguir modificando
-                {
-                    seguirModificando = false; // indicar que no quiere seguir modificando
+                if (respuesta == "NO") { // si no quiere seguir modificando
+                  seguirModificando = false; // indicar que no quiere seguir modificando
                 }
-                break;
-            }
-            case 2:
-            {
+                rlutil::cls();
+
+                break;}
+            case 2:{
                 do
                 {
                     std::cout <<"INGRESE MARCA: "<< std::endl;
@@ -397,78 +513,64 @@ void ProductoManager::Editar()
                 edito = 1;
                 // Preguntar al usuario si quiere seguir modificando
                 cout<<"¿Desea seguir haciendo modificaciones? (SI/NO)"<<endl;
-                std::string respuesta; // variable para almacenar la respuesta del usuario
-                respuesta = ingresoDeDecisionConValidacion(); // leer la respuesta del usuario
-                if (respuesta == "NO")   // si no quiere seguir modificando
-                {
-                    seguirModificando = false; // indicar que no quiere seguir modificando
+                std::string respuesta;
+                respuesta = ingresoDeDecisionConValidacion();
+                if (respuesta == "NO") {
+                  seguirModificando = false;
                 }
-                break;
-            }
-            case 3:
-            {
+                break;}
+            case 3:{
                 std::cout <<"INGRESE MODELO: "<< std::endl;
                 modelo = ingresoModeloConValidacion();
                 producto.setModelo(modelo);
                 edito = 1;
                 // Preguntar al usuario si quiere seguir modificando
                 cout<<"¿Desea seguir haciendo modificaciones? (SI/NO)"<<endl;
-                std::string respuesta; // variable para almacenar la respuesta del usuario
-                respuesta = ingresoDeDecisionConValidacion(); // leer la respuesta del usuario
-                if (respuesta == "NO")   // si no quiere seguir modificando
-                {
-                    seguirModificando = false; // indicar que no quiere seguir modificando
+                std::string respuesta;
+                respuesta = ingresoDeDecisionConValidacion();
+                if (respuesta == "NO") {
+                  seguirModificando = false;
                 }
-                break;
-            }
-            case 4:
-            {
+                break;}
+            case 4:{
                 std::cout <<"INGRESE DESCRIPCION: "<< std::endl;
                 descripcion = ingresoDescripcionConValidacion();
                 producto.setDescripcion(descripcion);
                 edito = 1;
                 // Preguntar al usuario si quiere seguir modificando
                 cout<<"¿Desea seguir haciendo modificaciones? (SI/NO)"<<endl;
-                std::string respuesta; // variable para almacenar la respuesta del usuario
-                respuesta = ingresoDeDecisionConValidacion(); // leer la respuesta del usuario
-                if (respuesta == "NO")   // si no quiere seguir modificando
-                {
-                    seguirModificando = false; // indicar que no quiere seguir modificando
+                std::string respuesta;
+                respuesta = ingresoDeDecisionConValidacion();
+                if (respuesta == "NO") {
+                  seguirModificando = false;
                 }
-                break;
-            }
-            case 5:
-            {
+                break;}
+            case 5:{
                 std::cout <<"INGRESE PRECIO DE VENTA: "<< std::endl;
                 precioVenta = ingresoPrecioConValidacion();
                 producto.setPrecio(precioVenta);
                 edito = 1;
                 // Preguntar al usuario si quiere seguir modificando
                 cout<<"¿Desea seguir haciendo modificaciones? (SI/NO)"<<endl;
-                std::string respuesta; // variable para almacenar la respuesta del usuario
-                respuesta = ingresoDeDecisionConValidacion(); // leer la respuesta del usuario
-                if (respuesta == "NO")   // si no quiere seguir modificando
-                {
-                    seguirModificando = false; // indicar que no quiere seguir modificando
+                std::string respuesta;
+                respuesta = ingresoDeDecisionConValidacion();
+                if (respuesta == "NO") {
+                  seguirModificando = false;
                 }
-                break;
-            }
-            case 6:
-            {
+                break;}
+            case 6:{
                 std::cout <<"INGRESE STOCK: "<< std::endl;
                 stock = ingresoStockConValidacion();
                 producto.setStock(stock);
                 edito = 1;
-                // Preguntar al usuario si quiere seguir modificando
+               // Preguntar al usuario si quiere seguir modificando
                 cout<<"¿Desea seguir haciendo modificaciones? (SI/NO)"<<endl;
-                std::string respuesta; // variable para almacenar la respuesta del usuario
-                respuesta = ingresoDeDecisionConValidacion(); // leer la respuesta del usuario
-                if (respuesta == "NO")   // si no quiere seguir modificando
-                {
-                    seguirModificando = false; // indicar que no quiere seguir modificando
+                std::string respuesta;
+                respuesta = ingresoDeDecisionConValidacion();
+                if (respuesta == "NO") {
+                  seguirModificando = false;
                 }
-                break;
-            }
+                break;}
             default:
                 std::cout << "La opción seleccionada es invalida. Ingrese nuevamente." << std::endl;
 
@@ -477,8 +579,8 @@ void ProductoManager::Editar()
         while(seguirModificando);
         if(edito)
         {
-            cout<<"MODIFICO EL SIGUIENTE PRODUCTO: "<<endl;
-            Listar(producto);
+        std::cout<<"MODIFICO EL SIGUIENTE PRODUCTO: "<<endl;
+            Listar(producto,0);
             cout<<"CONTINUAR? (SI | NO): ";
             std::string opc;
             opc = ingresoDeDecisionConValidacion();
@@ -501,7 +603,7 @@ void ProductoManager::Editar()
 
 void ProductoManager::Eliminar()
 {
-
+    rlutil::cls();
     Producto producto;
     int id, posicion;
     cout << "ID A ELIMINAR: ";
@@ -514,7 +616,7 @@ void ProductoManager::Eliminar()
         producto = _archivo.leer(posicion);
         if(producto.getActivo())
         {
-            Listar(producto);
+            Listar(producto,1);
             cout<<"CONTINUAR? (SI | NO): ";
             std::string opc;
             opc = ingresoDeDecisionConValidacion();
@@ -546,6 +648,7 @@ void ProductoManager::Eliminar()
 
 void ProductoManager::reactivar()
 {
+    rlutil::cls();
     Producto reg;
     int id, posicion;
     cout<<"ID PRODUCTO A REACTIVAR: ";
@@ -560,7 +663,7 @@ void ProductoManager::reactivar()
         if(!reg.getActivo())
         {
             cout<<"REACTIVARA EL SIGUIENTE PRODUCTO: "<<endl;
-            Listar(reg);
+            Listar(reg,1);
             cout<<"CONFIRMAR? (SI | NO): ";
             std::string opc;
             opc = ingresoDeDecisionConValidacion();
@@ -592,6 +695,7 @@ void ProductoManager::reactivar()
 
 void ProductoManager::CargarStock()
 {
+    rlutil::cls();
     Producto reg;
     int id, posicion;
     cout<<"INGRESE EL ID DEL PRODUCTO: ";
@@ -611,7 +715,7 @@ void ProductoManager::CargarStock()
         else
         {
             std::cout<<"ACTUALIZARA EL STOCK DEL SIGUIENTE PRODUCTO:"<<std::endl;
-            Listar(reg);
+            Listar(reg,1);
 
             cout<<"CONTINUAR? (SI | NO): ";
             std::string opc;
@@ -645,7 +749,7 @@ void ProductoManager::CargarStock()
 
 bool ProductoManager::RestaurarStock(int id, int unidades)
 {
-
+    rlutil::cls();
     Producto reg;
     int posicion = _archivo.buscar(id);
     reg = _archivo.leer(posicion);
@@ -665,6 +769,7 @@ bool ProductoManager::RestaurarStock(int id, int unidades)
 
 void ProductoManager::RestarStock()
 {
+    rlutil::cls();
     Producto reg;
     int id, posicion;
     cout<<"INGRESE EL ID DEL PRODUCTO: ";
@@ -684,7 +789,7 @@ void ProductoManager::RestarStock()
         else
         {
             std::cout<<"ACTUALIZARA EL STOCK DEL SIGUIENTE PRODUCTO:"<<std::endl;
-            Listar(reg);
+            Listar(reg,1);
 
             cout<<"CONTINUAR? (SI | NO): ";
             std::string opc;
@@ -727,6 +832,7 @@ void ProductoManager::RestarStock()
 
 bool ProductoManager::RestarStock(int id, int unidades)
 {
+    rlutil::cls();
     int posicion = _archivo.buscar(id);
     Producto reg;
     reg = _archivo.leer(posicion);
@@ -758,3 +864,50 @@ void ProductoManager::setPermisos(bool adm, bool sup, bool ven)
     _permisos[1] = sup;
     _permisos[2] = ven;
 }
+
+void ProductoManager::listarProductos() {
+    int opcion = -1;
+
+    do {
+        rlutil::cls();
+        std::cout << "LISTAR PRODUCTOS" << std::endl;
+        std::cout << "---------------------------------------------------" << std::endl;
+        std::cout << "1. POR ID" << std::endl;
+        std::cout << "2. POR STOCK" << std::endl;
+        std::cout << "3. POR TOPE DE PRECIO" << std::endl;
+        std::cout << "4. POR MARCA" << std::endl;
+        std::cout << "5. PRODUCTOS ACTIVOS" << std::endl;
+        std::cout << "---------------------------------------------------" << std::endl;
+        std::cout << "0. VOLVER AL MENÚ ANTERIOR" << std::endl;
+        std::cout << "---------------------------------------------------" << std::endl;
+        std::cout << "OPCIÓN SELECCIONADA: ";
+        std::cin >> opcion;
+        std::cin.ignore();
+
+        switch(opcion) {
+        case 0:
+            break;
+        case 1:
+            ListarXId();
+            break;
+        case 2:
+            ListarPorStock();
+            break;
+        case 3:
+            ListarPorTopePrecio();
+            break;
+        case 4:
+            ListarPorMarca();
+            break;
+        case 5:
+            listarActivos();
+            break;
+        default:
+            std::cout << "La opción seleccionada es invalida. Ingrese nuevamente." << std::endl;
+            break;
+        }
+    }
+
+    while(opcion != 0);
+}
+

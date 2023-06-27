@@ -9,14 +9,7 @@ public:
 	void Editar();
 	void Eliminar();
 	void reactivar();
-	void ListarTodos();
-	void ListarXId();
-	void ListarPorMarca();
-	void ListarPorTopePrecio();
-	void ListarPorStock();
-    void ListarPorProxAgotarse();
-    void ListarPorMasVendidos();
-    void Listar(Producto producto);
+    void Listar(Producto producto, int tipoListado);
     void CargarStock();
     bool RestaurarStock(int id, int unidades);
     void RestarStock();
@@ -24,8 +17,17 @@ public:
 	void HacerCopiaDeSeguridad();
 	void RestaurarCopiaDeSeguridad();
 	void setPermisos(bool adm, bool sup, bool ven);
-
+    void listarProductos();
+    void buscarProductos();
+    void listarActivos();
 private:
+	void ListarTodos();
+	void ListarXId();
+	void ListarPorMarca();
+	void ListarPorTopePrecio();
+	void ListarPorStock();
+    void ListarPorProxAgotarse();
+    void ListarPorMasVendidos();
     bool _permisos[3]; // Posición 0. Adm | 1. Sup | 2. Ven
 	ProductoArchivo _archivo;
 	ProductoArchivo _archivoBkp = ProductoArchivo("productos.bkp");
