@@ -168,102 +168,220 @@ std::string VentaManager::metodoPagoAString(int metodoPago)
     }
 }
 
-void VentaManager::Listar(Venta venta)
+void VentaManager::Listar(Venta venta, int tipoListado)
 {
-
-    std::cout<<"ID PEDIDO: "<<venta.getIdPedido()<<std::endl;
-    std::cout<<"DOCUMENTO CLIENTE "<<venta.getNroDocCliente()<<std::endl;
-    std::cout<<"FECHA: "<<venta.getFecha().toString()<<std::endl;
-    std::cout<<"PRODUCTOS:"<<endl;
-    const int* vecProductos = venta.getVecIdProducto();
-    const int* vecUnidades = venta.getVecUnidadesxProducto();
-    std::string metodoPago = metodoPagoAString(venta.getMetodoPago());
-    for(int i = 0; i<venta.getCantidadProductos(); i++)
+    switch (tipoListado)
     {
-        // REVISAR ESTO, PROBABLEMENTE DEBA TRAERLO DESDE UNA FUNCION DE MANAGER PROD Y MANAGER MARCA TAMBIEN
-        ProductoArchivo arProducto;
-        MarcaArchivo arMarca;
-        Producto productoAux;
-        productoAux = arProducto.leer(arProducto.buscar(vecProductos[i]));
-        Marca marcaAux;
-        marcaAux = arMarca.leer(arMarca.buscar(productoAux.getIdMarca()));
-        std::cout<<"ID: "<<vecProductos[i]<<" | "<<marcaAux.getNombre()<<" | "<< productoAux.getModelo()<<std::endl;
-        std::cout<<"CANTIDAD: "<<vecUnidades[i]<<std::endl;
+    case 0:
+    {
+        std::cout<<"ID PEDIDO: "<<venta.getIdPedido()<<std::endl;
+        std::cout<<"DOCUMENTO CLIENTE "<<venta.getNroDocCliente()<<std::endl;
+        std::cout<<"FECHA: "<<venta.getFecha().toString()<<std::endl;
+        std::cout<<"PRODUCTOS:"<<endl;
+        const int* vecProductos = venta.getVecIdProducto();
+        const int* vecUnidades = venta.getVecUnidadesxProducto();
+        std::string metodoPago = metodoPagoAString(venta.getMetodoPago());
+        for(int i = 0; i<venta.getCantidadProductos(); i++)
+        {
+            // REVISAR ESTO, PROBABLEMENTE DEBA TRAERLO DESDE UNA FUNCION DE MANAGER PROD Y MANAGER MARCA TAMBIEN
+            ProductoArchivo arProducto;
+            MarcaArchivo arMarca;
+            Producto productoAux;
+            productoAux = arProducto.leer(arProducto.buscar(vecProductos[i]));
+            Marca marcaAux;
+            marcaAux = arMarca.leer(arMarca.buscar(productoAux.getIdMarca()));
+            std::cout<<"ID: "<<vecProductos[i]<<" | "<<marcaAux.getNombre()<<" | "<< productoAux.getModelo()<<std::endl;
+            std::cout<<"CANTIDAD: "<<vecUnidades[i]<<std::endl;
+        }
+        std::cout<<"IMPORTE: $"<<venta.getMontoCompra()<<endl;
+        std::cout<<"METODO PAGO: "<<metodoPago<<endl;
+        UsuarioArchivo arUsuario;
+        Usuario vendedor;
+        vendedor = arUsuario.leer(arUsuario.buscar(venta.getIdVendedor()));
+        std::cout<<"VENDEDOR: "<<vendedor.getNombre()<<" "<<vendedor.getApellido()<<endl;
     }
-    std::cout<<"IMPORTE: $"<<venta.getMontoCompra()<<endl;
-    std::cout<<"METODO PAGO: "<<metodoPago<<endl;
-    UsuarioArchivo arUsuario;
-    Usuario vendedor;
-    vendedor = arUsuario.leer(arUsuario.buscar(venta.getIdVendedor()));
-    std::cout<<"VENDEDOR: "<<vendedor.getNombre()<<" "<<vendedor.getApellido()<<endl;
+    break;
+    case 1:
+    {
+        std::cout << std::left;
+        std::cout << std::setw(4) << venta.getIdPedido();
+        std::cout << std::setw(13) << venta.getNroDocCliente();
+        std::cout << std::setw(12) << venta.getMontoCompra();
+        std::cout << std::setw(19) << metodoPagoAString(venta.getMetodoPago());
+        std::cout << std::setw(11) << venta.getIdVendedor();
+        std::cout << std::setw(13) << venta.getFecha().toString();
+        std::cout << std::endl;
+    }
+    break;
+    default:
+        break;
+    }
 }
 
-void VentaManager::ListarTodas()
+void VentaManager::ListarTodasDetalle()
 {
     int cantidadRegistros = _archivo.getCantidadRegistros();
-    int cantidadActivos = 0;
-    for(int i = 0; i < cantidadRegistros; i++)
-    {
-        Venta reg;
-        reg = _archivo.leer(i);
-        if(reg.getActivo())
-        {
-            cantidadActivos ++;
-        }
-    }
 
-    if(cantidadActivos <= 0)
+    if(cantidadRegistros <= 0)
     {
         mensajeListadoSinDatosEncontrados();
     }
     else
     {
-        Venta *listadoVentas = new Venta [cantidadActivos];
-
-        if(listadoVentas == nullptr)
-        {
-            cout << "Error al generar el listado";
-            return;
-        }
-
-        int ultimaPos = 0;
-        for(int i = 0; i < cantidadRegistros; i ++)
+        for (int i = 0; i < cantidadRegistros; i++)
         {
             Venta reg;
             reg = _archivo.leer(i);
             if(reg.getActivo())
             {
-                listadoVentas[ultimaPos] = reg;
-                ultimaPos ++;
+                Listar(reg, 0);
             }
         }
-            std::cout << "Registros encontrados: " << cantidadActivos << std::endl;
-            std::cout << std::endl;
-            std::cout << std::left;
-            std::cout << std::setw(4) << "Id";
-            std::cout << std::setw(13) << "Cliente";
-            std::cout << std::setw(12) << "Importe $";
-            std::cout << std::setw(19) << "Forma Pago";
-            std::cout << std::setw(11) << "Vendedor";
-            std::cout << std::setw(13) << "F. Venta";
-            std::cout << std::endl;
-            std::cout << "-------------------------------------------------------------------------" << std::endl;
-
-            for(int i = 0; i<cantidadActivos; i++)
-            {
-                std::cout << std::left;
-                std::cout << std::setw(4) << listadoVentas[i].getIdPedido();
-                std::cout << std::setw(13) << listadoVentas[i].getNroDocCliente();
-                std::cout << std::setw(12) << listadoVentas[i].getMontoCompra();
-                std::cout << std::setw(19) << metodoPagoAString(listadoVentas[i].getMetodoPago());
-                std::cout << std::setw(11) << listadoVentas[i].getIdVendedor();
-                std::cout << std::setw(13) << listadoVentas[i].getFecha().toString();
-                std::cout << std::endl;
-            }
-            mensajeFinDelListado();
-            delete[] listadoVentas;
+        mensajeFinDelListado();
     }
     rlutil::anykey();
+
+
+
+}
+
+void VentaManager::ListarTodasResumen()
+{
+    int cantidadRegistros = _archivo.getCantidadRegistros();
+
+    if(cantidadRegistros <= 0)
+    {
+        mensajeListadoSinDatosEncontrados();
+    }
+    else
+    {
+        //std::cout << "Registros encontrados: " << cantidadActivos << std::endl;
+        //std::cout << std::endl;
+        std::cout << std::left;
+        std::cout << std::setw(4) << "Id";
+        std::cout << std::setw(13) << "Cliente";
+        std::cout << std::setw(12) << "Importe $";
+        std::cout << std::setw(19) << "Forma Pago";
+        std::cout << std::setw(11) << "Vendedor";
+        std::cout << std::setw(13) << "F. Venta";
+        std::cout << std::endl;
+        std::cout << "-------------------------------------------------------------------------" << std::endl;
+        for (int i = 0; i < cantidadRegistros; i++)
+        {
+            Venta reg;
+            reg = _archivo.leer(i);
+
+            if(reg.getActivo())
+            {
+                Listar(reg, 1);
+            }
+        }
+        mensajeFinDelListado();
+    }
+    rlutil::anykey();
+}
+
+void VentaManager::ListarVentasAnuladas()
+{
+    int cantidadRegistros = _archivo.getCantidadRegistros();
+    int cantidadAnuladas = 0;
+
+    for(int i = 0; i < cantidadRegistros; i++)
+    {
+        Venta reg;
+        reg = _archivo.leer(i);
+        if(!reg.getActivo())
+        {
+            cantidadAnuladas ++;
+        }
+    }
+
+    if(cantidadAnuladas <= 0)
+    {
+        mensajeListadoSinDatosEncontrados();
+    }
+    else
+    {
+
+        Venta *ventasAnuladas = new Venta[cantidadAnuladas];
+
+        if (ventasAnuladas == nullptr)
+        {
+            std::cout << "Ocurrió un error al visualizar el listado" << std::endl;
+            return;
+        }
+
+        int ultimaPosicionGrabada = 0;
+
+        std::cout << std::left;
+        std::cout << std::setw(4) << "Id";
+        std::cout << std::setw(13) << "Cliente";
+        std::cout << std::setw(12) << "Importe $";
+        std::cout << std::setw(19) << "Forma Pago";
+        std::cout << std::setw(11) << "Vendedor";
+        std::cout << std::setw(13) << "F. Venta";
+        std::cout << std::endl;
+        std::cout << "-------------------------------------------------------------------------" << std::endl;
+        for(int i = 0; i < cantidadRegistros; i ++){
+            Venta reg;
+            reg = _archivo.leer(i);
+            if(!reg.getActivo()){
+                ventasAnuladas[ultimaPosicionGrabada] = reg;
+                Listar(reg, 1);
+            }
+        }
+        delete [] ventasAnuladas;
+        mensajeFinDelListado();
+    }
+    rlutil::anykey();
+}
+
+void VentaManager::ListarVentas()
+{
+    int opcion = -1;
+
+    do
+    {
+        rlutil::cls();
+        std::cout << "ELIJA EL TIPO DE LISTADO" << std::endl;
+        std::cout << "---------------------------------------------------" << std::endl;
+        std::cout << "1. LISTAR TODAS LAS VENTAS DETALLADAS" << std::endl;
+        std::cout << "2. LISTAR RESUMEN DE VENTAS" << std::endl;
+        std::cout << "3. LISTAR VENTAS ANULADAS" << std::endl;
+        std::cout << "---------------------------------------------------" << std::endl;
+        std::cout << "0. VOLVER AL MENÚ DE GESTIÓN DE VENTAS" << std::endl;
+        std::cout << "---------------------------------------------------" << std::endl;
+        std::cout << "OPCIÓN SELECCIONADA: ";
+        std::cin >> opcion;
+        std::cin.ignore();
+
+        switch(opcion)
+        {
+        case 0:
+            break;
+        case 1:
+            //std::cout << std::endl;
+            ListarTodasDetalle();
+            break;
+        case 2:
+            //std::cout << std::endl;
+            ListarTodasResumen();
+            break;
+        case 3:
+            ListarVentasAnuladas();
+            break;
+        case 4:
+            //std::cout << std::endl;
+            break;
+        case 5:
+            break;
+        default:
+            std::cout << "La opción seleccionada es invalida. Ingrese nuevamente." << std::endl;
+            break;
+        }
+    }
+
+    while(opcion != 0);
 }
 
 void VentaManager::generarComprobante(Venta venta)
@@ -363,7 +481,7 @@ void VentaManager::Cargar()
         metodoPago = ingresoMetodoPagoConValidacion();
         Venta reg(idPedido, nroDocCliente, fechaCompra, vecIdProducto, vecUnidadesxProducto, cantidadProductos, montoCompra, metodoPago, idVendedor, activo);
         std::cout<<"HA CARGADO LA SIGUIENTE VENTA: "<<std::endl;
-        Listar(reg);
+        Listar(reg,0);
         std::cout<<"QUIERE GUARDARLA? (SI | NO): "<<std::endl;
         std::string decision = ingresoDeDecisionConValidacion();
 
@@ -406,7 +524,7 @@ void VentaManager::Anular()
         if(reg.getActivo())
         {
             std::cout<<"ELIMINARA LA SIGUIENTE VENTA: "<<std::endl;
-            Listar(reg);
+            Listar(reg,0);
             std::cout<<"CONTINUAR? (SI | NO): "<<std::endl;
             std::string decision = ingresoDeDecisionConValidacion();
 
@@ -460,7 +578,7 @@ void VentaManager::Reactivar()
         if(!reg.getActivo())
         {
             std::cout<<"REACTIVARA LA SIGUIENTE VENTA: "<<std::endl;
-            Listar(reg);
+            Listar(reg,0);
             std::cout<<"CONTINUAR? (SI | NO): "<<std::endl;
             std::string decision = ingresoDeDecisionConValidacion();
 

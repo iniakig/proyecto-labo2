@@ -15,8 +15,7 @@ public:
 	void Cargar();
 	void Anular();
     void Reactivar();
-    void Listar(Venta venta);
-    void ListarTodas();
+    void ListarVentas();
     void generarComprobante(Venta venta);
 	void ventasPorEmpleado();
 	void recaudacionAnual();
@@ -34,6 +33,10 @@ private:
 	int cargarProductos(int* vecProductos, int* vecUnidades);
 	std::string validarCliente();
 	std::string metodoPagoAString(int metodoPago);
+    void Listar(Venta venta, int tipoListado);
+    void ListarTodasDetalle();
+    void ListarTodasResumen();
+    void ListarVentasAnuladas();
 };
 
 
