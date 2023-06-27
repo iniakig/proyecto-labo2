@@ -783,9 +783,10 @@
 	"../funciones.h"
 	<../rlutil.h>
 
-1687817844 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\ventamanager.cpp
+1687882274 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\ventamanager.cpp
 	<iostream>
 	<cstdio>
+	<iomanip>
 	"../mensajes.h"
 	"../validaciones.h"
 	"VentaManager.h"

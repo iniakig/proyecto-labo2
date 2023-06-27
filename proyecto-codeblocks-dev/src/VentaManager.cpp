@@ -1,5 +1,6 @@
 #include<iostream>
 #include <cstdio>
+#include <iomanip>
 
 #include "../mensajes.h"
 #include "../validaciones.h"
@@ -200,15 +201,67 @@ void VentaManager::Listar(Venta venta)
 void VentaManager::ListarTodas()
 {
     int cantidadRegistros = _archivo.getCantidadRegistros();
-
+    int cantidadActivos = 0;
     for(int i = 0; i < cantidadRegistros; i++)
     {
         Venta reg;
         reg = _archivo.leer(i);
+        if(reg.getActivo())
+        {
+            cantidadActivos ++;
+        }
+    }
 
-        Listar(reg);
-        std::cout<<"-----------------------------------------------"<<std::endl;
+    if(cantidadActivos <= 0)
+    {
+        mensajeListadoSinDatosEncontrados();
+    }
+    else
+    {
+        Venta *listadoVentas = new Venta [cantidadActivos];
 
+        if(listadoVentas == nullptr)
+        {
+            cout << "Error al generar el listado";
+            return;
+        }
+
+        int ultimaPos = 0;
+        for(int i = 0; i < cantidadRegistros; i ++)
+        {
+            Venta reg;
+            reg = _archivo.leer(i);
+            if(reg.getActivo())
+            {
+                listadoVentas[ultimaPos] = reg;
+                ultimaPos ++;
+            }
+        }
+            std::cout << "Registros encontrados: " << cantidadActivos << std::endl;
+            std::cout << std::endl;
+            std::cout << std::left;
+            std::cout << std::setw(4) << "Id";
+            std::cout << std::setw(13) << "Cliente";
+            std::cout << std::setw(12) << "Importe $";
+            std::cout << std::setw(19) << "Forma Pago";
+            std::cout << std::setw(11) << "Vendedor";
+            std::cout << std::setw(13) << "F. Venta";
+            std::cout << std::endl;
+            std::cout << "-------------------------------------------------------------------------" << std::endl;
+
+            for(int i = 0; i<cantidadActivos; i++)
+            {
+                std::cout << std::left;
+                std::cout << std::setw(4) << listadoVentas[i].getIdPedido();
+                std::cout << std::setw(13) << listadoVentas[i].getNroDocCliente();
+                std::cout << std::setw(12) << listadoVentas[i].getMontoCompra();
+                std::cout << std::setw(19) << metodoPagoAString(listadoVentas[i].getMetodoPago());
+                std::cout << std::setw(11) << listadoVentas[i].getIdVendedor();
+                std::cout << std::setw(13) << listadoVentas[i].getFecha().toString();
+                std::cout << std::endl;
+            }
+            mensajeFinDelListado();
+            delete[] listadoVentas;
     }
     rlutil::anykey();
 }
@@ -216,21 +269,21 @@ void VentaManager::ListarTodas()
 void VentaManager::generarComprobante(Venta venta)
 {
 
-    std::string nombreArchivo = "Venta"+std::to_string(venta.getIdPedido())+".txt";
-    char archivo [50];
-    strcpy(archivo, nombreArchivo.c_str());
+    std::string nombreArchivo = "/Venta"+std::to_string(venta.getIdPedido())+".txt";
+    //char archivo [50];
+    //strcpy(archivo, nombreArchivo.c_str());
 
-    /*std::string directorio = "../Comprobantes";
-    std::string rutaTxt = directorio + nombreArchivo;*/
+    std::string directorio = "/Comprobantes";
+    std::string rutaTxt = directorio + nombreArchivo;
 
-    //std::string nombreArchivo = "/Venta"+std::to_string(venta.getIdPedido())+".txt";
-    //std::string rutaCompleta = std::string(nombreDirectorio) + nombreArchivo;
+    //std::string rutaCompleta = directorio + nombreArchivo;
+    cout<<rutaTxt<<endl;
 
     const int* vecIdProducto = venta.getVecIdProducto();
     const int* vecUnidadesProducto = venta.getVecUnidadesxProducto();
     int cantidadProductos = venta.getCantidadProductos();
 
-    FILE* archivoTxt = fopen(nombreArchivo.c_str(), "ab");
+    FILE* archivoTxt = fopen(rutaTxt.c_str(), "ab");
     if (archivoTxt != nullptr)
     {
         fprintf(archivoTxt, "Información de venta:\n");
