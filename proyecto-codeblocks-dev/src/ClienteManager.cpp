@@ -220,7 +220,7 @@ void ClienteManager::cargar() {
     int provincia;
 
     std::cout << "CARGAR NUEVO CLIENTE" << std::endl;
-    std::cout << "-------------------------------------------------------------" << std::endl;
+    std::cout << "------------------------------------------------------------------------------------------------------------------------" << std::endl;
 
     id = generarId();
 
@@ -273,20 +273,17 @@ void ClienteManager::cargar() {
 
         if (_archivo.crear(cliente) == true)
         {
-            std::cout << std::endl;
             okMensajeCreacion();
             rlutil::anykey();
         }
         else
         {
-            std::cout << std::endl;
             errorMensajeCreacion();
             rlutil::anykey();
         }
     }
     else
     {
-        std::cout << std::endl;
         existeRegistroMensaje();
         rlutil::anykey();
     }
@@ -352,13 +349,11 @@ bool ClienteManager::cargar(std::string nroDocumento) {
     Cliente cliente(id, tipoDocumento, nroDocumento.c_str(), nombre.c_str(), apellido.c_str(), razonSocial.c_str(), email.c_str(), domicilio.c_str(), localidad.c_str(), provincia, estado, fechaRegistro);
         if (_archivo.crear(cliente) == true)
         {
-            std::cout << std::endl;
             okMensajeCreacion();
             return true;
         }
         else
         {
-            std::cout << std::endl;
             errorMensajeCreacion();
             return false;
         }
@@ -528,14 +523,12 @@ void ClienteManager::modificar() {
 
                     if (_archivo.modificar(cliente, posicion))
                     {
-                        std::cout << std::endl;
                         okMensajeModificacion();
                         rlutil::anykey();
                         opcion = 0;
                     }
                     else
                     {
-                        std::cout << std::endl;
                         errorMensajeModificacion();
                         rlutil::anykey();
                         opcion = 0;
@@ -567,14 +560,12 @@ void ClienteManager::modificar() {
 
                             if (_archivo.modificar(cliente, posicion))
                             {
-                                std::cout << std::endl;
                                 okMensajeModificacion();
                                 rlutil::anykey();
                                 opcion = 0;
                             }
                             else
                             {
-                                std::cout << std::endl;
                                 errorMensajeModificacion();
                                 rlutil::anykey();
                                 opcion = 0;
@@ -590,14 +581,12 @@ void ClienteManager::modificar() {
 
                             if (_archivo.modificar(cliente, posicion))
                             {
-                                std::cout << std::endl;
                                 okMensajeModificacion();
                                 rlutil::anykey();
                                 opcion = 0;
                             }
                             else
                             {
-                                std::cout << std::endl;
                                 errorMensajeModificacion();
                                 rlutil::anykey();
                                 opcion = 0;
@@ -625,14 +614,12 @@ void ClienteManager::modificar() {
 
                             if (_archivo.modificar(cliente, posicion))
                             {
-                                std::cout << std::endl;
                                 okMensajeModificacion();
                                 rlutil::anykey();
                                 opcion = 0;
                             }
                             else
                             {
-                                std::cout << std::endl;
                                 errorMensajeModificacion();
                                 rlutil::anykey();
                                 opcion = 0;
@@ -653,14 +640,12 @@ void ClienteManager::modificar() {
 
                             if (_archivo.modificar(cliente, posicion))
                             {
-                                std::cout << std::endl;
                                 okMensajeModificacion();
                                 rlutil::anykey();
                                 opcion = 0;
                             }
                             else
                             {
-                                std::cout << std::endl;
                                 errorMensajeModificacion();
                                 rlutil::anykey();
                                 opcion = 0;
@@ -689,14 +674,12 @@ void ClienteManager::modificar() {
 
                     if (_archivo.modificar(cliente, posicion))
                     {
-                        std::cout << std::endl;
                         okMensajeModificacion();
                         rlutil::anykey();
                         opcion = 0;
                     }
                     else
                     {
-                        std::cout << std::endl;
                         errorMensajeModificacion();
                         rlutil::anykey();
                         opcion = 0;
@@ -713,14 +696,12 @@ void ClienteManager::modificar() {
 
                     if (_archivo.modificar(cliente, posicion))
                     {
-                        std::cout << std::endl;
                         okMensajeModificacion();
                         rlutil::anykey();
                         opcion = 0;
                     }
                     else
                     {
-                        std::cout << std::endl;
                         errorMensajeModificacion();
                         rlutil::anykey();
                         opcion = 0;
