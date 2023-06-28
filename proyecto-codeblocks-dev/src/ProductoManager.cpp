@@ -38,11 +38,11 @@ void ProductoManager::Listar(Producto producto, int tipoListado)
     case 1:
         std::cout << std::endl;
         std::cout << std::left;
-        std::cout << std::setw(5) << producto.getID();
-        std::cout << std::setw(12) << producto.getCategoria();
-        std::cout << std::setw(14)<<  marca.getNombre();
-        std::cout << std::setw(16) << producto.getModelo() ;
-        std::cout << std::setw(14) << producto.getDescripcion();
+        std::cout << std::setw(6) << producto.getID();
+        std::cout << std::setw(11) << producto.getCategoria();
+        std::cout << std::setw(18)<<  marca.getNombre();
+        std::cout << std::setw(22) << producto.getModelo() ;
+        std::cout << std::setw(28) << producto.getDescripcion();
         std::cout << std::setw(18) << producto.getPrecio();
         std::cout << std::setw(8) << producto.getStock();
         break;
@@ -70,7 +70,7 @@ void ProductoManager::ListarTodos()
 void ProductoManager::listarActivos() {
     rlutil::cls();
     std::cout << "PRODUCTOS ACTIVOS" << std::endl;
-    std::cout << "-------------------------------------------------------------------------------------" << std::endl;
+    std::cout << "------------------------------------------------------------------------------------------------------------------------" << std::endl;
 
     int cantidadDeRegistros = _archivo.getCantidadRegistrosActivos();
     Producto *listaDeProductos = new Producto[cantidadDeRegistros];
@@ -97,20 +97,20 @@ void ProductoManager::listarActivos() {
         std::cout << std::left;
         std::cout << std::setw(6) << "Id";
         std::cout << std::setw(11) << "Categoria";
-        std::cout << std::setw(8) << "Marca";
-        std::cout << std::setw(16) << "Modelo";
-         std::cout << std::setw(15) << "Descripcion";
-          std::cout << std::setw(18) << "Precio de Venta";
-           std::cout << std::setw(8) << "Stock";
+        std::cout << std::setw(18) << "Marca";
+        std::cout << std::setw(22) << "Modelo";
+        std::cout << std::setw(28) << "Descripcion";
+        std::cout << std::setw(18) << "Precio de Venta";
+        std::cout << std::setw(8) << "Stock";
         std::cout << std::endl;
-        std::cout << "----------------------------------------------------------------------------------" << std::endl;
+        std::cout << "------------------------------------------------------------------------------------------------------------" << std::endl;
 
         for (int i = 0; i < cantidadDeRegistros; i++) {
             if (listaDeProductos[i].getActivo()) {
             Listar(listaDeProductos[i], 1);
-                std::cout << std::endl;
             }
         }
+        std::cout << std::endl;
         mensajeFinDelListado();
     }
     else {
@@ -396,29 +396,33 @@ void ProductoManager::Cargar()
     std::string nombreMarca;
     MarcaManager managerMarca;
 
+    std::cout << "AGREGAR USUARIO" << std::endl;
+    std::cout << "------------------------------------------------------------------------------------------------------------------------" << std::endl;
+
     ID=GenerarId();
-    std::cout<<"INGRESE CATEGORIA DEL PRODUCTO (1. CELULARES | 2. TABLETS | 3. ACCESORIOS):"<<std::endl;
+    std::cout<<"INGRESE CATEGORIA DEL PRODUCTO (1. CELULARES | 2. TABLETS | 3. ACCESORIOS): ";
     categoria = ingresoCategoriaProdConValidacion();
     do
     {
-        std::cout<<"INGRESE NOMBRE DE LA MARCA DEL PRODUCTO"<<std::endl;
+        std::cout<<"INGRESE NOMBRE DE LA MARCA DEL PRODUCTO: ";
         nombreMarca=ingresoDeMarcaConValidacion();
         idMarca=managerMarca.cargarDesdeProducto(nombreMarca);
     }
     while(idMarca<=0);
-    std::cout<<"INGRESE MODELO DEL PRODUCTO"<<std::endl;
+    std::cout<<"INGRESE MODELO DEL PRODUCTO: ";
     modelo = ingresoModeloConValidacion();
-    std::cout<<"INGRESE DESCRIPCION DEL PRODUCTO"<<std::endl;// Convertir a mayuscula pendiente
+    std::cout<<"INGRESE DESCRIPCION DEL PRODUCTO: ";// Convertir a mayuscula pendiente
     descripcion = ingresoDescripcionConValidacion();
-    std::cout<<"INGRESE PRECIO DE VENTA"<<std::endl;
+    std::cout<<"INGRESE PRECIO DE VENTA: ";
     precioVenta = ingresoPrecioConValidacion();
-    std::cout<<"INGRESE STOCK"<<std::endl;
+    std::cout<<"INGRESE STOCK: ";
     stock = ingresoStockConValidacion();
 
     Producto reg(ID, categoria, idMarca,modelo, descripcion, precioVenta, stock, activo);
-    cout<<"CARGO EL SIGUIENTE PRODUCTO: "<<endl;
+    std::cout << std::endl;
+    cout<<"CARGÓ EL SIGUIENTE PRODUCTO: "<<endl;
     Listar(reg,0);
-    cout<<"CONTINUAR? (SI | NO): ";
+    std::cout<<"CONTINUAR? (SI | NO): ";
     std::string opc;
     opc = ingresoDeDecisionConValidacion();
     if (opc == "SI")
