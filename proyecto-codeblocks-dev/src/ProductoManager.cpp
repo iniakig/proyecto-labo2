@@ -103,7 +103,7 @@ void ProductoManager::listarActivos() {
         std::cout << std::setw(18) << "Precio de Venta";
         std::cout << std::setw(8) << "Stock";
         std::cout << std::endl;
-        std::cout << "------------------------------------------------------------------------------------------------------------" << std::endl;
+        std::cout << "------------------------------------------------------------------------------------------------------------";
 
         for (int i = 0; i < cantidadDeRegistros; i++) {
             if (listaDeProductos[i].getActivo()) {
