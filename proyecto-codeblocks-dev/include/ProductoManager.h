@@ -20,6 +20,8 @@ public:
     void listarProductos();
     void buscarProductos();
     void listarActivos();
+    std::string getCategoriaDescripcion(int categoria);
+
 private:
 	void ListarTodos();
 	void ListarXId();

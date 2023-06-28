@@ -391,7 +391,7 @@ void VentaManager::generarComprobante(Venta venta)
     //char archivo [50];
     //strcpy(archivo, nombreArchivo.c_str());
 
-    std::string directorio = "/Comprobantes";
+    std::string directorio = "../../Comprobantes";
     std::string rutaTxt = directorio + nombreArchivo;
 
     //std::string rutaCompleta = directorio + nombreArchivo;

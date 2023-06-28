@@ -27,7 +27,7 @@ void ProductoManager::Listar(Producto producto, int tipoListado)
     {
     case 0:
         std::cout << "Id: " << producto.getID() << std::endl;
-        std::cout << "Categoria: " << producto.getCategoria() << std::endl;
+        std::cout << "Categoria: " << getCategoriaDescripcion(producto.getCategoria()) << std::endl;
         std::cout << "Marca: " << marca.getNombre() << std::endl;
         std::cout << "Modelo: " << producto.getModelo() << std::endl;
         std::cout << "Descripcion: " << producto.getDescripcion() << std::endl;
@@ -36,12 +36,13 @@ void ProductoManager::Listar(Producto producto, int tipoListado)
         std::cout << "Estado: " << producto.getActivo() << std::endl;
         break;
     case 1:
+        std::cout << std::endl;
         std::cout << std::left;
-        std::cout << std::setw(6) << producto.getID();
-        std::cout << std::setw(11) << producto.getCategoria();
-        std::cout << std::setw(8)<<  marca.getNombre();
+        std::cout << std::setw(5) << producto.getID();
+        std::cout << std::setw(12) << producto.getCategoria();
+        std::cout << std::setw(14)<<  marca.getNombre();
         std::cout << std::setw(16) << producto.getModelo() ;
-        std::cout << std::setw(15) << producto.getDescripcion();
+        std::cout << std::setw(14) << producto.getDescripcion();
         std::cout << std::setw(18) << producto.getPrecio();
         std::cout << std::setw(8) << producto.getStock();
         break;
@@ -134,6 +135,7 @@ void ProductoManager::ListarXId()
         Producto producto = _archivo.leer(posicion);
         if(producto.getActivo()==true)
         {
+        std::cout << std::endl;
         std::cout << std::left;
         std::cout << std::setw(6) << "Id";
         std::cout << std::setw(11) << "Categoria";
@@ -185,7 +187,7 @@ void ProductoManager::ListarPorMarca()
         std::cout << std::left;
         std::cout << std::setw(6) << "Id";
         std::cout << std::setw(11) << "Categoria";
-        std::cout << std::setw(8) << "Marca";
+        std::cout << std::setw(14) << "Marca";
         std::cout << std::setw(16) << "Modelo";
         std::cout << std::setw(15) << "Descripcion";
         std::cout << std::setw(18) << "Precio de Venta";
@@ -357,11 +359,11 @@ void ProductoManager::ListarPorStock()
     }
         std::cout << std::endl;
         std::cout << std::left;
-        std::cout << std::setw(6) << "Id";
-        std::cout << std::setw(11) << "Categoria";
-        std::cout << std::setw(8) << "Marca";
+        std::cout << std::setw(5) << "Id";
+        std::cout << std::setw(12) << "Categoria";
+        std::cout << std::setw(14) << "Marca";
         std::cout << std::setw(16) << "Modelo";
-        std::cout << std::setw(15) << "Descripcion";
+        std::cout << std::setw(14) << "Descripcion";
         std::cout << std::setw(18) << "Precio de Venta";
         std::cout << std::setw(8) << "Stock";
         std::cout << std::endl;
@@ -598,6 +600,7 @@ void ProductoManager::Eliminar()
     int id, posicion;
     cout << "ID A ELIMINAR: ";
     cin >> id;
+    cin.ignore();
     cout << endl;
 
     posicion = _archivo.buscar(id);
@@ -643,6 +646,7 @@ void ProductoManager::reactivar()
     int id, posicion;
     cout<<"ID PRODUCTO A REACTIVAR: ";
     cin>>id;
+    cin.ignore();
     cout<<endl;
 
     posicion = _archivo.buscar(id);
@@ -690,6 +694,7 @@ void ProductoManager::CargarStock()
     int id, posicion;
     cout<<"INGRESE EL ID DEL PRODUCTO: ";
     cin>>id;
+    cin.ignore();
     cout<<endl;
 
     posicion = _archivo.buscar(id);
@@ -764,6 +769,7 @@ void ProductoManager::RestarStock()
     int id, posicion;
     cout<<"INGRESE EL ID DEL PRODUCTO: ";
     cin>>id;
+    cin.ignore();
     cout<<endl;
 
     posicion = _archivo.buscar(id);
@@ -846,6 +852,26 @@ bool ProductoManager::RestarStock(int id, int unidades)
         return false;
     }
 
+}
+
+std::string ProductoManager::getCategoriaDescripcion(int categoria){
+{
+    if(categoria == 1)
+    {
+        std::string stringCategoria ="CELULARES";
+        return stringCategoria;
+    }
+    else if(categoria == 2)
+    {
+        std::string stringCategoria = "TABLETS";
+        return stringCategoria;
+    }
+    else
+    {
+        std::string stringCategoria = "ACCESORIOS";
+        return stringCategoria;
+    }
+}
 }
 
 void ProductoManager::setPermisos(bool adm, bool sup, bool ven)
