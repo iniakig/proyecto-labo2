@@ -394,6 +394,9 @@ void UsuarioManager::cargar() {
     std::string contrasenia;
     int rol;
 
+    std::cout << "CARGAR USUARIO" << std::endl;
+    std::cout << "------------------------------------------------------------------------------------------------------------------------" << std::endl;
+
     tipoDocumento = 1;
 
     id = generarId();

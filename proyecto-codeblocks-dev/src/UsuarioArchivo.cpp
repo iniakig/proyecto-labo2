@@ -104,32 +104,6 @@ int UsuarioArchivo::buscarPorAlias(std::string alias) {
     return posicion;
 }
 
-/*
-int UsuarioArchivo::buscar(std::string alias) {
-    Usuario usuario;
-    int posicion = -1;
-    int cantidadDeUsuarios = getCantidadDeUsuarios();
-
-    FILE* p;
-
-    p = fopen(_nombre.c_str(), "rb");
-
-    if (p == nullptr) {
-        return false;
-    }
-
-    for (int i = 0; i < cantidadDeUsuarios; i++) {
-        usuario = leer(i);
-        if (strcmp(usuario.getAlias(), alias.c_str()) == 0) {
-            posicion = i;
-        }
-
-    }
-
-    return posicion;
-}
-*/
-
 bool UsuarioArchivo::crear(Usuario reg) {
     FILE* p;
 
@@ -239,8 +213,7 @@ int UsuarioArchivo::getCantidadDeUsuarios() {
     p = fopen(_nombre.c_str(), "rb");
 
     if (p == nullptr) {
-        mensajeNoSePudoLeerArchivo();
-        return false;
+        return cantidadDeUsuarios;
     }
 
     while (fread(&reg, sizeof (Usuario), 1, p) == 1) {

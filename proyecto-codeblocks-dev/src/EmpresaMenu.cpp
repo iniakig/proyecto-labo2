@@ -22,6 +22,7 @@ void EmpresaMenu::mostrar() {
         case 0:
             break;
         case 1:
+            rlutil::cls(); // Solo en este caso porque se reutiliza la pantalla en el método de registro en Programa
             _empresaManager.cargar();
             break;
         case 2:

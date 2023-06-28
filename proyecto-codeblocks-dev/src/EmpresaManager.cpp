@@ -6,7 +6,6 @@
 #include "../rlutil.h"
 
 void EmpresaManager::cargar() {
-    rlutil::cls();
     int tipoDocumento;
     std::string nroDocumento;
     std::string razonSocial;
@@ -18,7 +17,7 @@ void EmpresaManager::cargar() {
     Fecha fechaRegistro;
 
     std::cout << "CARGAR PERFIL EMPRESA" << std::endl;
-    std::cout << "-------------------------------------------------------------" << std::endl;
+    std::cout << "------------------------------------------------------------------------------------------------------------------------" << std::endl;
 
 
     std::cout << "Nro de CUIT: ";

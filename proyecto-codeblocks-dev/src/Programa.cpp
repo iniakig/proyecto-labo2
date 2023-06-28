@@ -9,14 +9,47 @@
 
 #include "Usuario.h"
 #include "UsuarioArchivo.h"
+#include "UsuarioManager.h"
+#include "Empresa.h"
+#include "EmpresaManager.h"
 
 // Constructores
 Programa::Programa() {
     setEstadoPrograma(true);
     setEstadoLogin(false);
+
+    // Checkeo si existe un usuario registrado y seteo el estado de existencia de registros de usuarios
+    Usuario Usuario;
+    UsuarioArchivo usuarioArchivo;
+
+    if (usuarioArchivo.getCantidadDeUsuarios() > 0) {
+        setEstadoUsuarioRegistrado(true);
+    }
+    else {
+        setEstadoUsuarioRegistrado(false);
+    }
 }
 
 // Interfaces
+void Programa::registro() {
+    // Registro de usuario
+    rlutil::cls();
+    centrarTexto("BIENVENIDO AL SISTEMA DE GESTIÓN", 1);
+    centrarTexto("A CONTINUACIÓN PODRÁ GENERAR EL PRIMER USUARIO DE ACCESO AL SISTEMA", 2);
+    std::cout << std::endl;
+    UsuarioManager usuarioManager;
+    usuarioManager.cargar();
+
+
+    // Registro de perfil empresa
+    rlutil::cls();
+    centrarTexto("PARA FINALIZAR EL REGISTRO ES NECESARIO DAR DE ALTA LOS DATOS DE LA EMPRESA", 1);
+    std::cout << std::endl;
+    EmpresaManager empresaManager;
+    empresaManager.cargar();
+
+    setEstadoUsuarioRegistrado(true);
+}
 
 void Programa::login() {
     rlutil::cls();
@@ -183,8 +216,6 @@ void Programa::ejecutar() {
                 rlutil::cls();
                 rlutil::hidecursor();
                 mensajeSalidaDelPrograma();
-
-                rlutil::anykey();
                 break;
             default:
                 break;
@@ -204,6 +235,10 @@ void Programa::setEstadoPrograma(bool estado) {
     _estadoPrograma = estado;
 }
 
+void Programa::setEstadoUsuarioRegistrado(bool estado) {
+    _estadoUsuarioRegistrado = estado;
+}
+
 // Getters
 bool Programa::getEstadoLogin() {
     return _estadoLogin;
@@ -213,5 +248,8 @@ bool Programa::getEstadoPrograma() {
     return _estadoPrograma;
 }
 
+bool Programa::getEstadoUsuarioRegistrado() {
+    return _estadoUsuarioRegistrado;
+}
 
 

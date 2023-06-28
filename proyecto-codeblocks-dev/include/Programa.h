@@ -14,6 +14,7 @@ class Programa
     private:
         bool _estadoLogin;
         bool _estadoPrograma;
+        bool _estadoUsuarioRegistrado; // Sirve para saber si existe algún usuario registrado
 
         UsuarioActivo _usuarioActivo;
         VentaMenu _ventaMenu;
@@ -27,16 +28,19 @@ class Programa
         Programa();
 
         // Interfaces
+        void registro();
         void login();
         void ejecutar();
 
         // Setters
         void setEstadoLogin(bool estado);
         void setEstadoPrograma(bool estado);
+        void setEstadoUsuarioRegistrado(bool estado);
 
         // Getters
         bool getEstadoLogin();
         bool getEstadoPrograma();
+        bool getEstadoUsuarioRegistrado();
 };
 
 #endif // PROGRAMA_H
