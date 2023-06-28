@@ -12,12 +12,22 @@ int MarcaManager::generarID()
     return _archivo.getCantidadDeRegistros()+1;
 }
 
-void MarcaManager::listar(Marca marca)
+void MarcaManager::listar(Marca marca, int tipoListado)
 {
-    cout<<"ID: "<<marca.getID()<<endl;
-    cout<<"NOMBRE: "<<marca.getNombre()<<endl;
-    cout<<"ESTADO: :"<<marca.getActivo()<<endl;
-    rlutil::anykey();
+
+    switch (tipoListado)
+    {
+    case 0:
+        std::cout << "ID: " << marca.getID() << std::endl;
+        std::cout << "Nombre: " << marca.getNombre() << std::endl;
+        break;
+    case 1:
+        std::cout << std::endl;
+        std::cout << std::left;
+        std::cout << std::setw(5) << marca.getID();
+        std::cout << std::setw(33)<<  marca.getNombre();
+        break;
+    }
 }
 
 void MarcaManager::listarXID()
@@ -26,13 +36,14 @@ void MarcaManager::listarXID()
 
     cout<<"INGRESE EL ID: ";
     cin>>id;
+    cin.ignore();
 
     int pos = _archivo.buscar(id);
     if(pos >= 0)
     {
         Marca reg;
         reg = _archivo.leer(pos);
-        listar(reg);
+        listar(reg, 0);
     }
     else
     {
@@ -51,7 +62,7 @@ void MarcaManager::listarXNombre()
     {
         Marca reg;
         reg = _archivo.leer(pos);
-        listar(reg);
+        listar(reg, 0);
     }
     else
     {
@@ -61,16 +72,94 @@ void MarcaManager::listarXNombre()
 
 }
 
-void MarcaManager::listarTodos()
+void MarcaManager::listarActivas()
 {
     int cantidadRegistros = _archivo.getCantidadDeRegistros();
-
-    for (int i = 0; i<cantidadRegistros; i++)
+    int cantidadActivas = 0;
+    for(int i = 0; i<cantidadRegistros; i++)
     {
         Marca reg;
         reg = _archivo.leer(i);
-        listar(reg);
+        if(reg.getActivo())
+        {
+            cantidadActivas ++;
+        }
     }
+
+    if(cantidadActivas > 0)
+    {
+        std::cout << "Registros encontrados: " << cantidadActivas << std::endl;
+        std::cout << std::endl;
+        std::cout << "MARCAS ACTIVAS" << std::endl;
+        std::cout << "----------------------------------------" << std::endl;
+        std::cout << std::endl;
+        std::cout << std::left;
+        std::cout << std::setw(5) << "ID";
+        std::cout << std::setw(33)<<  "MARCA";
+        std::cout << std::endl;
+        std::cout << "----------------------------------------" << std::endl;
+        for (int i = 0; i<cantidadRegistros; i++)
+        {
+            Marca reg;
+            reg = _archivo.leer(i);
+            if(reg.getActivo())
+            {
+                listar(reg,1);
+            }
+        }
+        mensajeFinDelListado();
+    }
+    else
+    {
+        mensajeListadoSinDatosEncontrados();
+    }
+
+    rlutil::anykey();
+}
+
+void MarcaManager::listarInactivas()
+{
+
+    int cantidadRegistros = _archivo.getCantidadDeRegistros();
+    int cantidadInactivas = 0;
+    for(int i = 0; i<cantidadRegistros; i++)
+    {
+        Marca reg;
+        reg = _archivo.leer(i);
+        if(!reg.getActivo())
+        {
+            cantidadInactivas ++;
+        }
+    }
+
+    if(cantidadInactivas > 0)
+    {
+        std::cout << "Registros encontrados: " << cantidadInactivas << std::endl;
+        std::cout << std::endl;
+        std::cout << "MARCAS INACTIVAS" << std::endl;
+        std::cout << "----------------------------------------" << std::endl;
+        std::cout << std::endl;
+        std::cout << std::left;
+        std::cout << std::setw(5) << "ID";
+        std::cout << std::setw(33)<<  "MARCA";
+        std::cout << std::endl;
+        std::cout << "----------------------------------------" << std::endl;
+        for (int i = 0; i<cantidadRegistros; i++)
+        {
+            Marca reg;
+            reg = _archivo.leer(i);
+            if(!reg.getActivo())
+            {
+                listar(reg,1);
+            }
+        }
+        mensajeFinDelListado();
+    }
+    else
+    {
+        mensajeListadoSinDatosEncontrados();
+    }
+
     rlutil::anykey();
 }
 
@@ -85,7 +174,7 @@ void MarcaManager::cargar()
         bool activo = true;
         Marca reg(ID,nombre.c_str(), activo);
         cout<<"CARGO LA SIGUIENTE MARCA: "<<endl;
-        listar(reg);
+        listar(reg,0);
         cout<<"CONTINUAR? (SI | NO): ";
         std::string opc;
         opc = ingresoDeDecisionConValidacion();
@@ -106,7 +195,7 @@ void MarcaManager::cargar()
         Marca reg;
         reg = _archivo.leer(_archivo.buscar(nombre));
         existeRegistroMensaje();
-        listar(reg);
+        listar(reg,0);
 
     }
     rlutil::anykey();
@@ -126,9 +215,7 @@ int MarcaManager::cargarDesdeProducto(std::string nombreMarca)
     int ID = generarID();
     bool activo = true;
     Marca reg(ID,nombreMarca.c_str(), activo);
-    cout<<"CARGO LA SIGUIENTE MARCA: "<<endl;
-    cout<<"ID: "<<reg.getID()<<endl;
-    cout<<"NOMBRE: "<<reg.getNombre()<<endl;
+    listar(reg, 0);
     cout<<"CONTINUAR? (SI | NO): ";
     std::string decision;
     decision = ingresoDeDecisionConValidacion();
@@ -184,23 +271,23 @@ void MarcaManager::modificarXID()
     {
         Marca reg;
         reg = _archivo.leer(pos);
-        listar(reg);
+        listar(reg, 0);
 
         cout<<"INGRESE EL NOMBRE DE LA MARCA: ";
         std::string nombre = ingresoDeMarcaConValidacion();
         reg.setNombre(nombre.c_str());
 
         cout<<"MODIFICO LA SIGUIENTE MARCA: "<<endl;
-        listar(reg);
-        cout<<"GUARDAR? 1--SI // 2--NO: ";
-        int opc;
-        opc = ingresoOpcSimpleConValidacion();
-        if(opc == 1)
+        listar(reg, 0);
+        cout<<"CONTINUAR? (SI | NO): ";
+        std::string opc;
+        opc = ingresoDeDecisionConValidacion();
+        if (opc == "SI")
         {
             if(_archivo.guardar(reg, pos))
             {
                 okMensajeModificacion();
-                listar(_archivo.leer(pos));
+                listar(_archivo.leer(pos), 0);
             }
             else
             {
@@ -230,23 +317,23 @@ void MarcaManager::modificarXNombre()
         {
             Marca reg;
             reg = _archivo.leer(pos);
-            listar(reg);
+            listar(reg,0);
 
             cout<<"INGRESE EL NOMBRE DE LA MARCA: ";
             std::string nombreModificado = ingresoDeMarcaConValidacion();
             reg.setNombre(nombreModificado.c_str());
 
             cout<<"MODIFICO LA SIGUIENTE MARCA: "<<endl;
-            listar(reg);
-            cout<<"GUARDAR? 1--SI // 2--NO: ";
-            int opc;
-            opc = ingresoOpcSimpleConValidacion();
-            if(opc == 1)
+            listar(reg,0);
+            cout<<"CONTINUAR? (SI | NO): ";
+            std::string opc;
+            opc = ingresoDeDecisionConValidacion();
+            if (opc == "SI")
             {
                 if(_archivo.guardar(reg, pos))
                 {
                     okMensajeModificacion();
-                    listar(_archivo.leer(pos));
+                    listar(_archivo.leer(pos),0);
                 }
                 else
                 {
@@ -342,6 +429,7 @@ void MarcaManager::eliminar()
     int id, posicion;
     cout<<"ID MARCA A ELIMINAR: ";
     cin>>id;
+    cin.ignore();
     cout<<endl;
 
     posicion = _archivo.buscar(id);
@@ -379,11 +467,11 @@ void MarcaManager::eliminar()
         if(!marcaAsignada && reg.getActivo())
         {
             cout<<"ELIMINARA LA SIGUIENTE MARCA: "<<endl;
-            listar(reg);
-            cout<<"CONFIRMAR? 1--SI // 2--NO: ";
-            int opc;
-            opc = ingresoOpcSimpleConValidacion();
-            if(opc == 1)
+            listar(reg,0);
+            cout<<"CONTINUAR? (SI | NO): ";
+            std::string opc;
+            opc = ingresoDeDecisionConValidacion();
+            if (opc == "SI")
             {
                 reg.setActivo(false);
                 if(_archivo.guardar(reg, posicion))
@@ -410,6 +498,7 @@ void MarcaManager::reactivar()
     int id, posicion;
     cout<<"ID MARCA A REACTIVAR: ";
     cin>>id;
+    cin.ignore();
     cout<<endl;
 
     posicion = _archivo.buscar(id);
@@ -420,11 +509,11 @@ void MarcaManager::reactivar()
         if(!reg.getActivo())
         {
             cout<<"REACTIVARA LA SIGUIENTE MARCA: "<<endl;
-            listar(reg);
-            cout<<"CONFIRMAR? 1--SI // 2--NO: ";
-            int opc;
-            opc = ingresoOpcSimpleConValidacion();
-            if(opc == 1)
+            listar(reg,0);
+            cout<<"CONTINUAR? (SI | NO): ";
+            std::string opc;
+            opc = ingresoDeDecisionConValidacion();
+            if (opc == "SI")
             {
                 reg.setActivo(true);
                 if(_archivo.guardar(reg, posicion))

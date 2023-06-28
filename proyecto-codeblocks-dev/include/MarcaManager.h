@@ -6,6 +6,7 @@
 
 #include <iostream>
 #include <string>
+#include <iomanip>
 
 class MarcaManager
 {
@@ -18,10 +19,11 @@ public:
     void eliminar();
     void reactivar();
 
-    void listar(Marca marca);
+    void listar(Marca marca, int tipoListado);
     void listarXID();
     void listarXNombre();
-    void listarTodos();
+    void listarActivas();
+    void listarInactivas();
 
     void hacerCopiaSeguridad();
     void restaurarCopiaSeguridad();
