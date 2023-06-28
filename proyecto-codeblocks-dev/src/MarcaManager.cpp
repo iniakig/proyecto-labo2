@@ -367,12 +367,12 @@ void MarcaManager::eliminar()
                 if(!marcaAsignada)
                 {
                     cout<<"NO ES POSIBLE ELIMINAR LA MARCA SELECCIONADA. LA MISMA ESTA ASIGNADA A LOS SIGUIENTES PRODUCTOS:"<<endl;
-                    managerProducto.Listar(prodAux);
+                    managerProducto.Listar(prodAux,0);
                     marcaAsignada = 1;
                 }
                 else
                 {
-                    managerProducto.Listar(prodAux);
+                    managerProducto.Listar(prodAux,0);
                 }
             }
         }

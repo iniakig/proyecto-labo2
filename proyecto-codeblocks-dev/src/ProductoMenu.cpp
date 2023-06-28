@@ -15,12 +15,8 @@ void ProductoMenu::mostrar()
         std::cout << "3. ELIMINAR PRODUCTO" << std::endl;
         std::cout << "4. REACTIVAR PRODUCTO" << std::endl;
         std::cout << "5. LISTAR PRODUCTOS" << std::endl;
-        std::cout << "6. BUSCAR PRODUCTO POR ID" << std::endl;
-        std::cout << "7. LISTAR POR MARCA" << std::endl;
-        std::cout << "8. LISTAR POR TOPE DE PRECIO" << std::endl;
-        std::cout << "9. LISTAR POR STOCK" << std::endl;
-        std::cout << "10. RESTAR STOCK" << std::endl;
-        std::cout << "11. CARGAR STOCK" << std::endl;
+        std::cout << "6. RESTAR STOCK" << std::endl;
+        std::cout << "7. CARGAR STOCK" << std::endl;
         std::cout << "---------------------------------------------------" << std::endl;
         std::cout << "0. VOLVER AL MENÚ PRINCIPAL" << std::endl;
         std::cout << "---------------------------------------------------" << std::endl;
@@ -45,24 +41,12 @@ void ProductoMenu::mostrar()
             _productoManager.reactivar();
             break;
         case 5:
-            _productoManager.ListarTodos();
+            _productoManager.listarProductos();
             break;
         case 6:
-            _productoManager.ListarXId();
-            break;
-        case 7:
-            _productoManager.ListarPorMarca();
-            break;
-        case 8:
-            _productoManager.ListarPorTopePrecio();
-            break;
-        case 9:
-            _productoManager.ListarPorStock();
-            break;
-        case 10:
             _productoManager.RestarStock();
             break;
-        case 11:
+        case 7:
             _productoManager.CargarStock();
             break;
         default:
