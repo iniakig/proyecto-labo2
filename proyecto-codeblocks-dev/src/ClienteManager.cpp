@@ -156,48 +156,48 @@ void ClienteManager::ordenarPorNombre(Cliente *listaDeClientes, int cantidadDeRe
 
         // Procesamiento de nombres de posicion i para concatenarlos y unificarlos
         std::string nombreCliente = "";
+        std::string razonSocial(listaDeClientes[i].getRazonSocial());
+        std::string apellido(listaDeClientes[i].getApellido());
+        std::string nombre(listaDeClientes[i].getNombre());
 
-        std::string null = "null";
-        if (strcmp(listaDeClientes[i].getRazonSocial(), null.c_str()) == 0) {
-            std::string apellido(listaDeClientes[i].getApellido());
-            std::string nombre(listaDeClientes[i].getNombre());
+        if (razonSocial == "null") {
             // Concateno en nombreCliente el Apellido y el nombre
             nombreCliente += apellido;
             nombreCliente += " ";
             nombreCliente += nombre;
         }
         else {
-            std::string razonSocial(listaDeClientes[i].getRazonSocial());
             nombreCliente += razonSocial;
         }
 
         for (int j = i + 1; j < cantidadDeRegistros; j++) {
             // Procesamiento de nombres de posicion j para concatenarlos y unificarlos
             std::string nombreClienteActual = "";
+            std::string razonSocialActual(listaDeClientes[j].getRazonSocial());
+            std::string apellidoActual(listaDeClientes[j].getApellido());
+            std::string nombreActual(listaDeClientes[j].getNombre());
 
-            if (strcmp(listaDeClientes[j].getRazonSocial(), null.c_str()) == 0) {
-                std::string apellidoActual(listaDeClientes[j].getApellido());
-                std::string nombreActual(listaDeClientes[j].getNombre());
+            if (razonSocialActual == "null") {
                 // Concateno en nombreClienteActual el Apellido y el nombre
                 nombreClienteActual += apellidoActual;
                 nombreClienteActual += " ";
                 nombreClienteActual += nombreActual;
             }
             else {
-                std::string razonSocial(listaDeClientes[j].getRazonSocial());
-                nombreClienteActual += razonSocial;
+                nombreClienteActual += razonSocialActual;
             }
 
             // Ahora comparamos
-            if (strcmp(nombreClienteActual.c_str(), nombreCliente.c_str()) < 0) {
+            if (nombreClienteActual < nombreCliente) {
                 menor = j;
+                nombreCliente = nombreClienteActual;  // Actualizamos el nombreCliente
             }
+        }
 
-            if (i != menor) {
-                clienteAux = listaDeClientes[i];
-                listaDeClientes[i] = listaDeClientes[menor];
-                listaDeClientes[menor] = clienteAux;
-            }
+        if (i != menor) {
+            clienteAux = listaDeClientes[i];
+            listaDeClientes[i] = listaDeClientes[menor];
+            listaDeClientes[menor] = clienteAux;
         }
     }
 }
