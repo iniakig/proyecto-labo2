@@ -2,6 +2,10 @@
 
 #include "rlutil.h"
 
+#include "Usuario.h"
+#include "UsuarioArchivo.h"
+#include "Fecha.h"
+
 int main()
 {
     setSpanish();
@@ -11,14 +15,14 @@ int main()
     while (programa.getEstadoPrograma() == true) {
         if (programa.getEstadoUsuarioRegistrado() == true) {
             programa.login();
-            while(programa.getEstadoLogin() == true) {
+            if (programa.getEstadoLogin() == true) {
                 programa.ejecutar();
             }
         }
         else {
             programa.registro();
             programa.login();
-            while(programa.getEstadoLogin() == true) {
+            if (programa.getEstadoLogin() == true) {
                 programa.ejecutar();
             }
         }

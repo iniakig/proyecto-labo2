@@ -423,13 +423,12 @@ void UsuarioManager::cargar() {
     Usuario usuario(id,tipoDocumento, nroDocumento.c_str(), nombre.c_str(), apellido.c_str(), email.c_str(), estado, fechaRegistro, alias.c_str(), contrasenia.c_str(), rol);
 
     if (_archivo.crear(usuario)) {
-        std::cout << std::endl;
         okMensajeCreacion();
     }
     else {
-        std::cout << std::endl;
         errorMensajeCreacion();
     }
+    rlutil::anykey();
 }
 
 void UsuarioManager::modificar() {
@@ -495,15 +494,11 @@ void UsuarioManager::modificar() {
                     usuario.setNroDocumento(nroDocumento.c_str());
 
                     if (_archivo.modificar(usuario, posicion)) {
-                        std::cout << std::endl;
                         okMensajeModificacion();
-                        rlutil::anykey();
                         opcion = 0;
                     }
                     else {
-                        std::cout << std::endl;
                         errorMensajeModificacion();
-                        rlutil::anykey();
                         opcion = 0;
                     }
                     break;
@@ -519,15 +514,11 @@ void UsuarioManager::modificar() {
                     usuario.setApellido(apellido.c_str());
 
                     if (_archivo.modificar(usuario, posicion)) {
-                        std::cout << std::endl;
                         okMensajeModificacion();
-                        rlutil::anykey();
                         opcion = 0;
                     }
                     else {
-                        std::cout << std::endl;
                         errorMensajeModificacion();
-                        rlutil::anykey();
                         opcion = 0;
                     }
                 case 3:
@@ -539,15 +530,11 @@ void UsuarioManager::modificar() {
                     usuario.setEmail(email.c_str());
 
                     if (_archivo.modificar(usuario, posicion)) {
-                        std::cout << std::endl;
                         okMensajeModificacion();
-                        rlutil::anykey();
                         opcion = 0;
                     }
                     else {
-                        std::cout << std::endl;
                         errorMensajeModificacion();
-                        rlutil::anykey();
                         opcion = 0;
                     }
                     std::cout << std::endl;
@@ -561,15 +548,11 @@ void UsuarioManager::modificar() {
                     usuario.setAlias(alias.c_str());
 
                     if (_archivo.modificar(usuario, posicion)) {
-                        std::cout << std::endl;
                         okMensajeModificacion();
-                        rlutil::anykey();
                         opcion = 0;
                     }
                     else {
-                        std::cout << std::endl;
                         errorMensajeModificacion();
-                        rlutil::anykey();
                         opcion = 0;
                     }
                     break;
@@ -582,15 +565,11 @@ void UsuarioManager::modificar() {
                     usuario.setContrasenia(contrasenia.c_str());
 
                     if (_archivo.modificar(usuario, posicion)) {
-                        std::cout << std::endl;
                         okMensajeModificacion();
-                        rlutil::anykey();
                         opcion = 0;
                     }
                     else {
-                        std::cout << std::endl;
                         errorMensajeModificacion();
-                        rlutil::anykey();
                         opcion = 0;
                     }
                 case 6:
@@ -602,15 +581,11 @@ void UsuarioManager::modificar() {
                     usuario.setRol(rol);
 
                     if (_archivo.modificar(usuario, posicion)) {
-                        std::cout << std::endl;
                         okMensajeModificacion();
-                        rlutil::anykey();
                         opcion = 0;
                     }
                     else {
-                        std::cout << std::endl;
                         errorMensajeModificacion();
-                        rlutil::anykey();
                         opcion = 0;
                     }
                 default:
@@ -621,11 +596,14 @@ void UsuarioManager::modificar() {
 
             while(opcion != 0);
         }
+        else {
+            errorMensajeModificacion();
+        }
     }
     else {
         registroNoEncontradoMensaje();
-        rlutil::anykey();
     }
+    rlutil::anykey();
 }
 
 void UsuarioManager::darDeBaja() {
@@ -655,27 +633,20 @@ void UsuarioManager::darDeBaja() {
             _archivo.modificar(usuario, posicion);
 
             if (_archivo.modificar(usuario, posicion)) {
-                std::cout << std::endl;
                 okMensajeBaja();
-                rlutil::anykey();
             }
             else {
-                std::cout << std::endl;
                 errorMensajeBaja();
-                rlutil::anykey();
             }
         }
         else {
-            std::cout << std::endl;
             registroNoEncontradoMensaje();
-            rlutil::anykey();
         }
     }
     else {
-        std::cout << std::endl;
         registroNoEncontradoMensaje();
-        rlutil::anykey();
     }
+    rlutil::anykey();
 }
 
 void UsuarioManager::reactivar() {
@@ -705,27 +676,20 @@ void UsuarioManager::reactivar() {
             _archivo.modificar(usuario, posicion);
 
             if (_archivo.modificar(usuario, posicion)) {
-                std::cout << std::endl;
                 okMensajeReactivacion();
-                rlutil::anykey();
             }
             else {
-                std::cout << std::endl;
                 errorMensajeReactivacion();
-                rlutil::anykey();
             }
         }
         else {
-            std::cout << std::endl;
             registroNoEncontradoMensaje();
-            rlutil::anykey();
         }
     }
     else {
-        std::cout << std::endl;
         registroNoEncontradoMensaje();
-        rlutil::anykey();
     }
+    rlutil::anykey();
 }
 
 void UsuarioManager::listarUsuarios() {
@@ -751,19 +715,15 @@ void UsuarioManager::listarUsuarios() {
         case 0:
             break;
         case 1:
-            //std::cout << std::endl;
             listarPorAlias();
             break;
         case 2:
-            //std::cout << std::endl;
             listarPorDNI();
             break;
         case 3:
-            //std::cout << std::endl;
             listarActivos();
             break;
         case 4:
-            //std::cout << std::endl;
             listarInactivos();
             break;
         case 5:
