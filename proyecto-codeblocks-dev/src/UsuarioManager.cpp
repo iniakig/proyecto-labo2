@@ -238,7 +238,7 @@ void UsuarioManager::listarPorBusquedaLibre() {
 
 
     std::cout << "USUARIOS POR BÚSQUEDA LIBRE" << std::endl;
-    std::cout << "---------------------------------------------------------------------------------" << std::endl;
+    std::cout << "------------------------------------------------------------------------------------------------------------------------" << std::endl;
     std::cout << std::endl;
     std::cout << "Ingrese nombre, apellido, alias o DNI: ";
     getline(std::cin, cadenaDeBusquedaLibre);
