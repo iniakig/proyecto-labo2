@@ -425,7 +425,7 @@ void VentaManager::generarComprobante(Venta venta)
             fprintf(archivoTxt, "\n");
         }
         fprintf(archivoTxt, "------------------------------------------------------------------------\n");
-        fprintf(archivoTxt, "IMPORTE FINAL:$ %f\n", venta.getMontoCompra());
+        fprintf(archivoTxt, "IMPORTE FINAL: $%.2f\n", venta.getMontoCompra());
 
         UsuarioArchivo arUsuario;
         Usuario vendedor;

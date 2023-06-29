@@ -740,7 +740,7 @@
 	"../funciones.h"
 	"../mensajes.h"
 
-1688055259 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\productomanager.cpp
+1688060215 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\productomanager.cpp
 	"ProductoManager.h"
 	"../funciones.h"
 	<../rlutil.h>
@@ -819,7 +819,7 @@
 	"../funciones.h"
 	<../rlutil.h>
 
-1688059133 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\ventamanager.cpp
+1688061247 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\ventamanager.cpp
 	<iostream>
 	<cstdio>
 	<iomanip>
