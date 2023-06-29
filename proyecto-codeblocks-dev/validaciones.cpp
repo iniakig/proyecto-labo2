@@ -101,7 +101,7 @@ float ingresoPrecioConValidacion() {
 
 std::string ingresoDeDocumentoConValidacion() {
     std::string nroDocumento;
-    const std::regex expresionRegular("[0-9]{1,11}"); // Desde un millón hasta 99999999999 porque es el límite de números entre un DNI mínimo y un CUIT máximo.
+    const std::regex expresionRegular("^([1-7]\\d{7}|[2-7]\\d{9}|8\\d{7}|[9]\\d{8}|[2-9]\\d{10})$");
 
     getline(std::cin, nroDocumento);
     while (!std::regex_match(nroDocumento, expresionRegular)) {
