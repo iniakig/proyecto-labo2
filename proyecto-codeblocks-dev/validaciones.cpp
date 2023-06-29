@@ -67,6 +67,23 @@ int ingresoStockConValidacion() {
     return stock;
 }
 
+int ingresoDeNumeroEnteroConValidacion() {
+    std::string enteroAux;
+    int entero;
+    const std::regex expresionRegular("\\d+");
+
+    getline(std::cin, enteroAux);
+    while(!std::regex_match(enteroAux, expresionRegular)){
+        std::cout << std::endl;
+        std::cout << "El dato ingresado no es válido. Solo puede ingresar numeros enteros.";
+        getline(std::cin, enteroAux);
+    }
+
+    entero = enteroConvertidoAInt(enteroAux);
+
+    return entero;
+}
+
 float ingresoPrecioConValidacion() {
     std::string precioAux;
     float precio;

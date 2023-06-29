@@ -84,6 +84,9 @@ void ProductoManager::listarActivos() {
 
     _archivo.leer(listaDeProductos, cantidadDeRegistros);
 
+    // ordenadores
+    ordenarPorNombreDeMarca(listaDeProductos, cantidadDeRegistros);
+
     for (int i = 0; i < cantidadDeRegistros; i++) {
         if (listaDeProductos[i].getActivo()) {
             resultadosEncontrados++;
@@ -931,3 +934,97 @@ void ProductoManager::listarProductos() {
     while(opcion != 0);
 }
 
+void ProductoManager::productosPorAgotarse() {
+    int cantidadMinimaProductos = 0;
+
+    rlutil::cls();
+    std::cout << "PRODUCTOS PRÓXIMOS A AGOTAR STOCK" << std::endl;
+    std::cout << "------------------------------------------------------------------------------------------------------------------------" << std::endl;
+    std::cout << "Ingrese la cantidad mínima de stock de referencia: ";
+    cantidadMinimaProductos = ingresoDeNumeroEnteroConValidacion();
+
+    int cantidadDeRegistros = _archivo.getCantidadRegistrosActivos();
+    Producto *listaDeProductos = new Producto[cantidadDeRegistros];
+    int resultadosEncontrados = 0;
+
+    if(listaDeProductos == nullptr) {
+        std::cout << std::endl;
+        std::cout << "Ocurrió un error al visualizar el listado" << std::endl;
+        return;
+    }
+
+    _archivo.leer(listaDeProductos, cantidadDeRegistros);
+
+    ordenarPorNombreDeMarca(listaDeProductos, cantidadDeRegistros);
+
+    for (int i = 0; i < cantidadDeRegistros; i++) {
+        if (listaDeProductos[i].getStock() < cantidadMinimaProductos && listaDeProductos[i].getActivo() == true) {
+            resultadosEncontrados++;
+        }
+    }
+
+    if (resultadosEncontrados > 0) {
+        std::cout << std::endl;
+        std::cout << "Registros encontrados: " << resultadosEncontrados << std::endl;
+        std::cout << std::endl;
+        std::cout << std::left;
+        std::cout << std::setw(6) << "Id";
+        std::cout << std::setw(11) << "Categoria";
+        std::cout << std::setw(18) << "Marca";
+        std::cout << std::setw(22) << "Modelo";
+        std::cout << std::setw(28) << "Descripcion";
+        std::cout << std::setw(18) << "Precio de Venta";
+        std::cout << std::setw(8) << "Stock";
+        std::cout << std::endl;
+        std::cout << "------------------------------------------------------------------------------------------------------------";
+
+        for (int i = 0; i < cantidadDeRegistros; i++) {
+            if (listaDeProductos[i].getStock() < cantidadMinimaProductos && listaDeProductos[i].getActivo() == true) {
+            Listar(listaDeProductos[i], 1);
+            }
+        }
+        std::cout << std::endl;
+        mensajeFinDelListado();
+    }
+    else {
+        mensajeListadoSinDatosEncontrados();
+    }
+
+    delete[] listaDeProductos;
+    rlutil::anykey();
+}
+
+void ProductoManager::ordenarPorNombreDeMarca(Producto *listaDeProductos, int cantidadDeRegistros) {
+    Marca marca;
+    MarcaArchivo marcaArchivo;
+    Producto producto;
+    ProductoArchivo productoArchivo;
+
+    int menor = 0;
+
+    for (int i = 0; i < cantidadDeRegistros - 1; i++) {
+        menor = i;
+
+        int posicionMarca = marcaArchivo.buscar(listaDeProductos[i].getIdMarca());
+        marca = marcaArchivo.leer(posicionMarca);
+        std::string marcaDescripcion = marca.getNombre();
+
+        for (int j = i + 1; j < cantidadDeRegistros; j++) {
+            int posicionMarcaActual = marcaArchivo.buscar(listaDeProductos[j].getIdMarca());
+            marca = marcaArchivo.leer(posicionMarcaActual);
+            std::string marcaDescripcionActual = marca.getNombre();
+
+            if (marcaDescripcionActual < marcaDescripcion) {
+                menor = j;
+                marcaDescripcion = marcaDescripcionActual;
+            }
+
+        }
+
+        if (i != menor) {
+            producto = listaDeProductos[i];
+            listaDeProductos[i] = listaDeProductos[menor];
+            listaDeProductos[menor] = producto;
+        }
+    }
+}

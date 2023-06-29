@@ -7,6 +7,7 @@
 #include "MarcaMenu.h"
 #include "ConfiguracionMenu.h"
 #include "ClienteMenu.h"
+#include "InformesMenu.h"
 
 
 class Programa
@@ -22,6 +23,7 @@ class Programa
         MarcaMenu _marcaMenu;
         ClienteMenu _clienteMenu;
         ConfiguracionMenu _configuracionMenu;
+        InformesMenu _informesMenu;
 
     public:
         // Constructores

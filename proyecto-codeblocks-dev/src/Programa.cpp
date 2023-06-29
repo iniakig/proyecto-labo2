@@ -205,6 +205,7 @@ void Programa::ejecutar() {
                 _clienteMenu.mostrar();
                 break;
             case 5:
+                _informesMenu.mostrar();
                 break;
             case 6:
                 _configuracionMenu.mostrar();

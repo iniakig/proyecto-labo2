@@ -22,6 +22,11 @@ public:
     void listarActivos();
     std::string getCategoriaDescripcion(int categoria);
 
+    void ordenarPorNombreDeMarca(Producto *listaDeProductos, int cantidadDeRegistros);
+
+    // Informes
+    void productosPorAgotarse();
+
 private:
 	void ListarTodos();
 	void ListarXId();

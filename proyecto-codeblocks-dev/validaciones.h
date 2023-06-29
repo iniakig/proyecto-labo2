@@ -16,6 +16,7 @@ int ingresoOpcSimpleConValidacion();
 int ingresoCategoriaProdConValidacion();
 int ingresoMetodoPagoConValidacion();
 int ingresoStockConValidacion();
+int ingresoDeNumeroEnteroConValidacion();
 float ingresoPrecioConValidacion();
 std::string ingresoDeRazonSocialConValidacion();
 std::string ingresoDeLocalidadConValidacion();
