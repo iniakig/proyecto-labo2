@@ -8,6 +8,8 @@
 using namespace std;
 
 #include "VentaManager.h"
+#include "Empresa.h"
+#include "EmpresaManager.h"
 
 int VentaManager::GenerarId()
 {
@@ -387,6 +389,77 @@ void VentaManager::ListarVentas()
 void VentaManager::generarComprobante(Venta venta)
 {
 
+    std::string nombreArchivo = "/Venta"+std::to_string(venta.getIdPedido())+"_"+venta.getFecha().toString("DD-MM-YYYY")+".txt";
+    std::string directorio = "./comprobantes";
+    std::string rutaTxt = directorio + nombreArchivo;
+
+    const int* vecIdProducto = venta.getVecIdProducto();
+    const int* vecUnidadesProducto = venta.getVecUnidadesxProducto();
+    int cantidadProductos = venta.getCantidadProductos();
+
+    FILE* archivoTxt = fopen(rutaTxt.c_str(), "ab");
+    if (archivoTxt != nullptr)
+    {
+        fprintf(archivoTxt, "COMPROBANTE DE VENTA\n");
+        fprintf(archivoTxt, "(Documento no válido como factura)\n");
+        fprintf(archivoTxt, "------------------------------------------------------------------------\n");
+
+        fprintf(archivoTxt, "CLIENTE: %s\n", venta.getNroDocCliente().c_str());
+        fprintf(archivoTxt, "FECHA COMPRA: %s\n", venta.getFecha().toString().c_str());
+        fprintf(archivoTxt, "PRODUCTOS: \n");
+        fprintf(archivoTxt, "\n");
+        for(int i = 0; i<cantidadProductos; i++)
+        {
+            ProductoArchivo arProducto;
+            MarcaArchivo arMarca;
+            Producto productoAux;
+            productoAux = arProducto.leer(arProducto.buscar(vecIdProducto[i]));
+            Marca marcaAux;
+            marcaAux = arMarca.leer(arMarca.buscar(productoAux.getIdMarca()));
+            std::string nombreString(marcaAux.getNombre());
+            std::string productoString = nombreString + " | " + productoAux.getModelo();
+            fprintf(archivoTxt, "   %s\n", productoString.c_str());
+            fprintf(archivoTxt, "   UNIDADES: %d\n", vecUnidadesProducto[i]);
+            fprintf(archivoTxt, "\n");
+        }
+        fprintf(archivoTxt, "------------------------------------------------------------------------\n");
+        fprintf(archivoTxt, "IMPORTE FINAL:$ %f\n", venta.getMontoCompra());
+
+        UsuarioArchivo arUsuario;
+        Usuario vendedor;
+        vendedor = arUsuario.leer(arUsuario.buscar(venta.getIdVendedor()));
+        std::string nombreVendedor = (vendedor.getNombre());
+        std::string apellidoVendedor = (vendedor.getApellido());
+
+        std::string vendedorString = "VENDEDOR: " + nombreVendedor + " " + apellidoVendedor;
+        fprintf(archivoTxt, "%s\n", vendedorString.c_str());
+
+
+        // Datos de empresa
+        Empresa empresa;
+        EmpresaArchivo empresaArchivo;
+        empresa = empresaArchivo.leer();
+
+        std::string razonSocial(empresa.getRazonSocial());
+        std::string cuit(empresa.getNroDocumento());
+        std::string domicilio(empresa.getDomicilio());
+        std::string localidad(empresa.getLocalidad());
+        std::string provincia(empresa.getProvinciaDescripcion());
+        std::string domicilioCompleto = domicilio + " | " + localidad + " | " + provincia;
+
+        fprintf(archivoTxt, "------------------------------------------------------------------------\n");
+        fprintf(archivoTxt, "%s\n", razonSocial.c_str());
+        fprintf(archivoTxt, "CUIT %s\n", cuit.c_str());
+        fprintf(archivoTxt, "%s\n", domicilioCompleto.c_str());
+
+        fclose(archivoTxt);
+    }
+}
+
+/*
+void VentaManager::generarComprobante(Venta venta)
+{
+
     std::string nombreArchivo = "/Venta"+std::to_string(venta.getIdPedido())+".txt";
     //char archivo [50];
     //strcpy(archivo, nombreArchivo.c_str());
@@ -434,6 +507,7 @@ void VentaManager::generarComprobante(Venta venta)
     }
 
 }
+*/
 
 void VentaManager::Cargar()
 {

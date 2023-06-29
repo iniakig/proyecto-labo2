@@ -108,6 +108,20 @@ std::string Fecha::toString(std::string formatoFecha)
             fechaString = std::to_string(_dia) + "/" + std::to_string(_mes) + "/" + std::to_string(_anio);
         }
     }
+    else if (formatoFecha == "DD-MM-YYYY") {
+        if (_dia < 10 && _mes < 10) {
+            fechaString = "0" + std::to_string(_dia) + "-" + "0" + std::to_string(_mes) + "-" + std::to_string(_anio);
+        }
+        else if (_dia < 10 && _mes > 9) {
+            fechaString = "0" + std::to_string(_dia) + "-" + std::to_string(_mes) + "-" + std::to_string(_anio);
+        }
+        else if (_dia > 9 && _mes < 10) {
+            fechaString = std::to_string(_dia) + "-" + "0" + std::to_string(_mes) + "-" + std::to_string(_anio);
+        }
+        else {
+            fechaString = std::to_string(_dia) + "-" + std::to_string(_mes) + "-" + std::to_string(_anio);
+        }
+    }
     else if (formatoFecha == "YYYY/MM/DD") {
         if (_dia < 10 && _mes < 10) {
             fechaString = std::to_string(_anio) + "/" + "0" + std::to_string(_mes) + "/" + "0" + std::to_string(_dia);
