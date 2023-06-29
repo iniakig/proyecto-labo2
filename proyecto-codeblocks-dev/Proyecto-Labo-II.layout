@@ -2,6 +2,7 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
+<<<<<<< HEAD
 	<File name="include\Venta.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="496" topLine="11" />
@@ -181,21 +182,17 @@
 	<File name="validaciones.cpp" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="3489" topLine="0" />
+=======
+	<File name="validaciones.cpp" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2379" topLine="30" />
+>>>>>>> 8510832dc905fd1a2484ae97570020a870418e46
 		</Cursor>
 		<Folding>
 			<Collapse line="7" />
 			<Collapse line="24" />
 			<Collapse line="39" />
 			<Collapse line="54" />
-			<Collapse line="69" />
-			<Collapse line="86" />
-			<Collapse line="101" />
-			<Collapse line="115" />
-			<Collapse line="129" />
-			<Collapse line="145" />
-			<Collapse line="165" />
-			<Collapse line="179" />
-			<Collapse line="193" />
 			<Collapse line="214" />
 			<Collapse line="232" />
 			<Collapse line="251" />
@@ -208,6 +205,7 @@
 			<Collapse line="370" />
 		</Folding>
 	</File>
+<<<<<<< HEAD
 	<File name="src\MarcaManager.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="0" topLine="72" />
@@ -237,17 +235,142 @@
 	<File name="src\UsuarioManager.cpp" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="26604" topLine="737" />
+=======
+	<File name="src\ClienteMenu.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="961" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="include\ProductoManager.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="include\VentaManager.h" open="0" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="302" topLine="0" />
+			<Cursor1 position="376" topLine="12" />
+		</Cursor>
+	</File>
+	<File name="validaciones.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="864" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\ProductoMenu.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1720" topLine="6" />
+		</Cursor>
+	</File>
+	<File name="src\Usuario.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1041" topLine="19" />
+		</Cursor>
+	</File>
+	<File name="src\Marca.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="include\UsuarioManager.h" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1306" topLine="4" />
+		</Cursor>
+	</File>
+	<File name="src\Fecha.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3225" topLine="0" />
+		</Cursor>
+		<Folding>
+			<Collapse line="3" />
+			<Collapse line="28" />
+			<Collapse line="33" />
+			<Collapse line="55" />
+			<Collapse line="79" />
+			<Collapse line="93" />
+			<Collapse line="143" />
+			<Collapse line="150" />
+			<Collapse line="154" />
+			<Collapse line="158" />
+			<Collapse line="163" />
+			<Collapse line="168" />
+			<Collapse line="173" />
+		</Folding>
+	</File>
+	<File name="src\UsuarioManager.cpp" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1579" topLine="22" />
+		</Cursor>
+	</File>
+	<File name="src\VentaArchivo.cpp" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="63" />
+		</Cursor>
+	</File>
+	<File name="src\EmpresaMenu.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="873" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="funciones.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="440" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\ProductoManager.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="15312" topLine="467" />
 		</Cursor>
 	</File>
 	<File name="include\Producto.h" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="676" topLine="4" />
+>>>>>>> 8510832dc905fd1a2484ae97570020a870418e46
 		</Cursor>
+	</File>
+	<File name="src\Venta.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="66" />
+		</Cursor>
+	</File>
+<<<<<<< HEAD
+	<File name="include\Producto.h" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="676" topLine="4" />
+=======
+	<File name="include\Venta.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="496" topLine="11" />
+>>>>>>> 8510832dc905fd1a2484ae97570020a870418e46
+		</Cursor>
+	</File>
+	<File name="src\EmpresaArchivo.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="921" topLine="0" />
+		</Cursor>
+		<Folding>
+			<Collapse line="5" />
+			<Collapse line="9" />
+			<Collapse line="13" />
+			<Collapse line="30" />
+			<Collapse line="48" />
+		</Folding>
+	</File>
+	<File name="include\Usuario.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="65" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\Programa.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4201" topLine="0" />
+		</Cursor>
+		<Folding>
+			<Collapse line="16" />
+			<Collapse line="33" />
+			<Collapse line="53" />
+			<Collapse line="157" />
+			<Collapse line="230" />
+			<Collapse line="234" />
+			<Collapse line="238" />
+			<Collapse line="243" />
+			<Collapse line="247" />
+			<Collapse line="251" />
+		</Folding>
 	</File>
 	<File name="src\ClienteManager.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
@@ -271,7 +394,80 @@
 			<Collapse line="975" />
 		</Folding>
 	</File>
+<<<<<<< HEAD
 	<File name="src\Marca.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+=======
+	<File name="include\Persona.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="5" />
+		</Cursor>
+	</File>
+	<File name="mensajes.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="5069" topLine="84" />
+		</Cursor>
+	</File>
+	<File name="include\InformesMenu.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="253" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\MarcaManager.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="72" />
+		</Cursor>
+	</File>
+	<File name="src\VentaManager.cpp" open="1" top="1" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="14449" topLine="402" />
+		</Cursor>
+	</File>
+	<File name="src\InformesMenu.cpp" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1277" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\EmpresaManager.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2761" topLine="0" />
+		</Cursor>
+		<Folding>
+			<Collapse line="55" />
+		</Folding>
+	</File>
+	<File name="funciones.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1290" topLine="57" />
+		</Cursor>
+	</File>
+	<File name="src\UsuarioArchivo.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4471" topLine="0" />
+		</Cursor>
+		<Folding>
+			<Collapse line="5" />
+			<Collapse line="9" />
+			<Collapse line="14" />
+			<Collapse line="37" />
+			<Collapse line="60" />
+			<Collapse line="83" />
+			<Collapse line="106" />
+			<Collapse line="123" />
+			<Collapse line="136" />
+			<Collapse line="154" />
+			<Collapse line="169" />
+			<Collapse line="188" />
+			<Collapse line="201" />
+			<Collapse line="206" />
+		</Folding>
+	</File>
+	<File name="src\VentaMenu.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1211" topLine="7" />
+		</Cursor>
+	</File>
+	<File name="main.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+>>>>>>> 8510832dc905fd1a2484ae97570020a870418e46
 		<Cursor>
 			<Cursor1 position="0" topLine="0" />
 		</Cursor>
@@ -281,9 +477,34 @@
 			<Cursor1 position="0" topLine="5" />
 		</Cursor>
 	</File>
-	<File name="src\ClienteMenu.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="include\Programa.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="961" topLine="0" />
+			<Cursor1 position="228" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\UsuarioActivo.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="340" topLine="21" />
+		</Cursor>
+	</File>
+	<File name="src\ConfiguracionMenu.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="857" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="include\ProductoManager.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1307" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="include\Marca.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\UsuarioMenu.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1104" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="include\InformesMenu.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">

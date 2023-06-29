@@ -32,7 +32,6 @@ public:
 	void setPermisos(bool adm, bool sup, bool ven);
     void listarProductos();
     void buscarProductos();
-    void listarActivos();
     std::string getCategoriaDescripcion(int categoria);
 
 
@@ -50,6 +49,7 @@ private:
 	void ListarPorStock();
     void ListarPorProxAgotarse();
     void ListarPorMasVendidos();
+    void listarActivos();
     bool _permisos[3]; // Posición 0. Adm | 1. Sup | 2. Ven
 	ProductoArchivo _archivo;
 	ProductoArchivo _archivoBkp = ProductoArchivo("productos.bkp");

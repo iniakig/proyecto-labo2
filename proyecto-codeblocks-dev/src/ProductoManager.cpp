@@ -475,7 +475,6 @@ void ProductoManager::Editar()
         std::string descripcion;
         std::string modelo;
         float precioVenta;
-        int stock;
         bool edito = 0;
         bool seguirModificando = true;
         do
@@ -488,7 +487,6 @@ void ProductoManager::Editar()
             std::cout << "3. MODELO" << std::endl;
             std::cout << "4. DESCRIPCION" << std::endl;
             std::cout << "5. PRECIO DE VENTA" << std::endl;
-            std::cout << "6. STOCK" << std::endl;
             std::cout << "---------------------------------------------------" << std::endl;
             std::cout << "0. VOLVER AL MENÚ DE GESTIÓN DE PRODUCTOS" << std::endl;
             std::cout << "---------------------------------------------------" << std::endl;
@@ -499,6 +497,7 @@ void ProductoManager::Editar()
             switch(opcion)
             {
             case 0:
+                seguirModificando = false;
                 break;
             case 1:
             {
@@ -572,21 +571,6 @@ void ProductoManager::Editar()
                 std::cout <<"INGRESE PRECIO DE VENTA: "<< std::endl;
                 precioVenta = ingresoPrecioConValidacion();
                 producto.setPrecio(precioVenta);
-                edito = 1;
-                std::cout<<"¿Desea seguir haciendo modificaciones? (SI/NO)"<<std::endl;
-                std::string respuesta;
-                respuesta = ingresoDeDecisionConValidacion();
-                if (respuesta == "NO")
-                {
-                    seguirModificando = false;
-                }
-                break;
-            }
-            case 6:
-            {
-                std::cout <<"INGRESE STOCK: "<< std::endl;
-                stock = ingresoStockConValidacion();
-                producto.setStock(stock);
                 edito = 1;
                 std::cout<<"¿Desea seguir haciendo modificaciones? (SI/NO)"<<std::endl;
                 std::string respuesta;
@@ -723,55 +707,68 @@ void ProductoManager::reactivar()
 
 void ProductoManager::CargarStock()
 {
-    rlutil::cls();
-    Producto reg;
-    int id, posicion;
-    cout<<"INGRESE EL ID DEL PRODUCTO: ";
-    cin>>id;
-    cin.ignore();
-    cout<<endl;
+    setPermisos(1,1,0);
 
-    posicion = _archivo.buscar(id);
+    UsuarioActivo usuario;
+    int rolUsuario = usuario.getRolUsuarioActivo();
 
-    if(posicion >=0 )
+    if(_permisos[rolUsuario])
     {
-        reg = _archivo.leer(posicion);
-        if(!reg.getActivo())
+        rlutil::cls();
+        Producto reg;
+        int id, posicion;
+        cout<<"INGRESE EL ID DEL PRODUCTO: ";
+        cin>>id;
+        cin.ignore();
+        cout<<endl;
+
+        posicion = _archivo.buscar(id);
+
+        if(posicion >=0 )
         {
-            std::cout<<"EL PRODUCTO INGRESADO SE ENCUENTRA DADO DE BAJA"<<std::endl;
-            rlutil::anykey();
+            reg = _archivo.leer(posicion);
+            if(!reg.getActivo())
+            {
+                std::cout<<"EL PRODUCTO INGRESADO SE ENCUENTRA DADO DE BAJA"<<std::endl;
+                rlutil::anykey();
+            }
+            else
+            {
+                std::cout<<"ACTUALIZARA EL STOCK DEL SIGUIENTE PRODUCTO:"<<std::endl;
+                Listar(reg,0);
+
+                cout<<"CONTINUAR? (SI | NO): ";
+                std::string opc;
+                opc = ingresoDeDecisionConValidacion();
+                if (opc == "SI")
+                {
+                    int stockActual = reg.getStock();
+                    int unidadesNuevas;
+                    std::cout<<"INGRESE LA CANTIDAD DE UNIDADES A AGREGAR: "<<std::endl;
+                    unidadesNuevas = ingresoStockConValidacion();
+                    reg.setStock(stockActual + unidadesNuevas);
+                    if(_archivo.guardar(reg, posicion))
+                    {
+                        std::cout<<"STOCK ACTUALIZADO"<<std::endl;
+                        rlutil::anykey();
+                    }
+                    else
+                    {
+                        std::cout<<"ERROR AL ACTUALIZAR EL STOCK"<<std::endl;
+                        rlutil::anykey();
+                    }
+                }
+            }
         }
         else
         {
-            std::cout<<"ACTUALIZARA EL STOCK DEL SIGUIENTE PRODUCTO:"<<std::endl;
-            Listar(reg,0);
-
-            cout<<"CONTINUAR? (SI | NO): ";
-            std::string opc;
-            opc = ingresoDeDecisionConValidacion();
-            if (opc == "SI")
-            {
-                int stockActual = reg.getStock();
-                int unidadesNuevas;
-                std::cout<<"INGRESE LA CANTIDAD DE UNIDADES A AGREGAR: "<<std::endl;
-                unidadesNuevas = ingresoStockConValidacion();
-                reg.setStock(stockActual + unidadesNuevas);
-                if(_archivo.guardar(reg, posicion))
-                {
-                    std::cout<<"STOCK ACTUALIZADO"<<std::endl;
-                    rlutil::anykey();
-                }
-                else
-                {
-                    std::cout<<"ERROR AL ACTUALIZAR EL STOCK"<<std::endl;
-                    rlutil::anykey();
-                }
-            }
+            registroNoEncontradoMensaje();
+            rlutil::anykey();
         }
     }
     else
     {
-        registroNoEncontradoMensaje();
+        mensajeAccesoRestringido();
         rlutil::anykey();
     }
 }
@@ -798,6 +795,12 @@ bool ProductoManager::RestaurarStock(int id, int unidades)
 
 void ProductoManager::RestarStock()
 {
+    setPermisos(1,1,0);
+
+    UsuarioActivo usuario;
+    int rolUsuario = usuario.getRolUsuarioActivo();
+
+    if(_permisos[rolUsuario]){
     rlutil::cls();
     Producto reg;
     int id, posicion;
@@ -856,6 +859,10 @@ void ProductoManager::RestarStock()
     else
     {
         registroNoEncontradoMensaje();
+        rlutil::anykey();
+    }
+    }else{
+        mensajeAccesoRestringido();
         rlutil::anykey();
     }
 }

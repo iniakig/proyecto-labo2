@@ -425,7 +425,7 @@ void VentaManager::generarComprobante(Venta venta)
             fprintf(archivoTxt, "\n");
         }
         fprintf(archivoTxt, "------------------------------------------------------------------------\n");
-        fprintf(archivoTxt, "IMPORTE FINAL:$ %f\n", venta.getMontoCompra());
+        fprintf(archivoTxt, "IMPORTE FINAL: $%.2f\n", venta.getMontoCompra());
 
         UsuarioArchivo arUsuario;
         Usuario vendedor;
@@ -533,7 +533,7 @@ void VentaManager::Cargar()
 
 void VentaManager::Anular()
 {
-    setPermisos(1, 0, 0);
+    setPermisos(1, 1, 0);
 
 
     UsuarioActivo usuario;
@@ -587,7 +587,9 @@ void VentaManager::Anular()
         {
             registroNoEncontradoMensaje();
         }
-    }else{
+    }
+    else
+    {
         mensajeAccesoRestringido();
     }
     rlutil::anykey();
@@ -597,57 +599,70 @@ void VentaManager::Anular()
 
 void VentaManager::Reactivar()
 {
+    setPermisos(1, 1, 0);
 
-    int posicion, idVenta;
-    std::cout<<"ID VENTA A REACTIVAR: "<<std::endl;
-    std::cin>>idVenta;
 
-    posicion = _archivo.buscar(idVenta);
+    UsuarioActivo usuario;
+    int rolUsuario = usuario.getRolUsuarioActivo();
 
-    if(posicion >= 0)
+    if(validarRol(_permisos, rolUsuario))
     {
-        Venta reg;
-        reg = _archivo.leer(posicion);
+        int posicion, idVenta;
+        std::cout<<"ID VENTA A REACTIVAR: "<<std::endl;
+        std::cin>>idVenta;
 
-        if(!reg.getActivo())
+        posicion = _archivo.buscar(idVenta);
+
+        if(posicion >= 0)
         {
-            std::cout<<"REACTIVARA LA SIGUIENTE VENTA: "<<std::endl;
-            Listar(reg,0);
-            std::cout<<"CONTINUAR? (SI | NO): "<<std::endl;
-            std::string decision = ingresoDeDecisionConValidacion();
+            Venta reg;
+            reg = _archivo.leer(posicion);
 
-            if(decision == "SI")
+            if(!reg.getActivo())
             {
-                reg.setActivo(true);
-                if(_archivo.guardar(reg, posicion))
+                std::cout<<"REACTIVARA LA SIGUIENTE VENTA: "<<std::endl;
+                Listar(reg,0);
+                std::cout<<"CONTINUAR? (SI | NO): "<<std::endl;
+                std::string decision = ingresoDeDecisionConValidacion();
+
+                if(decision == "SI")
                 {
-                    ProductoManager managerProducto;
-                    const int* vecIdProductos = reg.getVecIdProducto();
-                    const int* vecUnidadesProductos = reg.getVecUnidadesxProducto();
-                    int cantidadProductos = reg.getCantidadProductos();
-                    for(int i = 0; i < cantidadProductos; i++)
+                    reg.setActivo(true);
+                    if(_archivo.guardar(reg, posicion))
                     {
-                        managerProducto.RestarStock(vecIdProductos[i], vecUnidadesProductos[i]);
+                        ProductoManager managerProducto;
+                        const int* vecIdProductos = reg.getVecIdProducto();
+                        const int* vecUnidadesProductos = reg.getVecUnidadesxProducto();
+                        int cantidadProductos = reg.getCantidadProductos();
+                        for(int i = 0; i < cantidadProductos; i++)
+                        {
+                            managerProducto.RestarStock(vecIdProductos[i], vecUnidadesProductos[i]);
+                        }
+                        okMensajeReactivacion();
+                        rlutil::anykey();
                     }
-                    okMensajeReactivacion();
-                    rlutil::anykey();
+                    else
+                    {
+                        errorMensajeReactivacion();
+                        rlutil::anykey();
+                    }
                 }
-                else
-                {
-                    errorMensajeReactivacion();
-                    rlutil::anykey();
-                }
+            }
+            else
+            {
+                registroNoEliminado();
+                rlutil::anykey();
             }
         }
         else
         {
-            registroNoEliminado();
+            registroNoEncontradoMensaje();
             rlutil::anykey();
         }
     }
     else
     {
-        registroNoEncontradoMensaje();
+        mensajeAccesoRestringido();
         rlutil::anykey();
     }
 }
