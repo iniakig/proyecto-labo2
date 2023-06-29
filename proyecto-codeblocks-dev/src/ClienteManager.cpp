@@ -949,6 +949,13 @@ bool ClienteManager::reactivar(std::string nroDocumento) {
 
 void ClienteManager::hacerCopiaDeSeguridad() {
     int cantidadDeClientes = _archivo.getCantidadDeClientes();
+    if(cantidadDeClientes <= 0)
+    {
+        errorMensajeCopiaDeSeguridadSinRegs();
+        rlutil::anykey();
+        return;
+    }
+
     Cliente* listaDeClientes = new Cliente[cantidadDeClientes];
 
     if (listaDeClientes == nullptr)
@@ -975,6 +982,12 @@ void ClienteManager::hacerCopiaDeSeguridad() {
 
 void ClienteManager::restaurarCopiaDeSeguridad() {
     int cantidadDeClientes = _archivoBkp.getCantidadDeClientes();
+    if(cantidadDeClientes <= 0)
+    {
+        errorMensajeCopiaDeSeguridadSinRegs();
+        rlutil::anykey();
+        return;
+    }
 
     Cliente *listaDeClientes = new Cliente[cantidadDeClientes];
 

@@ -740,6 +740,12 @@ void UsuarioManager::listarUsuarios() {
 
 void UsuarioManager::hacerCopiaDeSeguridad() {
     int cantidadDeUsuarios = _archivo.getCantidadDeUsuarios();
+    if(cantidadDeUsuarios <= 0)
+    {
+        errorMensajeCopiaDeSeguridadSinRegs();
+        rlutil::anykey();
+        return;
+    }
 
     Usuario* listaDeUsuarios = new Usuario[cantidadDeUsuarios];
 
@@ -767,6 +773,12 @@ void UsuarioManager::hacerCopiaDeSeguridad() {
 
 void UsuarioManager::restaurarCopiaDeSeguridad() {
     int cantidadDeUsuarios = _archivoBkp.getCantidadDeUsuarios();
+    if(cantidadDeUsuarios <= 0)
+    {
+        errorMensajeCopiaDeSeguridadSinRegs();
+        rlutil::anykey();
+        return;
+    }
 
     Usuario *listaDeUsuarios = new Usuario[cantidadDeUsuarios];
 
