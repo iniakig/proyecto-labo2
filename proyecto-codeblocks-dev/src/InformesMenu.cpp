@@ -29,7 +29,7 @@ void InformesMenu::mostrar() {
 
                 break;
             case 2:
-
+                _ventaManager.recaudacionAnual();
                 break;
             case 3:
                 _productoManager.productosPorAgotarse();

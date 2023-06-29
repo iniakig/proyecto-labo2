@@ -760,3 +760,72 @@ void VentaManager::restaurarCopiaDeSeguridad()
     delete []vec;
     rlutil::anykey();
 }
+
+void VentaManager::recaudacionAnual() {
+    rlutil::cls();
+    std::cout << "RECAUDACIÓN ANUAL" << std::endl;
+    std::cout << "------------------------------------------------------------------------------------------------------------------------" << std::endl;
+    std::cout << "Ingrese el año de consulta: ";
+
+    int anio;
+    std::cin >> anio; // Falta validación en validaciones
+    bool tieneRegistros = false;
+
+    int cantidadDeVentas = _archivo.getCantidadRegistros();
+    Venta* listaDeVentas = new Venta[cantidadDeVentas];
+
+    _archivo.leer(listaDeVentas, cantidadDeVentas);
+
+    float meses[12] = {};
+
+    for (int i = 0; i < cantidadDeVentas; i++) {
+        if (listaDeVentas[i].getFecha().getAnio() == anio) {
+            int mes = listaDeVentas[i].getFecha().getMes();
+            meses[mes - 1] += listaDeVentas[i].getMontoCompra();
+            tieneRegistros = true;
+        }
+    }
+
+    std::string mesesDescripcion[12] = {
+        "Enero",
+        "Febrero",
+        "Marzo",
+        "Abril",
+        "Mayo",
+        "Junio",
+        "Julio",
+        "Agosto",
+        "Septiembre",
+        "Octubre",
+        "Noviembre",
+        "Diciembre"
+    };
+
+    if (tieneRegistros == true) {
+        std::cout << std::endl;
+        std::cout << "-----------------------------------" << std::endl;
+        std::cout << "   MES              IMPORTE" << std::endl;
+        std::cout << "-----------------------------------" << std::endl;
+        std::cout << "  " << mesesDescripcion[0] << "             $" << meses[0] << std::endl;
+        std::cout << "  " << mesesDescripcion[1] << "           $" << meses[1] << std::endl;
+        std::cout << "  " << mesesDescripcion[2] << "             $" << meses[2] << std::endl;
+        std::cout << "  " << mesesDescripcion[3] << "             $" << meses[3] << std::endl;
+        std::cout << "  " << mesesDescripcion[4] << "              $" << meses[4] << std::endl;
+        std::cout << "  " << mesesDescripcion[5] << "             $" << meses[5] << std::endl;
+        std::cout << "  " << mesesDescripcion[6] << "             $" << meses[6] << std::endl;
+        std::cout << "  " << mesesDescripcion[7] << "            $" << meses[7] << std::endl;
+        std::cout << "  " << mesesDescripcion[8] << "        $" << meses[8] << std::endl;
+        std::cout << "  " << mesesDescripcion[9] << "           $" << meses[9] << std::endl;
+        std::cout << "  " << mesesDescripcion[10] << "         $" << meses[10] << std::endl;
+        std::cout << "  " << mesesDescripcion[11] << "         $" << meses[11] << std::endl;
+        std::cout << "-----------------------------------" << std::endl;
+
+        mensajeFinDelListado();
+    }
+    else {
+        mensajeListadoSinDatosEncontrados();
+    }
+
+    rlutil::anykey();
+    delete[] listaDeVentas;
+}
