@@ -213,7 +213,7 @@ void ProductoManager::ListarPorMarca()
 void ProductoManager::ListarPorTopePrecio()
 {
     rlutil::cls();
-    long double topePrecio;
+    float topePrecio;
     std::cout<<"INGRESE TOPE DE PRECIO "<<std::endl;
     std::cin>>topePrecio; // VALIDACION PENDIENTE
 
@@ -393,13 +393,13 @@ void ProductoManager::Cargar()
     int  idMarca;
     std::string modelo;
     std::string descripcion;
-    long double precioVenta;
+    float precioVenta;
     int stock;
     bool activo=true;
     std::string nombreMarca;
     MarcaManager managerMarca;
 
-    std::cout << "AGREGAR PRODUCTO" << std::endl;
+    std::cout << "AGREGAR USUARIO" << std::endl;
     std::cout << "------------------------------------------------------------------------------------------------------------------------" << std::endl;
 
     ID=GenerarId();
@@ -465,7 +465,7 @@ void ProductoManager::Editar()
         std::string nombreMarca;
         std::string descripcion;
         std::string modelo;
-        long double precioVenta;
+        float precioVenta;
         int stock;
         bool edito = 0;
         bool seguirModificando = true;
