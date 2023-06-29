@@ -738,77 +738,88 @@ void VentaManager::restaurarCopiaDeSeguridad()
 
 void VentaManager::recaudacionAnual()
 {
-    rlutil::cls();
-    std::cout << "RECAUDACIÓN ANUAL" << std::endl;
-    std::cout << "------------------------------------------------------------------------------------------------------------------------" << std::endl;
-    std::cout << "Ingrese el año de consulta: ";
+    setPermisos(1,1,0);
+    UsuarioActivo usuario;
+    int rolUsuario = usuario.getRolUsuarioActivo();
 
-    int anio;
-    std::cin >> anio; // Falta validación en validaciones
-    bool tieneRegistros = false;
-
-    int cantidadDeVentas = _archivo.getCantidadRegistros();
-    Venta* listaDeVentas = new Venta[cantidadDeVentas];
-
-    _archivo.leer(listaDeVentas, cantidadDeVentas);
-
-    float meses[12] = {};
-
-    for (int i = 0; i < cantidadDeVentas; i++)
+    if(validarRol(_permisos, rolUsuario))
     {
-        if (listaDeVentas[i].getFecha().getAnio() == anio)
+        rlutil::cls();
+        std::cout << "RECAUDACIÓN ANUAL" << std::endl;
+        std::cout << "------------------------------------------------------------------------------------------------------------------------" << std::endl;
+        std::cout << "Ingrese el año de consulta: ";
+
+        int anio;
+        std::cin >> anio; // Falta validación en validaciones
+        bool tieneRegistros = false;
+
+        int cantidadDeVentas = _archivo.getCantidadRegistros();
+        Venta* listaDeVentas = new Venta[cantidadDeVentas];
+
+        _archivo.leer(listaDeVentas, cantidadDeVentas);
+
+        float meses[12] = {};
+
+        for (int i = 0; i < cantidadDeVentas; i++)
         {
-            int mes = listaDeVentas[i].getFecha().getMes();
-            meses[mes - 1] += listaDeVentas[i].getMontoCompra();
-            tieneRegistros = true;
+            if (listaDeVentas[i].getFecha().getAnio() == anio)
+            {
+                int mes = listaDeVentas[i].getFecha().getMes();
+                meses[mes - 1] += listaDeVentas[i].getMontoCompra();
+                tieneRegistros = true;
+            }
         }
-    }
 
-    std::string mesesDescripcion[12] =
-    {
-        "Enero",
-        "Febrero",
-        "Marzo",
-        "Abril",
-        "Mayo",
-        "Junio",
-        "Julio",
-        "Agosto",
-        "Septiembre",
-        "Octubre",
-        "Noviembre",
-        "Diciembre"
-    };
+        std::string mesesDescripcion[12] =
+        {
+            "Enero",
+            "Febrero",
+            "Marzo",
+            "Abril",
+            "Mayo",
+            "Junio",
+            "Julio",
+            "Agosto",
+            "Septiembre",
+            "Octubre",
+            "Noviembre",
+            "Diciembre"
+        };
 
-    if (tieneRegistros)
-    {
-        std::cout << std::endl;
-        std::cout << "-----------------------------------" << std::endl;
-        std::cout << "   MES              IMPORTE" << std::endl;
-        std::cout << "-----------------------------------" << std::endl;
-        std::cout << "  " << mesesDescripcion[0] << "             $" << meses[0] << std::endl;
-        std::cout << "  " << mesesDescripcion[1] << "           $" << meses[1] << std::endl;
-        std::cout << "  " << mesesDescripcion[2] << "             $" << meses[2] << std::endl;
-        std::cout << "  " << mesesDescripcion[3] << "             $" << meses[3] << std::endl;
-        std::cout << "  " << mesesDescripcion[4] << "              $" << meses[4] << std::endl;
-        std::cout << "  " << mesesDescripcion[5] << "             $" << meses[5] << std::endl;
-        std::cout << "  " << mesesDescripcion[6] << "             $" << meses[6] << std::endl;
-        std::cout << "  " << mesesDescripcion[7] << "            $" << meses[7] << std::endl;
-        std::cout << "  " << mesesDescripcion[8] << "        $" << meses[8] << std::endl;
-        std::cout << "  " << mesesDescripcion[9] << "           $" << meses[9] << std::endl;
-        std::cout << "  " << mesesDescripcion[10] << "         $" << meses[10] << std::endl;
-        std::cout << "  " << mesesDescripcion[11] << "         $" << meses[11] << std::endl;
-        std::cout << "-----------------------------------" << std::endl;
+        if (tieneRegistros)
+        {
+            std::cout << std::endl;
+            std::cout << "-----------------------------------" << std::endl;
+            std::cout << "   MES              IMPORTE" << std::endl;
+            std::cout << "-----------------------------------" << std::endl;
+            std::cout << "  " << mesesDescripcion[0] << "             $" << meses[0] << std::endl;
+            std::cout << "  " << mesesDescripcion[1] << "           $" << meses[1] << std::endl;
+            std::cout << "  " << mesesDescripcion[2] << "             $" << meses[2] << std::endl;
+            std::cout << "  " << mesesDescripcion[3] << "             $" << meses[3] << std::endl;
+            std::cout << "  " << mesesDescripcion[4] << "              $" << meses[4] << std::endl;
+            std::cout << "  " << mesesDescripcion[5] << "             $" << meses[5] << std::endl;
+            std::cout << "  " << mesesDescripcion[6] << "             $" << meses[6] << std::endl;
+            std::cout << "  " << mesesDescripcion[7] << "            $" << meses[7] << std::endl;
+            std::cout << "  " << mesesDescripcion[8] << "        $" << meses[8] << std::endl;
+            std::cout << "  " << mesesDescripcion[9] << "           $" << meses[9] << std::endl;
+            std::cout << "  " << mesesDescripcion[10] << "         $" << meses[10] << std::endl;
+            std::cout << "  " << mesesDescripcion[11] << "         $" << meses[11] << std::endl;
+            std::cout << "-----------------------------------" << std::endl;
 
-        mensajeFinDelListado();
+            mensajeFinDelListado();
+        }
+        else
+        {
+            mensajeListadoSinDatosEncontrados();
+        }
+
+        delete[] listaDeVentas;
     }
     else
     {
-        mensajeListadoSinDatosEncontrados();
+        mensajeAccesoRestringido();
     }
-
     rlutil::anykey();
-    delete[] listaDeVentas;
 }
 
 void VentaManager::vendedorConMasVentasConcretadas()
@@ -899,41 +910,53 @@ void VentaManager::vendedorConMasVentasConcretadas()
 
 void VentaManager::ventasTotalesPorVendedor()
 {
-    Fecha fechaActual= fechaActual.fechaActual();
-    Usuario usuario;
-    UsuarioArchivo arUsuario;
-    int cantUsuarios=arUsuario.getCantidadDeUsuarios();
-    Venta venta;
-    int cantVentas=_archivo.getCantidadRegistros();
-    rlutil::cls();
-    std::cout<<"                CANTIDAD E IMPORTE DE VENTAS POR VENDEDOR"<<std::endl;
-    std::cout << "------------------------------------------------------------------" << std::endl;
-    for(int i=0; i<cantUsuarios; i++)
+    setPermisos(1,1,0);
+    UsuarioActivo usuario;
+
+    int rolUsuario = usuario.getRolUsuarioActivo();
+
+    if(validarRol(_permisos, rolUsuario))
     {
-        usuario =arUsuario.leer(i);
-        float importeMensual=0;
-        int cantVentasMensual=0;
-        for(int a=0; a<cantVentas; a++)
+        Fecha fechaActual= fechaActual.fechaActual();
+        Usuario usuario;
+        UsuarioArchivo arUsuario;
+        int cantUsuarios=arUsuario.getCantidadDeUsuarios();
+        Venta venta;
+        int cantVentas=_archivo.getCantidadRegistros();
+        rlutil::cls();
+        std::cout<<"                CANTIDAD E IMPORTE DE VENTAS POR VENDEDOR"<<std::endl;
+        std::cout << "------------------------------------------------------------------" << std::endl;
+        for(int i=0; i<cantUsuarios; i++)
         {
-            venta=_archivo.leer(a);
-            if(usuario.getRol()==2 && usuario.getEstado()==true && venta.getFecha().getMes()== fechaActual.fechaActual().getMes() && venta.getFecha().getAnio()==fechaActual.fechaActual().getAnio())
+            usuario =arUsuario.leer(i);
+            float importeMensual=0;
+            int cantVentasMensual=0;
+            for(int a=0; a<cantVentas; a++)
             {
-                if(usuario.getId()==venta.getIdVendedor())
+                venta=_archivo.leer(a);
+                if(usuario.getRol()==2 && usuario.getEstado()==true && venta.getFecha().getMes()== fechaActual.fechaActual().getMes() && venta.getFecha().getAnio()==fechaActual.fechaActual().getAnio())
                 {
-                    importeMensual+=venta.getMontoCompra();
-                    cantVentasMensual++;
+                    if(usuario.getId()==venta.getIdVendedor())
+                    {
+                        importeMensual+=venta.getMontoCompra();
+                        cantVentasMensual++;
+                    }
                 }
             }
-        }
 
-        if(usuario.getRol()==2 && usuario.getEstado()==true)
-        {
-            std::cout<<"ID VENDEDOR: "<<usuario.getId()<<std::endl;
-            std::cout<<"NOMBRE Y APELLIDO: "<<usuario.getNombre()<<" "<<usuario.getApellido()<<std::endl;
-            std::cout<<"CANTIDAD DE VENTAS EN EL MES: "<<cantVentasMensual<<std::endl;
-            std::cout<<"IMPORTE MENSUAL TOTAL: "<<importeMensual<<std::endl;
-            std::cout<<std::endl;
+            if(usuario.getRol()==2 && usuario.getEstado()==true)
+            {
+                std::cout<<"ID VENDEDOR: "<<usuario.getId()<<std::endl;
+                std::cout<<"NOMBRE Y APELLIDO: "<<usuario.getNombre()<<" "<<usuario.getApellido()<<std::endl;
+                std::cout<<"CANTIDAD DE VENTAS EN EL MES: "<<cantVentasMensual<<std::endl;
+                std::cout<<"IMPORTE MENSUAL TOTAL: "<<importeMensual<<std::endl;
+                std::cout<<std::endl;
+            }
         }
+    }
+    else
+    {
+        mensajeAccesoRestringido();
     }
     rlutil::anykey();
 
