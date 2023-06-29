@@ -67,7 +67,8 @@ void ProductoManager::ListarTodos()
     rlutil::anykey();
 }
 
-void ProductoManager::listarActivos() {
+void ProductoManager::listarActivos()
+{
     rlutil::cls();
     std::cout << "PRODUCTOS ACTIVOS" << std::endl;
     std::cout << "------------------------------------------------------------------------------------------------------------------------" << std::endl;
@@ -76,7 +77,8 @@ void ProductoManager::listarActivos() {
     Producto *listaDeProductos = new Producto[cantidadDeRegistros];
     int resultadosEncontrados = 0;
 
-    if(listaDeProductos == nullptr) {
+    if(listaDeProductos == nullptr)
+    {
         std::cout << std::endl;
         std::cout << "Ocurrió un error al visualizar el listado" << std::endl;
         return;
@@ -87,13 +89,16 @@ void ProductoManager::listarActivos() {
     // ordenadores
     ordenarPorNombreDeMarca(listaDeProductos, cantidadDeRegistros);
 
-    for (int i = 0; i < cantidadDeRegistros; i++) {
-        if (listaDeProductos[i].getActivo()) {
+    for (int i = 0; i < cantidadDeRegistros; i++)
+    {
+        if (listaDeProductos[i].getActivo())
+        {
             resultadosEncontrados++;
         }
     }
 
-    if (resultadosEncontrados > 0) {
+    if (resultadosEncontrados > 0)
+    {
         std::cout << std::endl;
         std::cout << "Registros encontrados: " << resultadosEncontrados << std::endl;
         std::cout << std::endl;
@@ -108,15 +113,18 @@ void ProductoManager::listarActivos() {
         std::cout << std::endl;
         std::cout << "------------------------------------------------------------------------------------------------------------";
 
-        for (int i = 0; i < cantidadDeRegistros; i++) {
-            if (listaDeProductos[i].getActivo()) {
-            Listar(listaDeProductos[i], 1);
+        for (int i = 0; i < cantidadDeRegistros; i++)
+        {
+            if (listaDeProductos[i].getActivo())
+            {
+                Listar(listaDeProductos[i], 1);
             }
         }
         std::cout << std::endl;
         mensajeFinDelListado();
     }
-    else {
+    else
+    {
         mensajeListadoSinDatosEncontrados();
     }
 
@@ -138,19 +146,19 @@ void ProductoManager::ListarXId()
         Producto producto = _archivo.leer(posicion);
         if(producto.getActivo()==true)
         {
-        std::cout << std::endl;
-        std::cout << std::left;
-        std::cout << std::setw(6) << "Id";
-        std::cout << std::setw(11) << "Categoria";
-        std::cout << std::setw(8) << "Marca";
-        std::cout << std::setw(16) << "Modelo";
-        std::cout << std::setw(15) << "Descripcion";
-        std::cout << std::setw(18) << "Precio de Venta";
-        std::cout << std::setw(8) << "Stock";
-        std::cout << std::endl;
-        std::cout << "----------------------------------------------------------------------------------" << std::endl;
+            std::cout << std::endl;
+            std::cout << std::left;
+            std::cout << std::setw(6) << "Id";
+            std::cout << std::setw(11) << "Categoria";
+            std::cout << std::setw(8) << "Marca";
+            std::cout << std::setw(16) << "Modelo";
+            std::cout << std::setw(15) << "Descripcion";
+            std::cout << std::setw(18) << "Precio de Venta";
+            std::cout << std::setw(8) << "Stock";
+            std::cout << std::endl;
+            std::cout << "----------------------------------------------------------------------------------" << std::endl;
 
-        Listar(producto,1);
+            Listar(producto,1);
 
         }
     }
@@ -186,17 +194,17 @@ void ProductoManager::ListarPorMarca()
     Producto producto;
     ProductoArchivo archivoProducto;
     int cantRegProd=archivoProducto.getCantidadDeRegistros();
-        std::cout << std::endl;
-        std::cout << std::left;
-        std::cout << std::setw(6) << "Id";
-        std::cout << std::setw(11) << "Categoria";
-        std::cout << std::setw(14) << "Marca";
-        std::cout << std::setw(16) << "Modelo";
-        std::cout << std::setw(15) << "Descripcion";
-        std::cout << std::setw(18) << "Precio de Venta";
-        std::cout << std::setw(8) << "Stock";
-        std::cout << std::endl;
-        std::cout << "----------------------------------------------------------------------------------" << std::endl;
+    std::cout << std::endl;
+    std::cout << std::left;
+    std::cout << std::setw(6) << "Id";
+    std::cout << std::setw(11) << "Categoria";
+    std::cout << std::setw(14) << "Marca";
+    std::cout << std::setw(16) << "Modelo";
+    std::cout << std::setw(15) << "Descripcion";
+    std::cout << std::setw(18) << "Precio de Venta";
+    std::cout << std::setw(8) << "Stock";
+    std::cout << std::endl;
+    std::cout << "----------------------------------------------------------------------------------" << std::endl;
     for(int i=0; i<cantRegProd; i++)
     {
         producto=archivoProducto.leer(i);
@@ -243,17 +251,17 @@ void ProductoManager::ListarPorTopePrecio()
             }
         }
     }
-        std::cout << std::endl;
-        std::cout << std::left;
-        std::cout << std::setw(6) << "Id";
-        std::cout << std::setw(11) << "Categoria";
-        std::cout << std::setw(8) << "Marca";
-        std::cout << std::setw(16) << "Modelo";
-        std::cout << std::setw(15) << "Descripcion";
-        std::cout << std::setw(18) << "Precio de Venta";
-        std::cout << std::setw(8) << "Stock";
-        std::cout << std::endl;
-        std::cout << "----------------------------------------------------------------------------------" << std::endl;
+    std::cout << std::endl;
+    std::cout << std::left;
+    std::cout << std::setw(6) << "Id";
+    std::cout << std::setw(11) << "Categoria";
+    std::cout << std::setw(8) << "Marca";
+    std::cout << std::setw(16) << "Modelo";
+    std::cout << std::setw(15) << "Descripcion";
+    std::cout << std::setw(18) << "Precio de Venta";
+    std::cout << std::setw(8) << "Stock";
+    std::cout << std::endl;
+    std::cout << "----------------------------------------------------------------------------------" << std::endl;
     for(int a=0; a<cantProductos; a++)
     {
         producto=ProductosOrdenadosPorPrecio[a];
@@ -271,7 +279,8 @@ void ProductoManager::HacerCopiaDeSeguridad()
 {
     rlutil::cls();
     int cantidadRegs = _archivo.getCantidadDeRegistros();
-    if(cantidadRegs <= 0){
+    if(cantidadRegs <= 0)
+    {
         //errorMensajeCopiaDeSeguridadSinRegs();
         rlutil::anykey();
         return;
@@ -360,17 +369,17 @@ void ProductoManager::ListarPorStock()
             }
         }
     }
-        std::cout << std::endl;
-        std::cout << std::left;
-        std::cout << std::setw(5) << "Id";
-        std::cout << std::setw(12) << "Categoria";
-        std::cout << std::setw(14) << "Marca";
-        std::cout << std::setw(16) << "Modelo";
-        std::cout << std::setw(14) << "Descripcion";
-        std::cout << std::setw(18) << "Precio de Venta";
-        std::cout << std::setw(8) << "Stock";
-        std::cout << std::endl;
-        std::cout << "----------------------------------------------------------------------------------" << std::endl;
+    std::cout << std::endl;
+    std::cout << std::left;
+    std::cout << std::setw(5) << "Id";
+    std::cout << std::setw(12) << "Categoria";
+    std::cout << std::setw(14) << "Marca";
+    std::cout << std::setw(16) << "Modelo";
+    std::cout << std::setw(14) << "Descripcion";
+    std::cout << std::setw(18) << "Precio de Venta";
+    std::cout << std::setw(8) << "Stock";
+    std::cout << std::endl;
+    std::cout << "----------------------------------------------------------------------------------" << std::endl;
     for(int a=0; a<cantProductos; a++)
     {
         producto=ProductosOrdenadosStock[a];
@@ -491,7 +500,8 @@ void ProductoManager::Editar()
             {
             case 0:
                 break;
-            case 1:{
+            case 1:
+            {
                 std::cout <<"INGRESE CATEGORIA: "<< std::endl;
                 categoria = ingresoCategoriaProdConValidacion();
                 producto.setCategoria(categoria);
@@ -500,13 +510,16 @@ void ProductoManager::Editar()
                 std::cout<<"¿Desea seguir haciendo modificaciones? (SI/NO)"<<std::endl;
                 std::string respuesta;
                 respuesta = ingresoDeDecisionConValidacion();
-                if (respuesta == "NO") {
-                  seguirModificando = false;
+                if (respuesta == "NO")
+                {
+                    seguirModificando = false;
                 }
                 rlutil::cls();
 
-                break;}
-            case 2:{
+                break;
+            }
+            case 2:
+            {
                 do
                 {
                     std::cout <<"INGRESE MARCA: "<< std::endl;
@@ -518,11 +531,14 @@ void ProductoManager::Editar()
                 std::cout<<"¿Desea seguir haciendo modificaciones? (SI/NO)"<<std::endl;
                 std::string respuesta;
                 respuesta = ingresoDeDecisionConValidacion();
-                if (respuesta == "NO") {
-                  seguirModificando = false;
+                if (respuesta == "NO")
+                {
+                    seguirModificando = false;
                 }
-                break;}
-            case 3:{
+                break;
+            }
+            case 3:
+            {
                 std::cout <<"INGRESE MODELO: "<< std::endl;
                 modelo = ingresoModeloConValidacion();
                 producto.setModelo(modelo);
@@ -530,11 +546,14 @@ void ProductoManager::Editar()
                 std::cout<<"¿Desea seguir haciendo modificaciones? (SI/NO)"<<std::endl;
                 std::string respuesta;
                 respuesta = ingresoDeDecisionConValidacion();
-                if (respuesta == "NO") {
-                  seguirModificando = false;
+                if (respuesta == "NO")
+                {
+                    seguirModificando = false;
                 }
-                break;}
-            case 4:{
+                break;
+            }
+            case 4:
+            {
                 std::cout <<"INGRESE DESCRIPCION: "<< std::endl;
                 descripcion = ingresoDescripcionConValidacion();
                 producto.setDescripcion(descripcion);
@@ -542,11 +561,14 @@ void ProductoManager::Editar()
                 std::cout<<"¿Desea seguir haciendo modificaciones? (SI/NO)"<<std::endl;
                 std::string respuesta;
                 respuesta = ingresoDeDecisionConValidacion();
-                if (respuesta == "NO") {
-                  seguirModificando = false;
+                if (respuesta == "NO")
+                {
+                    seguirModificando = false;
                 }
-                break;}
-            case 5:{
+                break;
+            }
+            case 5:
+            {
                 std::cout <<"INGRESE PRECIO DE VENTA: "<< std::endl;
                 precioVenta = ingresoPrecioConValidacion();
                 producto.setPrecio(precioVenta);
@@ -554,11 +576,14 @@ void ProductoManager::Editar()
                 std::cout<<"¿Desea seguir haciendo modificaciones? (SI/NO)"<<std::endl;
                 std::string respuesta;
                 respuesta = ingresoDeDecisionConValidacion();
-                if (respuesta == "NO") {
-                  seguirModificando = false;
+                if (respuesta == "NO")
+                {
+                    seguirModificando = false;
                 }
-                break;}
-            case 6:{
+                break;
+            }
+            case 6:
+            {
                 std::cout <<"INGRESE STOCK: "<< std::endl;
                 stock = ingresoStockConValidacion();
                 producto.setStock(stock);
@@ -566,10 +591,12 @@ void ProductoManager::Editar()
                 std::cout<<"¿Desea seguir haciendo modificaciones? (SI/NO)"<<std::endl;
                 std::string respuesta;
                 respuesta = ingresoDeDecisionConValidacion();
-                if (respuesta == "NO") {
-                  seguirModificando = false;
+                if (respuesta == "NO")
+                {
+                    seguirModificando = false;
                 }
-                break;}
+                break;
+            }
             default:
                 std::cout << "La opción seleccionada es invalida. Ingrese nuevamente." << std::endl;
 
@@ -578,7 +605,7 @@ void ProductoManager::Editar()
         while(seguirModificando);
         if(edito)
         {
-        std::cout<<"MODIFICO EL SIGUIENTE PRODUCTO: "<<endl;
+            std::cout<<"MODIFICO EL SIGUIENTE PRODUCTO: "<<endl;
             Listar(producto,0);
             cout<<"CONTINUAR? (SI | NO): ";
             std::string opc;
@@ -861,24 +888,25 @@ bool ProductoManager::RestarStock(int id, int unidades)
 
 }
 
-std::string ProductoManager::getCategoriaDescripcion(int categoria){
+std::string ProductoManager::getCategoriaDescripcion(int categoria)
 {
-    if(categoria == 1)
     {
-        std::string stringCategoria ="CELULARES";
-        return stringCategoria;
+        if(categoria == 1)
+        {
+            std::string stringCategoria ="CELULARES";
+            return stringCategoria;
+        }
+        else if(categoria == 2)
+        {
+            std::string stringCategoria = "TABLETS";
+            return stringCategoria;
+        }
+        else
+        {
+            std::string stringCategoria = "ACCESORIOS";
+            return stringCategoria;
+        }
     }
-    else if(categoria == 2)
-    {
-        std::string stringCategoria = "TABLETS";
-        return stringCategoria;
-    }
-    else
-    {
-        std::string stringCategoria = "ACCESORIOS";
-        return stringCategoria;
-    }
-}
 }
 
 void ProductoManager::setPermisos(bool adm, bool sup, bool ven)
@@ -888,10 +916,12 @@ void ProductoManager::setPermisos(bool adm, bool sup, bool ven)
     _permisos[2] = ven;
 }
 
-void ProductoManager::listarProductos() {
+void ProductoManager::listarProductos()
+{
     int opcion = -1;
 
-    do {
+    do
+    {
         rlutil::cls();
         std::cout << "LISTAR PRODUCTOS" << std::endl;
         std::cout << "---------------------------------------------------" << std::endl;
@@ -907,7 +937,8 @@ void ProductoManager::listarProductos() {
         std::cin >> opcion;
         std::cin.ignore();
 
-        switch(opcion) {
+        switch(opcion)
+        {
         case 0:
             break;
         case 1:
@@ -934,7 +965,8 @@ void ProductoManager::listarProductos() {
     while(opcion != 0);
 }
 
-void ProductoManager::productosPorAgotarse() {
+void ProductoManager::productosPorAgotarse()
+{
     int cantidadMinimaProductos = 0;
 
     rlutil::cls();
@@ -947,7 +979,8 @@ void ProductoManager::productosPorAgotarse() {
     Producto *listaDeProductos = new Producto[cantidadDeRegistros];
     int resultadosEncontrados = 0;
 
-    if(listaDeProductos == nullptr) {
+    if(listaDeProductos == nullptr)
+    {
         std::cout << std::endl;
         std::cout << "Ocurrió un error al visualizar el listado" << std::endl;
         return;
@@ -957,13 +990,16 @@ void ProductoManager::productosPorAgotarse() {
 
     ordenarPorNombreDeMarca(listaDeProductos, cantidadDeRegistros);
 
-    for (int i = 0; i < cantidadDeRegistros; i++) {
-        if (listaDeProductos[i].getStock() < cantidadMinimaProductos && listaDeProductos[i].getActivo() == true) {
+    for (int i = 0; i < cantidadDeRegistros; i++)
+    {
+        if (listaDeProductos[i].getStock() < cantidadMinimaProductos && listaDeProductos[i].getActivo() == true)
+        {
             resultadosEncontrados++;
         }
     }
 
-    if (resultadosEncontrados > 0) {
+    if (resultadosEncontrados > 0)
+    {
         std::cout << std::endl;
         std::cout << "Registros encontrados: " << resultadosEncontrados << std::endl;
         std::cout << std::endl;
@@ -978,15 +1014,18 @@ void ProductoManager::productosPorAgotarse() {
         std::cout << std::endl;
         std::cout << "------------------------------------------------------------------------------------------------------------";
 
-        for (int i = 0; i < cantidadDeRegistros; i++) {
-            if (listaDeProductos[i].getStock() < cantidadMinimaProductos && listaDeProductos[i].getActivo() == true) {
-            Listar(listaDeProductos[i], 1);
+        for (int i = 0; i < cantidadDeRegistros; i++)
+        {
+            if (listaDeProductos[i].getStock() < cantidadMinimaProductos && listaDeProductos[i].getActivo() == true)
+            {
+                Listar(listaDeProductos[i], 1);
             }
         }
         std::cout << std::endl;
         mensajeFinDelListado();
     }
-    else {
+    else
+    {
         mensajeListadoSinDatosEncontrados();
     }
 
@@ -994,7 +1033,8 @@ void ProductoManager::productosPorAgotarse() {
     rlutil::anykey();
 }
 
-void ProductoManager::ordenarPorNombreDeMarca(Producto *listaDeProductos, int cantidadDeRegistros) {
+void ProductoManager::ordenarPorNombreDeMarca(Producto *listaDeProductos, int cantidadDeRegistros)
+{
     Marca marca;
     MarcaArchivo marcaArchivo;
     Producto producto;
@@ -1002,29 +1042,111 @@ void ProductoManager::ordenarPorNombreDeMarca(Producto *listaDeProductos, int ca
 
     int menor = 0;
 
-    for (int i = 0; i < cantidadDeRegistros - 1; i++) {
+    for (int i = 0; i < cantidadDeRegistros - 1; i++)
+    {
         menor = i;
 
         int posicionMarca = marcaArchivo.buscar(listaDeProductos[i].getIdMarca());
         marca = marcaArchivo.leer(posicionMarca);
         std::string marcaDescripcion = marca.getNombre();
 
-        for (int j = i + 1; j < cantidadDeRegistros; j++) {
+        for (int j = i + 1; j < cantidadDeRegistros; j++)
+        {
             int posicionMarcaActual = marcaArchivo.buscar(listaDeProductos[j].getIdMarca());
             marca = marcaArchivo.leer(posicionMarcaActual);
             std::string marcaDescripcionActual = marca.getNombre();
 
-            if (marcaDescripcionActual < marcaDescripcion) {
+            if (marcaDescripcionActual < marcaDescripcion)
+            {
                 menor = j;
                 marcaDescripcion = marcaDescripcionActual;
             }
 
         }
 
-        if (i != menor) {
+        if (i != menor)
+        {
             producto = listaDeProductos[i];
             listaDeProductos[i] = listaDeProductos[menor];
             listaDeProductos[menor] = producto;
         }
     }
 }
+
+void ProductoManager::cincoProductosMasVendidos()
+{
+    VentaArchivo archivoVenta("ventas.dat");
+    Venta venta;
+    Producto producto;
+    int cantVentas=archivoVenta.getCantidadRegistros();
+    int cantProd=_archivo.getCantidadDeRegistros();
+    const int *vecIdprod;
+    const int *vecUnidadesPorProd;
+    int *vecProdXId= new int[cantProd];
+    int *vecUnidadesTotales=new int [cantProd];
+    ponerCero(vecUnidadesTotales, cantProd);
+    Fecha fechaActual= fechaActual.fechaActual();
+//GUARDA EN vecProXId LOS ID DE CADA PRODUCTO REGISTRADO
+    for(int i=0; i<cantProd; i++)
+    {
+        producto=_archivo.leer(i);
+        vecProdXId[i]=producto.getID();
+    }
+//LEE CADA REGISTRO DE VENTA, SI COINCIDE MES Y AÑO ACTUAL ASIGNA EL VECTOR DE ID DE PRODUCTO A OTRO VECTOR DE ID PRODUCTO
+//ASIGNA A VECTOR DE UNIDADES OTRO VECTOR DE UNIDADES DE LA VENTA QUE ESTA SIENDO LEIDA
+    for(int a=0; a<cantVentas; a++)
+    {
+        venta=archivoVenta.leer(a);
+        if(venta.getFecha().getAnio() == fechaActual.getAnio() && venta.getFecha().getMes()== fechaActual.getMes())
+        {
+            vecIdprod=venta.getVecIdProducto();//VECTOR QUE CONTIENE LOS ID DE LOS PRODUCTOS DE LA VENTA
+            vecUnidadesPorProd=venta.getVecUnidadesxProducto();
+        }//UNIDADES DE ESOS PRODUCTOS
+
+        for(int e=0; e<cantProd; e++)
+        {
+            for(int o=0; o<10; o++)
+            {
+                if(vecProdXId[e]==vecIdprod[o])
+                {
+                    vecUnidadesTotales[e]+=vecUnidadesPorProd[o];
+                }
+            }
+        }
+    }
+
+    for (int i = 0; i < cantProd - 1; i++)
+    {
+        for (int j = i + 1; j < cantProd; j++)
+        {
+            if (vecUnidadesTotales[i] < vecUnidadesTotales[j])
+            {
+                int aux = vecUnidadesTotales[i];
+                vecUnidadesTotales[i] = vecUnidadesTotales[j];
+                vecUnidadesTotales[j] = aux;
+
+                aux = vecProdXId[i];
+                vecProdXId[i] = vecProdXId[j];
+                vecProdXId[j] = aux;
+            }
+        }
+    }
+    rlutil::cls();
+    std::cout<<"                5 PRODUCTOS MAS VENDIDOS DEL MES"<<std::endl;
+    std::cout << "------------------------------------------------------------------" << std::endl;
+
+    for(int i=0; i<5; i++)
+    {
+        producto=_archivo.leer(_archivo.buscar(vecProdXId[i]));
+
+        std::cout<<"ID DE PRODUCTO: "<<vecProdXId[i]<<std::endl;
+        std::cout<<"ID DE MARCA: "<<producto.getIdMarca()<<std::endl;
+        std::cout<<"MODELO: "<<producto.getModelo()<<std::endl;
+        std::cout<<"UNIDADES VENDIDAS: "<<vecUnidadesTotales[i]<<std::endl;
+        std::cout<<std::endl;
+    }
+    rlutil::anykey();
+
+}
+
+

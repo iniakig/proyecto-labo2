@@ -1,7 +1,20 @@
 #ifndef PRODUCTOMANAGER_H_INCLUDED
 #define PRODUCTOMANAGER_H_INCLUDED
 
+#include <iostream>
+#include <iomanip>
+#include "string.h"
+
+#include "../funciones.h"
+#include <../rlutil.h>
+#include "../validaciones.h"
+#include "../mensajes.h"
+
 #include "ProductoArchivo.h"
+#include "VentaManager.h"
+#include "MarcaManager.h"
+#include "Producto.h"
+
 
 class ProductoManager{
 public:
@@ -22,10 +35,12 @@ public:
     void listarActivos();
     std::string getCategoriaDescripcion(int categoria);
 
+
     void ordenarPorNombreDeMarca(Producto *listaDeProductos, int cantidadDeRegistros);
 
     // Informes
     void productosPorAgotarse();
+    void cincoProductosMasVendidos();
 
 private:
 	void ListarTodos();
@@ -40,5 +55,6 @@ private:
 	ProductoArchivo _archivoBkp = ProductoArchivo("productos.bkp");
 	int GenerarId();
 };
+
 
 #endif // PRODUCTOMANAGER_H_INCLUDED

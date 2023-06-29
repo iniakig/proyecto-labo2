@@ -21,7 +21,8 @@ int enteroConvertidoAInt(std::string stringParaConvertir)
     return numero;
 }
 
-float stringConvertidoAFloat(std::string stringParaConvertir){
+float stringConvertidoAFloat(std::string stringParaConvertir)
+{
     float numero = 0;
 
     numero = std::stof(stringParaConvertir);
@@ -39,7 +40,8 @@ std::string stringAMayus(std::string cadena)
     return cadenaMayus;
 }
 
-std::string cortarCuit(std::string stringParaCortar) {
+std::string cortarCuit(std::string stringParaCortar)
+{
     std::string dni;
 
     dni = stringParaCortar.substr(2, stringParaCortar.length() - 3);
@@ -47,16 +49,27 @@ std::string cortarCuit(std::string stringParaCortar) {
     return dni;
 }
 
-void centrarTexto(std::string texto, int posy) {
-	int posx;
-	posx = rlutil::tcols() / 2 - texto.size() / 2;
-	rlutil::locate(posx, posy);
-	std::cout << texto;
+void centrarTexto(std::string texto, int posy)
+{
+    int posx;
+    posx = rlutil::tcols() / 2 - texto.size() / 2;
+    rlutil::locate(posx, posy);
+    std::cout << texto;
 }
 
-void listarProvincias() {
+void ponerCero(int *vec, int tam)
+{
+    for(int i = 0; i<tam; i++)
+    {
+        vec[i] = 0;
+    }
+}
+
+void listarProvincias()
+{
     const int cantidadProvincias = 24;
-    std::string provincias[cantidadProvincias] = {
+    std::string provincias[cantidadProvincias] =
+    {
         "CABA",
         "Buenos Aires",
         "Catamarca",
@@ -83,7 +96,8 @@ void listarProvincias() {
         "Tucumán"
     };
 
-    for (int i = 0; i < cantidadProvincias; i++) {
+    for (int i = 0; i < cantidadProvincias; i++)
+    {
         std::cout << "\t" << i + 1 << ": " << provincias[i];
         std::cout << std::endl;
     }

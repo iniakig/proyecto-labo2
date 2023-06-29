@@ -905,3 +905,45 @@ void VentaManager::vendedorConMasVentasConcretadas() {
     delete[] listaDeVentas;
     delete[] montosPorVendedor;
 }
+
+void VentaManager::ventasTotalesPorVendedor()
+{
+    Fecha fechaActual= fechaActual.fechaActual();
+    Usuario usuario;
+    UsuarioArchivo arUsuario;
+    int cantUsuarios=arUsuario.getCantidadDeUsuarios();
+    Venta venta;
+    int cantVentas=_archivo.getCantidadRegistros();
+    rlutil::cls();
+    std::cout<<"                CANTIDAD E IMPORTE DE VENTAS POR VENDEDOR"<<std::endl;
+    std::cout << "------------------------------------------------------------------" << std::endl;
+    for(int i=0; i<cantUsuarios; i++)
+    {
+        usuario =arUsuario.leer(i);
+        float importeMensual=0;
+        int cantVentasMensual=0;
+        for(int a=0; a<cantVentas; a++)
+        {
+            venta=_archivo.leer(a);
+            if(usuario.getRol()==2 && usuario.getEstado()==true && venta.getFecha().getMes()== fechaActual.fechaActual().getMes() && venta.getFecha().getAnio()==fechaActual.fechaActual().getAnio())
+            {
+                if(usuario.getId()==venta.getIdVendedor())
+                {
+                    importeMensual+=venta.getMontoCompra();
+                    cantVentasMensual++;
+                }
+            }
+        }
+
+        if(usuario.getRol()==2 && usuario.getEstado()==true)
+        {
+            std::cout<<"ID VENDEDOR: "<<usuario.getId()<<std::endl;
+            std::cout<<"NOMBRE Y APELLIDO: "<<usuario.getNombre()<<" "<<usuario.getApellido()<<std::endl;
+            std::cout<<"CANTIDAD DE VENTAS EN EL MES: "<<cantVentasMensual<<std::endl;
+            std::cout<<"IMPORTE MENSUAL TOTAL: "<<importeMensual<<std::endl;
+            std::cout<<std::endl;
+        }
+    }
+    rlutil::anykey();
+
+}

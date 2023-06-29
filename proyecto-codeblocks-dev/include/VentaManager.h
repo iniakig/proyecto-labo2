@@ -17,13 +17,16 @@ public:
     void Reactivar();
     void ListarVentas();
     void generarComprobante(Venta venta);
-	void ventasPorEmpleado();
-	void recaudacionAnual();
-	void vendedorConMasVentasConcretadas();
 	void listarPorMedioDePago();
 	void hacerCopiaDeSeguridad();
 	void restaurarCopiaDeSeguridad();
 	void setPermisos(bool adm, bool sup, bool ven);
+
+	//INFORMES
+	void ventasPorEmpleado();
+	void recaudacionAnual();
+	void vendedorConMasVentasConcretadas();
+    void ventasTotalesPorVendedor();
 
 private:
     bool _permisos[3]; // Posición 0. Adm | 1. Sup | 2. Ven

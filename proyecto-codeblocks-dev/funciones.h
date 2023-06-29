@@ -10,6 +10,5 @@ int enteroConvertidoAInt(std::string stringParaConvertir);
 float stringConvertidoAFloat(std::string stringParaConvertir);
 std::string stringAMayus(std::string cadena);
 void listarProvincias();
-
-
+void ponerCero(int *vec, int tam);
 #endif // FUNCIONES_H_INCLUDED

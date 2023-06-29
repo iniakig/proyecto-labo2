@@ -3,6 +3,7 @@
 
 #include "ProductoManager.h"
 #include "VentaManager.h"
+#include "UsuarioManager.h"
 
 class InformesMenu
 {

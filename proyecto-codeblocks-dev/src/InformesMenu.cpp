@@ -26,7 +26,7 @@ void InformesMenu::mostrar() {
             case 0:
                 break;
             case 1:
-
+               _ventaManager.ventasTotalesPorVendedor();
                 break;
             case 2:
                 _ventaManager.recaudacionAnual();
@@ -35,6 +35,7 @@ void InformesMenu::mostrar() {
                 _productoManager.productosPorAgotarse();
                 break;
             case 4:
+                _productoManager.cincoProductosMasVendidos();
                 break;
             case 5:
                 _ventaManager.vendedorConMasVentasConcretadas();
