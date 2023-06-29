@@ -1,0 +1,20 @@
+COMPROBANTE DE VENTA
+(Documento no válido como factura)
+------------------------------------------------------------------------
+CLIENTE: 37697223
+FECHA COMPRA: 29/06/2023
+PRODUCTOS: 
+
+   SAMSUNG | GALAXY S21
+   UNIDADES: 2
+
+   XIAOMI | REDMI 9
+   UNIDADES: 2
+
+------------------------------------------------------------------------
+IMPORTE FINAL: $44000.00
+VENDEDOR: BRIAN LARA
+------------------------------------------------------------------------
+DISPOSITIVOS DIGITALES S.A.
+CUIT 25567893450
+Alvear 764 | CABA | CABA

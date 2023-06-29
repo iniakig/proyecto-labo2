@@ -1,0 +1,20 @@
+COMPROBANTE DE VENTA
+(Documento no válido como factura)
+------------------------------------------------------------------------
+CLIENTE: 42220813
+FECHA COMPRA: 29/06/2023
+PRODUCTOS: 
+
+   MOTOROLA | MOTO G30
+   UNIDADES: 1
+
+   SAMSUNG | GALAXY M31
+   UNIDADES: 1
+
+------------------------------------------------------------------------
+IMPORTE FINAL: $16500.00
+VENDEDOR: JUAN GONZALEZ
+------------------------------------------------------------------------
+DISPOSITIVOS DIGITALES S.A.
+CUIT 25567893450
+Alvear 764 | CABA | CABA

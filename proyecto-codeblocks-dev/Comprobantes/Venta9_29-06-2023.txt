@@ -1,0 +1,20 @@
+COMPROBANTE DE VENTA
+(Documento no válido como factura)
+------------------------------------------------------------------------
+CLIENTE: 30527929772
+FECHA COMPRA: 29/06/2023
+PRODUCTOS: 
+
+   APPLE | IPHONE 12
+   UNIDADES: 10
+
+   TLC | TLC 10 PRO
+   UNIDADES: 10
+
+------------------------------------------------------------------------
+IMPORTE FINAL: $250000.00
+VENDEDOR: JUAN GONZALEZ
+------------------------------------------------------------------------
+DISPOSITIVOS DIGITALES S.A.
+CUIT 25567893450
+Alvear 764 | CABA | CABA

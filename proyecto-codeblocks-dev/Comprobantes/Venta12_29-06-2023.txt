@@ -1,0 +1,20 @@
+COMPROBANTE DE VENTA
+(Documento no válido como factura)
+------------------------------------------------------------------------
+CLIENTE: 20297896499
+FECHA COMPRA: 29/06/2023
+PRODUCTOS: 
+
+   SAMSUNG | GALAXY M31
+   UNIDADES: 2
+
+   TLC | TLC 10 PRO
+   UNIDADES: 1
+
+------------------------------------------------------------------------
+IMPORTE FINAL: $23500.00
+VENDEDOR: MAXIMILIANO WENNER
+------------------------------------------------------------------------
+DISPOSITIVOS DIGITALES S.A.
+CUIT 25567893450
+Alvear 764 | CABA | CABA

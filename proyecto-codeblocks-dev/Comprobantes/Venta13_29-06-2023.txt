@@ -1,0 +1,20 @@
+COMPROBANTE DE VENTA
+(Documento no válido como factura)
+------------------------------------------------------------------------
+CLIENTE: 23388628464
+FECHA COMPRA: 29/06/2023
+PRODUCTOS: 
+
+   TLC | TLC 10 PRO
+   UNIDADES: 5
+
+   MOTOROLA | MOTO G PRO
+   UNIDADES: 2
+
+------------------------------------------------------------------------
+IMPORTE FINAL: $51500.00
+VENDEDOR: MAXIMILIANO WENNER
+------------------------------------------------------------------------
+DISPOSITIVOS DIGITALES S.A.
+CUIT 25567893450
+Alvear 764 | CABA | CABA

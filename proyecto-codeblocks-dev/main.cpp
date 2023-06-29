@@ -5,6 +5,8 @@
 #include "Usuario.h"
 #include "UsuarioArchivo.h"
 #include "Fecha.h"
+#include "VentaManager.h"
+#include "VentaArchivo.h"
 
 int main()
 {

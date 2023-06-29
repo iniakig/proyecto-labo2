@@ -1,0 +1,20 @@
+COMPROBANTE DE VENTA
+(Documento no válido como factura)
+------------------------------------------------------------------------
+CLIENTE: 38020815
+FECHA COMPRA: 29/06/2023
+PRODUCTOS: 
+
+   MOTOROLA | MOTO G POWER
+   UNIDADES: 1
+
+   SAMSUNG | GALAXY M31
+   UNIDADES: 1
+
+------------------------------------------------------------------------
+IMPORTE FINAL: $16000.00
+VENDEDOR: BRIAN LARA
+------------------------------------------------------------------------
+DISPOSITIVOS DIGITALES S.A.
+CUIT 25567893450
+Alvear 764 | CABA | CABA

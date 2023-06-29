@@ -751,7 +751,7 @@ void VentaManager::recaudacionAnual()
         std::cout << "Ingrese el año de consulta: ";
 
         int anio;
-        std::cin >> anio; // Falta validación en validaciones
+        std::cin >> anio;
         bool tieneRegistros = false;
 
         int cantidadDeVentas = _archivo.getCantidadRegistros();
@@ -831,7 +831,7 @@ void VentaManager::vendedorConMasVentasConcretadas()
     std::cout << "Ingrese el año de consulta: ";
 
     int anio;
-    std::cin >> anio; // Falta validación en validaciones
+    std::cin >> anio;
     bool tieneRegistros = false;
 
     int cantidadDeVentas = _archivo.getCantidadRegistros();

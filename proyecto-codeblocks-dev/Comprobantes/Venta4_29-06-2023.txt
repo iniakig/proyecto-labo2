@@ -1,0 +1,23 @@
+COMPROBANTE DE VENTA
+(Documento no válido como factura)
+------------------------------------------------------------------------
+CLIENTE: 23388628464
+FECHA COMPRA: 29/06/2023
+PRODUCTOS: 
+
+   XIAOMI | REDMI 9
+   UNIDADES: 5
+
+   XIAOMI | MI 11
+   UNIDADES: 5
+
+   SAMSUNG | GALAXY A52
+   UNIDADES: 5
+
+------------------------------------------------------------------------
+IMPORTE FINAL: $155000.00
+VENDEDOR: BRIAN LARA
+------------------------------------------------------------------------
+DISPOSITIVOS DIGITALES S.A.
+CUIT 25567893450
+Alvear 764 | CABA | CABA

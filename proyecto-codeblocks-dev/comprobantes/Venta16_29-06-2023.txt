@@ -1,16 +1,19 @@
 COMPROBANTE DE VENTA
 (Documento no válido como factura)
 ------------------------------------------------------------------------
-CLIENTE: 33781477
+CLIENTE: 20337814779
 FECHA COMPRA: 29/06/2023
-MOTOROLA | MOTO G POWER
-UNIDADES: 1
-MOTOROLA | MOTO G STYLUS
-UNIDADES: 1
-XIAOMI | REDMI NOTE 9
-UNIDADES: 2
-IMPORTE FINAL:$ 32500.000000
-VENDEDOR: NAHUEL ALVEZ
+PRODUCTOS: 
+
+   MOTOROLA | MOTO G PAD 8.0
+   UNIDADES: 1
+
+   TLC | TLC 10 PRO
+   UNIDADES: 2
+
+------------------------------------------------------------------------
+IMPORTE FINAL: $20500.00
+VENDEDOR: MAXIMILIANO WENNER
 ------------------------------------------------------------------------
 DISPOSITIVOS DIGITALES S.A.
 CUIT 25567893450
