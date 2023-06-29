@@ -19,6 +19,7 @@ public:
     void generarComprobante(Venta venta);
 	void ventasPorEmpleado();
 	void recaudacionAnual();
+	void vendedorConMasVentasConcretadas();
 	void listarPorMedioDePago();
 	void hacerCopiaDeSeguridad();
 	void restaurarCopiaDeSeguridad();

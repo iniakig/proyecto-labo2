@@ -34,6 +34,12 @@ void InformesMenu::mostrar() {
             case 3:
                 _productoManager.productosPorAgotarse();
                 break;
+            case 4:
+                break;
+            case 5:
+                _ventaManager.vendedorConMasVentasConcretadas();
+            case 6:
+                break;
             default:
                 break;
         }

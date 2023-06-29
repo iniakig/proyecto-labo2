@@ -801,7 +801,7 @@ void VentaManager::recaudacionAnual() {
         "Diciembre"
     };
 
-    if (tieneRegistros == true) {
+    if (tieneRegistros) {
         std::cout << std::endl;
         std::cout << "-----------------------------------" << std::endl;
         std::cout << "   MES              IMPORTE" << std::endl;
@@ -828,4 +828,80 @@ void VentaManager::recaudacionAnual() {
 
     rlutil::anykey();
     delete[] listaDeVentas;
+}
+
+void VentaManager::vendedorConMasVentasConcretadas() {
+    rlutil::cls();
+    std::cout << "VENDEDOR CON MÁS VENTAS CONCRETADAS POR IMPORTE" << std::endl;
+    std::cout << "------------------------------------------------------------------------------------------------------------------------" << std::endl;
+    std::cout << "Ingrese el año de consulta: ";
+
+    int anio;
+    std::cin >> anio; // Falta validación en validaciones
+    bool tieneRegistros = false;
+
+    int cantidadDeVentas = _archivo.getCantidadRegistros();
+    Venta* listaDeVentas = new Venta[cantidadDeVentas];
+
+    _archivo.leer(listaDeVentas, cantidadDeVentas);
+
+    Usuario usuario;
+    UsuarioArchivo usuarioArchivo;
+    int cantidadDeVendedores = usuarioArchivo.getCantidadDeUsuarios();
+    float* montosPorVendedor = new float[cantidadDeVendedores];
+
+    for (int i = 0; i < cantidadDeVendedores; i++) {
+        montosPorVendedor[i] = 0;
+    }
+
+    for (int i = 0; i < cantidadDeVentas; i++) {
+        if (listaDeVentas[i].getFecha().getAnio() == anio) {
+            int idVendedor = listaDeVentas[i].getIdVendedor();
+            montosPorVendedor[idVendedor - 1] += listaDeVentas[i].getMontoCompra();
+            tieneRegistros = true;
+        }
+    }
+
+    if (tieneRegistros) {
+        int idMayorVendedor;
+        for (int i = 0; i < cantidadDeVendedores; i++) {
+            idMayorVendedor = 0;
+            if (montosPorVendedor[i] > montosPorVendedor[idMayorVendedor]) {
+                idMayorVendedor = i;
+            }
+        }
+
+        int posicionMayorVendedor = usuarioArchivo.buscar(idMayorVendedor);
+        usuario = usuarioArchivo.leer(posicionMayorVendedor);
+        std::string aliasMayorVendedor(usuario.getAlias());
+
+        std::cout << std::endl;
+        rlutil::setColor(rlutil::LIGHTGREEN);
+        std::cout << "El vendedor con mayores ventas es: " << aliasMayorVendedor << std::endl;
+        rlutil::setColor(rlutil::WHITE);
+        std::cout << std::endl;
+
+        std::cout << "---------------------------------------------------------------" << std::endl;
+        for (int i = 0; i < cantidadDeVendedores; i++) {
+            if (montosPorVendedor[i] > 0) {
+                std::cout << "ID del vendedor: " << i + 1 << std::endl;
+
+                int posicion = usuarioArchivo.buscar(i + 1);
+                usuario = usuarioArchivo.leer(posicion);
+                std::string alias(usuario.getAlias());
+
+                std::cout << "ALIAS: " << alias << std::endl;
+                std::cout << "MONTO VENDIDO: $" << montosPorVendedor[i] << std::endl;
+                std::cout << "---------------------------------------------------------------" << std::endl;
+            }
+        }
+        mensajeFinDelListado();
+    }
+    else {
+        mensajeListadoSinDatosEncontrados();
+    }
+
+    rlutil::anykey();
+    delete[] listaDeVentas;
+    delete[] montosPorVendedor;
 }
