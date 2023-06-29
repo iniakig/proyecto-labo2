@@ -26,7 +26,7 @@ void InformesMenu::mostrar() {
             case 0:
                 break;
             case 1:
-               _ventaManager.ventasTotalesPorVendedor();
+                _ventaManager.ventasTotalesPorVendedor();
                 break;
             case 2:
                 _ventaManager.recaudacionAnual();
