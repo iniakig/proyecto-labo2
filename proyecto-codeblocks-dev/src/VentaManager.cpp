@@ -962,7 +962,71 @@ void VentaManager::ventasTotalesPorVendedor()
 
 }
 
-void VentaManager::resumenVentasDiarias(){
+void VentaManager::resumenVentasDiarias()
+{
+    std::cout<<std::endl;
+    std::cout<<"----- DETALLE VENTAS DIARIAS -----"<<std::endl;
+    std::cout<<std::endl;
+    std::cout << "1. LISTAR LAS VENTAS DEL DIA DE HOY" << std::endl;
+    std::cout << "2. LISTAR VENTAS DE DIAS ANTERIORES" << std::endl;
+    int opcion;
+    opcion = ingresoOpcSimpleConValidacion();
+
+    if(opcion == 1)
+    {
+        Fecha fechaActual;
+        fechaActual = Fecha().fechaActual();
+        int cantidadVentasValidas = 0;
+
+        int cantidadVentas = _archivo.getCantidadRegistros();
+        for(int i = 0; i<cantidadVentas; i++)
+        {
+            Venta reg;
+            reg = _archivo.leer(i);
+            Fecha fechaVenta;
+            fechaVenta = reg.getFecha();
+
+            if(fechaVenta.getDia() == fechaActual.getDia() && fechaVenta.getMes() == fechaActual.getMes() && fechaVenta.getAnio() == fechaActual.getAnio() && reg.getActivo())
+            {
+                cantidadVentasValidas ++;
+            }
+        }
+
+        if(cantidadVentasValidas > 0)
+        {
+            rlutil::cls();
+            std::cout<<"----- VENTAS DEL DIA "<<fechaActual.toString()<<" -----"<<std::endl;
+            std::cout<<std::endl;
+            std::cout << std::left;
+            std::cout << std::setw(4) << "Id";
+            std::cout << std::setw(13) << "Cliente";
+            std::cout << std::setw(12) << "Importe $";
+            std::cout << std::setw(19) << "Forma Pago";
+            std::cout << std::setw(11) << "Vendedor";
+            std::cout << std::setw(13) << "F. Venta";
+            std::cout << std::endl;
+            std::cout << "-------------------------------------------------------------------------" << std::endl;
+
+            for(int i = 0; i<cantidadVentas; i++)
+            {
+                Venta reg;
+                reg = _archivo.leer(i);
+                Fecha fechaVenta;
+                fechaVenta = reg.getFecha();
+
+                if(fechaVenta.getDia() == fechaActual.getDia() && fechaVenta.getMes() == fechaActual.getMes() && fechaVenta.getAnio() == fechaActual.getAnio() && reg.getActivo())
+                {
+                    Listar(reg, 1);
+                }
+            }
+            mensajeFinDelListado();
+        }
+        else
+        {
+            mensajeListadoSinDatosEncontrados();
+        }
+        rlutil::anykey();
+    }
 
 }
 
