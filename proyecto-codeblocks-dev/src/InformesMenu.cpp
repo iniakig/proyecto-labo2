@@ -39,6 +39,7 @@ void InformesMenu::mostrar() {
                 break;
             case 5:
                 _ventaManager.vendedorConMasVentasConcretadas();
+                break;
             case 6:
                 _ventaManager.resumenVentasDiarias();
                 break;

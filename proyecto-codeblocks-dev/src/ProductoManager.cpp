@@ -1114,7 +1114,7 @@ void ProductoManager::cincoProductosMasVendidos()
     for(int a=0; a<cantVentas; a++)
     {
         venta=archivoVenta.leer(a);
-        if(venta.getFecha().getAnio() == fechaActual.getAnio() && venta.getFecha().getMes()== fechaActual.getMes())
+        if(venta.getActivo() && venta.getFecha().getAnio() == fechaActual.getAnio() && venta.getFecha().getMes()== fechaActual.getMes())
         {
             vecIdprod=venta.getVecIdProducto();//VECTOR QUE CONTIENE LOS ID DE LOS PRODUCTOS DE LA VENTA
             vecUnidadesPorProd=venta.getVecUnidadesxProducto();

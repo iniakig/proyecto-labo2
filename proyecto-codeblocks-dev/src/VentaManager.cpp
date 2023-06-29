@@ -257,8 +257,9 @@ void VentaManager::ListarTodasResumen()
     }
     else
     {
-        //std::cout << "Registros encontrados: " << cantidadActivos << std::endl;
-        //std::cout << std::endl;
+        rlutil::cls();
+        std::cout << "RESUMEN VENTAS" << std::endl;
+        std::cout << "-------------------------------------------------------------------------" << std::endl;
         std::cout << std::left;
         std::cout << std::setw(4) << "Id";
         std::cout << std::setw(13) << "Cliente";
@@ -860,17 +861,16 @@ void VentaManager::vendedorConMasVentasConcretadas()
 
     if (tieneRegistros)
     {
-        int idMayorVendedor;
+        int posicionMayor = 0;
         for (int i = 0; i < cantidadDeVendedores; i++)
         {
-            idMayorVendedor = 0;
-            if (montosPorVendedor[i] > montosPorVendedor[idMayorVendedor])
+            if (montosPorVendedor[i] > montosPorVendedor[posicionMayor])
             {
-                idMayorVendedor = i;
+                posicionMayor = i;
             }
         }
 
-        int posicionMayorVendedor = usuarioArchivo.buscar(idMayorVendedor);
+        int posicionMayorVendedor = usuarioArchivo.buscar(posicionMayor+1);
         usuario = usuarioArchivo.leer(posicionMayorVendedor);
         std::string aliasMayorVendedor(usuario.getAlias());
 
@@ -934,7 +934,7 @@ void VentaManager::ventasTotalesPorVendedor()
             for(int a=0; a<cantVentas; a++)
             {
                 venta=_archivo.leer(a);
-                if(usuario.getRol()==2 && usuario.getEstado()==true && venta.getFecha().getMes()== fechaActual.fechaActual().getMes() && venta.getFecha().getAnio()==fechaActual.fechaActual().getAnio())
+                if(usuario.getEstado()==true && venta.getFecha().getMes()== fechaActual.getMes() && venta.getFecha().getAnio()==fechaActual.getAnio() && venta.getActivo())
                 {
                     if(usuario.getId()==venta.getIdVendedor())
                     {
@@ -944,15 +944,16 @@ void VentaManager::ventasTotalesPorVendedor()
                 }
             }
 
-            if(usuario.getRol()==2 && usuario.getEstado()==true)
+            if(cantVentasMensual > 0)
             {
                 std::cout<<"ID VENDEDOR: "<<usuario.getId()<<std::endl;
                 std::cout<<"NOMBRE Y APELLIDO: "<<usuario.getNombre()<<" "<<usuario.getApellido()<<std::endl;
                 std::cout<<"CANTIDAD DE VENTAS EN EL MES: "<<cantVentasMensual<<std::endl;
-                std::cout<<"IMPORTE MENSUAL TOTAL: "<<importeMensual<<std::endl;
+                std::cout<<"IMPORTE MENSUAL TOTAL: "<< std::fixed << std::setprecision(2)<< importeMensual<<std::endl;
                 std::cout<<std::endl;
             }
         }
+        mensajeFinDelListado();
     }
     else
     {
@@ -964,6 +965,7 @@ void VentaManager::ventasTotalesPorVendedor()
 
 void VentaManager::resumenVentasDiarias()
 {
+    rlutil::cls();
     std::cout<<std::endl;
     std::cout<<"----- DETALLE VENTAS DIARIAS -----"<<std::endl;
     std::cout<<std::endl;
@@ -995,6 +997,7 @@ void VentaManager::resumenVentasDiarias()
         if(cantidadVentasValidas > 0)
         {
             rlutil::cls();
+            float montoAcumulado = 0;
             std::cout<<"----- VENTAS DEL DIA "<<fechaActual.toString()<<" -----"<<std::endl;
             std::cout<<std::endl;
             std::cout << std::left;
@@ -1017,8 +1020,14 @@ void VentaManager::resumenVentasDiarias()
                 if(fechaVenta.getDia() == fechaActual.getDia() && fechaVenta.getMes() == fechaActual.getMes() && fechaVenta.getAnio() == fechaActual.getAnio() && reg.getActivo())
                 {
                     Listar(reg, 1);
+                    montoAcumulado += reg.getMontoCompra();
                 }
             }
+            rlutil::setColor(rlutil::GREEN);
+            std::cout<<std::endl;
+            std::cout << "IMPORTE TOTAL VENDIDO $"<< std::fixed << std::setprecision(2)<< montoAcumulado << std::endl;
+            rlutil::setColor(rlutil::WHITE);
+            std::cout << "-------------------------------------------------------------------------" << std::endl;
             mensajeFinDelListado();
         }
         else
@@ -1027,6 +1036,86 @@ void VentaManager::resumenVentasDiarias()
         }
         rlutil::anykey();
     }
+    else
+    {
+        rlutil::cls();
+        int dia, mes, anio;
+        std::cout << "INGRESE EL DIA: ";
+        std::cin >> dia;
+        std::cout << "INGRESE EL MES: ";
+        std::cin >> mes;
+        std::cout << "INGRESE EL AÑO: ";
+        std::cin >> anio;
+        cin.ignore();
+
+        Fecha fechaSeleccionada(dia, mes, anio);
+
+        if(fechaSeleccionada.getAnio() == 1900)
+        {
+            std::cout << "LA FECHA INGRESADA ES INVALIDA.";
+        }
+        else
+        {
+            int cantidadVentasValidas = 0;
+            int cantidadVentas = _archivo.getCantidadRegistros();
+
+            for (int i = 0; i<cantidadVentas; i ++)
+            {
+                Venta reg;
+                reg = _archivo.leer(i);
+                Fecha fechaVenta = reg.getFecha();
+
+                if(fechaSeleccionada.getDia() == fechaVenta.getDia() && fechaSeleccionada.getMes() == fechaVenta.getMes() && fechaSeleccionada.getAnio() == fechaVenta.getAnio() && reg.getActivo())
+                {
+                    cantidadVentasValidas ++;
+                }
+            }
+
+
+
+            if(cantidadVentasValidas > 0)
+            {
+                rlutil::cls();
+                float montoAcumulado = 0;
+                std::cout<<"----- VENTAS DEL DIA "<<fechaSeleccionada.toString()<<" -----"<<std::endl;
+                std::cout<<std::endl;
+                std::cout << std::left;
+                std::cout << std::setw(4) << "Id";
+                std::cout << std::setw(13) << "Cliente";
+                std::cout << std::setw(12) << "Importe $";
+                std::cout << std::setw(19) << "Forma Pago";
+                std::cout << std::setw(11) << "Vendedor";
+                std::cout << std::setw(13) << "F. Venta";
+                std::cout << std::endl;
+                std::cout << "-------------------------------------------------------------------------" << std::endl;
+                for(int i = 0; i<cantidadVentas; i++)
+                {
+                    Venta reg;
+                    reg = _archivo.leer(i);
+                    Fecha fechaVenta;
+                    fechaVenta = reg.getFecha();
+
+                    if(fechaVenta.getDia() == fechaSeleccionada.getDia() && fechaVenta.getMes() == fechaSeleccionada.getMes() && fechaVenta.getAnio() == fechaSeleccionada.getAnio() && reg.getActivo())
+                    {
+                        Listar(reg, 1);
+                        montoAcumulado += reg.getMontoCompra();
+                    }
+                }
+                rlutil::setColor(rlutil::GREEN);
+                std::cout<<std::endl;
+                std::cout << "IMPORTE TOTAL VENDIDO $"<< std::fixed << std::setprecision(2)<< montoAcumulado << std::endl;
+                rlutil::setColor(rlutil::WHITE);
+                std::cout << "-------------------------------------------------------------------------" << std::endl;
+                mensajeFinDelListado();
+
+            }
+            else
+            {
+                mensajeListadoSinDatosEncontrados();
+            }
+        }
+    }
+    rlutil::anykey();
 
 }
 

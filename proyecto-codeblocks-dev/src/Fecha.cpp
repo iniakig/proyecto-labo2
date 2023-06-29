@@ -21,7 +21,7 @@ Fecha::Fecha(int dia, int mes, int anio)
     else {
         _dia = 1;
         _mes = 1;
-        _anio = 2023;
+        _anio = 1900;
     }
 }
 

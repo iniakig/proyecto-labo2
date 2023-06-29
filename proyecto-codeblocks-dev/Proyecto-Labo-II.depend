@@ -250,7 +250,7 @@
 	"Encabezado.h"
 	"../rlutil.h"
 
-1688039454 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\fecha.cpp
+1688069254 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\fecha.cpp
 	"Fecha.h"
 
 1685896227 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\pantalla.cpp
@@ -740,7 +740,7 @@
 	"../funciones.h"
 	"../mensajes.h"
 
-1688065638 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\productomanager.cpp
+1688073807 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\productomanager.cpp
 	"ProductoManager.h"
 	"../funciones.h"
 	<../rlutil.h>
@@ -819,7 +819,7 @@
 	"../funciones.h"
 	<../rlutil.h>
 
-1688067539 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\ventamanager.cpp
+1688070633 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\ventamanager.cpp
 	<iostream>
 	<cstdio>
 	<iomanip>
@@ -1012,7 +1012,7 @@
 	"VentaManager.h"
 	"UsuarioManager.h"
 
-1688066514 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\informesmenu.cpp
+1688070925 source:c:\users\igald\onedrive\documentos\personal\utn\2023\1° cuatrimestre\laboratorio ii\proyecto-final\proyecto-codeblocks-dev\src\informesmenu.cpp
 	"InformesMenu.h"
 	"../rlutil.h"
 
