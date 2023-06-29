@@ -21,10 +21,10 @@ int enteroConvertidoAInt(std::string stringParaConvertir)
     return numero;
 }
 
-float stringConvertidoAFloat(std::string stringParaConvertir){
-    float numero = 0;
+double stringConvertidoDouble(std::string stringParaConvertir){
+    double numero = 0;
 
-    numero = std::stof(stringParaConvertir);
+    numero = std::stod(stringParaConvertir);
 
     return numero;
 }

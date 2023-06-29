@@ -17,7 +17,7 @@ int ingresoCategoriaProdConValidacion();
 int ingresoMetodoPagoConValidacion();
 int ingresoStockConValidacion();
 int ingresoDeNumeroEnteroConValidacion();
-float ingresoPrecioConValidacion();
+double ingresoPrecioConValidacion();
 std::string ingresoDeRazonSocialConValidacion();
 std::string ingresoDeLocalidadConValidacion();
 std::string ingresoModeloConValidacion();

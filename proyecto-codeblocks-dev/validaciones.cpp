@@ -84,9 +84,9 @@ int ingresoDeNumeroEnteroConValidacion() {
     return entero;
 }
 
-float ingresoPrecioConValidacion() {
+double ingresoPrecioConValidacion() {
     std::string precioAux;
-    float precio;
+    double precio;
     const std::regex expresionRegular("^[0-9]+(\\.[0-9]+)?$");
 
     getline(std::cin, precioAux);
@@ -95,7 +95,7 @@ float ingresoPrecioConValidacion() {
         std::cout << "El precio ingresado no es válido. Solo puede ingresar numeros.";
         getline(std::cin, precioAux);
     }
-    precio = stringConvertidoAFloat(precioAux);
+    precio = stringConvertidoDouble(precioAux);
     return precio;
 }
 
