@@ -16,7 +16,6 @@ public:
 	void Anular();
     void Reactivar();
     void ListarVentas();
-    void generarComprobante(Venta venta);
 	void listarPorMedioDePago();
 	void hacerCopiaDeSeguridad();
 	void restaurarCopiaDeSeguridad();
@@ -41,6 +40,7 @@ private:
     void ListarTodasDetalle();
     void ListarTodasResumen();
     void ListarVentasAnuladas();
+    void generarComprobante(Venta venta);
 };
 
 
