@@ -65,6 +65,18 @@ void ponerCero(int *vec, int tam)
     }
 }
 
+bool validarRol(const bool *permisos, const int rol)
+{
+    if(permisos[rol])
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
 void listarProvincias()
 {
     const int cantidadProvincias = 24;

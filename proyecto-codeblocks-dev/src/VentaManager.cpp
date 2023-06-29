@@ -324,10 +324,12 @@ void VentaManager::ListarVentasAnuladas()
         std::cout << std::setw(13) << "F. Venta";
         std::cout << std::endl;
         std::cout << "-------------------------------------------------------------------------" << std::endl;
-        for(int i = 0; i < cantidadRegistros; i ++){
+        for(int i = 0; i < cantidadRegistros; i ++)
+        {
             Venta reg;
             reg = _archivo.leer(i);
-            if(!reg.getActivo()){
+            if(!reg.getActivo())
+            {
                 ventasAnuladas[ultimaPosicionGrabada] = reg;
                 Listar(reg, 1);
             }
@@ -456,59 +458,6 @@ void VentaManager::generarComprobante(Venta venta)
     }
 }
 
-/*
-void VentaManager::generarComprobante(Venta venta)
-{
-
-    std::string nombreArchivo = "/Venta"+std::to_string(venta.getIdPedido())+".txt";
-    //char archivo [50];
-    //strcpy(archivo, nombreArchivo.c_str());
-
-    std::string directorio = "../../Comprobantes";
-    std::string rutaTxt = directorio + nombreArchivo;
-
-    //std::string rutaCompleta = directorio + nombreArchivo;
-    cout<<rutaTxt<<endl;
-
-    const int* vecIdProducto = venta.getVecIdProducto();
-    const int* vecUnidadesProducto = venta.getVecUnidadesxProducto();
-    int cantidadProductos = venta.getCantidadProductos();
-
-    FILE* archivoTxt = fopen(rutaTxt.c_str(), "ab");
-    if (archivoTxt != nullptr)
-    {
-        fprintf(archivoTxt, "Información de venta:\n");
-        fprintf(archivoTxt, "CLIENTE: %s\n", venta.getNroDocCliente().c_str());
-        fprintf(archivoTxt, "FECHA COMPRA: %s\n", venta.getFecha().toString().c_str());
-        for(int i = 0; i<cantidadProductos; i++)
-        {
-            ProductoArchivo arProducto;
-            MarcaArchivo arMarca;
-            Producto productoAux;
-            productoAux = arProducto.leer(arProducto.buscar(vecIdProducto[i]));
-            Marca marcaAux;
-            marcaAux = arMarca.leer(arMarca.buscar(productoAux.getIdMarca()));
-            std::string nombreString(marcaAux.getNombre());
-            std::string productoString = nombreString + " | " + productoAux.getModelo();
-            fprintf(archivoTxt, "%s\n", productoString.c_str());
-            fprintf(archivoTxt, "UNIDADES: %d\n", vecUnidadesProducto[i]);
-        }
-        fprintf(archivoTxt, "IMPORTE FINAL:$ %f\n", venta.getMontoCompra());
-
-        UsuarioArchivo arUsuario;
-        Usuario vendedor;
-        vendedor = arUsuario.leer(arUsuario.buscar(venta.getIdVendedor()));
-        std::string nombreVendedor = (vendedor.getNombre());
-        std::string apellidoVendedor = (vendedor.getApellido());
-
-        std::string vendedorString = "VENDEDOR: " + nombreVendedor + " " + apellidoVendedor;
-        fprintf(archivoTxt, "%s\n", vendedorString.c_str());
-        fclose(archivoTxt);
-    }
-
-}
-*/
-
 void VentaManager::Cargar()
 {
     ProductoArchivo arProducto;
@@ -584,54 +533,65 @@ void VentaManager::Cargar()
 
 void VentaManager::Anular()
 {
+    setPermisos(1, 0, 0);
 
-    int posicion, idVenta;
-    std::cout<<"ID VENTA A ELIMINAR: "<<std::endl;
-    std::cin>>idVenta;
 
-    posicion = _archivo.buscar(idVenta);
+    UsuarioActivo usuario;
+    int rolUsuario = usuario.getRolUsuarioActivo();
 
-    if(posicion >= 0)
+    if(validarRol(_permisos, rolUsuario))
     {
-        Venta reg;
-        reg = _archivo.leer(posicion);
-        if(reg.getActivo())
-        {
-            std::cout<<"ELIMINARA LA SIGUIENTE VENTA: "<<std::endl;
-            Listar(reg,0);
-            std::cout<<"CONTINUAR? (SI | NO): "<<std::endl;
-            std::string decision = ingresoDeDecisionConValidacion();
+        int posicion, idVenta;
+        std::cout<<"ID VENTA A ELIMINAR: "<<std::endl;
+        std::cin>>idVenta;
 
-            if(decision == "SI")
+        posicion = _archivo.buscar(idVenta);
+
+        if(posicion >= 0)
+        {
+            Venta reg;
+            reg = _archivo.leer(posicion);
+            if(reg.getActivo())
             {
-                reg.setActivo(false);
-                if(_archivo.guardar(reg, posicion))
+                std::cout<<"ELIMINARA LA SIGUIENTE VENTA: "<<std::endl;
+                Listar(reg,0);
+                std::cout<<"CONTINUAR? (SI | NO): "<<std::endl;
+                std::string decision = ingresoDeDecisionConValidacion();
+
+                if(decision == "SI")
                 {
-                    const int* vecIdProductos = reg.getVecIdProducto();
-                    const int* vecUnidadesXProducto = reg.getVecUnidadesxProducto();
-                    int cantidadProductos = reg.getCantidadProductos();
-                    restaurarStock(vecIdProductos, vecUnidadesXProducto, cantidadProductos);
-                    okMensajeBaja();
-                    rlutil::anykey();
+                    reg.setActivo(false);
+                    if(_archivo.guardar(reg, posicion))
+                    {
+                        const int* vecIdProductos = reg.getVecIdProducto();
+                        const int* vecUnidadesXProducto = reg.getVecUnidadesxProducto();
+                        int cantidadProductos = reg.getCantidadProductos();
+                        restaurarStock(vecIdProductos, vecUnidadesXProducto, cantidadProductos);
+                        okMensajeBaja();
+                        rlutil::anykey();
+                    }
+                    else
+                    {
+                        errorMensajeBaja();
+                        rlutil::anykey();
+                    }
                 }
-                else
-                {
-                    errorMensajeBaja();
-                    rlutil::anykey();
-                }
+            }
+            else
+            {
+                registroYaEliminado();
+                rlutil::anykey();
             }
         }
         else
         {
-            registroYaEliminado();
-            rlutil::anykey();
+            registroNoEncontradoMensaje();
         }
+    }else{
+        mensajeAccesoRestringido();
     }
-    else
-    {
-        registroNoEncontradoMensaje();
-        rlutil::anykey();
-    }
+    rlutil::anykey();
+
 
 }
 
@@ -761,7 +721,8 @@ void VentaManager::restaurarCopiaDeSeguridad()
     rlutil::anykey();
 }
 
-void VentaManager::recaudacionAnual() {
+void VentaManager::recaudacionAnual()
+{
     rlutil::cls();
     std::cout << "RECAUDACIÓN ANUAL" << std::endl;
     std::cout << "------------------------------------------------------------------------------------------------------------------------" << std::endl;
@@ -778,15 +739,18 @@ void VentaManager::recaudacionAnual() {
 
     float meses[12] = {};
 
-    for (int i = 0; i < cantidadDeVentas; i++) {
-        if (listaDeVentas[i].getFecha().getAnio() == anio) {
+    for (int i = 0; i < cantidadDeVentas; i++)
+    {
+        if (listaDeVentas[i].getFecha().getAnio() == anio)
+        {
             int mes = listaDeVentas[i].getFecha().getMes();
             meses[mes - 1] += listaDeVentas[i].getMontoCompra();
             tieneRegistros = true;
         }
     }
 
-    std::string mesesDescripcion[12] = {
+    std::string mesesDescripcion[12] =
+    {
         "Enero",
         "Febrero",
         "Marzo",
@@ -801,7 +765,8 @@ void VentaManager::recaudacionAnual() {
         "Diciembre"
     };
 
-    if (tieneRegistros) {
+    if (tieneRegistros)
+    {
         std::cout << std::endl;
         std::cout << "-----------------------------------" << std::endl;
         std::cout << "   MES              IMPORTE" << std::endl;
@@ -822,7 +787,8 @@ void VentaManager::recaudacionAnual() {
 
         mensajeFinDelListado();
     }
-    else {
+    else
+    {
         mensajeListadoSinDatosEncontrados();
     }
 
@@ -830,7 +796,8 @@ void VentaManager::recaudacionAnual() {
     delete[] listaDeVentas;
 }
 
-void VentaManager::vendedorConMasVentasConcretadas() {
+void VentaManager::vendedorConMasVentasConcretadas()
+{
     rlutil::cls();
     std::cout << "VENDEDOR CON MÁS VENTAS CONCRETADAS POR IMPORTE" << std::endl;
     std::cout << "------------------------------------------------------------------------------------------------------------------------" << std::endl;
@@ -850,23 +817,29 @@ void VentaManager::vendedorConMasVentasConcretadas() {
     int cantidadDeVendedores = usuarioArchivo.getCantidadDeUsuarios();
     float* montosPorVendedor = new float[cantidadDeVendedores];
 
-    for (int i = 0; i < cantidadDeVendedores; i++) {
+    for (int i = 0; i < cantidadDeVendedores; i++)
+    {
         montosPorVendedor[i] = 0;
     }
 
-    for (int i = 0; i < cantidadDeVentas; i++) {
-        if (listaDeVentas[i].getFecha().getAnio() == anio) {
+    for (int i = 0; i < cantidadDeVentas; i++)
+    {
+        if (listaDeVentas[i].getFecha().getAnio() == anio)
+        {
             int idVendedor = listaDeVentas[i].getIdVendedor();
             montosPorVendedor[idVendedor - 1] += listaDeVentas[i].getMontoCompra();
             tieneRegistros = true;
         }
     }
 
-    if (tieneRegistros) {
+    if (tieneRegistros)
+    {
         int idMayorVendedor;
-        for (int i = 0; i < cantidadDeVendedores; i++) {
+        for (int i = 0; i < cantidadDeVendedores; i++)
+        {
             idMayorVendedor = 0;
-            if (montosPorVendedor[i] > montosPorVendedor[idMayorVendedor]) {
+            if (montosPorVendedor[i] > montosPorVendedor[idMayorVendedor])
+            {
                 idMayorVendedor = i;
             }
         }
@@ -882,8 +855,10 @@ void VentaManager::vendedorConMasVentasConcretadas() {
         std::cout << std::endl;
 
         std::cout << "---------------------------------------------------------------" << std::endl;
-        for (int i = 0; i < cantidadDeVendedores; i++) {
-            if (montosPorVendedor[i] > 0) {
+        for (int i = 0; i < cantidadDeVendedores; i++)
+        {
+            if (montosPorVendedor[i] > 0)
+            {
                 std::cout << "ID del vendedor: " << i + 1 << std::endl;
 
                 int posicion = usuarioArchivo.buscar(i + 1);
@@ -897,7 +872,8 @@ void VentaManager::vendedorConMasVentasConcretadas() {
         }
         mensajeFinDelListado();
     }
-    else {
+    else
+    {
         mensajeListadoSinDatosEncontrados();
     }
 
@@ -946,4 +922,11 @@ void VentaManager::ventasTotalesPorVendedor()
     }
     rlutil::anykey();
 
+}
+
+void VentaManager::setPermisos(bool adm, bool sup, bool ven)
+{
+    _permisos[0] = adm;
+    _permisos[1] = sup;
+    _permisos[2] = ven;
 }

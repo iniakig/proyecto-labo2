@@ -20,7 +20,7 @@ public:
 	void listarPorMedioDePago();
 	void hacerCopiaDeSeguridad();
 	void restaurarCopiaDeSeguridad();
-	void setPermisos(bool adm, bool sup, bool ven);
+	void setPermisos(bool adm = false, bool sup = false, bool ven = false);
 
 	//INFORMES
 	void ventasPorEmpleado();
