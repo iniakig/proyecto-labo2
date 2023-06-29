@@ -762,7 +762,7 @@ void VentaManager::recaudacionAnual()
 
         for (int i = 0; i < cantidadDeVentas; i++)
         {
-            if (listaDeVentas[i].getFecha().getAnio() == anio)
+            if (listaDeVentas[i].getFecha().getAnio() == anio && listaDeVentas[i].getActivo())
             {
                 int mes = listaDeVentas[i].getFecha().getMes();
                 meses[mes - 1] += listaDeVentas[i].getMontoCompra();
@@ -850,7 +850,7 @@ void VentaManager::vendedorConMasVentasConcretadas()
 
     for (int i = 0; i < cantidadDeVentas; i++)
     {
-        if (listaDeVentas[i].getFecha().getAnio() == anio)
+        if (listaDeVentas[i].getFecha().getAnio() == anio && listaDeVentas[i].getActivo())
         {
             int idVendedor = listaDeVentas[i].getIdVendedor();
             montosPorVendedor[idVendedor - 1] += listaDeVentas[i].getMontoCompra();
@@ -959,6 +959,10 @@ void VentaManager::ventasTotalesPorVendedor()
         mensajeAccesoRestringido();
     }
     rlutil::anykey();
+
+}
+
+void VentaManager::resumenVentasDiarias(){
 
 }
 

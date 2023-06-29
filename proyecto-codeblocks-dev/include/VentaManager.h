@@ -16,7 +16,6 @@ public:
 	void Anular();
     void Reactivar();
     void ListarVentas();
-	void listarPorMedioDePago();
 	void hacerCopiaDeSeguridad();
 	void restaurarCopiaDeSeguridad();
 	void setPermisos(bool adm = false, bool sup = false, bool ven = false);
@@ -26,6 +25,7 @@ public:
 	void recaudacionAnual();
 	void vendedorConMasVentasConcretadas();
     void ventasTotalesPorVendedor();
+    void resumenVentasDiarias();
 
 private:
     bool _permisos[3]; // Posición 0. Adm | 1. Sup | 2. Ven
