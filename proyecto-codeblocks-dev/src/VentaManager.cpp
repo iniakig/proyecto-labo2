@@ -529,7 +529,7 @@ void VentaManager::Cargar()
         int vecIdProducto[10];
         int vecUnidadesxProducto[10];
         int cantidadProductos = 0;
-        float montoCompra;
+        long double montoCompra;
         int metodoPago;
         int idVendedor;
         bool activo = true;
@@ -546,7 +546,7 @@ void VentaManager::Cargar()
 
             producto = arProducto.leer(posicion);
 
-            float monto = producto.getPrecio() * vecUnidadesxProducto[i];
+            long double monto = producto.getPrecio() * vecUnidadesxProducto[i];
             montoCompra += monto;
         }
 
@@ -776,7 +776,7 @@ void VentaManager::recaudacionAnual() {
 
     _archivo.leer(listaDeVentas, cantidadDeVentas);
 
-    float meses[12] = {};
+    long double meses[12] = {};
 
     for (int i = 0; i < cantidadDeVentas; i++) {
         if (listaDeVentas[i].getFecha().getAnio() == anio) {
@@ -848,7 +848,7 @@ void VentaManager::vendedorConMasVentasConcretadas() {
     Usuario usuario;
     UsuarioArchivo usuarioArchivo;
     int cantidadDeVendedores = usuarioArchivo.getCantidadDeUsuarios();
-    float* montosPorVendedor = new float[cantidadDeVendedores];
+    long double* montosPorVendedor = new long double[cantidadDeVendedores];
 
     for (int i = 0; i < cantidadDeVendedores; i++) {
         montosPorVendedor[i] = 0;
