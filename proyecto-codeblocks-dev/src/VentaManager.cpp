@@ -195,7 +195,7 @@ void VentaManager::Listar(Venta venta, int tipoListado)
             std::cout<<"ID: "<<vecProductos[i]<<" | "<<marcaAux.getNombre()<<" | "<< productoAux.getModelo()<<std::endl;
             std::cout<<"CANTIDAD: "<<vecUnidades[i]<<std::endl;
         }
-        std::cout<<"IMPORTE: $"<<venta.getMontoCompra()<<endl;
+        std::cout<<"IMPORTE: $"<< std::fixed << std::setprecision(2)<<venta.getMontoCompra()<<endl;
         std::cout<<"METODO PAGO: "<<metodoPago<<endl;
         UsuarioArchivo arUsuario;
         Usuario vendedor;
@@ -208,7 +208,7 @@ void VentaManager::Listar(Venta venta, int tipoListado)
         std::cout << std::left;
         std::cout << std::setw(4) << venta.getIdPedido();
         std::cout << std::setw(13) << venta.getNroDocCliente();
-        std::cout << std::setw(12) << venta.getMontoCompra();
+        std::cout << std::setw(12) << std::fixed << std::setprecision(2)<<venta.getMontoCompra();
         std::cout << std::setw(19) << metodoPagoAString(venta.getMetodoPago());
         std::cout << std::setw(11) << venta.getIdVendedor();
         std::cout << std::setw(13) << venta.getFecha().toString();

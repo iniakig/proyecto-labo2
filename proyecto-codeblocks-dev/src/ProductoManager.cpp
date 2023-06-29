@@ -31,7 +31,7 @@ void ProductoManager::Listar(Producto producto, int tipoListado)
         std::cout << "Marca: " << marca.getNombre() << std::endl;
         std::cout << "Modelo: " << producto.getModelo() << std::endl;
         std::cout << "Descripcion: " << producto.getDescripcion() << std::endl;
-        std::cout << "Precio: " << std::fixed << std::setprecision(2) << producto.getPrecio() << std::endl;
+        std::cout << "Precio: " << std::fixed << std::setprecision(2) << producto.getPrecio() << endl;
         std::cout << "Stock: " << producto.getStock() << std::endl;
         std::cout << "Estado: " << producto.getActivo() << std::endl;
         break;
