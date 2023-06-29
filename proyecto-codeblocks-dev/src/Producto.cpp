@@ -15,7 +15,7 @@ Producto::Producto()
     _activo = false;
 }
  // CONSTRUCTOR POR PARAMETROS
-Producto::Producto(int ID,int categoria, int idMarca, std::string modelo, std::string descripcion, double precioVenta, int stock, bool activo)
+Producto::Producto(int ID,int categoria, int idMarca, std::string modelo, std::string descripcion, float precioVenta, int stock, bool activo)
 {
     _ID = ID;
     _categoria=categoria;
@@ -54,7 +54,7 @@ void Producto::setDescripcion(std::string descripcion)
     strcpy(_descripcion, descripcion.c_str());
 }
 
-void Producto::setPrecio(double precioVenta)
+void Producto::setPrecio(float precioVenta)
 {
     _precioVenta = precioVenta;
 }
@@ -101,7 +101,7 @@ std::string Producto::getDescripcion()
     return descripcion;
 }
 
-double Producto::getPrecio()
+float Producto::getPrecio()
 {
     return _precioVenta;
 }
