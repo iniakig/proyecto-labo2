@@ -128,7 +128,7 @@ void Programa::login() {
 
         for (int i = 0; i < cantidadDeUsuarios; i++) {
             usuarioReg = usuarioArchivoReg.leer(i);
-            if (strcmp(usuarioReg.getAlias(), usuario.c_str()) == 0 && strcmp(usuarioReg.getContrasenia(), contrasenia.c_str()) == 0) {
+            if (strcmp(usuarioReg.getAlias(), usuario.c_str()) == 0 && strcmp(usuarioReg.getContrasenia(), contrasenia.c_str()) == 0 && usuarioReg.getEstado() == true) {
                 acceso = true;
                 id = usuarioReg.getId();
                 rol = usuarioReg.getRol(); // Le asigno a la variable rol el rol del usuario encontrado
